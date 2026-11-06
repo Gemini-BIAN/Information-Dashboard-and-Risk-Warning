@@ -1,0 +1,30 @@
+# Issue结果说明（准备提交至GitHub）
+
+## Issue #3：风险规则修正
+
+代码及本地验收完成，feature提交64e1016。93项pytest全通过、ruff通过（其中新增46项合成/Mock回归，不是Live数据）。修复：明确废止不被历史生效日期覆盖；日期与政策状态分开、三种日期独立；事件生命周期与严重度及来源可信度独立；取消/解除/矛盾/历史/假设/未知范围不自动抬高当前港口风险，多港口分句归属。新增002迁移及旧数据幂等重算、前后状态审计。页面/报告显示原因与不确定性，风险不由LLM决定。
+
+保留边界：词法规则不保证复杂法律/跨篇事件语义，未承诺延误预测或模型准确率。Issue #3代码验收完成；若GitHub写入受限则保留OPEN并附本说明供Owner评审，不擅自视为远程已关闭。
+
+## Issue #2：部分完成，BLOCKED，保持OPEN
+
+已加来源级耗时、失败阶段与请求URL/次数、日期年龄、最近真实成功时间；Live/注入测试验证类型区分；报告按来源/日期检查覆盖，失败/未测/缺日期不再描述为没有重要新闻。robots每跳检查，跨站RSS文章拒绝自动抓取，代理403不反复重试。
+
+实际10个官方源均在robots.txt CONNECT阶段被代理403拒绝：真实正文0，Live事件0。至少2源成功及真实事件全链路验收尚未满足。未获取真实原文，因此不伪造官方Fixtures或声称站点适配已验证。日志/复现见SOURCE_AUDIT、docs/LIVE_ACCEPTANCE。待网络策略实际生效后重试2–3源，补真实解析回归、人工事实核对和Live端到端，再考虑关闭。
+
+## PR #1
+
+继续现有feature分支，保持Draft、不合并main。推送会更新PR代码；Owner Review已正常从公开网页读取。API评论/描述写入状态与本轮CI见PROJECT_STATUS最终记录。该文件的存在不表示评论已成功发布。
+
+## Issue #2 最新结果：网络发布后的有限Live验收
+
+前文“0/10网络BLOCKED”仅为旧环境历史。本轮新实例网络/API恢复，代码85e261d：DG MOVE、DG TRADE、DG GROW各5篇，共15篇真实正文及原始日期；重复真实采集全部unchanged。实际Live页面/原发布日期日报/源HTML对照通过，99项pytest及ruff通过，代码本轮CI两次success。
+
+三部门属于同一欧委会机构，不代表独立机构或全业务覆盖。© EU/CC BY 4.0保留来源与修改说明。Rotterdam条款限制，停用并清理本轮5份临时正文/分析副本，未计入15。其余来源的robots/跨域/发现/许可限制分别记录，未绕过。
+
+证据见docs/LIVE_ACCEPTANCE和LIVE_EVIDENCE_2026-11-06.json。Issue保持OPEN等待Owner业务/法律签核及验收，PR保持Draft不合并。GitHub评论/PR描述是否实际写入见PROJECT_STATUS最终记录，不以本文件代替写入结果。
+
+
+### 本轮实际发布回执
+
+PR #1描述已通过API更新并保留Draft。上述Issue #2最新验收结果已实际发布：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/issues/2#issuecomment-6677957601 。Issue保持OPEN，未合并main；旧版API写入失败段落仅为历史。

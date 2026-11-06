@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-11-06T13:37:58.012003+08:00",
+  "verification": "Retained recent LIVE_HTTP evidence + local database + Streamlit AppTest; not a new HTTP run or human sign-off",
+  "live_events": 15,
+  "demo_events": 5,
+  "sources": [
+    {
+      "source": "ec",
+      "event_id": 13,
+      "title": "Joint press release on the 19th implementation meeting of the EU–China Maritime Transport Agreement",
+      "url": "https://transport.ec.europa.eu/news-events/news/joint-press-release-19th-implementation-meeting-eu-china-maritime-transport-agreement-2026-10-20_en",
+      "published_at": "2026-10-20T08:03:49+00:00",
+      "fetched_at": "2026-11-06T05:36:40.939006+00:00",
+      "analyzed_at": "2026-11-06T05:34:33.273843+00:00",
+      "body_sha256": "43030c8aefdad5ab8213010dd5ea5a340c4c332a3514a4b4069e7093be74c6e3",
+      "risk_level": "低",
+      "risk_reasons": [
+        "未识别明确运营状态，待核实；低关键词分数不是低运行风险。"
+      ],
+      "policy_status": "未知",
+      "effective_at": null,
+      "lifecycle": "unknown",
+      "rule_version": "2026-11-06.4",
+      "source_confidence": "unreviewed_public",
+      "evidence_quote": "The 19 th implementation meeting of the EU–China Maritime Transport Agreement was held in Shanghai , China, on 19 October 2026 .\nThe Chinese delegation was led by Mr Yang Huaxiong , Director-General of the Water Transport Bureau of the Ministry of Tr",
+      "dedupe": "unchanged",
+      "daily_report_id": 5,
+      "daily_report_day": "2026-10-20",
+      "source_collection": {
+        "status": "PASS",
+        "dated_articles": 5,
+        "stored_articles": 5,
+        "last_success_at": "2026-11-06T05:36:42.924454+00:00"
+      },
+      "source_html_cross_check": "PASS: retained source HTML independently parsed; original title, datePublished and complete extracted text match stored current raw revision",
+      "cross_checked_at": "2026-11-06T13:41:34.042103+08:00"
+    },
+    {
+      "source": "ec-trade",
+      "event_id": 22,
+      "title": "Commission acts against imports of PET Spunbond from China",
+      "url": "https://policy.trade.ec.europa.eu/news/commission-acts-against-imports-pet-spunbond-china-2026-10-30_en",
+      "published_at": "2026-10-30T10:59:23+00:00",
+      "fetched_at": "2026-11-06T05:36:52.059123+00:00",
+      "analyzed_at": "2026-11-06T05:34:48.766555+00:00",
+      "body_sha256": "f3a14d502b89df02741adbae6c341e0d8485615a5e0e67c1ca020ade7579c548",
+      "risk_level": "中",
+      "risk_reasons": [
+        "非港口运营专题关键词信号，不作为当前港口中断证据。"
+      ],
+      "policy_status": "未知",
+      "effective_at": null,
+      "lifecycle": "unknown",
+      "rule_version": "2026-11-06.4",
+      "source_confidence": "unreviewed_public",
+      "evidence_quote": "Today the European Commission imposed anti-dumping duties on imports into the EU of polyethylene terephthalate (PET) Spunbond from the People’s Republic of China.\nThe definitive anti-dumping duties imposed range from 39.8% to 48.1% and will be in pla",
+      "dedupe": "unchanged",
+      "daily_report_id": 6,
+      "daily_report_day": "2026-10-30",
+      "source_collection": {
+        "status": "PASS",
+        "dated_articles": 5,
+        "stored_articles": 5,
+        "last_success_at": "2026-11-06T05:36:55.104319+00:00"
+      },
+      "source_html_cross_check": "PASS: retained source HTML independently parsed; original title, datePublished and complete extracted text match stored current raw revision",
+      "cross_checked_at": "2026-11-06T13:41:34.057861+08:00"
+    },
+    {
+      "source": "ec-industry",
+      "event_id": 16,
+      "title": "EU campaign highlights lift buffer safety performance",
+      "url": "https://single-market-economy.ec.europa.eu/news/eu-campaign-highlights-lift-buffer-safety-performance-2026-10-29_en",
+      "published_at": "2026-10-29T09:40:56+00:00",
+      "fetched_at": "2026-11-06T05:36:45.200887+00:00",
+      "analyzed_at": "2026-11-06T05:34:42.182738+00:00",
+      "body_sha256": "33434edd8d9e95680fe52f106e2f9a6d3b93f3aa551cc8297030f4c3043662a9",
+      "risk_level": "低",
+      "risk_reasons": [
+        "未识别明确运营状态，待核实；低关键词分数不是低运行风险。"
+      ],
+      "policy_status": "未知",
+      "effective_at": null,
+      "lifecycle": "unknown",
+      "rule_version": "2026-11-06.4",
+      "source_confidence": "unreviewed_public",
+      "evidence_quote": "Lift buffers are a safety component located at the bottom of lift shafts – a last-resort protection that accumulates or dissipates the energy of a lift car or counterweight should it travel beyond its normal stopping point. An EU-funded campaign test",
+      "dedupe": "unchanged",
+      "daily_report_id": 7,
+      "daily_report_day": "2026-10-29",
+      "source_collection": {
+        "status": "PASS",
+        "dated_articles": 5,
+        "stored_articles": 5,
+        "last_success_at": "2026-11-06T05:36:49.013487+00:00"
+      },
+      "source_html_cross_check": "PASS: retained source HTML independently parsed; original title, datePublished and complete extracted text match stored current raw revision",
+      "cross_checked_at": "2026-11-06T13:41:35.550653+08:00"
+    }
+  ],
+  "ui_pages": [
+    "Overview",
+    "Intelligence",
+    "Reports"
+  ],
+  "limitations": [
+    "Three European Commission directorates, not three independent institutions.",
+    "Historical articles reported on original publication dates, not re-dated to today.",
+    "No user business/legal sign-off, real LLM, waiting-time or shipment-data validation."
+  ]
+}
