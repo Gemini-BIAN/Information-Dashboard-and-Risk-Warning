@@ -116,6 +116,12 @@ def generate_report(session, kind, mode, day=None):
                 parts.append(
                     f"<h4>{name}</h4>" + "".join(f"<p>{escape(t)}</p>" for t in payload.get(key, []))
                 )
+            source = session.get(Source, event.source_id)
+            reuse = json.loads(source.audit_json).get("reuse_policy", {}) if source else {}
+            if reuse.get("license") == "CC BY 4.0":
+                parts.append(
+                    '<p>© European Union — CC BY 4.0。已抽取正文并加入中文规则模板/分析，修改内容不代表欧盟立场。<a href="https://commission.europa.eu/legal-notice_en">复用许可</a></p>'
+                )
             parts.append(
                 f'<p>分析时间：{escape(analysis.analyzed_at if analysis else "未知")}；{escape(payload.get("quality_note", ""))}</p><a href="{escape(event.canonical_url, quote=True)}">原始来源 {escape(event.source_id)}</a></article>'
             )

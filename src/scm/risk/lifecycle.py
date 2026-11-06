@@ -6,7 +6,7 @@ from datetime import timedelta
 from scm.risk.policy import clauses
 from scm.settings import utcnow
 
-RULE_VERSION = "2026-11-06.3"
+RULE_VERSION = "2026-11-06.4"
 LIFECYCLE_LABELS = {
     "announced": "已宣布/待发生",
     "active": "原文称正在发生",
@@ -112,7 +112,9 @@ def assess(title, body, *, demo=False):
                     severity = candidate
                 reasons.append("严重度规则命中：" + sentence[:400])
         if severity == "低" and re.search(
-            r"\b(?:tariff|red sea|delay|proposal)\b|关税|红海|延误|提案", all_text, re.I
+            r"\b(?:tariff|anti-dumping|anti-subsidy|import duties|red sea|delay|proposal)\b|关税|红海|延误|提案",
+            all_text,
+            re.I,
         ):
             severity = "中"
             reasons.append("非港口运营专题关键词信号，不作为当前港口中断证据。")

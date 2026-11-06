@@ -36,6 +36,8 @@ def collect_one(spec, fetcher):
         "verification_type": fetcher.verification_type,
         "url": spec["url"],
         "method": spec["method"],
+        "parser": spec.get("parser", "generic"),
+        "reuse_policy": spec.get("reuse_policy", {}),
         "access_success": False,
         "publication_date_parsed": False,
         "body_obtained": False,
@@ -46,6 +48,8 @@ def collect_one(spec, fetcher):
     }
     articles = []
     try:
+        if spec.get("reuse_policy", {}).get("status") == "restricted":
+            raise AccessBlocked("Source reuse policy prohibits collection; no requests made")
         response = fetcher.get(spec["url"])
         audit["access_success"] = True
         audit["http_status"] = response.status_code
@@ -65,7 +69,7 @@ def collect_one(spec, fetcher):
                 if urlsplit(candidate["url"]).hostname != urlsplit(spec["url"]).hostname:
                     raise AccessBlocked("Cross-host feed article requires explicit source review")
                 raw = fetcher.get(candidate["url"])
-                parsed = parse_article(raw.text, candidate["url"])
+                parsed = parse_article(raw.text, candidate["url"], spec.get("parser", "generic"))
                 if parsed["published_at"] is None:
                     parsed["published_at"] = candidate.get("published_at")
                 articles.append(
@@ -253,6 +257,8 @@ def write_source_audit(factory, destination):
                 f"- 最后验证：{source.last_checked_at or 'NOT TESTED'}",
                 f"- 最近真实正文入库成功：{source.last_success_at or '无成功证据'}",
                 f"- 验证类型：{audit.get('verification_type', 'NOT TESTED')}",
+                f"- 启用：{source.enabled}",
+                f"- 复用政策：{json.dumps(audit.get('reuse_policy', {}), ensure_ascii=False)}",
                 f"- 耗时ms：{audit.get('duration_ms', 'NOT TESTED')}",
                 f"- 正文数/带发布日期数：{audit.get('parsed_articles', 0)}/{audit.get('dated_articles', 0)}",
                 f"- 列表访问成功：{audit.get('access_success', 'NOT TESTED')}",

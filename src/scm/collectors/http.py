@@ -56,8 +56,13 @@ class SafeFetcher:
                             body.extend(chunk)
                             if len(body) > 4_000_000:
                                 raise AccessBlocked("Response exceeds 4MB limit")
+                        # iter_bytes() already decompresses. Forwarding Content-Encoding
+                        # would ask httpx to decode the same body a second time.
+                        headers = httpx.Headers(raw.headers)
+                        headers.pop("content-encoding", None)
+                        headers["content-length"] = str(len(body))
                         response = httpx.Response(
-                            raw.status_code, headers=raw.headers, content=bytes(body), request=raw.request
+                            raw.status_code, headers=headers, content=bytes(body), request=raw.request
                         )
                     if response.status_code in [429, 500, 502, 503, 504] and attempt < self.retries:
                         retry_after = response.headers.get("retry-after", "")

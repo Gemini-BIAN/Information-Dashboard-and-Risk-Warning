@@ -1,0 +1,32 @@
+[
+  {
+    "file": "ec.html",
+    "source_id": "ec",
+    "url": "https://transport.ec.europa.eu/news-events/news/joint-press-release-19th-implementation-meeting-eu-china-maritime-transport-agreement-2026-10-20_en",
+    "captured_at": "2026-11-06T05:30:35.625187+00:00",
+    "original_html_sha256": "e9f06486e9b4ebe55458c27840c86d76302d6a5d04fe844897f8146bb3904d31",
+    "fixture_sha256": "69b838bbc7875a928df3c836806039645509c8781e8712a3e291320cf495319c",
+    "title": "Joint press release on the 19th implementation meeting of the EU–China Maritime Transport Agreement",
+    "published_at": "2026-10-20T10:03:49+02:00",
+    "quote": "The 19 th implementation meeting of the EU–China Maritime Transport Agreement was held in Shanghai , China, on 19 October 2026 .",
+    "license": "© European Union, CC BY 4.0",
+    "license_url": "https://commission.europa.eu/legal-notice_en",
+    "changes": "Reduced to original h1/datePublished/description and first paragraph; wrappers reduced; no fictional article text.",
+    "test_type": "OFFICIAL_EXCERPT_FIXTURE_NOT_LIVE"
+  },
+  {
+    "file": "ec-trade.html",
+    "source_id": "ec-trade",
+    "url": "https://policy.trade.ec.europa.eu/news/commission-acts-against-imports-pet-spunbond-china-2026-10-30_en",
+    "captured_at": "2026-11-06T05:30:34.478521+00:00",
+    "original_html_sha256": "4a40475dab25d733e662ed703a305979dfdda9b81613e90cb1ef2425572572ed",
+    "fixture_sha256": "6cb01fd78e26d29e26e0314de882c9d44d099e796c405985b5b068f13a10f7e4",
+    "title": "Commission acts against imports of PET Spunbond from China",
+    "published_at": "2026-10-30T11:59:23+01:00",
+    "quote": "The definitive anti-dumping duties imposed range from 39.8% to 48.1% and will be in place for five years. Provisional duties ranging from 45.6% to 50% had been in force since May 2026.",
+    "license": "© European Union, CC BY 4.0",
+    "license_url": "https://commission.europa.eu/legal-notice_en",
+    "changes": "Reduced to original h1/datePublished/description and first paragraph; wrappers reduced; no fictional article text.",
+    "test_type": "OFFICIAL_EXCERPT_FIXTURE_NOT_LIVE"
+  }
+]

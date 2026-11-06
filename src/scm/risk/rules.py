@@ -45,7 +45,20 @@ def classify(title, body):
     categories = [
         ("港口运营", ["strike", "罢工", "port closure", "港口关闭", "operations suspended", "作业中断"]),
         ("航线调整", ["port omission", "blank sailing", "跳港", "航次取消", "red sea", "红海", "rerouting"]),
-        ("关税贸易", ["tariff", "customs", "关税", "海关"]),
+        (
+            "关税贸易",
+            [
+                "tariff",
+                "customs",
+                "anti-dumping",
+                "anti-subsidy",
+                "import duties",
+                "关税",
+                "海关",
+                "反倾销",
+                "反补贴",
+            ],
+        ),
         ("电池法规", ["battery passport", "batteries regulation", "电池护照", "电池法规"]),
         (
             "行业产能",

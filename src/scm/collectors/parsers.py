@@ -22,7 +22,9 @@ def parse_date(value):
     return result.replace(tzinfo=timezone.utc) if result.tzinfo is None else result.astimezone(timezone.utc)
 
 
-def parse_article(html, url):
+def parse_article(html, url, adapter="generic"):
+    if adapter not in ["generic", "european_commission"]:
+        raise ValueError("Unsupported article parser")
     soup = BeautifulSoup(html, "html.parser")
     h1 = soup.find("h1")
     title_meta = soup.find("meta", property="og:title")
@@ -56,13 +58,21 @@ def parse_article(html, url):
     if published is None:
         tag = soup.find("time", datetime=True)
         published = parse_date(tag["datetime"]) if tag else None
-    content = soup.find("article") or soup.find("main")
+    intro = soup.select_one(".ecl-page-header__description") if adapter == "european_commission" else None
+    intro_text = intro.get_text(" ", strip=True) if intro else None
+    content = (
+        soup.find("article")
+        if adapter == "european_commission"
+        else (soup.find("article") or soup.find("main"))
+    )
     # A generic shell is not treated as a full article.
     if content is None:
         raise ValueError("No article/main content container")
     for tag in content.select("script, style, nav, footer, header, form, aside"):
         tag.decompose()
     paragraphs = [p.get_text(" ", strip=True) for p in content.find_all(["p", "li"])]
+    if intro_text and intro_text not in paragraphs:
+        paragraphs.insert(0, intro_text)
     body = "\n".join(p for p in paragraphs if len(p) > 35)
     if not title or len(body) < 100:
         raise ValueError("No usable article title/body; possible JS shell or listing")

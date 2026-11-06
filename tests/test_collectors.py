@@ -260,3 +260,54 @@ def test_deterministic_proxy_403_not_retried():
     with pytest.raises(httpx.ProxyError):
         fetcher.get("https://official.test/news")
     assert len(calls) == 1
+
+
+def test_gzip_responses_are_decoded_once_with_decoded_size_limit():
+    import gzip
+
+    def handler(request):
+        text = "User-agent: *\nAllow: /" if request.url.path == "/robots.txt" else HTML
+        compressed = gzip.compress(text.encode())
+        return httpx.Response(
+            200,
+            headers={"content-encoding": "gzip", "content-length": str(len(compressed))},
+            stream=httpx.ByteStream(compressed),
+        )
+
+    response = make_fetcher(handler).get("https://official.test/news/1")
+    assert response.text == HTML
+    assert "content-encoding" not in response.headers
+    assert int(response.headers["content-length"]) == len(HTML.encode())
+
+
+def test_restricted_reuse_policy_stops_before_network():
+    from scm.collectors.service import collect_one
+
+    calls = []
+    fetcher = make_fetcher(lambda req: calls.append(req) or httpx.Response(200))
+    articles, audit = collect_one(
+        {
+            "id": "restricted",
+            "name": "Restricted",
+            "url": "https://official.test/news",
+            "method": "html",
+            "article_pattern": "/news/",
+            "reuse_policy": {"status": "restricted"},
+        },
+        fetcher,
+    )
+    assert not calls and not articles
+    assert audit["status"] == "BLOCKED" and "reuse policy" in audit["restriction"]
+
+
+def test_gzip_decoded_body_still_enforces_4mb_limit():
+    import gzip
+
+    def handler(request):
+        data = b"User-agent: *\nAllow: /" if request.url.path == "/robots.txt" else b"x" * 4_000_001
+        return httpx.Response(
+            200, headers={"content-encoding": "gzip"}, stream=httpx.ByteStream(gzip.compress(data))
+        )
+
+    with pytest.raises(AccessBlocked, match="4MB"):
+        make_fetcher(handler).get("https://official.test/news")

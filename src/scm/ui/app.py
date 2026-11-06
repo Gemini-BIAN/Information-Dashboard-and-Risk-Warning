@@ -94,6 +94,15 @@ def event_detail(session, event):
             st.caption(evidence)
         if event.lifecycle == "unknown" or event.rule_version == "legacy":
             st.warning("事件状态未知、矛盾或规则待更新：需人工核实，不作为当前港口中断的自动证据。")
+        source = session.get(Source, event.source_id)
+        reuse = json.loads(source.audit_json).get("reuse_policy", {}) if source else {}
+        if reuse.get("license") == "CC BY 4.0":
+            st.caption(
+                "© European Union — CC BY 4.0；已抽取正文并加入中文规则模板/分析，修改不代表欧盟立场。"
+            )
+            st.link_button(
+                "欧委会复用许可", "https://commission.europa.eu/legal-notice_en", key=f"license-{event.id}"
+            )
         st.link_button("查看原始来源", event.canonical_url)
         st.markdown("**核心事实与原文依据**")
         for fact in payload.get("facts", []):
