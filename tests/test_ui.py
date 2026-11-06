@@ -38,7 +38,8 @@ def test_all_six_demo_pages(dashboard, page):
     assert not app.exception
     assert any("演示空间" in w.value for w in app.warning)
     if page == "Overview":
-        assert app.metric[0].value == "5"
+        assert app.metric[0].value == "0"  # Unreviewed Demo content is not confirmed current disruption.
+        assert any("当前空间共 5 条" in c.value for c in app.caption)
     if page == "Shipment Monitor":
         assert any("DEMO-0001" in e.label for e in app.expander)
 

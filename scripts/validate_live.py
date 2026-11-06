@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 from datetime import datetime, timedelta
+from html import escape
 from pathlib import Path
 
 from sqlalchemy import func, select
@@ -125,12 +126,13 @@ def validate(destination):
         )
     app = AppTest.from_file(str(ROOT / "src/scm/ui/app.py"), default_timeout=45).run()
     assert not app.exception
-    assert app.metric[0].value == str(live_before)
+    assert any(f"当前空间共 {live_before} 条" in caption.value for caption in app.caption)
+    assert app.metric[0].label == "当前已确认运营中断"
     assert not any("演示空间" in w.value for w in app.warning)
     app.sidebar.radio[1].set_value("Intelligence").run()
     assert not app.exception
-    labels = [expander.label for expander in app.expander]
-    assert all(any(row["title"] in label for label in labels) for row in evidence)
+    rendered = [markup.value for markup in app.markdown]
+    assert all(any(escape(row["title"]) in markup for markup in rendered) for row in evidence)
     assert any("CC BY 4.0" in caption.value for caption in app.caption)
     app.sidebar.radio[1].set_value("Reports").run()
     assert not app.exception
