@@ -23,3 +23,8 @@
 三部门属于同一欧委会机构，不代表独立机构或全业务覆盖。© EU/CC BY 4.0保留来源与修改说明。Rotterdam条款限制，停用并清理本轮5份临时正文/分析副本，未计入15。其余来源的robots/跨域/发现/许可限制分别记录，未绕过。
 
 证据见docs/LIVE_ACCEPTANCE和LIVE_EVIDENCE_2026-11-06.json。Issue保持OPEN等待Owner业务/法律签核及验收，PR保持Draft不合并。GitHub评论/PR描述是否实际写入见PROJECT_STATUS最终记录，不以本文件代替写入结果。
+
+
+### 本轮实际发布回执
+
+PR #1描述已通过API更新并保留Draft。上述Issue #2最新验收结果已实际发布：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/issues/2#issuecomment-6677957601 。Issue保持OPEN，未合并main；旧版API写入失败段落仅为历史。

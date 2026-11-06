@@ -33,3 +33,12 @@ EUR-Lex robots202 fail closed；CATL跨域robots重定向未跟随；Antwerp/Ham
 ## GitHub
 
 已用恢复后的API读取Owner两轮Review及Issue #2。第二轮Review认可#3代码层面修复，#2仍要求真实验收。代码提交85e261d已推送PR #1；本轮CI和PR/Issue结果写入待实际确认后追加。旧环境的API403仅为历史，不能当当前阻碍。
+
+
+## 最终外部写入与运行回执
+
+- GitHub API PATCH PR #1描述成功，保持draft=true；更新时间2026-11-06 13:45:53（Asia/Shanghai）。
+- Issue #2评论POST成功：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/issues/2#issuecomment-6677957601 。保留OPEN等待Owner评审，没有自行关闭或合并。
+- 代码85e261d的CI成功；文档/证据8a3f2fc的push与PR两次CI亦由API确认completed/success：42170291262、42170295767。
+- 新实例最新Streamlit已在127.0.0.1:8501启动；health与首页均HTTP200。实际15篇Live页面另由AppTest验证。没有公开预览、生产部署或调度常驻承诺。
+- 收尾只更新写入/检查回执，无代码或验收数据变更。GitHub API已读写成功，旧403不是本轮剩余问题。

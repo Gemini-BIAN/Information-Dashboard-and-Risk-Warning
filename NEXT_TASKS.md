@@ -37,3 +37,5 @@
 - [ ] Issue #2由Owner评审有限范围Live验收；保留OPEN。上方旧“0/10网络BLOCKED”是前轮历史记录，不能当当前结果。
 - [ ] 业务优先：合法取得电池/电解液直接相关官方消息、真实港口公告；其他候选分别解决许可、robots、跨域审核或站点结构，不绕过。
 - [ ] 复用限制未解除时保持Rotterdam停用。Maersk/Hapag未核实复用前不进行正文采集；其他站点同样需条款确认。
+
+- [x] 本轮代码85e261d及证据8a3f2fc的push/PR检查均实际确认success；API描述更新及Issue #2评论已实际发布，见PROJECT_STATUS回执。Issue #3按Owner评审流程处理，不替其自行关闭。

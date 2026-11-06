@@ -53,3 +53,10 @@
 - https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42169754791
 
 这是本轮SHA的实际检查，不是沿用基线。远程CI执行离线回归，不把它当真实HTTP验收；真实15篇与页面证据由本实例另行执行。未下载远程JUnit，不冒称核对了远程测试计数。依赖一致性pip check：No broken requirements found。
+
+
+## 最终回执（仅文档收尾）
+
+- 证据提交8a3f2fc的两次CI经API确认success：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42170291262 与 https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42170295767 。
+- GitHub API写入PASS：PR #1描述PATCH成功且Draft保留；Issue #2评论POST成功：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/issues/2#issuecomment-6677957601 。Issue未关闭，main未合并。
+- 新实例本地服务PASS：Streamlit绑定127.0.0.1:8501，GET /_stcore/health→200/ok，GET /→200。页面数据渲染另由实际Live AppTest验证，未冒称人工浏览器视觉验收。
