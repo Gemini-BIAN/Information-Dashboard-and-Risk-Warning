@@ -18,6 +18,7 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("init")
     sub.add_parser("demo")
+    sub.add_parser("reassess")
     collect = sub.add_parser("collect")
     collect.add_argument("--source", action="append")
     audit = sub.add_parser("audit")
@@ -36,7 +37,17 @@ def main():
     with factory.begin() as session:
         specs = register_sources(session)
     if args.command == "init":
+        from scm.intelligence.service import reassess_events
+
+        with factory.begin() as session:
+            count = reassess_events(session)
+        print(f"Existing evidence reassessed: {count}")
         print("Schema migrated; sources registered. No demo data loaded.")
+    elif args.command == "reassess":
+        from scm.intelligence.service import reassess_events
+
+        with factory.begin() as session:
+            print({"reassessed": reassess_events(session)})
     elif args.command == "demo":
         print(json.dumps(load_demo(factory)))
         with factory.begin() as session:

@@ -61,3 +61,15 @@ def test_port_selection_and_override(dashboard):
     app.button[0].click().run()
     assert not app.exception
     assert app.metric[0].value == "高"
+
+
+def test_live_ui_surfaces_coverage_warning(dashboard):
+    assert any("采集覆盖不足" in warning.value for warning in dashboard.warning)
+
+
+def test_event_detail_shows_lifecycle_evidence_and_uncertainty(dashboard):
+    app = dashboard
+    app.sidebar.radio[0].set_value("演示数据 Demo").run()
+    assert not app.exception
+    assert any("生命周期" in m.value and "来源可信度" in m.value for m in app.markdown)
+    assert any("独立政策日期" in m.value for m in app.markdown)

@@ -63,101 +63,33 @@ def classify(title, body):
         ),
     ]
     event_type = next((name for name, words in categories if contains(text, words)), "综合动态")
-    # Only explicit phrases establish a status; no interpretation from publication date.
-    statuses = [
-        ("废止", ["is repealed", "已废止"]),
-        ("提案", ["proposal", "proposed", "提案", "拟议"]),
-        ("实施", ["has entered into force", "is in force", "已实施", "正式生效"]),
-        ("通过", ["has adopted", "was adopted", "已通过"]),
-    ]
-    policy_status = (
-        next((name for name, words in statuses if contains(text, words)), "未知")
-        if event_type in ["关税贸易", "电池法规"]
-        else "未知"
-    )
-    effective_at = None
-    if event_type in ["关税贸易", "电池法规"]:
-        # Only explicitly labelled dates; never infer a date from publication time.
-        from datetime import date, datetime
+    from scm.risk.policy import policy_state
 
-        patterns = [
-            r"(?:shall apply from|enters into force on|effective from)\s+(\d{4}-\d{2}-\d{2})",
-            r"(?:shall apply from|enters into force on|effective from)\s+(\d{1,2} [a-z]+ \d{4})",
-            r"(?:自|于)(\d{4}年\d{1,2}月\d{1,2}日)(?:起)?(?:生效|实施)",
-        ]
-        for pattern, fmt in zip(patterns, ["%Y-%m-%d", "%d %B %Y", "%Y年%m月%d日"]):
-            match = re.search(pattern, text)
-            if match:
-                try:
-                    effective_at = datetime.strptime(match[1], fmt).date().isoformat()
-                    break
-                except ValueError:
-                    pass
-        if effective_at and date.fromisoformat(effective_at) <= utcnow().date() and policy_status != "提案":
-            policy_status = "实施"
+    policy = (
+        policy_state(title, body)
+        if event_type in ["关税贸易", "电池法规"]
+        else {
+            "policy_status": "未知",
+            "effective_at": None,
+            "expiry_at": None,
+            "repeal_at": None,
+            "policy_reasons": ["非政策类情报，不推断政策状态。"],
+        }
+    )
     return {
         "event_type": event_type,
         "ports": ports,
         "countries": sorted(countries),
-        "policy_status": policy_status,
-        "effective_at": effective_at,
+        **policy,
         "topic": event_type + ":" + ",".join(ports or sorted(countries) or ["全球"]),
     }
 
 
 def grade(title, body, event_type):
-    """Quote the sentence that triggered each grade; hedging prevents automatic high."""
-    sentences = re.split(r"(?<=[.!?。；])\s*|\n", title + "\n" + body)
-    triggers = [
-        ("高", ["port closure", "operations suspended", "港口关闭", "作业中断", "strike", "罢工"]),
-        (
-            "中",
-            [
-                "port omission",
-                "blank sailing",
-                "跳港",
-                "航次取消",
-                "tariff",
-                "关税",
-                "red sea",
-                "红海",
-                "delay",
-                "延误",
-                "proposal",
-                "提案",
-            ],
-        ),
-    ]
-    hits = []
-    for level, words in triggers:
-        for sentence in sentences:
-            t = sentence.casefold()
-            if not contains(t, words):
-                continue
-            if contains(
-                t,
-                [
-                    "no strike",
-                    "strike ended",
-                    "strike averted",
-                    "not suspended",
-                    "no port closure",
-                    "无罢工",
-                    "罢工结束",
-                    "取消罢工",
-                    "恢复作业",
-                ],
-            ):
-                continue
-            uncertain = contains(
-                t, ["may", "could", "possible", "potential", "planned", "可能", "拟", "计划"]
-            )
-            actual_level = "中" if uncertain and level == "高" else level
-            hits.append((actual_level, f"规则关键词命中（需核实当前有效性）：{sentence[:400]}"))
-    if hits:
-        level = max(hits, key=lambda h: LEVELS[h[0]])[0]
-        return level, [h[1] for h in hits if h[0] == level][:4]
-    return "低", ["未命中已配置的中高风险信号；低风险不代表无风险。"]
+    from scm.risk.lifecycle import assess
+
+    result = assess(title, body)
+    return result["severity"], result["reasons"]
 
 
 def port_risk(session, port, mode, now=None):
@@ -166,9 +98,11 @@ def port_risk(session, port, mode, now=None):
     from sqlalchemy import select
 
     from scm.database.models import Event, PortOverride
+    from scm.risk.lifecycle import RULE_VERSION
 
     now = now or utcnow()
     cutoff = now - timedelta(days=30)
+    candidates = []
     events = []
     from datetime import datetime
 
@@ -181,13 +115,32 @@ def port_risk(session, port, mode, now=None):
             and event.published_at
             and cutoff <= datetime.fromisoformat(event.published_at) <= now
         ):
-            events.append(event)
-    level = max((e.risk_level for e in events), key=lambda level: LEVELS[level], default="未知")
-    reasons = (
-        [f"近30天有效期内公告信号 {len(events)} 条；不等于实时作业状态。"]
-        if events
-        else ["近30天无可用、带发布日期的公告；数据不足。"]
-    )
+            candidates.append(event)
+            signal = json.loads(event.port_signals_json).get(port, {})
+            if (
+                event.rule_version == RULE_VERSION
+                and signal.get("lifecycle") in ["active", "announced"]
+                and signal.get("severity") in ["中", "高"]
+            ):
+                events.append(event)
+    scores = []
+    for event in events:
+        signal = json.loads(event.port_signals_json)[port]
+        scores.append("中" if signal["lifecycle"] == "announced" else signal["severity"])
+    level = max(scores, key=lambda level: LEVELS[level], default="未知")
+    reasons = [
+        f"近30天候选公告 {len(candidates)} 条，明确进行中/已宣布信号 {len(events)} 条；发布时间不证明持续中断。"
+    ]
+    if not events:
+        reasons.append(
+            "未获得可用于当前预警的明确运营证据，风险未知；已解除、取消、矛盾或状态未知不抬高预警。"
+        )
+    for event in candidates:
+        signal = json.loads(event.port_signals_json).get(port, {})
+        reasons.append(
+            f"事件#{event.id} 生命周期={signal.get('lifecycle', 'unknown')}；来源可信度={event.source_confidence}；原文={event.canonical_url}"
+        )
+        reasons.extend(signal.get("reasons", []))
     override = session.scalar(
         select(PortOverride).where(PortOverride.port == port, PortOverride.data_mode == mode)
     )

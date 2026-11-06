@@ -7,7 +7,8 @@ from sqlalchemy import select
 
 from scm.database.models import Analysis, Event, PortOverride, RawRevision, ReviewLog, Source
 from scm.intelligence.providers import RuleProvider, configured_provider
-from scm.risk.rules import LEVELS, PORT_ALIASES, classify, grade
+from scm.risk.lifecycle import RULE_VERSION, assess, port_signals
+from scm.risk.rules import LEVELS, PORT_ALIASES, classify
 from scm.settings import utcnow
 
 
@@ -40,6 +41,7 @@ def ingest(session, article, provider=None):
         )
     if (
         event is not None
+        and event.rule_version == RULE_VERSION
         and event.content_hash == digest
         and event.published_at == (article.published_at.isoformat() if article.published_at else None)
     ):
@@ -48,8 +50,27 @@ def ingest(session, article, provider=None):
     source = session.get(Source, article.source)
     if source is None:
         raise ValueError("Source must be registered before ingestion")
+    before = None
+    if event is not None:
+        before = {
+            name: getattr(event, name)
+            for name in [
+                "rule_version",
+                "policy_status",
+                "effective_at",
+                "expiry_at",
+                "repeal_at",
+                "risk_level",
+                "risk_reasons_json",
+                "lifecycle",
+                "lifecycle_reasons_json",
+                "port_signals_json",
+                "review_status",
+            ]
+        }
     metadata = classify(article.title, article.body)
-    level, reasons = grade(article.title, article.body, metadata["event_type"])
+    assessment = assess(article.title, article.body, demo=article.data_mode == "demo")
+    level, reasons = assessment["severity"], assessment["reasons"]
     created = event is None
     if created:
         event = Event(canonical_url=url, data_mode=article.data_mode, source_id=article.source)
@@ -64,11 +85,36 @@ def ingest(session, article, provider=None):
     event.ports_json = json.dumps(metadata["ports"])
     event.policy_status = metadata["policy_status"]
     event.effective_at = metadata["effective_at"]
+    event.expiry_at, event.repeal_at = metadata["expiry_at"], metadata["repeal_at"]
+    event.policy_reasons_json = json.dumps(metadata["policy_reasons"], ensure_ascii=False)
+    event.lifecycle = assessment["lifecycle"]
+    event.lifecycle_reasons_json = json.dumps(assessment["reasons"], ensure_ascii=False)
+    event.port_signals_json = json.dumps(
+        port_signals(
+            article.title, article.body, metadata["ports"], PORT_ALIASES, demo=article.data_mode == "demo"
+        ),
+        ensure_ascii=False,
+    )
+    event.rule_version = RULE_VERSION
+    event.source_confidence = "demo" if article.data_mode == "demo" else "unreviewed_public"
     event.topic = metadata["topic"]
     event.risk_level = level
     event.risk_reasons_json = json.dumps(reasons, ensure_ascii=False)
     # Updated evidence must be reviewed again.
     event.review_status = "pending"
+    if before is not None:
+        after = {name: getattr(event, name) for name in before}
+        session.add(
+            ReviewLog(
+                target_type="event",
+                target_id=str(event.id),
+                actor="system",
+                action="rule_reassessment" if before["rule_version"] != RULE_VERSION else "evidence_update",
+                reason=json.dumps({"before": before, "after": after}, ensure_ascii=False),
+                created_at=utcnow().isoformat(),
+                data_mode=event.data_mode,
+            )
+        )
     session.flush()
     revision = session.scalar(
         select(RawRevision).where(RawRevision.event_id == event.id, RawRevision.content_hash == digest)
@@ -159,3 +205,36 @@ def override_port(session, port, mode, level, actor, reason, expires_at):
             data_mode=mode,
         )
     )
+
+
+def reassess_events(session):
+    """Reapply changed rules to saved evidence; never relabel demo/live or refetch."""
+    from datetime import datetime
+
+    from scm.intelligence.providers import RuleProvider
+    from scm.schemas import RawArticle
+
+    count = 0
+    for event in session.scalars(select(Event).where(Event.rule_version != RULE_VERSION)).all():
+        raw = session.scalar(
+            select(RawRevision).where(
+                RawRevision.event_id == event.id, RawRevision.content_hash == event.content_hash
+            )
+        )
+        if raw is None:
+            continue  # Legacy remains unknown in current port aggregation.
+        ingest(
+            session,
+            RawArticle(
+                title=raw.title,
+                body=raw.body,
+                url=raw.source_url,
+                source=event.source_id,
+                published_at=datetime.fromisoformat(raw.published_at) if raw.published_at else None,
+                fetched_at=datetime.fromisoformat(event.fetched_at),
+                data_mode=event.data_mode,
+            ),
+            RuleProvider(),
+        )
+        count += 1
+    return count

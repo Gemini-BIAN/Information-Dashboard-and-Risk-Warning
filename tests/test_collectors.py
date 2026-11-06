@@ -233,3 +233,30 @@ def test_optional_llm_valid_mock(monkeypatch):
         fetched_at=utcnow(),
     )
     assert provider.analyze(article, {})["facts"][0]["quote"] == quote
+
+
+def test_redirect_cannot_fetch_robots_disallowed_path():
+    seen = []
+
+    def handler(request):
+        seen.append(request.url.path)
+        if request.url.path == "/robots.txt":
+            return httpx.Response(200, text="User-agent: *\nDisallow: /private")
+        return httpx.Response(302, headers={"location": "/private"})
+
+    with pytest.raises(AccessBlocked, match="redirected URL"):
+        make_fetcher(handler).get("https://official.test/news")
+    assert seen == ["/robots.txt", "/news"]
+
+
+def test_deterministic_proxy_403_not_retried():
+    calls = []
+
+    def handler(request):
+        calls.append(str(request.url))
+        raise httpx.ProxyError("403 Forbidden")
+
+    fetcher = SafeFetcher(httpx.Client(transport=httpx.MockTransport(handler)), interval=0, retries=2)
+    with pytest.raises(httpx.ProxyError):
+        fetcher.get("https://official.test/news")
+    assert len(calls) == 1

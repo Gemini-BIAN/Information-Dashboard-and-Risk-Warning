@@ -6,6 +6,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from sqlalchemy import select
 
+from scm.collectors.coverage import collection_coverage
 from scm.collectors.service import load_demo, register_sources, run_collection
 from scm.database.models import (
     Analysis,
@@ -20,8 +21,9 @@ from scm.database.models import (
 )
 from scm.database.session import session_factory
 from scm.exports import safe_csv
-from scm.intelligence.service import override_port, review
-from scm.reports.service import generate_report
+from scm.intelligence.service import override_port, reassess_events, review
+from scm.reports.service import generate_report, period_bounds
+from scm.risk.lifecycle import LIFECYCLE_LABELS
 from scm.risk.rules import PORT_ALIASES, port_risk
 from scm.settings import ROOT, TIMEZONE, utcnow
 from scm.shipments.service import import_csv, shipment_risks
@@ -38,6 +40,7 @@ def get_factory():
     factory = session_factory()
     with factory.begin() as session:
         register_sources(session)
+        reassess_events(session)
     return factory
 
 
@@ -81,6 +84,16 @@ def event_detail(session, event):
         st.caption(
             f"来源：{event.source_id} ｜ 发布：{event.published_at or '未知'} ｜ 抓取：{event.fetched_at} ｜ 分析：{analysis.analyzed_at if analysis else '未知'}"
         )
+        st.write(
+            f"情报严重度：{event.risk_level}（非当前港口风险）｜生命周期：{LIFECYCLE_LABELS.get(event.lifecycle, event.lifecycle)}｜来源可信度：{event.source_confidence}｜规则：{event.rule_version}"
+        )
+        st.write(
+            f"独立政策日期：生效 {event.effective_at or '未知'}；到期 {event.expiry_at or '未知'}；废止 {event.repeal_at or '未知'}"
+        )
+        for evidence in json.loads(event.policy_reasons_json):
+            st.caption(evidence)
+        if event.lifecycle == "unknown" or event.rule_version == "legacy":
+            st.warning("事件状态未知、矛盾或规则待更新：需人工核实，不作为当前港口中断的自动证据。")
         st.link_button("查看原始来源", event.canonical_url)
         st.markdown("**核心事实与原文依据**")
         for fact in payload.get("facts", []):
@@ -138,6 +151,12 @@ with factory() as session:
             select(Event).where(Event.data_mode == mode).order_by(Event.published_at.desc(), Event.id.desc())
         )
     )
+    if mode == "live":
+        coverage = collection_coverage(session, *period_bounds("daily"))
+        if not coverage["adequate"]:
+            st.warning(
+                f"今日采集覆盖不足（{coverage['covered_sources']}/{coverage['configured_sources']}个配置来源）；不能据空数据判断没有重要新闻或港口正常。"
+            )
     if page == "Overview":
         visible = [e for e in events if e.review_status != "rejected"]
         columns = st.columns(4)
@@ -372,6 +391,7 @@ with factory() as session:
                     "方法": s.method,
                     "状态": s.last_status,
                     "最后验证": s.last_checked_at,
+                    "最后真实正文成功": s.last_success_at,
                 }
                 for s in sources
             ],

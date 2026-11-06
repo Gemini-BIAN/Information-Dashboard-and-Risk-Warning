@@ -5,7 +5,9 @@ from html import escape
 
 from sqlalchemy import select
 
+from scm.collectors.coverage import collection_coverage
 from scm.database.models import Analysis, Event, Report, Source
+from scm.risk.lifecycle import LIFECYCLE_LABELS
 from scm.risk.rules import LEVELS
 from scm.settings import TIMEZONE, utcnow
 
@@ -40,6 +42,7 @@ def generate_report(session, kind, mode, day=None):
         raise ValueError("mode must be live/demo")
     start, end = period_bounds(kind, day)
     events = report_events(session, mode, start, end)
+    coverage = collection_coverage(session, start, end) if mode == "live" else None
     label = "演示数据 / 非真实新闻" if mode == "demo" else "真实来源 / 待人工审核"
     title = (
         "Daily Intelligence Digest｜供应链情报日报"
@@ -57,9 +60,21 @@ def generate_report(session, kind, mode, day=None):
         groups[event.topic].append(event)
     top = list(groups.values())[:5] if kind == "weekly" else [[e] for e in events[:5]]
     important = [group for group in top if any(LEVELS[e.risk_level] >= 1 for e in group)]
-    if not important:
+    if coverage is not None:
         parts.append(
-            "<p>本期没有重要新增事件；这不表示外部无风险。来源覆盖有限，未通过模拟新闻补足数量。</p>"
+            f"<h2>采集覆盖</h2><p>当期配置来源完整日覆盖：{coverage['covered_sources']}/{coverage['configured_sources']}。{escape(coverage['note'])}</p>"
+        )
+        if not coverage["adequate"]:
+            parts.append(
+                "<p class='mode'>采集覆盖不足：存在失败、未测或缺少有效当期采集证据，不能判断本期没有重要新增事件；请勿据此推断市场平静或港口正常。</p>"
+            )
+        for item in coverage["sources"]:
+            parts.append(
+                f"<p>{escape(item['name'])}：有效日 {len(item['covered_days'])}/{len(item['required_days'])}；最后真实正文成功 {escape(item['last_success_at'] or '无')}；待核实日 {escape(str(item['failures']))}</p>"
+            )
+    if not important and (coverage is None or coverage["adequate"]):
+        parts.append(
+            "<p>本期已采集样本中未识别重要新增事件；这不表示外部无风险或完整覆盖。未通过模拟新闻补足数量。</p>"
         )
     for group in top:
         parts.append(
@@ -79,7 +94,11 @@ def generate_report(session, kind, mode, day=None):
             )
             payload = json.loads(analysis.payload_json) if analysis else {}
             parts.append(
-                f"<article><h3>{escape(payload.get('title_zh', event.title))}</h3><p>风险：{escape(event.risk_level)}｜审核：{event.review_status}｜政策状态：{event.policy_status}｜事件生效时间：{escape(event.effective_at or '未知/待核实')}</p><p>发布时间：{escape(event.published_at or '未知')}；采集：{event.fetched_at}</p><h4>核心事实（原文证据）</h4>"
+                f"<article><h3>{escape(payload.get('title_zh', event.title))}</h3><p>情报信号严重度：{escape(event.risk_level)}（非当前港口风险）｜生命周期：{LIFECYCLE_LABELS.get(event.lifecycle, event.lifecycle)}｜来源可信度：{event.source_confidence}｜规则：{event.rule_version}｜审核：{event.review_status}｜政策状态：{event.policy_status}｜生效：{escape(event.effective_at or '未知/待核实')}｜到期：{escape(event.expiry_at or '未知')}｜废止：{escape(event.repeal_at or '未知')}</p><p>发布时间：{escape(event.published_at or '未知')}；采集：{event.fetched_at}</p><h4>核心事实（原文证据）</h4>"
+            )
+            parts.append(
+                "<h4>政策状态证据与不确定性</h4>"
+                + "".join(f"<p>{escape(r)}</p>" for r in json.loads(event.policy_reasons_json))
             )
             for fact in payload.get("facts", []):
                 parts.append(

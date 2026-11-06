@@ -1,6 +1,9 @@
 import json
 import logging
+import time
 from collections import Counter
+from statistics import median
+from urllib.parse import urlsplit
 
 from sqlalchemy import select
 
@@ -27,13 +30,17 @@ def register_sources(session, path=None):
 
 
 def collect_one(spec, fetcher):
+    started = time.monotonic()
+    initial_requests = fetcher.request_count
     audit = {
+        "verification_type": fetcher.verification_type,
         "url": spec["url"],
         "method": spec["method"],
         "access_success": False,
         "publication_date_parsed": False,
         "body_obtained": False,
         "restriction": None,
+        "failure_stage": "robots_or_listing",
         "article_errors": [],
         "terms_review": "Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.",
     }
@@ -42,6 +49,7 @@ def collect_one(spec, fetcher):
         response = fetcher.get(spec["url"])
         audit["access_success"] = True
         audit["http_status"] = response.status_code
+        audit["failure_stage"] = "article_discovery_or_parse"
         if spec["method"] == "rss":
             candidates = parse_feed(response.content)
         else:
@@ -54,6 +62,8 @@ def collect_one(spec, fetcher):
         audit["discovered"] = len(candidates)
         for candidate in candidates:
             try:
+                if urlsplit(candidate["url"]).hostname != urlsplit(spec["url"]).hostname:
+                    raise AccessBlocked("Cross-host feed article requires explicit source review")
                 raw = fetcher.get(candidate["url"])
                 parsed = parse_article(raw.text, candidate["url"])
                 if parsed["published_at"] is None:
@@ -77,8 +87,24 @@ def collect_one(spec, fetcher):
     except Exception as exc:
         audit["status"] = "BLOCKED"
         audit["restriction"] = safe_error(exc)
+    if audit["status"] == "PASS":
+        audit["failure_stage"] = None
+    audit["last_request_url"] = fetcher.last_request_url
+    audit["request_count"] = fetcher.request_count - initial_requests
     audit["robots"] = dict(fetcher.robots_audit)
     audit["verified_at"] = utcnow().isoformat()
+    audit["duration_ms"] = round((time.monotonic() - started) * 1000, 2)
+    audit["article_samples"] = [
+        {
+            "url": str(a.url),
+            "title": a.title,
+            "published_at": a.published_at.isoformat() if a.published_at else None,
+            "fetched_at": a.fetched_at.isoformat(),
+        }
+        for a in articles
+    ]
+    latencies = [(a.fetched_at - a.published_at).total_seconds() / 3600 for a in articles if a.published_at]
+    audit["median_publication_age_hours"] = round(median(latencies), 2) if latencies else None
     return articles, audit
 
 
@@ -142,6 +168,10 @@ def run_collection(factory, specs=None, fetcher=None):
                         audit["status"] = "PARTIAL"
                     row = session.get(Source, spec["id"])
                     row.last_checked_at, row.last_status = audit["verified_at"], audit["status"]
+                    audit["stored_articles"] = sum(counts.values())
+                    if audit["stored_articles"] and audit["verification_type"] == "LIVE_HTTP":
+                        row.last_success_at = audit["verified_at"]
+                    audit["last_success_at"] = row.last_success_at
                     row.audit_json = json.dumps(audit, ensure_ascii=False)
                     session.add(
                         CollectionLog(
@@ -221,6 +251,10 @@ def write_source_audit(factory, destination):
                 f"- 方法：{source.method}",
                 f"- 状态：{source.last_status}",
                 f"- 最后验证：{source.last_checked_at or 'NOT TESTED'}",
+                f"- 最近真实正文入库成功：{source.last_success_at or '无成功证据'}",
+                f"- 验证类型：{audit.get('verification_type', 'NOT TESTED')}",
+                f"- 耗时ms：{audit.get('duration_ms', 'NOT TESTED')}",
+                f"- 正文数/带发布日期数：{audit.get('parsed_articles', 0)}/{audit.get('dated_articles', 0)}",
                 f"- 列表访问成功：{audit.get('access_success', 'NOT TESTED')}",
                 f"- 正文获取：{audit.get('body_obtained', 'NOT TESTED')}",
                 f"- 文章发布日期解析：{audit.get('publication_date_parsed', 'NOT TESTED')}",

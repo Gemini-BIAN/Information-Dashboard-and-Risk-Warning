@@ -16,6 +16,7 @@ class Source(Base):
     last_checked_at: Mapped[str | None] = mapped_column(String)
     last_status: Mapped[str] = mapped_column(String, default="NOT TESTED")
     audit_json: Mapped[str] = mapped_column(Text, default="{}")
+    last_success_at: Mapped[str | None] = mapped_column(String)
 
 
 class Event(Base):
@@ -35,6 +36,14 @@ class Event(Base):
     ports_json: Mapped[str] = mapped_column(Text)
     policy_status: Mapped[str] = mapped_column(String)
     effective_at: Mapped[str | None] = mapped_column(String)
+    expiry_at: Mapped[str | None] = mapped_column(String)
+    repeal_at: Mapped[str | None] = mapped_column(String)
+    policy_reasons_json: Mapped[str] = mapped_column(Text, default="[]")
+    lifecycle: Mapped[str] = mapped_column(String, default="unknown")
+    lifecycle_reasons_json: Mapped[str] = mapped_column(Text, default="[]")
+    port_signals_json: Mapped[str] = mapped_column(Text, default="{}")
+    rule_version: Mapped[str] = mapped_column(String, default="legacy")
+    source_confidence: Mapped[str] = mapped_column(String, default="unreviewed")
     risk_level: Mapped[str] = mapped_column(String)
     risk_reasons_json: Mapped[str] = mapped_column(Text)
     review_status: Mapped[str] = mapped_column(String, default="pending")

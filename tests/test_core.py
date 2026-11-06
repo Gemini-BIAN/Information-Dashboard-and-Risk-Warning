@@ -98,7 +98,7 @@ def test_update_preserves_raw_and_resets_review(factory):
         assert status == "updated" and updated.id == event.id
         assert event.review_status == "pending"
         assert s.scalar(select(func.count()).select_from(RawRevision)) == 2
-        assert s.scalar(select(func.count()).select_from(ReviewLog)) == 1
+        assert s.scalar(select(func.count()).select_from(ReviewLog)) == 2
 
 
 @pytest.mark.parametrize(
@@ -277,7 +277,8 @@ def test_explicit_effective_dates_and_future_status():
     result = classify("EU batteries regulation", "Rules enter into force on 2025-01-01.")
     assert result["effective_at"] is None  # only configured explicit grammar is accepted
     result = classify("EU batteries regulation", "This regulation enters into force on 2025-01-01.")
-    assert result["effective_at"] == "2025-01-01" and result["policy_status"] == "实施"
+    assert result["effective_at"] == "2025-01-01" and result["policy_status"] == "未知"
+    # Issue #3: even an explicit historical effective-date clause cannot prove present applicability.
 
 
 def test_publication_metadata_updates_create_raw_revision(factory):

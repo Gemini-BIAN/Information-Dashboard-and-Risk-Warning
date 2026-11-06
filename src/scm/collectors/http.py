@@ -15,6 +15,7 @@ class SafeFetcher:
     """Single-host, rate-limited requests, bounded redirects, robots-first; no bypasses."""
 
     def __init__(self, client=None, interval=1.0, retries=2):
+        self.verification_type = "INJECTED_TEST_CLIENT" if client is not None else "LIVE_HTTP"
         self.client = client or httpx.Client(
             timeout=httpx.Timeout(20, connect=10), headers={"User-Agent": USER_AGENT}, follow_redirects=False
         )
@@ -23,8 +24,10 @@ class SafeFetcher:
         self.last_request = {}
         self.robots = {}
         self.robots_audit = {}
+        self.request_count = 0
+        self.last_request_url = None
 
-    def _request(self, url, allowed_host):
+    def _request(self, url, allowed_host, robots=None):
         for _ in range(4):
             p = urlsplit(url)
             if (
@@ -35,6 +38,8 @@ class SafeFetcher:
                 or p.port not in [None, 443]
             ):
                 raise AccessBlocked("Cross-host redirect or unsupported URL; manual source review required")
+            if robots is not None and not robots.can_fetch(USER_AGENT, url):
+                raise AccessBlocked("robots.txt disallows redirected URL")
             response = None
             for attempt in range(self.retries + 1):
                 wait = self.interval - (time.monotonic() - self.last_request.get(allowed_host, 0))
@@ -43,6 +48,8 @@ class SafeFetcher:
                 self.last_request[allowed_host] = time.monotonic()
                 try:
                     # Streaming enforces size bound before loading potentially unbounded data.
+                    self.request_count += 1
+                    self.last_request_url = url
                     with self.client.stream("GET", url) as raw:
                         body = bytearray()
                         for chunk in raw.iter_bytes():
@@ -60,7 +67,9 @@ class SafeFetcher:
                         time.sleep(delay)
                         continue
                     break
-                except httpx.TransportError:
+                except httpx.TransportError as exc:
+                    if isinstance(exc, httpx.ProxyError) and "403" in str(exc):
+                        raise
                     if attempt == self.retries:
                         raise
                     time.sleep(2**attempt)
@@ -101,7 +110,7 @@ class SafeFetcher:
             self.interval = max(self.interval, delay)
         if rate and rate.requests:
             self.interval = max(self.interval, rate.seconds / rate.requests)
-        response = self._request(url, host)
+        response = self._request(url, host, robots=parser)
         if response.status_code in [401, 403, 429]:
             raise AccessBlocked(f"HTTP {response.status_code}; access restriction, not bypassed")
         response.raise_for_status()
