@@ -1,0 +1,10 @@
+[
+ {"id":"rotterdam","name":"Port of Rotterdam","url":"https://www.portofrotterdam.com/en/news-and-press-releases","method":"html","article_pattern":"/news-and-press-releases/","enabled":true},
+ {"id":"antwerp","name":"Port of Antwerp-Bruges","url":"https://www.portofantwerpbruges.com/en/news","method":"html","article_pattern":"/news/","enabled":true},
+ {"id":"hamburg","name":"Port of Hamburg","url":"https://www.hafen-hamburg.de/en/press/news/","method":"html","article_pattern":"/press/news/","enabled":true},
+ {"id":"maersk","name":"Maersk Advisories","url":"https://www.maersk.com/news/category/advisories","method":"html","article_pattern":"/news/articles/","enabled":true},
+ {"id":"hapag","name":"Hapag-Lloyd Operational Updates","url":"https://www.hapag-lloyd.com/en/services-information/news.html","method":"html","article_pattern":"/news/.*[.]html","enabled":true},
+ {"id":"ec","name":"European Commission Transport","url":"https://transport.ec.europa.eu/news-events/news_en","method":"html","article_pattern":"/news-events/news/","enabled":true},
+ {"id":"eurlex","name":"EUR-Lex Official Journal","url":"https://eur-lex.europa.eu/collection/eu-law/oj.html","method":"html","article_pattern":"/legal-content/EN/TXT/","enabled":true},
+ {"id":"catl","name":"CATL Official News","url":"https://www.catl.com/en/news/","method":"html","article_pattern":"/en/news/[0-9]+[.]html","enabled":true}
+]
