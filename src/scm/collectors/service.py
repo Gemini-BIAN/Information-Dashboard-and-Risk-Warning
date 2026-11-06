@@ -1,11 +1,12 @@
 import json
 import logging
 from collections import Counter
-from datetime import datetime
+
 from sqlalchemy import select
-from scm.database.models import Source, CollectionLog
-from scm.collectors.http import SafeFetcher, AccessBlocked
+
+from scm.collectors.http import AccessBlocked, SafeFetcher
 from scm.collectors.parsers import discover_links, parse_article, parse_feed
+from scm.database.models import CollectionLog, Source
 from scm.intelligence.service import ingest
 from scm.schemas import RawArticle
 from scm.settings import ROOT, utcnow
@@ -14,50 +15,70 @@ logger = logging.getLogger(__name__)
 
 
 def register_sources(session, path=None):
-    specs = json.loads((path or ROOT / 'config/sources.json').read_text(encoding='utf-8'))
+    specs = json.loads((path or ROOT / "config/sources.json").read_text(encoding="utf-8"))
     for spec in specs:
-        row = session.get(Source, spec['id'])
+        row = session.get(Source, spec["id"])
         if row is None:
-            row = Source(id=spec['id'])
+            row = Source(id=spec["id"])
             session.add(row)
-        row.name, row.url, row.method = spec['name'], spec['url'], spec['method']
-        row.enabled = spec.get('enabled', True)
+        row.name, row.url, row.method = spec["name"], spec["url"], spec["method"]
+        row.enabled = spec.get("enabled", True)
     return specs
 
 
 def collect_one(spec, fetcher):
-    audit = {'url': spec['url'], 'method': spec['method'], 'access_success': False, 'publication_date_parsed': False, 'body_obtained': False, 'restriction': None, 'article_errors': [], 'terms_review': 'Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.'}
+    audit = {
+        "url": spec["url"],
+        "method": spec["method"],
+        "access_success": False,
+        "publication_date_parsed": False,
+        "body_obtained": False,
+        "restriction": None,
+        "article_errors": [],
+        "terms_review": "Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.",
+    }
     articles = []
     try:
-        response = fetcher.get(spec['url'])
-        audit['access_success'] = True
-        audit['http_status'] = response.status_code
-        if spec['method'] == 'rss':
+        response = fetcher.get(spec["url"])
+        audit["access_success"] = True
+        audit["http_status"] = response.status_code
+        if spec["method"] == "rss":
             candidates = parse_feed(response.content)
         else:
-            candidates = [{'url': url} for url in discover_links(response.text, spec['url'], spec['article_pattern'], spec.get('limit', 5))]
-        audit['discovered'] = len(candidates)
+            candidates = [
+                {"url": url}
+                for url in discover_links(
+                    response.text, spec["url"], spec["article_pattern"], spec.get("limit", 5)
+                )
+            ]
+        audit["discovered"] = len(candidates)
         for candidate in candidates:
             try:
-                raw = fetcher.get(candidate['url'])
-                parsed = parse_article(raw.text, candidate['url'])
-                if parsed['published_at'] is None:
-                    parsed['published_at'] = candidate.get('published_at')
-                articles.append(RawArticle(**parsed, source=spec['id'], fetched_at=utcnow(), data_mode='live'))
+                raw = fetcher.get(candidate["url"])
+                parsed = parse_article(raw.text, candidate["url"])
+                if parsed["published_at"] is None:
+                    parsed["published_at"] = candidate.get("published_at")
+                articles.append(
+                    RawArticle(**parsed, source=spec["id"], fetched_at=utcnow(), data_mode="live")
+                )
             except Exception as exc:
-                audit['article_errors'].append({'url': candidate['url'], 'error': safe_error(exc)})
-        audit['publication_date_parsed'] = any(a.published_at is not None for a in articles)
-        audit['body_obtained'] = bool(articles)
-        audit['dated_articles'] = sum(a.published_at is not None for a in articles)
-        audit['parsed_articles'] = len(articles)
-        audit['status'] = ('PASS' if articles and not audit['article_errors'] else 'PARTIAL' if articles else 'BLOCKED')
+                audit["article_errors"].append({"url": candidate["url"], "error": safe_error(exc)})
+        audit["publication_date_parsed"] = any(a.published_at is not None for a in articles)
+        audit["body_obtained"] = bool(articles)
+        audit["dated_articles"] = sum(a.published_at is not None for a in articles)
+        audit["parsed_articles"] = len(articles)
+        audit["status"] = (
+            "PASS" if articles and not audit["article_errors"] else "PARTIAL" if articles else "BLOCKED"
+        )
         if not articles:
-            audit['restriction'] = 'No parseable articles; source layout/feed must be reviewed. Not a successful collection.'
+            audit["restriction"] = (
+                "No parseable articles; source layout/feed must be reviewed. Not a successful collection."
+            )
     except Exception as exc:
-        audit['status'] = 'BLOCKED'
-        audit['restriction'] = safe_error(exc)
-    audit['robots'] = dict(fetcher.robots_audit)
-    audit['verified_at'] = utcnow().isoformat()
+        audit["status"] = "BLOCKED"
+        audit["restriction"] = safe_error(exc)
+    audit["robots"] = dict(fetcher.robots_audit)
+    audit["verified_at"] = utcnow().isoformat()
     return articles, audit
 
 
@@ -68,9 +89,12 @@ def safe_error(exc):
         return str(exc)[:300]
     # Avoid recording request headers, credentials or complete response bodies.
     import httpx
+
+    if isinstance(exc, httpx.ProxyError) and "403" in str(exc):
+        return "ProxyError: CONNECT 403; environment proxy denied destination"
     if isinstance(exc, httpx.HTTPStatusError):
-        return f'HTTP {exc.response.status_code}'
-    return type(exc).__name__ + ': request/parse failed'
+        return f"HTTP {exc.response.status_code}"
+    return type(exc).__name__ + ": request/parse failed"
 
 
 def run_collection(factory, specs=None, fetcher=None):
@@ -84,10 +108,18 @@ def run_collection(factory, specs=None, fetcher=None):
                 specs = configured
             else:
                 for spec in specs:
-                    if session.get(Source, spec['id']) is None:
-                        session.add(Source(id=spec['id'], name=spec['name'], url=spec['url'], method=spec['method'], enabled=True))
+                    if session.get(Source, spec["id"]) is None:
+                        session.add(
+                            Source(
+                                id=spec["id"],
+                                name=spec["name"],
+                                url=spec["url"],
+                                method=spec["method"],
+                                enabled=True,
+                            )
+                        )
         for spec in specs:
-            if not spec.get('enabled', True):
+            if not spec.get("enabled", True):
                 continue
             started = utcnow().isoformat()
             try:
@@ -101,25 +133,47 @@ def run_collection(factory, specs=None, fetcher=None):
                                 outcome, _ = ingest(session, article)
                                 counts[outcome] += 1
                         except Exception as exc:
-                            audit['article_errors'].append({'url': str(article.url), 'error': safe_error(exc)})
-                    if articles and not (counts['inserted'] + counts['updated'] + counts['unchanged']):
-                        audit['status'] = 'BLOCKED'
-                    elif audit['article_errors'] and audit['status'] == 'PASS':
-                        audit['status'] = 'PARTIAL'
-                    row = session.get(Source, spec['id'])
-                    row.last_checked_at, row.last_status = audit['verified_at'], audit['status']
+                            audit["article_errors"].append(
+                                {"url": str(article.url), "error": safe_error(exc)}
+                            )
+                    if articles and not (counts["inserted"] + counts["updated"] + counts["unchanged"]):
+                        audit["status"] = "BLOCKED"
+                    elif audit["article_errors"] and audit["status"] == "PASS":
+                        audit["status"] = "PARTIAL"
+                    row = session.get(Source, spec["id"])
+                    row.last_checked_at, row.last_status = audit["verified_at"], audit["status"]
                     row.audit_json = json.dumps(audit, ensure_ascii=False)
-                    session.add(CollectionLog(source_id=spec['id'], started_at=started, finished_at=utcnow().isoformat(), status=audit['status'], collected=len(articles), inserted=counts['inserted'], updated=counts['updated'], error=audit['restriction'], details_json=json.dumps(audit, ensure_ascii=False)))
-                results.append({'source': spec['id'], **audit, 'writes': dict(counts)})
+                    session.add(
+                        CollectionLog(
+                            source_id=spec["id"],
+                            started_at=started,
+                            finished_at=utcnow().isoformat(),
+                            status=audit["status"],
+                            collected=len(articles),
+                            inserted=counts["inserted"],
+                            updated=counts["updated"],
+                            error=audit["restriction"],
+                            details_json=json.dumps(audit, ensure_ascii=False),
+                        )
+                    )
+                results.append({"source": spec["id"], **audit, "writes": dict(counts)})
             except Exception as exc:
-                logger.error('Source failed: %s (%s)', spec['id'], type(exc).__name__)
+                logger.error("Source failed: %s (%s)", spec["id"], type(exc).__name__)
                 with factory.begin() as session:
-                    source = session.get(Source, spec['id'])
-                    source.last_status = 'BLOCKED'
+                    source = session.get(Source, spec["id"])
+                    source.last_status = "BLOCKED"
                     source.last_checked_at = utcnow().isoformat()
-                    source.audit_json = json.dumps({'status': 'BLOCKED', 'restriction': safe_error(exc)})
-                    session.add(CollectionLog(source_id=spec['id'], started_at=started, finished_at=utcnow().isoformat(), status='BLOCKED', error=safe_error(exc)))
-                results.append({'source': spec['id'], 'status': 'BLOCKED', 'restriction': safe_error(exc)})
+                    source.audit_json = json.dumps({"status": "BLOCKED", "restriction": safe_error(exc)})
+                    session.add(
+                        CollectionLog(
+                            source_id=spec["id"],
+                            started_at=started,
+                            finished_at=utcnow().isoformat(),
+                            status="BLOCKED",
+                            error=safe_error(exc),
+                        )
+                    )
+                results.append({"source": spec["id"], "status": "BLOCKED", "restriction": safe_error(exc)})
     finally:
         if owned:
             fetcher.close()
@@ -128,21 +182,53 @@ def run_collection(factory, specs=None, fetcher=None):
 
 def load_demo(factory):
     with factory.begin() as session:
-        if session.get(Source, 'demo-fixtures') is None:
-            session.add(Source(id='demo-fixtures', name='演示Fixtures（非真实新闻）', url='https://example.invalid/demo', method='fixture', enabled=False))
+        if session.get(Source, "demo-fixtures") is None:
+            session.add(
+                Source(
+                    id="demo-fixtures",
+                    name="演示Fixtures（非真实新闻）",
+                    url="https://example.invalid/demo",
+                    method="fixture",
+                    enabled=False,
+                )
+            )
             session.flush()
         counts = Counter()
-        for raw in json.loads((ROOT / 'fixtures/articles.json').read_text(encoding='utf-8')):
+        for raw in json.loads((ROOT / "fixtures/articles.json").read_text(encoding="utf-8")):
             result, _ = ingest(session, RawArticle.model_validate(raw))
             counts[result] += 1
     return dict(counts)
 
 
 def write_source_audit(factory, destination):
-    from html import escape
-    lines = ['# 真实数据源验证报告', '', f'报告生成时间（UTC）：{utcnow().isoformat()}', '', 'PASS 仅表示本次取得可解析正文，不保证覆盖完整、法律适用或未来持续可用。PARTIAL 表示部分文章失败。BLOCKED 不计为采集成功。未测试的字段不推断为成功。', '', '仅公开页面；先检查 robots，拒绝登录/CAPTCHA/访问受限内容。未自动确认网站全部使用条款，生产使用前需人工复核；当前仅内部研究。', '']
+    lines = [
+        "# 真实数据源验证报告",
+        "",
+        f"报告生成时间（UTC）：{utcnow().isoformat()}",
+        "",
+        "PASS 仅表示本次取得可解析正文，不保证覆盖完整、法律适用或未来持续可用。PARTIAL 表示部分文章失败。BLOCKED 不计为采集成功。未测试的字段不推断为成功。",
+        "",
+        "仅公开页面；先检查 robots，拒绝登录/CAPTCHA/访问受限内容。未自动确认网站全部使用条款，生产使用前需人工复核；当前仅内部研究。",
+        "",
+    ]
     with factory() as session:
-        for source in session.scalars(select(Source).where(Source.method != 'fixture')):
+        for source in session.scalars(select(Source).where(Source.method != "fixture")):
             audit = json.loads(source.audit_json)
-            lines += [f'## {source.name}', '', f'- URL：{source.url}', f'- 方法：{source.method}', f'- 状态：{source.last_status}', f'- 最后验证：{source.last_checked_at or "NOT TESTED"}', f'- 列表访问成功：{audit.get("access_success", "NOT TESTED")}', f'- 正文获取：{audit.get("body_obtained", "NOT TESTED")}', f'- 文章发布日期解析：{audit.get("publication_date_parsed", "NOT TESTED")}', f'- 限制/错误：{audit.get("restriction") or "无已观察到的限制（不等于无限制）"}', '', '```json', json.dumps(audit, ensure_ascii=False, indent=2), '```', '']
-    destination.write_text('\n'.join(lines), encoding='utf-8')
+            lines += [
+                f"## {source.name}",
+                "",
+                f"- URL：{source.url}",
+                f"- 方法：{source.method}",
+                f"- 状态：{source.last_status}",
+                f"- 最后验证：{source.last_checked_at or 'NOT TESTED'}",
+                f"- 列表访问成功：{audit.get('access_success', 'NOT TESTED')}",
+                f"- 正文获取：{audit.get('body_obtained', 'NOT TESTED')}",
+                f"- 文章发布日期解析：{audit.get('publication_date_parsed', 'NOT TESTED')}",
+                f"- 限制/错误：{audit.get('restriction') or '无已观察到的限制（不等于无限制）'}",
+                "",
+                "```json",
+                json.dumps(audit, ensure_ascii=False, indent=2),
+                "```",
+                "",
+            ]
+    destination.write_text("\n".join(lines), encoding="utf-8")
