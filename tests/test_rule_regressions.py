@@ -233,7 +233,7 @@ def test_actual_001_database_upgrade_preserves_evidence_and_reassesses(tmp_path)
         assert s.get(Event, 1).review_status == "pending"
         assert (
             s.scalar(select(func.count()).select_from(RawRevision)) == 2
-        )  # new content-hash format, old revision retained
+        )  # synthetic legacy hash; old revision retained
         assert s.scalar(select(func.count()).select_from(ReviewLog)) == 1
     migrate(engine)
     engine.dispose()

@@ -15,7 +15,7 @@ python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.lock
 python -m pip install --no-deps -e .
-scm init
+scm init                           # 自动迁移并按新规则重算旧记录（保留证据/审计）
 scm demo
 python -m streamlit run src/scm/ui/app.py --server.address 127.0.0.1 --server.port 8501 --server.headless true --browser.gatherUsageStats false
 ```
@@ -88,7 +88,11 @@ scm import-shipments fixtures/demo_shipments.csv --mode demo
 
 Provider返回严格 Pydantic JSON，facts 必须带原文连续逐字引文；不在原文的引文会触发回退。网络、配置或校验失败也回退规则分析并记录安全错误。**引文校验无法保证翻译或推断完全忠实，人工审核仍必要。** LLM不决定最终风险，规则从原文独立分级。
 
-政策状态来自明确短语；不能推断的为未知。明确标注的有限中英文生效日期格式可解析，否则待核实；未来适用日期不自动等同已经实施。风险规则的否定、条件和时间理解仍有限，见已知限制。
+政策状态与日期分离：提案、通过、实施、废止或未知均需文内状态依据。**过去的生效日期不会自动升级为“实施”，明确废止优先于历史生效证据**；生效/到期/废止日期独立存储，多条款日期冲突保留未知并给出依据。它们是文内状态，不是法律当前适用性的保证。
+
+运营生命周期独立为 announced / active / resolved / cancelled / unknown。原文严重度不等于当前港口风险；取消、解除、矛盾、假设、历史上下文和未知状态不自动抬高当前预警。已宣布事件最多中级提示，进行中信号才按严重度计入；30天只是候选检索窗口，不证明仍在中断。多港口内容按明确港口所在语句拆分，不把一个港口的中断复制给另一个港口。来源可信度独立标记为未经审核，不因LLM或关键词分数自动变高。
+
+规则版本为 `2026-11-06.3`。`scm init` 或网页首次加载会幂等重算旧版本；也可显式运行 `scm reassess`。旧原文/分析保留，规则或证据变化的前后状态写入ReviewLog，重置人审。旧规则未重算的记录不用于当前港口预警。规则的否定、条件、跨文档事件关联和时间理解仍有限，见已知限制。
 
 ## 报告与自动调度
 
@@ -100,6 +104,8 @@ scm schedule
 ```
 
 HTML可在Reports页查看/下载；原始文本进行HTML转义。日报包括重点、行业政策、物流港口、潜在业务影响、关注事项、来源质量。周报按专题归并、最多5项重点、条件性1–3个月规划建议、追踪与人工核实问题。专题相同不等于确认是同一事件。无重要新增明确说明，不补新闻凑数。
+
+Live报告先核对每个启用来源在周期内逐日的最新采集日志。只有真实HTTP、成功入库、全文及发布日期齐备的PASS才能计入该日覆盖；Mock/Fixture、失败、未知日期或缺日不能计入。**覆盖不足时写“采集覆盖不足”，不得将失败日描述为没有重要新闻**。即使样本采集成功，也不代表全站或全球完整覆盖。来源审计增加实际请求URL/阶段、请求次数、耗时、文章样例、发布日期年龄及最后真实成功时间。
 
 周期依据**原文发布日期**；未知日期不混入今日新闻，计入质量说明。已驳回事件不计入报告。当前周期的报告注明可能未结束。相同空间/周期/种类再次生成会刷新该报告；不同周期保留历史，不保留同一周期每次生成的多版本。
 
@@ -133,4 +139,4 @@ runtime/              本地SQLite/HTML/测试结果；忽略提交
 
 默认仅监听127.0.0.1；没有身份认证或企业权限隔离，不能直接公网部署。不上传内部敏感资料、不提交真实柜号/客户/报价/API密钥。CSV导出防公式注入；原文按不可信数据处理。人工审核人是自报标签，审计不是不可篡改合规日志。
 
-唯一协作仓库为 Gemini-BIAN/Information-Dashboard-and-Risk-Warning。首次初始化 main，仅作为空基线；代码在 `feature/supply-chain-risk-mvp`。后续 feature 分支、测试、清晰提交、推送、PR，不自行合并 main。开发前读取Issues、未解决PR Review和项目状态文档；无法访问时记录限制，继续独立可验证工作。当前 Git HTTPS 可推送，GitHub API 访问被代理拒绝，PR状态见项目进度。
+唯一协作仓库为 Gemini-BIAN/Information-Dashboard-and-Risk-Warning。首次初始化 main，仅作为空基线；代码在 `feature/supply-chain-risk-mvp`。后续 feature 分支、测试、清晰提交、推送、PR，不自行合并 main。开发前读取Issues、未解决PR Review和项目状态文档；无法访问时记录限制，继续独立可验证工作。当前 Git HTTPS 可推送；GitHub公开网页可读取Issue/Review/Actions，API写入仍被代理拒绝。现有Draft PR #1已关联此feature分支，推送自动更新代码差异；PR文字和Issue评论受API限制，详见项目进度与docs/ISSUE_RESULTS.md。

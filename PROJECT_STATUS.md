@@ -1,46 +1,39 @@
-# 项目进度与交接
+# ESCIM 项目进度与交接
 
-更新时间：2026-11-06（Asia/Shanghai）。唯一协作仓库：Gemini-BIAN/Information-Dashboard-and-Risk-Warning。
+更新：2026-11-06，Asia/Shanghai。唯一仓库：Gemini-BIAN/Information-Dashboard-and-Risk-Warning。分支：feature/supply-chain-risk-mvp；Draft PR #1；未合并main。
 
-## 当前结果
+## 本轮结果
 
-**已交付本地可运行MVP；真实官方源采集与GitHub API受网络策略阻断。** 无API Key核心、Demo端到端、SQLite迁移、六工作台、ETA、报告与规则均实际运行。完整pytest **47 passed**，ruff通过。Streamlit本地服务健康接口及首页200。
+- **Issue #3：代码与本地验收完成**。状态与日期解耦；废止优先；历史日期不会升级实施；独立生效/到期/废止日期与依据。运营生命周期与严重度、来源可信度分开；解除/取消/矛盾/假设/历史/归属不明不自动进入当前港口风险。明确宣布最多中级，原文进行中才按严重度计入。
+- 新增Alembic 002；旧数据自动或CLI幂等重算，保留原文及旧分析，ReviewLog存前后规则/判断、版本与时间，重置人审。旧规则未重算不进入港口当前分级。
+- **Issue #2：部分工程工作完成，Live验收仍BLOCKED，必须保持OPEN**。来源耗时、失败阶段/URL、请求次数、发布日期年龄、最后真实成功时间入审计；真实HTTP与注入测试客户端区分；报告按来源/日期检查覆盖，失败/未测/缺日期不声称“没有重要新闻”。同域跳转逐跳遵守robots，拒绝跨站RSS文章，代理403不盲目重试。
+- **完整pytest：93 passed，0 failed/0 skipped；ruff通过**。原47项测试路径保留，2处断言按Review增强：过去生效日期预期改为未知；原文更新额外保存系统前后审计，日志数相应增加。其余新增46项测试，不作为真实来源验证。
+- 本实例迁移/规则重算已执行，再次reassess=0；Live日报和周报重新生成，明确覆盖不足。Demo/Live隔离不变。
 
-| 阶段 | 状态 |
-|---|---|
-| Phase 1 骨架/迁移/Fixtures | 完成、测试通过 |
-| Phase 2 采集/标准化/去重 | 框架与Mock集成通过；10个官方源实测BLOCKED，0篇Live新闻 |
-| Phase 3 风险/Provider/ETA/关联 | 规则与无API路径完成；真实LLM未测试；关联始终待核实 |
-| Phase 4 看板/HTML/调度 | 六页面AppTest通过，报告/调度启动与回调通过，跨日调度未测试 |
-| Phase 5 验收与文档 | 本地自动验收完成，外部阻碍/未测内容单列，不伪称全部生产就绪 |
+## 真实数据与阻碍
 
-## 数据
+10个官方来源逐一实际重测，在robots.txt的HTTPS CONNECT阶段均被平台代理403拒绝；每源1次请求，未访问正文或绕过限制。**本轮真实正文0、真实Live事件0；2个来源成功的验收门槛未达成。** 原始公开页面解析与人工事实核对NOT TESTED；没有伪造官方Fixtures、源适配成功或新闻样例。来源精确时间/URL/耗时见SOURCE_AUDIT；复现与剩余验收见docs/LIVE_ACCEPTANCE.md。
 
-- Demo：5条虚构情报、3条虚构航次快照（2个柜号），其中DEMO-0001相对前次ETA延后72h。所有事件明确“演示”，example.invalid URL不可作为真实新闻来源。
-- Live：0条真实情报、0条真实运输记录，官方来源失败分别留日志；日报/周报明确无重要新增。未接入任何真实等待时间序列。
-- 原始信息与分析分别存储；人审和港口人工调整有日志。运行数据库与报告位于忽略的runtime/，不提交。
+Demo仍是5条虚构情报、3条快照。无付费API、敏感数据上传或公网部署。无真实港口等待时间；LLM真实调用、Windows和跨日调度仍未测。
 
-## GitHub状态
+## GitHub与Review
 
-- 首次仓库无提交、main不存在；按用户规则建立空初始main（3a399d5）。不在main开发功能。
-- 功能分支：`feature/supply-chain-risk-mvp`。分阶段提交实现、测试及文档；不自行合并。
-- Git HTTPS读取及推送已成功。Issues/PR列表查询两次均Forbidden；因API不可读，未能检查未解决Review，不能声称没有遗留问题。
-- PR尚未成功创建：API访问阻碍。最终推送与创建尝试结果将记录在本文件后续段落。
+已通过正常GitHub公开网页读取PR #1、Owner Review、Issue #2与#3及Actions/PR Checks；不再将“API被拒绝”等同于“无法读取公开Review”。Review要求保持Draft直到Live验收及检查通过，已遵守。
 
-## 环境配置
+基线9160f0d的Actions网页确认成功：PR运行42149871304，push运行42149599779。本轮代码提交64e1016；当前轮CI结果与PR/Issue文字写入尝试见下方最终记录，不用基线CI冒充新提交CI。
 
-已保存install_script、start_skill和11个自定义网络域名需求（10个来源站点主机 + api.github.com）。保存草稿不会应用运行网络策略或发布快照。需用户在环境设置审阅、保存并发布；之后真实重试才能判断是否恢复。没有新增必填密钥、没有采购服务。
+GitHub API读写仍Forbidden，不能据此索要或复制token。推送feature会自动更新已有PR代码，但评论/PR描述/Issue关闭需API能力。准备好的PR描述和Issue结果已提交docs/；若API写入失败，两个Issue保留OPEN，不宣称已发布评论或关闭。
 
-安装脚本采用Python3.12虚拟环境、requirements.lock、editable安装、迁移及pytest；启动指令明确现有checkout、回环UI、可选调度、就绪检查与Live/Demo隔离。单任务已隔离，不创建worktree。
+## 下一步
 
-## 下一位开发者
+1. 将已保存的11个自定义域名需求实际应用到运行环境（当前观察仍是仅package_managers预设）。重试合法访问，不绕过代理/robots/CAPTCHA/TLS。
+2. 至少2个官方来源，原文→标准化→去重→风险→UI→日报全链路；保存真实样例URL、时间及人工核对后，才重新考虑Issue #2及Draft验收。
+3. 按NEXT_TASKS和docs/ISSUE_RESULTS完成剩余协作；不自动合并main。
 
-先读AGENTS.md、README.md、DECISIONS.md、TEST_REPORT.md、SOURCE_AUDIT.md、KNOWN_LIMITATIONS.md、NEXT_TASKS.md。网络恢复后优先处理真实解析验证与GitHub协作，不要重复编造“采集成功”。无需等待用户选择库或布局。任何收费API、内部敏感数据、公网部署、重大目标改变及高风险操作另行获得批准。
 
-## 最终交付记录
+## 最终记录
 
-- 完整实现、47项通过测试与全部验收文档已提交并成功推送 `feature/supply-chain-risk-mvp`（文档交付提交 b4a15f0；后续仅更新本状态与PR文本）。
-- 实际执行 `gh pr create --base main --head feature/supply-chain-risk-mvp --body-file ...` 返回 `Post https://api.github.com/graphql: Forbidden`，退出码1。**PR未创建，不存在可提供的PR编号或链接；main未合并。**
-- 可复用的PR描述已存 `docs/PR_DESCRIPTION.md`。API恢复后运行：`gh pr create --repo Gemini-BIAN/Information-Dashboard-and-Risk-Warning --base main --head feature/supply-chain-risk-mvp --title "feat: local supply chain intelligence and risk monitoring MVP" --body-file docs/PR_DESCRIPTION.md`。
-- 最终依赖检查 `python -m pip check`：No broken requirements found；ruff全部通过。没有提交runtime数据库、实际运输数据、密钥或.env。
-- 本实例UI已启动；调度冒烟进程已停止，不宣称调度持续运行。新任务应按保存的start_skill重新启动进程。
+- 已推送代码提交64e1016到现有feature，Draft PR #1已显示新提交与差异；main未合并。
+- 该SHA的push运行42155814204及PR synchronize运行42155815831均已从正常公开网页确认成功；PR Checks显示test succeeded。链接见TEST_REPORT。
+- PR描述PATCH、Issue #2/#3评论POST实际请求全部Forbidden；没有发布评论或改变Issue状态。两个Issue继续OPEN：#2确实BLOCKED；#3代码与本地/CI验收已完成但远程结果说明/关闭受写入限制，待Owner依据docs/ISSUE_RESULTS评审操作。
+- 所有验收文档与准备提交的PR/Issue文本一起保存到当前feature；用户无需在两个AI间手动转贴代码。未使用付费API、内部数据或公网部署。

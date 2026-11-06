@@ -1,67 +1,57 @@
-# MVP 测试与验收报告
+# ESCIM 测试报告：Issue #2 / #3
 
-验证日期：2026-11-06（Asia/Shanghai）。Python 3.12.14，Linux，此仓库独立feature分支。测试结果是实际执行结果，不代表模型准确率或生产就绪。
+2026-11-06（Asia/Shanghai），Linux，Python3.12.14。结果来自实际执行；Mock/合成回归不算Live验收。
 
-## 自动测试：PASS
+## PASS：本地自动验证
 
-命令：
+完整命令：`/workspace/.venvs/supply-chain/bin/pytest -q --junitxml=runtime/test-results.xml`
 
-```bash
-/workspace/.venvs/supply-chain/bin/pytest -q --junitxml=runtime/test-results.xml
-```
+结果：**93 passed in 9.84s；0 failed、0 skipped**。JUnit位于本地忽略路径runtime/test-results.xml。
 
-最近完整结果：**47 passed in 10.26s**；0 failed、0 skipped。JUnit结果保存在本地忽略路径 `runtime/test-results.xml`。测试不依赖真实网站或LLM API；HTTP行为以MockTransport验证，真实来源访问另见下表。
+`ruff check src tests`：**All checks passed**。`git diff --check`通过。
 
-| 检查 | 结果 | 实际证据 |
+保留原有47项测试路径，新增46项。两处旧断言随Review修正：历史生效日期不再自动实施；原文更新增加系统前后状态审计，预期日志多一条。没有删除失败场景、禁用断言或用Mock冒充真实采集。
+
+| 本轮验证 | 状态 | 证据 |
 |---|---|---|
-| Alembic迁移、外键、重复初始化 | PASS | 临时SQLite真实建库、重复upgrade head |
-| 无API Key核心运行 | PASS | 子进程移除Key；init→demo两次→日报/周报 |
-| Fixture端到端入库、来源保留 | PASS | 5条事件、5条分析，原文和分析分表 |
-| 重复采集幂等、URL/内容去重 | PASS | 同源重复不新增；第二次演示5 unchanged |
-| 内容/发布日期更新保留版本 | PASS | 新RawRevision、重新审核，不覆盖旧原文 |
-| 单一来源失败不影响其他来源 | PASS | Mock 403来源与成功来源同批执行、独立日志 |
-| robots拒绝、异常HTML、跨域跳转 | PASS | 受限请求在文章抓取前停止 |
-| 超时/有限重试设计、503重试 | PASS | Mock 503后成功；httpx timeout配置 |
-| RSS与HTML、发布日期/正文解析 | PASS | RSS只定位文章，另抓正文；未知日期保持空 |
-| 可解释风险、否定与不确定性 | PASS | 高/中/低关键词规则及原句依据 |
-| 政策状态与有限生效日期解析 | PASS | 提案/通过/实施/废止/未知，未来日期不假定已实施 |
-| 港口风险缺数据、陈旧公告、驳回 | PASS | 未知、30天窗口、审核排除、空间隔离 |
-| 人工风险调整与原因/到期/审计 | PASS | 服务层与Streamlit真实表单交互 |
-| 人工确认/驳回/备注 | PASS | 服务层状态与ReviewLog断言 |
-| ETA快照与变化 | PASS | DEMO-0001两快照+72h；单快照未知；ATA到港 |
-| 乱序与同港比较边界 | PASS | 乱序按Updated At；不同POD不跨港比较 |
-| CSV校验、重复、冲突、空间保护 | PASS | 带时区、严格表头、重复跳过、冲突拒绝 |
-| 港口公告候选关联 | PASS | 时间窗口+POD，明确待核实及非甩柜证据 |
-| LLM可替换、引文校验/失败回退 | PASS | Mock合法引文通过，编造引文拒绝回退；分级仍规则 |
-| 日报/周报HTML与历史记录 | PASS | 实际写SQLite和HTML；专题聚合、时区、无新闻说明 |
-| HTML及CSV安全输出 | PASS | 原文HTML转义、CSV公式注入保护 |
-| Demo/Live隔离 | PASS | Live Overview为0、不出现Demo事件/航次 |
-| Streamlit六页面 | PASS | AppTest执行Overview、Intelligence、Port、Shipment、Reports、Sources，无异常 |
-| 新临时库CLI端到端 | PASS | init/demo重复/报告实际子进程，校验事件/快照/HTML |
+| 明确废止+过去生效日期 | PASS | 英文与中文回归，废止不会被日期覆盖 |
+| 提案含历史日期/旧法规引用 | PASS | 提案保留；明确矛盾进入未知，不以日期升级 |
+| 独立生效/到期/废止日期 | PASS | 多日期分字段；日期歧义保留未知与证据 |
+| 未来日期/已到期/否定法规状态 | PASS | 矛盾需核实、到期不保证继续适用 |
+| 撤回、取消罢工、恢复作业/港口重开 | PASS | 生命周期解除/取消，不能抬高当前港口预警 |
+| 多句矛盾、旧标题/解除正文、解除标题/进行中正文 | PASS | 矛盾为unknown；不自动抬高预警 |
+| 假设/条件示例、历史日期/旧事件 | PASS | 与当前事件分开，不产生当前高风险 |
+| 多港口范围 | PASS | Rotterdam无罢工不掩盖Hamburg关闭；未归属文字不复制到各港 |
+| 严重度/生命周期/来源可信度独立 | PASS | announced最多中；active按原文；unknown/legacy不进入当前分级 |
+| 001→002真实SQLite升级 | PASS | 临时001库保留原文，升级后重算并记录审计 |
+| 原文/规则版本变化前后审计与幂等重算 | PASS | 原文/旧分析保留，ReviewLog前后JSON，再次reassess=0 |
+| 每来源/每日覆盖 | PASS | 缺日志、过期、Mock、无发布日期、最新失败不能证明当日Live覆盖 |
+| 失败日/缺测日报与周报 | PASS | 明示“采集覆盖不足”，不宣称无重要新闻 |
+| 采集遥测 | PASS | Mock测试耗时、文章样例、发布日期年龄及注入客户端标签；不更新真实成功时间 |
+| robots同域重定向与403处理 | PASS | 跳转到禁止路径在请求前停止；确定性代理403只尝试1次 |
+| 原有无API核心、去重、来源失败隔离、ETA、HTML、六页面 | PASS | 原测试路径完整执行，未引入付费依赖 |
+| 页面不确定性与覆盖警示 | PASS | Streamlit AppTest校验生命周期、日期/证据、来源可信度和Live覆盖不足 |
 
-## 实例运行验证
+## 本实例实际运行
 
-| 检查 | 状态 | 结果 |
-|---|---|---|
-| 依赖安装与可重复刷新 | PASS | 实际创建venv；锁定依赖安装；再次pip install -r requirements.lock及editable安装成功 |
-| 静态检查 | PASS | `ruff check src tests`：All checks passed |
-| Streamlit本地启动 | PASS | 127.0.0.1:8501，Uvicorn已启动；未公网部署 |
-| 本地功能请求 | PASS | GET /_stcore/health →200/ok，GET / →200且包含Streamlit HTML |
-| 演示数据库 | PASS | 当前5条Demo事件、3条Demo快照、2份Demo报告 |
-| Live空间及无新闻报告 | PASS | 0条真实事件、0条真实航次；2份Live日报/周报明确无重要新增及来源失败 |
-| HTML实物文件 | PASS | runtime/reports/daily-demo.html、weekly-demo.html、daily-live.html、weekly-live.html |
-| 调度启动与回调 | PASS | 3个任务注册、Scheduler started；测试执行报告job callback，随后停止冒烟调度进程 |
-| 跨日/整周持续调度 | NOT TESTED | 未等待实际日历触发；不将启动成功当作多日运行证明 |
-| 10个官方候选源采集 | BLOCKED | 代理连接拒绝，0篇成功；逐源审计详见SOURCE_AUDIT |
-| 实际LLM服务 | NOT TESTED | 没有购买服务或调用真实API，使用可选Provider的Mock契约测试 |
-| 真实港口拥堵/等待时间 | BLOCKED | 未有可靠合法接入的数据源，无真实时间序列，无模拟冒充 |
-| Windows原生运行 | NOT TESTED | 已提供PowerShell命令，当前只有Linux执行证据 |
-| 人工浏览器视觉/全部点击路径 | NOT TESTED | 使用AppTest与本地HTTP，未宣称人工浏览器视觉验收完成 |
-| GitHub HTTPS推送 | PASS | 初始main及feature成功推送；后续提交状态见PROJECT_STATUS |
-| GitHub Issues/PR Review/PR创建 | BLOCKED | GitHub API Forbidden；不能读取/创建即不宣称成功 |
-| 远程GitHub Actions结果 | NOT TESTED | 已提供workflow；未读取远程运行结果 |
-| 公网部署、付费API、内部系统连接 | NOT TESTED | 未请求、未执行，不是本地MVP验收前提 |
+- PASS：迁移/重算、重复init/reassess、真实空间日报/周报HTML生成；报告明确采集覆盖不足。
+- PASS：10个来源分别完成**访问尝试和失败审计**；这不是采集成功。
+- BLOCKED：真实正文0、真实Live事件0，10/10来源在robots.txt的CONNECT阶段403。正文/原始发布日期解析、真实事件到UI/报告和人工事实核对NOT TESTED。
+- BLOCKED：Issue #2至少2个官方来源成功的Live验收。详见SOURCE_AUDIT与docs/LIVE_ACCEPTANCE。
+- PASS：正常GitHub公开网页读取PR #1 Review、Issue #2/#3及基线Actions成功状态；写入API仍Forbidden。
+- PASS：本轮修复提交64e1016的push与PR synchronize两次Actions，公开网页显示completed successfully；PR Checks显示test succeeded（44s）。不是旧CI或本地pytest替代。
+- NOT TESTED：真实LLM、Windows原生、持续跨日调度、人工浏览器视觉验收。没有付费API、内部数据或公网部署。
 
-## 结论
+## GitHub Actions观察
 
-无API、Fixtures和本地网页开发路径已实际运行；所有已执行pytest通过。真实情报监控仍受外部网络限制，不能宣称具备生产实时数据覆盖。真实LLM、港口时序、Windows、跨日调度和远程CI没有验证的能力均单独标记。后续行动见NEXT_TASKS.md。
+旧基线9160f0d：公开Actions列表及PR Checks显示成功。PR运行：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42149871304 ；push运行：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42149599779 。本轮新提交的最终观察附后。
+
+
+## 本轮修复提交CI与协作写入
+
+- Commit：64e1016（风险规则、覆盖、迁移及全部93项测试）。
+- Push Actions PASS：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42155814204
+- PR synchronize Actions PASS：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42155815831
+- 观察方式：正常GitHub公开Actions列表及PR #1 Checks；分别显示46s、48s完成成功，PR test显示44s成功。完整签入日志需要登录，未宣称下载远程JUnit或核对远程测试数量。
+- API实际写入：PATCH PR #1、POST Issue #2 comments、POST Issue #3 comments均Forbidden。PR代码随Git推送更新；描述/评论未发布，Issue状态未改变。准备文本在docs/PR_DESCRIPTION、docs/ISSUE_RESULTS。
+- 最终依赖一致性：`python -m pip check` → No broken requirements found。

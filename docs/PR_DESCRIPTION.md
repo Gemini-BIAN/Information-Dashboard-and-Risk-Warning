@@ -1,24 +1,29 @@
-## 实现
+## ESCIM：本地MVP及Issue #2/#3修复
 
-从空仓库建立Python 3.12供应链智能情报与风险监控MVP：Streamlit六工作台、SQLite/SQLAlchemy + Alembic迁移、公开HTML/RSS采集、来源失败隔离与审计、证据版本和幂等去重、中文规则分析/可替换LLM Provider、可解释港口风险与人工审核、CSV/ETA快照及待核实事件关联、HTML日报/周报和独立调度。
+继续feature/supply-chain-risk-mvp，保持Draft，不合并main。原MVP含六工作台、SQLite/Alembic、HTML/RSS框架、风险/人审、ETA快照及报告/调度。
 
-默认不需API Key。演示新闻与运输标识明确虚构，Live/Demo严格隔离。没有付费服务、内部敏感数据或公网部署。
+### 本轮实际完成
 
-## 实际验证
+- 修复政策状态：历史生效日期不自动升级实施，明确废止优先；生效/到期/废止日期独立，矛盾未知，保留原文依据。
+- 独立运营生命周期、文内严重度和来源可信度；解除/取消/矛盾/历史/假设/范围不明不自动抬高当前港口风险。多港口分句归属，announced上限中，active按证据。
+- 002迁移、旧记录幂等重算、原文/分析保留、前后规则判断审计，失效人审。UI/报告显示依据和不确定性。
+- 按来源/日期检查Live覆盖，失败、未测、Mock或缺日期不声称无重要新闻。新增耗时、失败URL/阶段、次数、发布日期年龄和最近真实成功时间。
+- 同域重定向逐跳遵守robots；跨站RSS须明确复核；代理确定性403不盲目重试。
 
-- pytest：47 passed，0 failed，0 skipped；包含CLI新数据库端到端和六页面Streamlit AppTest。
-- ruff check src tests通过。
-- 本地Streamlit启动，health=200/ok，首页200；调度注册/启动及报告回调通过。
-- Demo5条情报、3条快照；重复执行不重复写入；DEMO-0001 ETA +72h正确。
-- Demo与空Live日报/周报HTML已生成。
+### 实际测试
 
-## 阻碍与已知问题
+完整pytest：93 passed，0 failed/0 skipped；ruff通过。保留47项原测试路径并按Review增强2处断言，新增46项。覆盖迁移、法规优先级、生命周期/归属、覆盖报告、遥测、无API核心、六页面、ETA、HTML和审计。
 
-- 10个官方候选源实测被网络代理拒绝，0篇真实新闻。SOURCE_AUDIT.md全部如实标BLOCKED；未接入等待时间，不画模拟实时趋势。
-- GitHub API Forbidden，无法读取Issues/Review；Git HTTPS推送成功。
-- 真实LLM、Windows、跨日调度及远程CI未验证。引文校验不能保证语义保真；规则非概率预测，航次关联始终待核实。
-- 仅本地单用户MVP，无登录/RBAC；不可直接公网部署。
+### 阻碍与问题
 
-## 下一步
+10个官方源实际HTTP尝试全部在robots.txt CONNECT阶段403，真实正文0、Live事件0。**Issue #2保持OPEN/BLOCKED，尚不满足至少2个官方源及真实事件全链路验收。** 不伪造真实原文Fixtures或采集成功。
 
-网络配置生效后重试真实源并核实条款/解析；读取Issues/Review；增加合法真实公告回归集、政策条款状态及航次分段。详见README、TEST_REPORT、KNOWN_LIMITATIONS、PROJECT_STATUS、DECISIONS和NEXT_TASKS。请人工评审，不自动合并main。
+Issue #3代码和本地验收完成，仍需Owner审阅；词法规则不承诺完整法律语义、当前港口实况或延误准确率。真实LLM、Windows、持续跨日调度未测试。
+
+GitHub公开网页可读，已读Owner Review及Issue #2/#3；API写入仍Forbidden。修复提交64e1016的push与PR synchronize两次Actions均已从公开网页确认成功（运行42155814204、42155815831）；未以旧CI代替。
+
+### 后续
+
+将保存的域名策略实际应用到实例，复测2–3官方源并补真实解析、原文回归、人工事实核验和Live端到端。详见SOURCE_AUDIT、TEST_REPORT、docs/LIVE_ACCEPTANCE、docs/ISSUE_RESULTS、PROJECT_STATUS及KNOWN_LIMITATIONS。
+
+无付费API、公司敏感数据上传或公网部署。请保持Draft，不自动合并。
