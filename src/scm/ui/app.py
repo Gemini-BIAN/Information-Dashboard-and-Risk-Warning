@@ -32,17 +32,26 @@ st.set_page_config(page_title="供应链智能情报与风险监控", page_icon=
 st.markdown(
     """
     <style>
-    .block-container {max-width: 1250px; padding-top: 1.1rem; padding-bottom: 2rem;}
-    h1, h2, h3 {color: #17354c;}
-    h1 {font-size: clamp(1.6rem, 2.6vw, 2.4rem) !important; line-height: 1.2;}
-    .stMetric {background: #f1f5f9; padding: 12px; border-radius: 10px;}
-    [data-testid="stSidebar"] {min-width: 250px; max-width: 290px;}
-    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {gap: .5rem;}
+    /* Restrict styling to the app instead of overriding Streamlit's widget internals. */
+    .block-container {max-width: 1180px; padding-top: 1rem; padding-bottom: 2rem;}
+    [data-testid="stAppViewContainer"] h1 {
+        font-size: clamp(1.45rem, 2.1vw, 2rem);
+        line-height: 1.35;
+        letter-spacing: -.02em;
+        overflow-wrap: anywhere;
+    }
+    [data-testid="stAppViewContainer"] h2 {font-size: 1.35rem;}
+    [data-testid="stAppViewContainer"] h3 {font-size: 1.15rem;}
+    [data-testid="stMetric"] {
+        background: #f1f5f9;
+        border-radius: 10px;
+        padding: .75rem 1rem;
+    }
+    [data-testid="stSidebar"] {width: 260px !important; min-width: 260px !important;}
     </style>
     """,
     unsafe_allow_html=True,
 )
-
 
 @st.cache_resource
 def get_factory():
@@ -54,7 +63,7 @@ def get_factory():
 
 
 factory = get_factory()
-st.title("ESCIM · 全球供应链情报与风险监控")
+st.title("ESCIM｜供应链情报与风险监控")
 st.caption("海外供应链规划 · 来源可追溯 · 中文情报 · 本地测试版")
 mode_label = st.sidebar.radio("数据空间", ["真实数据 Live", "演示数据 Demo"])
 mode = "demo" if "Demo" in mode_label else "live"
@@ -322,7 +331,7 @@ with factory() as session:
             (ROOT / "fixtures/demo_shipments.csv").read_bytes(),
             file_name="demo_shipments.csv",
         )
-        upload = st.file_uploader("导入 CSV（最大5MB，最多1万行）", type=["csv"])
+        upload = st.file_uploader("导入 CSV（应用校验最大5MB，最多1万行）", type=["csv"])
         if upload and st.button("校验并导入当前数据空间"):
             try:
                 with factory.begin() as writer:
