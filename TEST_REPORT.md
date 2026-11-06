@@ -1,57 +1,55 @@
-# ESCIM 测试报告：Issue #2 / #3
+# ESCIM 测试报告：Issue #2 真实采集验收
 
-2026-11-06（Asia/Shanghai），Linux，Python3.12.14。结果来自实际执行；Mock/合成回归不算Live验收。
+验证：2026-11-06（Asia/Shanghai），新发布环境，Linux/Python3.12.14。Mock/离线Fixture测试与真实HTTP分开计数。
 
-## PASS：本地自动验证
+## 自动测试：PASS
 
-完整命令：`/workspace/.venvs/supply-chain/bin/pytest -q --junitxml=runtime/test-results.xml`
+实际命令：`/workspace/.venvs/supply-chain/bin/pytest -q --junitxml=runtime/test-results.xml`
 
-结果：**93 passed in 9.84s；0 failed、0 skipped**。JUnit位于本地忽略路径runtime/test-results.xml。
+**99 passed in 8.82s；0 failed、0 skipped**。原93项路径继续通过；新增gzip解码/解码后4MB上限、受限复用前置阻断、两份真实欧委会摘录解析与专用解析器拒绝列表壳等6项测试。
 
-`ruff check src tests`：**All checks passed**。`git diff --check`通过。
+`ruff check src tests scripts`：All checks passed。`git diff --check`通过。JUnit在忽略的runtime/test-results.xml。
 
-保留原有47项测试路径，新增46项。两处旧断言随Review修正：历史生效日期不再自动实施；原文更新增加系统前后状态审计，预期日志多一条。没有删除失败场景、禁用断言或用Mock冒充真实采集。
+官方摘录Fixture来自实际取得的CC BY 4.0欧委会页面，保留原URL、捕获时间、原HTML及摘录SHA256、原始日期、署名与修改说明。它们是**离线回归，不算Live请求或当前新闻覆盖**。没有提交受限Rotterdam正文。
 
-| 本轮验证 | 状态 | 证据 |
+## 真实运行验收
+
+| 检查 | 状态 | 实际结果 |
 |---|---|---|
-| 明确废止+过去生效日期 | PASS | 英文与中文回归，废止不会被日期覆盖 |
-| 提案含历史日期/旧法规引用 | PASS | 提案保留；明确矛盾进入未知，不以日期升级 |
-| 独立生效/到期/废止日期 | PASS | 多日期分字段；日期歧义保留未知与证据 |
-| 未来日期/已到期/否定法规状态 | PASS | 矛盾需核实、到期不保证继续适用 |
-| 撤回、取消罢工、恢复作业/港口重开 | PASS | 生命周期解除/取消，不能抬高当前港口预警 |
-| 多句矛盾、旧标题/解除正文、解除标题/进行中正文 | PASS | 矛盾为unknown；不自动抬高预警 |
-| 假设/条件示例、历史日期/旧事件 | PASS | 与当前事件分开，不产生当前高风险 |
-| 多港口范围 | PASS | Rotterdam无罢工不掩盖Hamburg关闭；未归属文字不复制到各港 |
-| 严重度/生命周期/来源可信度独立 | PASS | announced最多中；active按原文；unknown/legacy不进入当前分级 |
-| 001→002真实SQLite升级 | PASS | 临时001库保留原文，升级后重算并记录审计 |
-| 原文/规则版本变化前后审计与幂等重算 | PASS | 原文/旧分析保留，ReviewLog前后JSON，再次reassess=0 |
-| 每来源/每日覆盖 | PASS | 缺日志、过期、Mock、无发布日期、最新失败不能证明当日Live覆盖 |
-| 失败日/缺测日报与周报 | PASS | 明示“采集覆盖不足”，不宣称无重要新闻 |
-| 采集遥测 | PASS | Mock测试耗时、文章样例、发布日期年龄及注入客户端标签；不更新真实成功时间 |
-| robots同域重定向与403处理 | PASS | 跳转到禁止路径在请求前停止；确定性代理403只尝试1次 |
-| 原有无API核心、去重、来源失败隔离、ETA、HTML、六页面 | PASS | 原测试路径完整执行，未引入付费依赖 |
-| 页面不确定性与覆盖警示 | PASS | Streamlit AppTest校验生命周期、日期/证据、来源可信度和Live覆盖不足 |
+| 当前网络策略 | PASS | 新实例unrestricted/enforced，observations_current=true，继承代理与TLS校验 |
+| GitHub API读取 | PASS | 实际GET Issue #2、PR #1 reviews/comments成功；已读第二轮Owner Review |
+| 三官方部门来源真实采集 | PASS | DG MOVE、DG TRADE、DG GROW各5篇，共15篇保留正文及发布日期 |
+| 重复真实采集 | PASS | 再次真实获取同15篇，三源各5 unchanged，未新增重复事件 |
+| 原始正文→解析→数据库→规则 | PASS | 原文/分析分离，原始日期保留，反倾销样例中风险且可解释，其他状态未知不伪造 |
+| 源HTML独立对照 | PASS | 三样例标题、datePublished及完整抽取正文与数据库当前RawRevision一致；详见证据JSON |
+| 实际Live页面 | PASS | 对实际15篇Live数据库执行Streamlit AppTest，Overview=15，Intelligence展示三样例和许可，无Demo混入 |
+| 日报生成及Reports页面 | PASS | 三样例按原发布日期生成HTML并在实际Reports页面选择，无异常；源链接、原文、风险及CC许可齐全 |
+| Demo隔离 | PASS | 原有5条虚构Demo事件不进入Live，Live验收不加载seed；重复入库前后两空间数量不变 |
+| 当日覆盖不足说明 | PASS | 今日配置候选仍非全覆盖，Live日报明确覆盖不足；不把旧文章重定为今日新闻 |
+| Rotterdam复用限制 | BLOCKED | 官方条款禁止下载/复制；停用来源并清理本轮5份正文/分析副本，排除验收计数 |
+| EUR-Lex | BLOCKED | robots.txt HTTP202，fail closed；未绕过挑战或继续请求正文 |
+| CATL | BLOCKED | robots跨主机301触发保护，未自动跟随 |
+| Antwerp/Hamburg正文 | BLOCKED | 列表可访问但未发现/解析合格文章；不算源适配成功 |
+| Maersk/Hapag正文 | NOT TESTED | 修复后robots200且允许列表；仅做robots探测，复用政策待核实，未请求正文 |
+| 人工业务/法律签核 | NOT TESTED | Codex做源HTML逐项工程核对，不冒称用户人工审核通过 |
+| 真实LLM/港口等待时间/真实航次/Windows/跨日调度 | NOT TESTED | 无新增付费调用、内部数据或公网部署 |
 
-## 本实例实际运行
+## 实际端到端工具
 
-- PASS：迁移/重算、重复init/reassess、真实空间日报/周报HTML生成；报告明确采集覆盖不足。
-- PASS：10个来源分别完成**访问尝试和失败审计**；这不是采集成功。
-- BLOCKED：真实正文0、真实Live事件0，10/10来源在robots.txt的CONNECT阶段403。正文/原始发布日期解析、真实事件到UI/报告和人工事实核对NOT TESTED。
-- BLOCKED：Issue #2至少2个官方来源成功的Live验收。详见SOURCE_AUDIT与docs/LIVE_ACCEPTANCE。
-- PASS：正常GitHub公开网页读取PR #1 Review、Issue #2/#3及基线Actions成功状态；写入API仍Forbidden。
-- PASS：本轮修复提交64e1016的push与PR synchronize两次Actions，公开网页显示completed successfully；PR Checks显示test succeeded（44s）。不是旧CI或本地pytest替代。
-- NOT TESTED：真实LLM、Windows原生、持续跨日调度、人工浏览器视觉验收。没有付费API、内部数据或公网部署。
+`python scripts/validate_live.py`在当前真实数据库执行，返回PASS、live_events=15、sources=3。过程要求近24小时LIVE_HTTP日志及许可，校验逐字引文、本地重入幂等、原发布日期日报和真实页面；不会通过模拟新闻填充。
 
-## GitHub Actions观察
+时间和逐源证据：docs/LIVE_EVIDENCE_2026-11-06.json。完整SOURCE_AUDIT保留其他来源失败阶段和未测边界。三来源都是欧委会不同部门，不表示三个独立机构或电池/港口完整覆盖；也不是预测准确率验证。
 
-旧基线9160f0d：公开Actions列表及PR Checks显示成功。PR运行：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42149871304 ；push运行：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42149599779 。本轮新提交的最终观察附后。
+## GitHub Actions
+
+代码修复提交85e261d已推送现有feature分支，触发push/PR检查。当前轮CI与PR更新结果在本节后续记录；此前基线成功不作为本轮成功证明。99是本地实际测试数量，不冒称已读取远程JUnit。
 
 
-## 本轮修复提交CI与协作写入
+## 本轮代码CI
 
-- Commit：64e1016（风险规则、覆盖、迁移及全部93项测试）。
-- Push Actions PASS：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42155814204
-- PR synchronize Actions PASS：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42155815831
-- 观察方式：正常GitHub公开Actions列表及PR #1 Checks；分别显示46s、48s完成成功，PR test显示44s成功。完整签入日志需要登录，未宣称下载远程JUnit或核对远程测试数量。
-- API实际写入：PATCH PR #1、POST Issue #2 comments、POST Issue #3 comments均Forbidden。PR代码随Git推送更新；描述/评论未发布，Issue状态未改变。准备文本在docs/PR_DESCRIPTION、docs/ISSUE_RESULTS。
-- 最终依赖一致性：`python -m pip check` → No broken requirements found。
+代码SHA：85e261dd436048b2d5ea2b4310bb4ca96431cc55。已通过恢复的GitHub API实际读取status=completed、conclusion=success：
+
+- https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42169750468
+- https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42169754791
+
+这是本轮SHA的实际检查，不是沿用基线。远程CI执行离线回归，不把它当真实HTTP验收；真实15篇与页面证据由本实例另行执行。未下载远程JUnit，不冒称核对了远程测试计数。依赖一致性pip check：No broken requirements found。

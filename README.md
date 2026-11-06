@@ -4,7 +4,7 @@
 
 已可运行：采集框架、原始证据及分析分离、解释型风险规则、航次 ETA 快照、人工审核、六个中文工作台、日报/周报 HTML 和独立调度。
 
-**当前真实数据状态：官方来源在此云环境被代理拒绝；没有采集成功的真实新闻，也没有港口等待时间序列。** 演示空间有 5 条明确虚构的情报和 3 条脱敏虚构航次快照，绝不能作业务事实使用。详见 [SOURCE_AUDIT.md](SOURCE_AUDIT.md)。
+**当前真实数据状态：已在新环境从欧委会运输、贸易、产业三个部门来源取得并保留15篇真实文章，完成Live页面/风险/日报验证；这三个来源属于同一机构。没有港口等待时间序列，其他候选来源尚未通过验收。** 演示空间有 5 条明确虚构的情报和 3 条脱敏虚构航次快照，绝不能作业务事实使用。详见 [SOURCE_AUDIT.md](SOURCE_AUDIT.md)。
 
 ## 快速启动（Linux / macOS，Python 3.12）
 
@@ -92,7 +92,7 @@ Provider返回严格 Pydantic JSON，facts 必须带原文连续逐字引文；�
 
 运营生命周期独立为 announced / active / resolved / cancelled / unknown。原文严重度不等于当前港口风险；取消、解除、矛盾、假设、历史上下文和未知状态不自动抬高当前预警。已宣布事件最多中级提示，进行中信号才按严重度计入；30天只是候选检索窗口，不证明仍在中断。多港口内容按明确港口所在语句拆分，不把一个港口的中断复制给另一个港口。来源可信度独立标记为未经审核，不因LLM或关键词分数自动变高。
 
-规则版本为 `2026-11-06.3`。`scm init` 或网页首次加载会幂等重算旧版本；也可显式运行 `scm reassess`。旧原文/分析保留，规则或证据变化的前后状态写入ReviewLog，重置人审。旧规则未重算的记录不用于当前港口预警。规则的否定、条件、跨文档事件关联和时间理解仍有限，见已知限制。
+规则版本为 `2026-11-06.4`（补充真实反倾销公告的贸易分类/中级信号）。`scm init` 或网页首次加载会幂等重算旧版本；也可显式运行 `scm reassess`。旧原文/分析保留，规则或证据变化的前后状态写入ReviewLog，重置人审。旧规则未重算的记录不用于当前港口预警。规则的否定、条件、跨文档事件关联和时间理解仍有限，见已知限制。
 
 ## 报告与自动调度
 
@@ -139,4 +139,18 @@ runtime/              本地SQLite/HTML/测试结果；忽略提交
 
 默认仅监听127.0.0.1；没有身份认证或企业权限隔离，不能直接公网部署。不上传内部敏感资料、不提交真实柜号/客户/报价/API密钥。CSV导出防公式注入；原文按不可信数据处理。人工审核人是自报标签，审计不是不可篡改合规日志。
 
-唯一协作仓库为 Gemini-BIAN/Information-Dashboard-and-Risk-Warning。首次初始化 main，仅作为空基线；代码在 `feature/supply-chain-risk-mvp`。后续 feature 分支、测试、清晰提交、推送、PR，不自行合并 main。开发前读取Issues、未解决PR Review和项目状态文档；无法访问时记录限制，继续独立可验证工作。当前 Git HTTPS 可推送；GitHub公开网页可读取Issue/Review/Actions，API写入仍被代理拒绝。现有Draft PR #1已关联此feature分支，推送自动更新代码差异；PR文字和Issue评论受API限制，详见项目进度与docs/ISSUE_RESULTS.md。
+唯一协作仓库为 Gemini-BIAN/Information-Dashboard-and-Risk-Warning。首次初始化 main，仅作为空基线；代码在 `feature/supply-chain-risk-mvp`。后续 feature 分支、测试、清晰提交、推送、PR，不自行合并 main。开发前读取Issues、未解决PR Review和项目状态文档；无法访问时记录限制，继续独立可验证工作。当前网络策略已发布生效，GitHub API读取与Git HTTPS可用。现有Draft PR #1继续使用此feature分支，不合并main。最新真实采集与写入验证见项目进度和docs/LIVE_ACCEPTANCE.md。
+
+
+## 本轮真实数据验收（2026-11-06）
+
+```bash
+scm collect --source ec --source ec-trade --source ec-industry
+python scripts/validate_live.py
+```
+
+三来源各5篇，原始发布日期齐全；重复真实采集15篇均unchanged。验证脚本检查24小时内真实HTTP采集日志、原文/引文、幂等入库、规则、实际Live页面与日报；不新发网络请求、不加载模拟数据，不能用过期快照当新采集。证据输出runtime/live_acceptance.json；本轮可复核摘要在docs/LIVE_EVIDENCE_2026-11-06.json。
+
+欧委会使用CC BY 4.0，页面、报告及官方摘录Fixture保留署名、许可链接、提取与中文模板修改说明。Rotterdam明确限制下载/复制，已停用，初次许可审查前临时取得的5篇正文及分析副本已清理，不计入15篇。其他候选未验证即不算PASS。没有复用受限图片/Logo或上传内部数据。
+
+文章日期没有改成采集当天；样例日报分别按2026-10-20、10-29、10-30原始发布日期生成。今日采集覆盖仍不足，不能声称今日全球无重要新闻。剩余站点/主题和用户业务法律签核待完成，参见SOURCE_AUDIT和docs/LIVE_ACCEPTANCE。

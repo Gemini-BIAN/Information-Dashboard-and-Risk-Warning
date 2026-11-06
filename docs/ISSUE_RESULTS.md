@@ -15,3 +15,11 @@
 ## PR #1
 
 继续现有feature分支，保持Draft、不合并main。推送会更新PR代码；Owner Review已正常从公开网页读取。API评论/描述写入状态与本轮CI见PROJECT_STATUS最终记录。该文件的存在不表示评论已成功发布。
+
+## Issue #2 最新结果：网络发布后的有限Live验收
+
+前文“0/10网络BLOCKED”仅为旧环境历史。本轮新实例网络/API恢复，代码85e261d：DG MOVE、DG TRADE、DG GROW各5篇，共15篇真实正文及原始日期；重复真实采集全部unchanged。实际Live页面/原发布日期日报/源HTML对照通过，99项pytest及ruff通过，代码本轮CI两次success。
+
+三部门属于同一欧委会机构，不代表独立机构或全业务覆盖。© EU/CC BY 4.0保留来源与修改说明。Rotterdam条款限制，停用并清理本轮5份临时正文/分析副本，未计入15。其余来源的robots/跨域/发现/许可限制分别记录，未绕过。
+
+证据见docs/LIVE_ACCEPTANCE和LIVE_EVIDENCE_2026-11-06.json。Issue保持OPEN等待Owner业务/法律签核及验收，PR保持Draft不合并。GitHub评论/PR描述是否实际写入见PROJECT_STATUS最终记录，不以本文件代替写入结果。
