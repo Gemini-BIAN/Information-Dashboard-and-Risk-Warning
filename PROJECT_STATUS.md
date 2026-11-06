@@ -36,3 +36,11 @@
 ## 下一位开发者
 
 先读AGENTS.md、README.md、DECISIONS.md、TEST_REPORT.md、SOURCE_AUDIT.md、KNOWN_LIMITATIONS.md、NEXT_TASKS.md。网络恢复后优先处理真实解析验证与GitHub协作，不要重复编造“采集成功”。无需等待用户选择库或布局。任何收费API、内部敏感数据、公网部署、重大目标改变及高风险操作另行获得批准。
+
+## 最终交付记录
+
+- 完整实现、47项通过测试与全部验收文档已提交并成功推送 `feature/supply-chain-risk-mvp`（文档交付提交 b4a15f0；后续仅更新本状态与PR文本）。
+- 实际执行 `gh pr create --base main --head feature/supply-chain-risk-mvp --body-file ...` 返回 `Post https://api.github.com/graphql: Forbidden`，退出码1。**PR未创建，不存在可提供的PR编号或链接；main未合并。**
+- 可复用的PR描述已存 `docs/PR_DESCRIPTION.md`。API恢复后运行：`gh pr create --repo Gemini-BIAN/Information-Dashboard-and-Risk-Warning --base main --head feature/supply-chain-risk-mvp --title "feat: local supply chain intelligence and risk monitoring MVP" --body-file docs/PR_DESCRIPTION.md`。
+- 最终依赖检查 `python -m pip check`：No broken requirements found；ruff全部通过。没有提交runtime数据库、实际运输数据、密钥或.env。
+- 本实例UI已启动；调度冒烟进程已停止，不宣称调度持续运行。新任务应按保存的start_skill重新启动进程。
