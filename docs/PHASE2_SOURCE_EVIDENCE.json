@@ -1,0 +1,219 @@
+{
+  "scope": "Phase 2A permission/date gate; not ingestion acceptance",
+  "sources": [
+    {
+      "source_id": "ec-batteries",
+      "permission": "allowed_full_text",
+      "reviewed_at": "2026-11-09T02:34:28.845071+00:00",
+      "reason_zh": "EU自有文字CC BY 4.0；署名、许可和修改说明；排除图片/Logo/第三方作品。",
+      "pages": [
+        {
+          "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+          "http_status": 200,
+          "error": null,
+          "title": "Batteries - Environment - European Commission"
+        },
+        {
+          "url": "https://commission.europa.eu/legal-notice_en",
+          "http_status": 200,
+          "error": null,
+          "title": "Legal notice - European Commission"
+        }
+      ],
+      "dated_samples": [
+        {
+          "url": "https://environment.ec.europa.eu/news/commission-launches-consultation-easier-product-repairs-2026-11-03_en",
+          "title": "Commission launches public consultation on making products easier to repair",
+          "published_at": "2026-11-03T10:45:47+00:00",
+          "date_locator": "JSON-LD NewsArticle.datePublished",
+          "http_status": 200,
+          "checked_at": "2026-11-09T02:33:23.258698+00:00",
+          "html_sha256": "f585b8a714f2bd9ad65d9472dd5a9d7bf14d3688e1e7fd4816e755a626da1b2e",
+          "body_scope": "article p/li + .ecl-page-header__description",
+          "robots": {
+            "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+            "https://environment.ec.europa.eu": "200 parsed"
+          },
+          "generic_parse_error": null
+        },
+        {
+          "url": "https://environment.ec.europa.eu/news/eu-launches-friends-credits-nature-and-biodiversity-2026-10-28_en",
+          "title": "EU launches Friends of Credits for Nature and Biodiversity at COP17",
+          "published_at": "2026-10-28T08:20:03+00:00",
+          "date_locator": "JSON-LD NewsArticle.datePublished",
+          "http_status": 200,
+          "checked_at": "2026-11-09T02:33:24.592611+00:00",
+          "html_sha256": "1922de17036f10bde1cbd91a375074696a4b096b49d2ef72ae9db77a2ddfeb74",
+          "body_scope": "article p/li + .ecl-page-header__description",
+          "robots": {
+            "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+            "https://environment.ec.europa.eu": "200 parsed"
+          },
+          "generic_parse_error": null
+        },
+        {
+          "url": "https://environment.ec.europa.eu/news/commission-publishes-new-waste-batteries-rules-2025-07-04_en",
+          "title": "Circular Economy: New rules to boost recycling efficiency and material recovery from waste batteries",
+          "published_at": "2025-07-04T07:45:57+00:00",
+          "date_locator": "JSON-LD NewsArticle.datePublished",
+          "http_status": 200,
+          "checked_at": "2026-11-09T02:33:25.753086+00:00",
+          "html_sha256": "da4aa1ee46c937a74b36a4f0f344b41022a03ae80f5d1a0eb792f52ac4580ebd",
+          "body_scope": "article p/li + .ecl-page-header__description",
+          "robots": {
+            "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+            "https://environment.ec.europa.eu": "200 parsed"
+          },
+          "generic_parse_error": null
+        }
+      ]
+    },
+    {
+      "source_id": "antwerp",
+      "permission": "unknown",
+      "reviewed_at": "2026-11-09T02:34:28.884578+00:00",
+      "reason_zh": "条款页仅可解析标题，无法确认再利用权限；不取正文。",
+      "pages": [
+        {
+          "url": "https://www.portofantwerpbruges.com/en/news",
+          "http_status": 200,
+          "error": null,
+          "title": "News | Port of Antwerp-Bruges"
+        },
+        {
+          "url": "https://www.portofantwerpbruges.com/en/disclaimer",
+          "http_status": 200,
+          "error": null,
+          "title": "Disclaimer | Port of Antwerp-Bruges"
+        }
+      ],
+      "dated_samples": []
+    },
+    {
+      "source_id": "hamburg",
+      "permission": "allowed_full_text",
+      "reviewed_at": "2026-11-09T02:34:28.884600+00:00",
+      "reason_zh": "Displayed information可存储/分享且不得改变/扭曲，必须注明来源。仅文字、保持原文与分析分开，不取图片；部分文字为第三方公告，保留原发布主体，不声称HHM原创。",
+      "pages": [
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/",
+          "http_status": 200,
+          "error": null,
+          "title": "Port of Hamburg | News"
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/imprint/",
+          "http_status": 200,
+          "error": null,
+          "title": "portofhamburg.com | Imprint"
+        }
+      ],
+      "dated_samples": [
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+          "title": "11th chainPORT Annual Meeting at Tanger Med Focuses on Scaling AI in Ports",
+          "published_at": "2026-11-05T10:00:00+00:00",
+          "date_locator": "h1 + p visible calendar/clock; site-local Europe/Berlin assumed, explicit quality flag required",
+          "http_status": 200,
+          "checked_at": "2026-11-09T02:33:19.485996+00:00",
+          "html_sha256": "52c174d64441f649d3fac7ce928f564eceebd70d9038c888462129f9774778ac",
+          "body_scope": "#body p/li/headings",
+          "robots": {
+            "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)"
+          },
+          "generic_parse_error": "No article/main content container"
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/efficient-ports-strengthen-germanys-ability-to-act/",
+          "title": "Efficient ports strengthen Germany’s ability to act",
+          "published_at": "2026-10-07T09:50:00+00:00",
+          "date_locator": "h1 + p visible calendar/clock; site-local Europe/Berlin assumed, explicit quality flag required",
+          "http_status": 200,
+          "checked_at": "2026-11-09T02:33:21.249066+00:00",
+          "html_sha256": "7b08014a0fff835115acb0e7d71bb9f28d2e02bf40a9f1f7fd5e76a848472a57",
+          "body_scope": "#body p/li/headings",
+          "robots": {
+            "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)"
+          },
+          "generic_parse_error": "No article/main content container"
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/an-increasing-number-of-empty-containers-in-hamburg-are-shifting-to-rail-transport-in-hamburg/",
+          "title": "An increasing number of empty containers in Hamburg are shifting to rail transport in Hamburg",
+          "published_at": "2026-08-27T09:30:00+00:00",
+          "date_locator": "h1 + p visible calendar/clock; site-local Europe/Berlin assumed, explicit quality flag required",
+          "http_status": 200,
+          "checked_at": "2026-11-09T02:33:22.251270+00:00",
+          "html_sha256": "dc9dbd7b26037178a2f03d505546692080eef8780f735470f3a0b2c14992b298",
+          "body_scope": "#body p/li/headings",
+          "robots": {
+            "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)"
+          },
+          "generic_parse_error": "No article/main content container"
+        }
+      ]
+    },
+    {
+      "source_id": "msc",
+      "permission": "link_only",
+      "reviewed_at": "2026-11-09T02:34:28.920821+00:00",
+      "reason_zh": "条款限制非个人商业复制/下载；未获书面授权，不取新闻正文。",
+      "pages": [
+        {
+          "url": "https://www.msc.com/en/newsroom/customer-advisories",
+          "http_status": 200,
+          "error": null,
+          "title": "Customer Advisories | MSC"
+        },
+        {
+          "url": "https://www.msc.com/en/terms-and-conditions",
+          "http_status": 200,
+          "error": null,
+          "title": "Terms and Conditions | MSC"
+        }
+      ],
+      "dated_samples": []
+    },
+    {
+      "source_id": "basf",
+      "permission": "link_only",
+      "reviewed_at": "2026-11-09T02:34:28.920831+00:00",
+      "reason_zh": "版权法条款要求复制/处理/分发获书面同意；本轮无授权，不取正文。",
+      "pages": [
+        {
+          "url": "https://www.basf.com/global/en/media/news-releases",
+          "http_status": 200,
+          "error": null,
+          "title": "News Releases"
+        },
+        {
+          "url": "https://www.basf.com/global/en/legal/disclaimer",
+          "http_status": 200,
+          "error": null,
+          "title": "Disclaimer"
+        }
+      ],
+      "dated_samples": []
+    },
+    {
+      "source_id": "lg-energy",
+      "permission": "link_only",
+      "reviewed_at": "2026-11-09T02:34:28.920838+00:00",
+      "reason_zh": "仅允许个人非商业副本，企业商业复制须书面许可；不取正文。",
+      "pages": [
+        {
+          "url": "https://news.lgensol.com/company-news/press-releases/",
+          "http_status": 200,
+          "error": null,
+          "title": "Press Releases – LG Energy Solution"
+        },
+        {
+          "url": "https://news.lgensol.com/terms-of-use/",
+          "http_status": 200,
+          "title": "Terms of Use – LG Energy Solution"
+        }
+      ],
+      "dated_samples": []
+    }
+  ]
+}
