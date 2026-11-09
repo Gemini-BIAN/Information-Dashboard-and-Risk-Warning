@@ -42,3 +42,9 @@ EUR-Lex robots202 fail closed；CATL跨域robots重定向未跟随；Antwerp/Ham
 - 代码85e261d的CI成功；文档/证据8a3f2fc的push与PR两次CI亦由API确认completed/success：42170291262、42170295767。
 - 新实例最新Streamlit已在127.0.0.1:8501启动；health与首页均HTTP200。实际15篇Live页面另由AppTest验证。没有公开预览、生产部署或调度常驻承诺。
 - 收尾只更新写入/检查回执，无代码或验收数据变更。GitHub API已读写成功，旧403不是本轮剩余问题。
+
+## Issue #4 V2 有界收尾
+
+现有V2已于f911ad5原样提交/推送，PR #1保持Draft。按Owner限定停止旧Streamlit，使用新进程/新Chromium会话后，贸易首卡及前8条全序列与后端一致；没有修改业务排序，也没有加入缓存/热重载重构。
+
+实际排序验收与48项相关UI测试执行于2026-11-06（48 passed in 9.33s）；2026-11-09保存收尾文档。业务原库8张表的行数/内容哈希保持不变。完整证据与未测边界见docs/UI_UAT.md；不宣称全浏览器/移动端流程已验收。前轮137全量通过仅作历史，本轮未重跑全量。代码f911ad5自动CI两次success，main未合并。

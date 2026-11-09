@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "scope": "fresh-process/fresh-browser readonly Live ordering check only",
+  "verified_at": "2026-11-06T17:25:05.353102+08:00",
+  "git_head": "f911ad555a7612c8d78c210c6cdb69e231b814b9",
+  "checks": [
+    "new local server health 200",
+    "first card is original PET Spunbond trade article",
+    "all eight displayed positions exactly match existing backend sort",
+    "new browser context with no reused session/storage",
+    "no browser pageerror or Streamlit exception"
+  ],
+  "expected": [
+    {
+      "id": 22,
+      "title": "关税与贸易政策动态｜Commission acts against imports of PET Spunbond from China",
+      "tier": 2,
+      "relevance": 2
+    },
+    {
+      "id": 14,
+      "title": "关税与贸易政策动态｜Solidarity Lanes: Latest figures – September 2026",
+      "tier": 2,
+      "relevance": 2
+    },
+    {
+      "id": 21,
+      "title": "供应链外部动态｜Commission aims to unlock business opportunities for EU medical device companies in China",
+      "tier": 2,
+      "relevance": 1
+    },
+    {
+      "id": 11,
+      "title": "供应链外部动态｜Commission strengthens Europe’s position as the world’s leading tourism destination",
+      "tier": 2,
+      "relevance": 1
+    },
+    {
+      "id": 23,
+      "title": "供应链外部动态｜EU and Canada conclude negotiations on a digital trade agreement",
+      "tier": 2,
+      "relevance": 1
+    },
+    {
+      "id": 17,
+      "title": "供应链外部动态｜New brand association joins the industry-led cooperation to tackle online counterfeiting",
+      "tier": 2,
+      "relevance": 1
+    },
+    {
+      "id": 16,
+      "title": "供应链外部动态｜EU campaign highlights lift buffer safety performance",
+      "tier": 2,
+      "relevance": 1
+    },
+    {
+      "id": 12,
+      "title": "供应链外部动态｜Road safety statistics for 2025 confirm drop in EU road deaths",
+      "tier": 2,
+      "relevance": 1
+    }
+  ],
+  "actual": [
+    "关税与贸易政策动态｜Commission acts against imports of PET Spunbond from China",
+    "关税与贸易政策动态｜Solidarity Lanes: Latest figures – September 2026",
+    "供应链外部动态｜Commission aims to unlock business opportunities for EU medical device companies in China",
+    "供应链外部动态｜Commission strengthens Europe’s position as the world’s leading tourism destination",
+    "供应链外部动态｜EU and Canada conclude negotiations on a digital trade agreement",
+    "供应链外部动态｜New brand association joins the industry-led cooperation to tackle online counterfeiting",
+    "供应链外部动态｜EU campaign highlights lift buffer safety performance",
+    "供应链外部动态｜Road safety statistics for 2025 confirm drop in EU road deaths"
+  ],
+  "screenshot": {
+    "path": "docs/ui_uat/after-live-fresh-1366.png",
+    "sha256": "428f7123e537260819da249e97d07bee46e2638a3e22d2470311b0f1ba3f9ad0",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "unaltered": true
+  },
+  "browser": "155.0.8059.79",
+  "page_errors": [],
+  "presentation_sha256": "3ed35ed4e19201068756b6a55215b1cc2d526755a91974290a39dc0215e76ccf"
+}
