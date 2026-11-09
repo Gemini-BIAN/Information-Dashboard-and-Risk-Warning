@@ -27,3 +27,6 @@ line-length = 110
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.setuptools.package-data]
+"scm.ui" = ["port_map/*.html", "port_map/*.json", "port_map/*.md"]

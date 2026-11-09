@@ -1,0 +1,69 @@
+[
+  {
+    "id": "le-havre",
+    "name": "Le Havre S-WiNG",
+    "url": "https://www.havre-port.com/avis",
+    "permission": "unknown",
+    "coverage": "unverified",
+    "ports": [
+      "le-havre"
+    ],
+    "reason": "自动采集及复用未获确认。"
+  },
+  {
+    "id": "pdports",
+    "name": "PD Ports Notices to Mariners",
+    "url": "https://www.pdports.co.uk/marine-information/notice-to-mariners/",
+    "permission": "unknown",
+    "coverage": "unverified",
+    "ports": [
+      "teesport",
+      "middlesbrough"
+    ],
+    "reason": "共享River Tees范围；公开访问不等于自动再利用许可。"
+  },
+  {
+    "id": "hpa",
+    "name": "HPA Traffic Tower",
+    "url": "https://www.hamburg-port-authority.de/en/info-port/traffic-tower",
+    "permission": "unknown",
+    "coverage": "unverified",
+    "ports": [
+      "hamburg"
+    ],
+    "reason": "运营源不同于HHM新闻；需独立权限审计。"
+  },
+  {
+    "id": "rotterdam-restricted",
+    "name": "Rotterdam restricted / PIN unapproved",
+    "url": "https://pin.portofrotterdam.com/",
+    "permission": "blocked",
+    "coverage": "restricted",
+    "ports": [
+      "rotterdam"
+    ],
+    "reason": "沿用禁止与未授权状态：不请求新闻/PIN。"
+  },
+  {
+    "id": "antwerp-manual",
+    "name": "Antwerp official manual link",
+    "url": "https://www.portofantwerpbruges.com/en/news",
+    "permission": "unknown",
+    "coverage": "unverified",
+    "ports": [
+      "antwerp"
+    ],
+    "reason": "仅人工链接，Phase2A权限未知。"
+  },
+  {
+    "id": "dover-manual",
+    "name": "Dover port information",
+    "url": "https://www.portofdover.com/port-information/",
+    "permission": "unknown",
+    "coverage": "unverified",
+    "ports": [
+      "dover"
+    ],
+    "reason": "仅人工链接；未授权自动化，不进入Community Portal。"
+  }
+]

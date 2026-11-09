@@ -59,7 +59,7 @@ def intelligence(session, views, factory, mode):
     queue(session, views, factory, mode, "Intelligence")
 
 
-def ports(session, views, factory, mode):
+def legacy_ports(session, views, factory, mode):
     st.subheader("港口监测")
     st.caption("公告规则提示、人工风险调整与已确认运营实况分别保留；没有等待时间数据，不绘制模拟实时趋势。")
     names = list(PORT_ALIASES)
@@ -347,3 +347,11 @@ def sources(session, factory, mode, source_rows, coverage):
             hide_index=True,
         )
     st.caption("本地单用户测试版，审核人为自报身份；没有企业登录/RBAC，不直接公网部署。")
+
+
+def ports(session, views, factory, mode):
+    from scm.ui.port_monitor import render
+
+    render(session, factory, mode)
+    with st.expander("既有三港口公告/人工调整（独立历史工具，非当前运营证据）"):
+        legacy_ports(session, views, factory, mode)
