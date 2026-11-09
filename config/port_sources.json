@@ -8,7 +8,11 @@
     "ports": [
       "le-havre"
     ],
-    "reason": "自动采集及复用未获确认。"
+    "reason": "robots200允许列表；两次列表ReadTimeout，未取得条款、正文或日期；停止重试。",
+    "last_permission_check": "2026-11-09T07:58:41.690765+00:00",
+    "audit_ref": "docs/PORT_SOURCE_AUDIT.json",
+    "automatic_access_allowed": false,
+    "last_operational_success_at": null
   },
   {
     "id": "pdports",
@@ -20,18 +24,26 @@
       "teesport",
       "middlesbrough"
     ],
-    "reason": "共享River Tees范围；公开访问不等于自动再利用许可。"
+    "reason": "条款为一般免责声明，All Rights Reserved；没有确认自动采集或正文/元数据再利用许可，不请求PDF或自动保存公告。",
+    "last_permission_check": "2026-11-09T07:57:09.866464+00:00",
+    "audit_ref": "docs/PORT_SOURCE_AUDIT.json",
+    "automatic_access_allowed": false,
+    "last_operational_success_at": null
   },
   {
     "id": "hpa",
     "name": "HPA Traffic Tower",
     "url": "https://www.hamburg-port-authority.de/en/info-port/traffic-tower",
-    "permission": "unknown",
-    "coverage": "unverified",
+    "permission": "blocked",
+    "coverage": "restricted",
     "ports": [
       "hamburg"
     ],
-    "reason": "运营源不同于HHM新闻；需独立权限审计。"
+    "reason": "Terms of Use明确要求事先书面同意，较Imprint更严格；不自动采集/复制运营内容。",
+    "last_permission_check": "2026-11-09T07:59:02.730026+00:00",
+    "audit_ref": "docs/PORT_SOURCE_AUDIT.json",
+    "automatic_access_allowed": false,
+    "last_operational_success_at": null
   },
   {
     "id": "rotterdam-restricted",
