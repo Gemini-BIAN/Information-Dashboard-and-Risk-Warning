@@ -154,3 +154,15 @@ python scripts/validate_live.py
 欧委会使用CC BY 4.0，页面、报告及官方摘录Fixture保留署名、许可链接、提取与中文模板修改说明。Rotterdam明确限制下载/复制，已停用，初次许可审查前临时取得的5篇正文及分析副本已清理，不计入15篇。其他候选未验证即不算PASS。没有复用受限图片/Logo或上传内部数据。
 
 文章日期没有改成采集当天；样例日报分别按2026-10-20、10-29、10-30原始发布日期生成。今日采集覆盖仍不足，不能声称今日全球无重要新闻。剩余站点/主题和用户业务法律签核待完成，参见SOURCE_AUDIT和docs/LIVE_ACCEPTANCE。
+
+## Issue #5 Phase 2A：独立内容链路（不改变 UI）
+
+```bash
+# 已安装依赖的 Python3.12；默认独立SQLite，不读取/修改原业务库
+python scripts/run_phase2a.py
+python scripts/validate_phase2a.py
+```
+
+该路径仅允许经过审查的Hamburg/EC Batteries文字来源，无需LLM Key，输出`runtime/phase2a/daily.html`。Linux验证使用外层`timeout 160s`。Windows可用`.\.venv\Scripts\python.exe scripts\run_phase2a.py`，尚未在Windows实跑。
+
+本轮4篇新增入库，重复采集4 unchanged；其中3条排除、1条历史背景、0条当日合格情报。真实验证的日报为空并说明覆盖不足；不宣称已获得实时业务预警。许可复核超过30日需重新确认，不绕过限制。详见[Phase2A验收](docs/PHASE2_ACCEPTANCE.md)。

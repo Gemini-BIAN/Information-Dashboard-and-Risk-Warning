@@ -585,3 +585,7 @@ PASS 仅表示本次取得可解析正文，不保证覆盖完整、法律适用
 ## 2026-11-09 Issue #5 第一阶段候选审计
 
 详见 [来源矩阵](docs/SOURCE_MATRIX.md) 与 [逐请求证据](docs/content_source_audit.v1.json)。23 候选：16 PARTIAL、7 BLOCKED，其中 Rotterdam 沿用禁止限制且未请求；22 个执行真实 HTTP 验证。网站访问成功不代表正文许可/文章解析验收。新增真实入库 **0**；既有 15 篇为历史基线。新鲜文章数量未知，不记作零。没有新增 Live 连接器。
+
+## 2026-11-09 Phase 2A 最新有限范围结果
+
+本轮只核查6候选，不重跑23源。Hamburg有条件文字许可、当前新闻入口及专用正文/日期解析通过，实际3篇；EC Batteries（同欧委会）实际1篇2025年历史文章。合计4篇新入库，2门户发布机构，相对EC基线新增独立机构1个。重复实际HTTP采集4 unchanged、0重复新增。业务相关性 relevant0、possibly_relevant1、excluded3，7日内1篇但非优先信号；当日日报0合格，明确覆盖不足。MSC/BASF/LG link_only、Antwerp unknown，不采正文；Rotterdam未请求。权限不由HTTP200推导。完整证据：docs/PHASE2_SOURCE_MATRIX.md、docs/PHASE2_SOURCE_EVIDENCE.json、docs/PHASE2_LIVE_EVIDENCE.json。Phase1矩阵保留为历史，不冒充本轮逐篇验收。

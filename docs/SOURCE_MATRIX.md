@@ -43,3 +43,7 @@ Rotterdam 禁止下载/再利用，保持 link_only，last_verified_at=null 表�
 ## 第二阶段入口（等待授权）
 
 优先核实 UNECE ADR、IMO 跳转和欧委会危险品/EUR-Lex 有效入口；不绕过 robots 或跨主机重定向保护。Antwerp、Hamburg、MSC、BASF、LG 的页面可达，需条款许可/文章日期/正文解析验证后再选 2–3 个连接器。成本指标和 NOAA 只按代理/背景事件使用。没有新独立机构完成可重复真实入库，不能宣称 Issue #5 整体验收通过。
+
+## Phase 2A 后续（2026-11-09）
+
+上述23源结果保留为Phase1历史。有限6源权限/逐篇验证更新见PHASE2_SOURCE_MATRIX.md：Hamburg与EC Batteries有条件文字许可并真实入库3+1；MSC/BASF/LG link_only、Antwerp unknown。当前2机构仅相对EC新增1个；真实业务相关性与空日报的PARTIAL验收见PHASE2_ACCEPTANCE.md，不把网站可达等同于业务通过。

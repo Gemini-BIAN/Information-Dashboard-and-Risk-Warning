@@ -12,7 +12,7 @@ from scm.collectors.parsers import parse_article
 from scm.content.digest import generate_digest
 from scm.content.relevance import relevance
 from scm.content.service import collect_content
-from scm.database.models import Analysis, Event, RawRevision
+from scm.database.models import Analysis, Event, RawRevision, Source
 
 NOW = datetime(2026, 11, 9, 12, tzinfo=UTC)
 
@@ -122,6 +122,8 @@ def test_permissions_fail_before_network_and_source_isolation(factory):
     assert results[1]["writes"] == {"inserted": 1}
     assert len(seen) == 3
     with factory() as session:
+        assert session.scalar(select(func.count(Source.id))) == 1
+        assert session.scalar(select(Source)).url == spec()["url"]
         event = session.scalar(select(Event))
         original = (event.risk_level, event.lifecycle, event.rule_version)
         analysis = session.scalar(select(Analysis))

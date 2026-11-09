@@ -143,13 +143,13 @@ def safe_error(exc):
     return type(exc).__name__ + ": request/parse failed"
 
 
-def run_collection(factory, specs=None, fetcher=None, provider=None):
+def run_collection(factory, specs=None, fetcher=None, provider=None, register_defaults=True):
     owned = fetcher is None
     fetcher = fetcher or SafeFetcher()
     results = []
     try:
         with factory.begin() as session:
-            configured = register_sources(session)
+            configured = register_sources(session) if register_defaults else []
             if specs is None:
                 specs = configured
             else:

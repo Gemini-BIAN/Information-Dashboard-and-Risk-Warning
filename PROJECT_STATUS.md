@@ -52,3 +52,7 @@ EUR-Lex robots202 fail closed；CATL跨域robots重定向未跟随；Antwerp/Ham
 ## 2026-11-09 Issue #5 第一阶段
 
 已交付六领域内容策略、23 来源独立目录及真实网络审计、V1 情报/来源 Pydantic 与 JSON Schema、合成边界契约测试。16 PARTIAL、7 BLOCKED（含未请求的 Rotterdam）；新增真实入库 0。UI、现有采集与数据库未修改。第二阶段连接器/筛选/日报尚未实施；详见 docs/CONTENT_ACCEPTANCE.md。Issue #5 保持 OPEN，PR #1 保持 Draft，不合并 main。
+
+## 2026-11-09 Issue #5 Phase 2A — PARTIAL，已停止待评审
+
+权限检查点0b94b26、最小链路b7fb95a。已真实入库Hamburg3与EC Batteries1，共4篇；2门户机构，相对历史EC只新增1个。多次采集4 unchanged，重复新增0；原文/日期完整。最终业务relevant0、possibly_relevant1（历史电池规则）、excluded3，当日空日报实际生成并明确覆盖不足。完整pytest178 passed in11.71s、ruff通过。UI、源运行配置、原业务库和数据库结构冻结；独立runtime/phase2a/live.db运行。详见docs/PHASE2_ACCEPTANCE.md及两份JSON证据。Issue5整体OPEN/部分验收，PR1 Draft，main不合并，不自动Phase2B。

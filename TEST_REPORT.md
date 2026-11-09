@@ -66,3 +66,9 @@
 PASS：完整 pytest **157 passed in 12.08s**；新增20个契约/合成边界测试，不宣称自动分类准确率。`ruff check src tests scripts/audit_content_sources.py` 全部通过。版本化 JSON Schema 与 Pydantic 一致性验证通过。
 
 PARTIAL：23 候选来源真实网络审计 16 PARTIAL、7 BLOCKED（Rotterdam未请求、沿用禁止规则）。NOT TESTED：新增正文许可/逐篇日期/鲜度/连接器/业务流/日报端到端；新增真实入库0，旧15篇不计新增。UI保持冻结，本阶段未运行浏览器测试。详见 docs/CONTENT_ACCEPTANCE.md 与 docs/content_source_audit.v1.json。
+
+## 2026-11-09 Issue #5 Phase 2A
+
+PASS：`pytest -q --junitxml=runtime/phase2a/test-results.xml` → **178 passed in 11.71s**；`ruff check src tests scripts` → All checks passed。新增21项覆盖正/负业务相关性、旧/已解决事件、日期未知/未来、Hamburg正文与日期、未知/非正文许可零请求、故障隔离、canonical/修订引用、重复与Live/Demo日报隔离。合成HTTP用例不计为真实采集或分类准确率。
+
+真实HTTP技术链路PASS：Hamburg3+EC Batteries1，共4篇新增入库；多次读取相同4篇均unchanged，原文/日期和4/4/4计数不变。2门户机构，相对历史EC只新增1个；7日内1篇。相关性：relevant0、possibly_relevant1、excluded3。当日空日报HTML实际生成并检查无旧闻条目。PARTIAL：可行动内容覆盖不足；NOT TESTED：含合格真实当日事件的非空日报、Windows、页面/浏览器、人工法律/业务签核。详见docs/PHASE2_ACCEPTANCE.md与逐请求证据。CI以本轮SHA实际结果另在PR/Issue回执，不沿用旧SHA成功。

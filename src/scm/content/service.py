@@ -167,7 +167,9 @@ def collect_content(factory, specs, fetcher=None, now=None):
                 }
             )
             continue
-        result = run_collection(factory, [spec], fetcher=fetcher, provider=RuleProvider())[0]
+        result = run_collection(
+            factory, [spec], fetcher=fetcher, provider=RuleProvider(), register_defaults=False
+        )[0]
         try:
             with factory.begin() as session:
                 result["content_assessments_written"] = attach_content(session, spec, fixed_now or utcnow())

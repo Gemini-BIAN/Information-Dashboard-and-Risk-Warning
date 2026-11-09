@@ -18,3 +18,7 @@
 网络审计：retries=0，HTTP超时10s/connect6s，命令总限400s；本轮实际在约69秒结束。沙箱初次因 socket 权限未发出网络请求；获准环境网络后实际单轮验证。无绕过策略、验证码、付费或登录。未知/受限来源保持 PARTIAL/BLOCKED，无虚构内容。NOAA RSS本轮仅通用元数据探测，RSS项目解析尚未验收。
 
 本阶段完成后停止。Issue #5 整体仍 OPEN，PR #1 保持 Draft，不合并 main；GitHub提交与CI证据在PR/Issue结果说明中补充。第一阶段完成不代表整条业务情报 Live 流程验收通过。
+
+## 后续 Phase 2A
+
+已按Issue5新评论完成有限范围实现与验证；最新结果以PHASE2_ACCEPTANCE.md为准。真实新增4篇（含旧文章，不冒充当前新闻），relevant0、possibly_relevant1、excluded3；空日报技术通过、业务覆盖PARTIAL。完整测试178 passed，ruff通过。Phase1结论不追溯改写。
