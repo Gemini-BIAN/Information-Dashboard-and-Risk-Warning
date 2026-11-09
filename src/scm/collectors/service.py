@@ -3,7 +3,7 @@ import logging
 import time
 from collections import Counter
 from statistics import median
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 
 from sqlalchemy import select
 
@@ -70,6 +70,22 @@ def collect_one(spec, fetcher):
                     raise AccessBlocked("Cross-host feed article requires explicit source review")
                 raw = fetcher.get(candidate["url"])
                 parsed = parse_article(raw.text, candidate["url"], spec.get("parser", "generic"))
+                if spec.get("use_canonical"):
+                    from bs4 import BeautifulSoup
+
+                    tag = BeautifulSoup(raw.text, "html.parser").find("link", rel="canonical")
+                    if tag and tag.get("href"):
+                        canonical = urljoin(candidate["url"], tag["href"])
+                        p = urlsplit(canonical)
+                        if (
+                            p.scheme != "https"
+                            or p.hostname != urlsplit(spec["url"]).hostname
+                            or p.port not in [None, 443]
+                            or p.username
+                            or p.password
+                        ):
+                            raise AccessBlocked("Unsupported article canonical URL")
+                        parsed["url"] = canonical
                 if parsed["published_at"] is None:
                     parsed["published_at"] = candidate.get("published_at")
                 articles.append(
@@ -127,7 +143,7 @@ def safe_error(exc):
     return type(exc).__name__ + ": request/parse failed"
 
 
-def run_collection(factory, specs=None, fetcher=None):
+def run_collection(factory, specs=None, fetcher=None, provider=None):
     owned = fetcher is None
     fetcher = fetcher or SafeFetcher()
     results = []
@@ -138,7 +154,14 @@ def run_collection(factory, specs=None, fetcher=None):
                 specs = configured
             else:
                 for spec in specs:
-                    if session.get(Source, spec["id"]) is None:
+                    existing = session.get(Source, spec["id"])
+                    if existing is not None:
+                        existing.name, existing.url, existing.method = (
+                            spec["name"],
+                            spec["url"],
+                            spec["method"],
+                        )
+                    else:
                         session.add(
                             Source(
                                 id=spec["id"],
@@ -160,7 +183,7 @@ def run_collection(factory, specs=None, fetcher=None):
                         # A broken individual article cannot roll back unrelated articles.
                         try:
                             with session.begin_nested():
-                                outcome, _ = ingest(session, article)
+                                outcome, _ = ingest(session, article, provider=provider)
                                 counts[outcome] += 1
                         except Exception as exc:
                             audit["article_errors"].append(

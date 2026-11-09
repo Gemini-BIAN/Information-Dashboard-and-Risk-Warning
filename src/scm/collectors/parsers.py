@@ -3,6 +3,7 @@ import re
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from urllib.parse import urljoin, urlsplit
+from zoneinfo import ZoneInfo
 
 import feedparser
 from bs4 import BeautifulSoup
@@ -23,6 +24,8 @@ def parse_date(value):
 
 
 def parse_article(html, url, adapter="generic"):
+    if adapter == "hamburg":
+        return parse_hamburg(html, url)
     if adapter not in ["generic", "european_commission"]:
         raise ValueError("Unsupported article parser")
     soup = BeautifulSoup(html, "html.parser")
@@ -112,3 +115,33 @@ def parse_feed(content):
                 }
             )
     return entries
+
+
+def parse_hamburg(html, url):
+    """HHM text only; exclude gallery, contacts, related cards and navigation."""
+    soup = BeautifulSoup(html, "html.parser")
+    title = soup.select_one("#content h1")
+    body = soup.select_one("#content #body")
+    if title is None or body is None:
+        raise ValueError("No Hamburg article body/title; reject listing shell")
+    for node in body.select("script,style,nav,figure,form,aside"):
+        node.decompose()
+    paragraphs = [p.get_text(" ", strip=True) for p in body.select("p,li,h2,h3,h4")]
+    text = "\n".join(p for p in paragraphs if p)
+    if len(text) < 100:
+        raise ValueError("Hamburg body too short")
+    # Publication comes only from this article's visible header, never listing/URL.
+    label = title.find_next_sibling("p")
+    match = (
+        re.search(r"(\d{2} [A-Z][a-z]{2} \d{4})\s+(\d{2}:\d{2})", label.get_text(" ", strip=True))
+        if label
+        else None
+    )
+    published = None
+    if match:
+        published = (
+            datetime.strptime(" ".join(match.groups()), "%d %b %Y %H:%M")
+            .replace(tzinfo=ZoneInfo("Europe/Berlin"))
+            .astimezone(timezone.utc)
+        )
+    return {"title": title.get_text(" ", strip=True), "body": text, "url": url, "published_at": published}
