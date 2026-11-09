@@ -589,3 +589,7 @@ PASS 仅表示本次取得可解析正文，不保证覆盖完整、法律适用
 ## 2026-11-09 Phase 2A 最新有限范围结果
 
 本轮只核查6候选，不重跑23源。Hamburg有条件文字许可、当前新闻入口及专用正文/日期解析通过，实际3篇；EC Batteries（同欧委会）实际1篇2025年历史文章。合计4篇新入库，2门户发布机构，相对EC基线新增独立机构1个。重复实际HTTP采集4 unchanged、0重复新增。业务相关性 relevant0、possibly_relevant1、excluded3，7日内1篇但非优先信号；当日日报0合格，明确覆盖不足。MSC/BASF/LG link_only、Antwerp unknown，不采正文；Rotterdam未请求。权限不由HTTP200推导。完整证据：docs/PHASE2_SOURCE_MATRIX.md、docs/PHASE2_SOURCE_EVIDENCE.json、docs/PHASE2_LIVE_EVIDENCE.json。Phase1矩阵保留为历史，不冒充本轮逐篇验收。
+
+## 2026-11-09 Issue6运营源权限门槛
+
+限定3源真实审计：Le Havre两次robots200后列表读取超时；PD Ports列表/条款200但无明确自动采集/再利用许可；HPA列表/条款200，Terms of Use要求事先书面同意。**0获准自动运营源、0运营通告**；没有请求通告PDF或Rotterdam新闻/PIN。Dover/Antwerp仅人工链接，其余无源；HHM与Phase2A背景不作当前运营证据。精确HTTP/阶段/时间与权限理由：docs/PORT_SOURCE_AUDIT.json、PORT_SOURCE_AUDIT.md。模块collect-ports门槛实际运行6候选全部阻断、HTTP请求0；不能写作真实采集成功。12地点状态、浏览器及报告证据见PORT_MONITOR_ACCEPTANCE.md。

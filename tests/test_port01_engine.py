@@ -48,7 +48,7 @@ def test_closure_dual_axes_and_explicit_current_evidence():
             "active",
         ),
         ({"fetched_at": NOW - timedelta(days=2)}, "stale", "active"),
-        ({"published_at": None}, "stale", "active"),
+        ({"published_at": None}, "unknown", "active"),
         (
             {"valid_until": NOW - timedelta(minutes=1), "valid_from": NOW - timedelta(days=2)},
             "stale",
@@ -106,3 +106,8 @@ def test_demo_identifier_rejected_live_and_interval_timezone():
         notice(fetched_at=datetime(2026, 11, 9))
     with pytest.raises(ValueError):
         notice(valid_until=NOW - timedelta(days=3))
+
+
+def test_tanger_med_is_only_tentative_business_mapping():
+    r = assess_notice(notice(title="Tanger Med closure", body="Tanger Med port is closed."), ["tangier"], NOW)
+    assert r["ports"] == ["tangier"] and r["state"] == "unknown"

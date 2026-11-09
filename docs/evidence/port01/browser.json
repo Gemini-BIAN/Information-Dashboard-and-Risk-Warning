@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-11-09T08:25:37.549634+00:00",
+  "checks": [
+    {
+      "name": "Offline Natural Earth map and all12 marker objects actually rendered, no external assets",
+      "status": "PASS"
+    },
+    {
+      "name": "All12 actual map-marker clicks open correct right-hand detail and unknown current status",
+      "status": "PASS"
+    },
+    {
+      "name": "World/Europe viewport and zoom controls work",
+      "status": "PASS"
+    },
+    {
+      "name": "Search filters map/detail, empty result and clearing search work",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual Live empty daily generated without sample-news padding",
+      "status": "PASS"
+    },
+    {
+      "name": "Shared Tees evidence visible under distinct locations, inbox only2 events, Demo labeled",
+      "status": "PASS"
+    },
+    {
+      "name": "Demo in-app read acknowledgement and daily generation work",
+      "status": "PASS"
+    },
+    {
+      "name": "Switch back to Live never displays Demo signal/inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "All existing six workspace routes have no Streamlit exception",
+      "status": "PASS"
+    },
+    {
+      "name": "1000px compact desktop map still renders; phone-specific UX not claimed",
+      "status": "PASS"
+    }
+  ],
+  "page_errors": [],
+  "status": "PASS",
+  "dataset": "Fresh isolated QA database; 0 Live operational notices. Explicit fictional Demo only for alerts.",
+  "browser": "155.0.8059.79"
+}

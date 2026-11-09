@@ -56,3 +56,9 @@ EUR-Lex robots202 fail closed；CATL跨域robots重定向未跟随；Antwerp/Ham
 ## 2026-11-09 Issue #5 Phase 2A — PARTIAL，已停止待评审
 
 权限检查点0b94b26、最小链路b7fb95a。已真实入库Hamburg3与EC Batteries1，共4篇；2门户机构，相对历史EC只新增1个。多次采集4 unchanged，重复新增0；原文/日期完整。最终业务relevant0、possibly_relevant1（历史电池规则）、excluded3，当日空日报实际生成并明确覆盖不足。完整pytest178 passed in11.71s、ruff通过。UI、源运行配置、原业务库和数据库结构冻结；独立runtime/phase2a/live.db运行。详见docs/PHASE2_ACCEPTANCE.md及两份JSON证据。Issue5整体OPEN/部分验收，PR1 Draft，main不合并，不自动Phase2B。
+
+## 2026-11-09 Issue6模块01 — 技术PASS / 业务PARTIAL
+
+四检查点完成：a5a0a62注册表/离线地图侧栏；94a306b真实权限审计；1f4d116双风险/生命周期/AI降级/通知日报；最终浏览器修复/证据另提交。12地点含Dover（非London），Teesport/Middlesbrough独立、共享通知去重，Tangier映射未确认。
+
+204 pytest通过（12.96s），ruff通过；Chromium实际12点点击、筛选、通知已读、双空间日报下载、六页面通过；最终日报12地点表已局部重验。来源审计3个，但获准自动运营源0、真实通告0、12港口状态均未知。Le Havre两次读超时、PD权限未知、HPA条款限制；Rotterdam/PIN未请求。两个演示Signal明确虚构，不计Live。业务PARTIAL、Issue6 OPEN、PR1 Draft，不合并main；Issue5 Phase2B暂停。详见docs/PORT_MONITOR_ACCEPTANCE.md与证据清单。

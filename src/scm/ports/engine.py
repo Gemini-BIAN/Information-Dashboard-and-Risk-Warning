@@ -147,6 +147,10 @@ def assess_notice(notice, permitted_ports, now, prior=None):
         state = "confirmed_normal"
     elif current_evidence and kind not in ["unknown", "status_normal"]:
         state = "confirmed_disruption"
+    if ports and all(not p.scope_confirmed for p in registry().ports if p.id in ports):
+        state = "unknown"
+    if notice.published_at is None:
+        state = "unknown"
     if lifecycle == "resolved":
         state = "unknown"  # resolving one notice does not establish normality of the port
     return {

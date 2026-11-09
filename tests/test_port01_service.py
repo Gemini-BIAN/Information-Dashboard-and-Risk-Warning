@@ -205,3 +205,11 @@ def test_additive_migration_preserves_existing_demo_evidence(factory):
             "select id,canonical_url,content_hash from events order by id"
         ).fetchall()
         assert before == after and len(after) == 5
+
+
+def test_ai_bad_provider_configuration_falls_back(monkeypatch):
+    now = utcnow()
+    monkeypatch.setenv("SCM_PORT_LLM_ENABLED", "true")
+    monkeypatch.setenv("SCM_LLM_PROVIDER", "unsupported")
+    result = analyze(synthetic(now), {})
+    assert result["mode"] == "rules-fallback" and "LLM配置不可用" in result["note"]

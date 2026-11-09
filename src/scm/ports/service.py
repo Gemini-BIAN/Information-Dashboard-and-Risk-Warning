@@ -47,7 +47,10 @@ def analyze(notice, assessment, provider=None):
         ],
     }
     if provider is None and os.getenv("SCM_PORT_LLM_ENABLED", "").lower() == "true":
-        provider = configured_provider()
+        try:
+            provider = configured_provider()
+        except Exception as exc:
+            return {**fallback, "note": "LLM配置不可用，已规则降级：" + type(exc).__name__}
     if provider is None or provider.name == "rules-only":
         return fallback
     try:
@@ -242,11 +245,38 @@ def snapshots(session, mode, now=None):
                 }
         for id in assessment["ports"]:
             snap = result[id]
+            if not snap["port"]["scope_confirmed"]:
+                assessment = {
+                    **assessment,
+                    "state": "unknown",
+                    "confidence": "business_location_mapping_unconfirmed",
+                }
             snap["events"].append(
                 {**data, "assessment": assessment, "signal_id": signal.id, "version": signal.version}
             )
     for snap in result.values():
         events = snap["events"]
+        for coverage in snap["coverage"]:
+            src = session.get(Source, "port01-" + coverage["id"])
+            try:
+                permission_gate(coverage, now)
+                qualified = any(
+                    e["source_ref"] == coverage["id"]
+                    and e["assessment"]["kind"] != "unknown"
+                    and e["notice"]["published_at"]
+                    and e["notice"]["verification_type"] == "LIVE_HTTP"
+                    for e in events
+                )
+                if (
+                    qualified
+                    and src
+                    and src.last_status == "PASS"
+                    and src.last_success_at
+                    and now - datetime.fromisoformat(src.last_success_at) <= timedelta(hours=24)
+                ):
+                    coverage["coverage"] = "working_verified"
+            except (AccessBlocked, ValueError):
+                pass
         current = [x for x in events if x["assessment"]["state"] == "confirmed_disruption"]
         normals = [x for x in events if x["assessment"]["state"] == "confirmed_normal"]
         if current:

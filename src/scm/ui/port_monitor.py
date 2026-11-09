@@ -12,6 +12,7 @@ from scm.database.models import PortAlert
 from scm.ports.registry import registry
 from scm.ports.service import snapshots
 from scm.settings import utcnow
+from scm.ui.presentation import local_time
 
 MAP = components.declare_component("escim_port_world", path=str(Path(__file__).parent / "port_map"))
 LABELS = {
@@ -30,7 +31,10 @@ LABELS = {
 
 def render(session, factory, mode):
     st.subheader("港口监测")
-    st.caption("模块 01 · 12 个业务地点 · 风险与覆盖分开 · 无预警不等于正常")
+    st.caption(f"模块 01 · {len(registry().ports)} 个业务地点 · 风险与覆盖分开 · 无预警不等于正常")
+    st.caption(
+        "时效门槛：最近核查24小时内，且公布24小时内或原文明示有效期覆盖当前。有效期/抓取时间均不自动证明持续运营实况。"
+    )
     ports = registry().ports
     now = utcnow()
     states = snapshots(session, mode, now)
@@ -86,7 +90,7 @@ def render(session, factory, mode):
                 st.session_state["port01_pending"] = click["port_id"]
                 st.rerun()
         st.caption(
-            f"地图显示 {len(visible)}/12 个业务地点；内点为运营风险，外环为来源覆盖。可放大、平移或用港口选择框操作。"
+            f"地图显示 {len(visible)}/{len(ports)} 个业务地点；内点为运营风险，外环为来源覆盖。可放大、平移或用港口选择框操作。"
         )
     snap = states[selected]
     port = by_id[selected]
@@ -97,12 +101,10 @@ def render(session, factory, mode):
         st.write("**当前运营状态：** " + LABELS.get(snap["state"], snap["state"]))
         st.write("**业务相关性：** " + LABELS.get(snap["relevance"], snap["relevance"]))
         st.caption(
-            f"截至 {snap['as_of']}；最近来源检查 {snap['last_check'] or '未验证'}；最近成功 {snap['last_success'] or '无'}"
+            f"截至 {snap['as_of']}；最近来源检查 {local_time(snap['last_check'])}；最近成功 {local_time(snap['last_success'])}"
         )
         st.caption(
-            "最近权限审计："
-            + str(snap.get("last_permission_check") or "未验证")
-            + "；权限审计不是运营数据刷新。"
+            "最近权限审计：" + local_time(snap.get("last_permission_check")) + "；权限审计不是运营数据刷新。"
         )
         st.info(port.scope_note)
         st.write(snap["note"])
@@ -143,8 +145,8 @@ def render(session, factory, mode):
         for item in events:
             n, a, ai = item["notice"], item["assessment"], item["ai"]
             with st.expander(n["external_id"] + " · " + n["title"] + " · " + a["lifecycle"]):
-                st.write("公布：" + str(n["published_at"] or "未知") + "；抓取：" + n["fetched_at"])
-                st.write("生效：" + str(n["valid_from"] or "未知") + " 至 " + str(n["valid_until"] or "未知"))
+                st.write("公布：" + local_time(n["published_at"]) + "；抓取：" + local_time(n["fetched_at"]))
+                st.write("生效：" + local_time(n["valid_from"]) + " 至 " + local_time(n["valid_until"]))
                 st.write(
                     "运营严重度："
                     + a["severity"]

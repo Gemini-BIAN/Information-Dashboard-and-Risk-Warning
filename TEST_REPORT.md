@@ -72,3 +72,11 @@ PARTIAL：23 候选来源真实网络审计 16 PARTIAL、7 BLOCKED（Rotterdam�
 PASS：`pytest -q --junitxml=runtime/phase2a/test-results.xml` → **178 passed in 11.71s**；`ruff check src tests scripts` → All checks passed。新增21项覆盖正/负业务相关性、旧/已解决事件、日期未知/未来、Hamburg正文与日期、未知/非正文许可零请求、故障隔离、canonical/修订引用、重复与Live/Demo日报隔离。合成HTTP用例不计为真实采集或分类准确率。
 
 真实HTTP技术链路PASS：Hamburg3+EC Batteries1，共4篇新增入库；多次读取相同4篇均unchanged，原文/日期和4/4/4计数不变。2门户机构，相对历史EC只新增1个；7日内1篇。相关性：relevant0、possibly_relevant1、excluded3。当日空日报HTML实际生成并检查无旧闻条目。PARTIAL：可行动内容覆盖不足；NOT TESTED：含合格真实当日事件的非空日报、Windows、页面/浏览器、人工法律/业务签核。详见docs/PHASE2_ACCEPTANCE.md与逐请求证据。CI以本轮SHA实际结果另在PR/Issue回执，不沿用旧SHA成功。
+
+## 2026-11-09 Issue6模块01
+
+PASS：完整pytest **204 passed in12.96s**（相对178新增26）；ruff src/tests/scripts及迁移003通过。覆盖生命周期/双维度风险、未知/过期/未来时效、明确正常、否定/解除/取消、地点误配/Tangier待核实、Tees共享去重、编号身份、升级/解除通知、读标记/空间隔离、AI配置/调用/引文失败降级、权限门槛/故障隔离/MockRSS幂等、002→003旧证据保留和12 UI切换/国家筛选。
+
+浏览器PASS（有限范围）：新进程/新Chromium155、1440及1000px，离线底图与12标记实际点击，搜索/空结果/回清，收件箱、双空间日报下载、六页面；10组检查无pageerror，最终12地点日报表局部复核另PASS。早期热区/定位器失败修复后通过，不使用force。证据见docs/evidence/port01及PORT_MONITOR_EVIDENCE.json。
+
+BLOCKED/NEEDS_PERMISSION：3真实运营来源均未通过；实际运营源0/真实事件0。Live空日报实际通过；Demo2条仅虚构功能验收，不算Live或模型准确率。NOT TESTED：真实非空运营链路、真实LLM/人工业务法律签核、手机、Windows、长期调度。业务PARTIAL，不把UI技术通过等同12港口实况覆盖；CI结论按最终SHA在PR/Issue补充。

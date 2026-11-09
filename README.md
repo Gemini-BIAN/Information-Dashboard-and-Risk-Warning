@@ -166,3 +166,17 @@ python scripts/validate_phase2a.py
 该路径仅允许经过审查的Hamburg/EC Batteries文字来源，无需LLM Key，输出`runtime/phase2a/daily.html`。Linux验证使用外层`timeout 160s`。Windows可用`.\.venv\Scripts\python.exe scripts\run_phase2a.py`，尚未在Windows实跑。
 
 本轮4篇新增入库，重复采集4 unchanged；其中3条排除、1条历史背景、0条当日合格情报。真实验证的日报为空并说明覆盖不足；不宣称已获得实时业务预警。许可复核超过30日需重新确认，不绕过限制。详见[Phase2A验收](docs/PHASE2_ACCEPTANCE.md)。
+
+## 模块01：12业务港口运营监控
+
+Port Monitor新增离线世界地图/12标记、右侧详情、搜索/国家筛选、默认30日历史、运营严重度/业务相关性、站内收件箱与独立日报。Dover替换London；Teesport和Middlesbrough分开；Tangier/Tanger Med映射待确认。AIS/ETA/拥堵只保留未接入区，无虚构数值。
+
+```bash
+scm init
+scm collect-ports
+scm port-digest --mode live --output runtime/port01/daily.html
+```
+
+**当前获准自动运营源0、真实运营事件0，12地点均未知，业务验收PARTIAL。** Le Havre访问超时、PD Ports权限未知、HPA要求书面同意；不启用采集、不取PDF、不请求Rotterdam/PIN。模块Demo需显式点击“加载模块01虚构演示”，与Live隔离。不需LLM Key；可选LLM只做分析，失败规则降级。配置：`config/ports.json`、`config/port_sources.json`。完整结果与实际截图见[PORT_MONITOR_ACCEPTANCE](docs/PORT_MONITOR_ACCEPTANCE.md)。
+
+Windows PowerShell可用`.\.venv\Scripts\scm.exe init`、`.\.venv\Scripts\scm.exe collect-ports`、`.\.venv\Scripts\scm.exe port-digest --mode live`；Windows主机尚未实际测试。

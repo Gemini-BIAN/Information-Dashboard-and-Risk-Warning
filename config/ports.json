@@ -20,7 +20,8 @@
       "scope_note": "保留业务地点；不把整个Antwerp-Bruges辖区等同具体码头。",
       "source_ids": [
         "antwerp-manual"
-      ]
+      ],
+      "scope_confirmed": true
     },
     {
       "id": "bremerhaven",
@@ -37,7 +38,8 @@
       "unlocode": null,
       "coordinate_precision": "approximate_city_or_port_area_not_navigation",
       "scope_note": "未核实码头范围。",
-      "source_ids": []
+      "source_ids": [],
+      "scope_confirmed": true
     },
     {
       "id": "hamburg",
@@ -57,7 +59,8 @@
       "scope_note": "HPA运营来源与HHM营销新闻分开。",
       "source_ids": [
         "hpa"
-      ]
+      ],
+      "scope_confirmed": true
     },
     {
       "id": "le-havre",
@@ -76,7 +79,8 @@
       "scope_note": "S-WiNG通告权限待确认。",
       "source_ids": [
         "le-havre"
-      ]
+      ],
+      "scope_confirmed": true
     },
     {
       "id": "rotterdam",
@@ -95,7 +99,8 @@
       "scope_note": "受限新闻与PIN均不自动请求。",
       "source_ids": [
         "rotterdam-restricted"
-      ]
+      ],
+      "scope_confirmed": true
     },
     {
       "id": "tangier",
@@ -113,7 +118,8 @@
       "unlocode": null,
       "coordinate_precision": "approximate_city_or_port_area_not_navigation",
       "scope_note": "Tanger Med映射暂定，需确认；地图为城市范围，非已确认码头。",
-      "source_ids": []
+      "source_ids": [],
+      "scope_confirmed": false
     },
     {
       "id": "koper",
@@ -130,7 +136,8 @@
       "unlocode": null,
       "coordinate_precision": "approximate_city_or_port_area_not_navigation",
       "scope_note": "未核实码头范围。",
-      "source_ids": []
+      "source_ids": [],
+      "scope_confirmed": true
     },
     {
       "id": "piraeus",
@@ -148,7 +155,8 @@
       "unlocode": null,
       "coordinate_precision": "approximate_city_or_port_area_not_navigation",
       "scope_note": "未核实码头范围。",
-      "source_ids": []
+      "source_ids": [],
+      "scope_confirmed": true
     },
     {
       "id": "teesport",
@@ -167,7 +175,8 @@
       "scope_note": "与Middlesbrough分开保留；River Tees证据可共享但仅一条事件级预警。",
       "source_ids": [
         "pdports"
-      ]
+      ],
+      "scope_confirmed": true
     },
     {
       "id": "middlesbrough",
@@ -186,7 +195,8 @@
       "scope_note": "业务地点独立，城市级近似位置；不推定具体码头。",
       "source_ids": [
         "pdports"
-      ]
+      ],
+      "scope_confirmed": true
     },
     {
       "id": "felixstowe",
@@ -203,7 +213,8 @@
       "unlocode": null,
       "coordinate_precision": "approximate_city_or_port_area_not_navigation",
       "scope_note": "未核实码头范围。",
-      "source_ids": []
+      "source_ids": [],
+      "scope_confirmed": true
     },
     {
       "id": "dover",
@@ -222,7 +233,8 @@
       "scope_note": "替代London；Community Portal不登录、不绕过。",
       "source_ids": [
         "dover-manual"
-      ]
+      ],
+      "scope_confirmed": true
     }
   ]
 }

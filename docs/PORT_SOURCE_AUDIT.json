@@ -52,7 +52,9 @@
       "body_retention_allowed": false,
       "operational_records_collected": 0,
       "verified_at": "2026-11-09T07:58:41.690765+00:00",
-      "conclusion": "robots200允许列表；两次列表ReadTimeout，未取得条款、正文或日期；停止重试。"
+      "conclusion": "robots200允许列表；两次列表ReadTimeout，未取得条款、正文或日期；停止重试。",
+      "failure_stage": "listing_response_not_received",
+      "error_category": "read timeout, classified from recorded message"
     },
     {
       "id": "pdports",

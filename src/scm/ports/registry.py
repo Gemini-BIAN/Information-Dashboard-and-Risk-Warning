@@ -2,7 +2,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from scm.settings import ROOT
+from scm.settings import ROOT, TIMEZONE
 
 
 class Port(BaseModel):
@@ -18,6 +18,7 @@ class Port(BaseModel):
     watch_enabled: bool
     unlocode: str | None = None
     coordinate_precision: str
+    scope_confirmed: bool = True
     scope_note: str
     source_ids: list[str]
 
@@ -46,7 +47,7 @@ def initial_snapshot(port, now):
     sources = [s for s in source_specs() if s["id"] in port.source_ids]
     return {
         "port": port.model_dump(),
-        "as_of": now.isoformat(),
+        "as_of": now.astimezone(TIMEZONE).isoformat(),
         "state": "unknown",
         "severity": "unknown",
         "relevance": "unknown",

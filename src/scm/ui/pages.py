@@ -63,9 +63,9 @@ def legacy_ports(session, views, factory, mode):
     st.subheader("港口监测")
     st.caption("公告规则提示、人工风险调整与已确认运营实况分别保留；没有等待时间数据，不绘制模拟实时趋势。")
     names = list(PORT_ALIASES)
-    requested = st.query_params.get("port", names[0])
+    requested = st.query_params.get("legacy_port", names[0])
     port = st.selectbox("选择港口", names, index=names.index(requested) if requested in names else 0)
-    st.query_params["port"] = port
+    st.query_params["legacy_port"] = port
     level, reasons, _ = port_risk(session, port, mode)
     matches = [
         v for v in views if port in decoded(v.event.ports_json, []) and v.event.review_status != "rejected"
