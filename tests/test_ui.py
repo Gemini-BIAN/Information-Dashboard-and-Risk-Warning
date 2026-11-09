@@ -54,14 +54,18 @@ def test_port_selection_and_override(dashboard):
     app = dashboard
     app.sidebar.radio[0].set_value("演示数据 Demo").run()
     app.sidebar.radio[1].set_value("Port Monitor").run()
-    app.selectbox[0].set_value("Hamburg").run()
-    assert "Hamburg" in app.metric[0].label
-    app.selectbox[1].set_value("高")
-    app.text_input[0].set_value("test planner")
-    app.text_input[1].set_value("Manual carrier confirmation pending")
-    app.button[0].click().run()
+    app.selectbox(key="port01_choice").set_value("hamburg").run()
+    next(x for x in app.selectbox if x.label == "选择港口").set_value("Hamburg").run()
+    assert any("Hamburg" in m.label for m in app.metric)
+    next(x for x in app.selectbox if x.label == "调整等级").set_value("高")
+    next(x for x in app.text_input if x.label == "调整人").set_value("test planner")
+    next(x for x in app.text_input if x.label == "调整原因（必填）").set_value(
+        "Manual carrier confirmation pending"
+    )
+    next(x for x in app.button if x.label == "保存人工状态").click().run()
     assert not app.exception
-    assert app.metric[0].value == "高"
+    assert next(m for m in app.metric if m.label == "Hamburg · 公告规则提示").value == "高"
+    assert next(m for m in app.metric if m.label == "Hamburg · 运营严重度").value == "未知"
 
 
 def test_live_ui_surfaces_coverage_warning(dashboard):

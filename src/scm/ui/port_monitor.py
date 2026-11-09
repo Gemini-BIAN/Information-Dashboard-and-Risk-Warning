@@ -1,11 +1,16 @@
 """Module-specific world locator and right-hand port details, no external map assets."""
 
+import json
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import streamlit as st
 import streamlit.components.v1 as components
+from sqlalchemy import select
 
-from scm.ports.registry import initial_snapshot, registry
+from scm.database.models import PortAlert
+from scm.ports.registry import registry
+from scm.ports.service import snapshots
 from scm.settings import utcnow
 
 MAP = components.declare_component("escim_port_world", path=str(Path(__file__).parent / "port_map"))
@@ -28,7 +33,7 @@ def render(session, factory, mode):
     st.caption("模块 01 · 12 个业务地点 · 风险与覆盖分开 · 无预警不等于正常")
     ports = registry().ports
     now = utcnow()
-    snapshots = {p.id: initial_snapshot(p, now) for p in ports}
+    states = snapshots(session, mode, now)
     pending = st.session_state.pop("port01_pending", None)
     if pending:
         st.session_state["port01_choice"] = pending
@@ -62,7 +67,7 @@ def render(session, factory, mode):
     with left:
         rows = []
         for port in visible:
-            snap = snapshots[port.id]
+            snap = states[port.id]
             rows.append(
                 {
                     **port.model_dump(),
@@ -83,7 +88,7 @@ def render(session, factory, mode):
         st.caption(
             f"地图显示 {len(visible)}/12 个业务地点；内点为运营风险，外环为来源覆盖。可放大、平移或用港口选择框操作。"
         )
-    snap = snapshots[selected]
+    snap = states[selected]
     port = by_id[selected]
     with right:
         st.markdown(f"### {port.business_label} · {port.name_zh}")
@@ -93,6 +98,11 @@ def render(session, factory, mode):
         st.write("**业务相关性：** " + LABELS.get(snap["relevance"], snap["relevance"]))
         st.caption(
             f"截至 {snap['as_of']}；最近来源检查 {snap['last_check'] or '未验证'}；最近成功 {snap['last_success'] or '无'}"
+        )
+        st.caption(
+            "最近权限审计："
+            + str(snap.get("last_permission_check") or "未验证")
+            + "；权限审计不是运营数据刷新。"
         )
         st.info(port.scope_note)
         st.write(snap["note"])
@@ -106,11 +116,97 @@ def render(session, factory, mode):
         st.markdown("**船舶动态（预留）**")
         st.caption(snap["metrics"])
         st.markdown("**中文分析与条件建议**")
-        st.caption("规则降级模式：未连接LLM；不是全文翻译或已核实预测。")
-        st.write("事实：没有合格当前运营证据。")
+        st.caption("规则引擎负责风险；可选LLM失败明确降级。不是已核实预测。")
+        if not snap["events"]:
+            st.write("事实：没有合格当前运营证据。")
         st.write("条件建议：如需要调整计划，先人工核实官方公告、承运人适用航次及危险品/ISO Tank接收条件。")
         st.markdown("**事件历史**")
         st.number_input("历史窗口（天）", min_value=1, max_value=3650, value=30, key="port01_history_days")
         st.caption("默认30天；扩大窗口可查旧公告。抓取时间不替代公布/生效时间。")
-        st.info("暂无符合范围的运营通告；既有HHM营销文章不作为当前运营证据。")
+        days = st.session_state.get("port01_history_days", 30)
+        history_query = st.text_input("搜索历史标题或通告号", key="port01_event_search")
+        events = [
+            e
+            for e in snap["events"]
+            if (
+                not e["notice"]["published_at"]
+                or datetime.fromisoformat(e["notice"]["published_at"]) >= now - timedelta(days=days)
+            )
+            and (
+                not history_query
+                or history_query.casefold()
+                in (e["notice"]["title"] + " " + e["notice"]["external_id"]).casefold()
+            )
+        ]
+        if not events:
+            st.info("暂无符合范围的运营通告；既有HHM营销文章不作为当前运营证据。")
+        for item in events:
+            n, a, ai = item["notice"], item["assessment"], item["ai"]
+            with st.expander(n["external_id"] + " · " + n["title"] + " · " + a["lifecycle"]):
+                st.write("公布：" + str(n["published_at"] or "未知") + "；抓取：" + n["fetched_at"])
+                st.write("生效：" + str(n["valid_from"] or "未知") + " 至 " + str(n["valid_until"] or "未知"))
+                st.write(
+                    "运营严重度："
+                    + a["severity"]
+                    + "；业务相关性："
+                    + a["relevance"]
+                    + "；置信度："
+                    + a["confidence"]
+                )
+                st.write(a["severity_reason"])
+                st.write(a["business_reason"])
+                st.caption(a["uncertainty"])
+                st.markdown("**事实与原文证据**")
+                for fact in ai["facts"]:
+                    st.code(fact["quote"], language=None)
+                st.markdown("**中文分析与条件建议（推测）**")
+                st.write(ai["summary_zh"])
+                st.caption(ai["note"])
+                for text in ai["potential_impacts"] + ai["tasks"]:
+                    st.write(text)
+                st.link_button("通告原始来源", n["url"])
+                if item.get("terms_url"):
+                    st.link_button("来源许可/条款", item["terms_url"])
+    st.markdown("### 站内预警收件箱")
+    alerts = list(
+        session.scalars(select(PortAlert).where(PortAlert.data_mode == mode).order_by(PortAlert.id.desc()))
+    )
+    only_unread = st.checkbox("仅未读", value=True, key="port01_unread")
+    st.caption(
+        f"事件级通知 {len(alerts)} 条，未读 {sum(a.read_at is None for a in alerts)} 条；Teesport/Middlesbrough共享事件不重复通知。"
+    )
+    for alert in alerts:
+        if only_unread and alert.read_at:
+            continue
+        payload = json.loads(alert.summary_json)
+        st.write(
+            f"#{alert.id} {alert.kind} · {payload['notice']['title']} · {', '.join(payload['assessment']['ports'])}"
+        )
+        if not alert.read_at and st.button("标为已读", key="port01_read_" + str(alert.id)):
+            from scm.ports.service import read_alert
+
+            with factory.begin() as writer:
+                read_alert(writer, alert.id, mode)
+            st.rerun()
+    if not alerts:
+        st.info("暂无站内预警；缺少数据不表示港口正常。")
+    if mode == "demo" and st.button("加载模块01虚构演示", key="port01_seed"):
+        from scm.ports.demo import seed
+
+        seed(factory)
+        st.rerun()
+    if st.button("生成港口运营日报", key="port01_daily"):
+        from scm.ports.report import daily
+
+        with factory.begin() as writer:
+            report = daily(writer, mode)
+            st.session_state["port01_digest_" + mode] = report.html
+        st.success("已保存至Reports，独立port_daily类型。")
+    if st.session_state.get("port01_digest_" + mode):
+        st.download_button(
+            "下载港口日报HTML",
+            st.session_state["port01_digest_" + mode],
+            file_name="port01-" + mode + ".html",
+            mime="text/html",
+        )
     return selected

@@ -156,3 +156,31 @@ class Report(Base):
     data_mode: Mapped[str] = mapped_column(String)
     created_at: Mapped[str] = mapped_column(String)
     html: Mapped[str] = mapped_column(Text)
+
+
+class PortSignal(Base):
+    __tablename__ = "port_signals"
+    __table_args__ = (UniqueConstraint("source_id", "external_id", "data_mode"),)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    source_id: Mapped[str] = mapped_column(ForeignKey("sources.id"))
+    external_id: Mapped[str] = mapped_column(String)
+    data_mode: Mapped[str] = mapped_column(String)
+    event_id: Mapped[int] = mapped_column(ForeignKey("events.id"))
+    payload_json: Mapped[str] = mapped_column(Text)
+    fingerprint: Mapped[str] = mapped_column(String)
+    version: Mapped[int] = mapped_column(Integer)
+    updated_at: Mapped[str] = mapped_column(String)
+
+
+class PortAlert(Base):
+    __tablename__ = "port_alerts"
+    __table_args__ = (UniqueConstraint("signal_id", "version"),)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    signal_id: Mapped[int] = mapped_column(ForeignKey("port_signals.id"))
+    version: Mapped[int] = mapped_column(Integer)
+    event_id: Mapped[int] = mapped_column(ForeignKey("events.id"))
+    data_mode: Mapped[str] = mapped_column(String)
+    kind: Mapped[str] = mapped_column(String)
+    created_at: Mapped[str] = mapped_column(String)
+    read_at: Mapped[str | None] = mapped_column(String)
+    summary_json: Mapped[str] = mapped_column(Text)

@@ -17,6 +17,10 @@ def main():
     parser.add_argument("--database-url", default=None)
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("init")
+    sub.add_parser("collect-ports")
+    port_report = sub.add_parser("port-digest")
+    port_report.add_argument("--mode", choices=["live", "demo"], default="live")
+    port_report.add_argument("--output", default="runtime/port01/daily.html")
     sub.add_parser("demo")
     sub.add_parser("reassess")
     collect = sub.add_parser("collect")
@@ -36,7 +40,19 @@ def main():
     factory = session_factory(args.database_url) if args.database_url else session_factory()
     with factory.begin() as session:
         specs = register_sources(session)
-    if args.command == "init":
+    if args.command == "collect-ports":
+        from scm.ports.collector import collect
+
+        print(json.dumps(collect(factory), ensure_ascii=False, indent=2))
+    elif args.command == "port-digest":
+        from scm.ports.report import daily
+
+        with factory.begin() as session:
+            row = daily(session, args.mode)
+            Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+            Path(args.output).write_text(row.html, encoding="utf-8")
+        print("Saved port_daily report without external notifications")
+    elif args.command == "init":
         from scm.intelligence.service import reassess_events
 
         with factory.begin() as session:
