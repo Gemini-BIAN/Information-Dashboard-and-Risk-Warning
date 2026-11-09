@@ -39,3 +39,7 @@
 - [ ] 复用限制未解除时保持Rotterdam停用。Maersk/Hapag未核实复用前不进行正文采集；其他站点同样需条款确认。
 
 - [x] 本轮代码85e261d及证据8a3f2fc的push/PR检查均实际确认success；API描述更新及Issue #2评论已实际发布，见PROJECT_STATUS回执。Issue #3按Owner评审流程处理，不替其自行关闭。
+
+## Issue #5 暂停点（2026-11-09）
+
+第一阶段交付后停止，等待用户第二阶段指示。届时按 SOURCE_MATRIX 核实条款及文章日期，选择 2–3 个允许来源，完成最小采集→标准化→相关性→证据/规则→中文日报；验证去重、新鲜度与 Live/Demo 隔离。当前不扩 UI，不将 PARTIAL 写成 Live 验收成功。

@@ -581,3 +581,7 @@ PASS 仅表示本次取得可解析正文，不保证覆盖完整、法律适用
 - EUR-Lex：robots HTTP202后停止；CATL：robots跨域301后停止；Antwerp/Hamburg：列表可访问但正文发现/解析未成功。
 - Maersk/Hapag：修复解压后仅重新探测robots，200且允许列表；正文和复用政策尚未验收（NOT TESTED），未请求文章。不把前一版本的DecodingError继续描述为当前站点阻断。
 - 没有改写文章发布日期、伪造官方消息/人工签核，也没有真实等待时间或完整行业覆盖的证明。Issue #2等待Owner审阅，继续OPEN。
+
+## 2026-11-09 Issue #5 第一阶段候选审计
+
+详见 [来源矩阵](docs/SOURCE_MATRIX.md) 与 [逐请求证据](docs/content_source_audit.v1.json)。23 候选：16 PARTIAL、7 BLOCKED，其中 Rotterdam 沿用禁止限制且未请求；22 个执行真实 HTTP 验证。网站访问成功不代表正文许可/文章解析验收。新增真实入库 **0**；既有 15 篇为历史基线。新鲜文章数量未知，不记作零。没有新增 Live 连接器。

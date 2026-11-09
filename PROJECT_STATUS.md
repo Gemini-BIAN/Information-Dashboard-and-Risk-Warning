@@ -48,3 +48,7 @@ EUR-Lex robots202 fail closed；CATL跨域robots重定向未跟随；Antwerp/Ham
 现有V2已于f911ad5原样提交/推送，PR #1保持Draft。按Owner限定停止旧Streamlit，使用新进程/新Chromium会话后，贸易首卡及前8条全序列与后端一致；没有修改业务排序，也没有加入缓存/热重载重构。
 
 实际排序验收与48项相关UI测试执行于2026-11-06（48 passed in 9.33s）；2026-11-09保存收尾文档。业务原库8张表的行数/内容哈希保持不变。完整证据与未测边界见docs/UI_UAT.md；不宣称全浏览器/移动端流程已验收。前轮137全量通过仅作历史，本轮未重跑全量。代码f911ad5自动CI两次success，main未合并。
+
+## 2026-11-09 Issue #5 第一阶段
+
+已交付六领域内容策略、23 来源独立目录及真实网络审计、V1 情报/来源 Pydantic 与 JSON Schema、合成边界契约测试。16 PARTIAL、7 BLOCKED（含未请求的 Rotterdam）；新增真实入库 0。UI、现有采集与数据库未修改。第二阶段连接器/筛选/日报尚未实施；详见 docs/CONTENT_ACCEPTANCE.md。Issue #5 保持 OPEN，PR #1 保持 Draft，不合并 main。

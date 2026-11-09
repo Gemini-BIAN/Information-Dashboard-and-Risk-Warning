@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "domains": [
+    {
+      "code": "A",
+      "name_zh": "物流运营与港口",
+      "implementation_priority": "P0",
+      "event_kinds": [
+        "port_closure",
+        "strike",
+        "congestion_observation",
+        "blank_sailing",
+        "port_omission",
+        "vessel_advisory",
+        "schedule_change",
+        "dg_transport_restriction",
+        "eta_change"
+      ]
+    },
+    {
+      "code": "B",
+      "name_zh": "政策贸易与合规",
+      "implementation_priority": "P0",
+      "event_kinds": [
+        "battery_regulation",
+        "battery_passport",
+        "carbon_footprint",
+        "dangerous_goods_rule",
+        "customs",
+        "tariff",
+        "anti_dumping",
+        "origin_rule",
+        "sanction",
+        "export_control"
+      ]
+    },
+    {
+      "code": "C",
+      "name_zh": "电池与电解液产能",
+      "implementation_priority": "P1",
+      "event_kinds": [
+        "facility_planned",
+        "construction",
+        "capacity_expansion",
+        "production_start",
+        "production_delay",
+        "facility_shutdown"
+      ]
+    },
+    {
+      "code": "D",
+      "name_zh": "成本与价格",
+      "implementation_priority": "P1",
+      "event_kinds": [
+        "fuel_price",
+        "bunker_price",
+        "freight_index",
+        "surcharge",
+        "rate_validity"
+      ]
+    },
+    {
+      "code": "E",
+      "name_zh": "地缘与环境冲击",
+      "implementation_priority": "P1",
+      "event_kinds": [
+        "security_event",
+        "canal_restriction",
+        "natural_hazard",
+        "energy_disruption",
+        "linked_strike"
+      ]
+    },
+    {
+      "code": "F",
+      "name_zh": "通用业务影响与行动",
+      "implementation_priority": "P2",
+      "event_kinds": [
+        "potential_impact",
+        "verification_task",
+        "recommended_action"
+      ]
+    }
+  ]
+}

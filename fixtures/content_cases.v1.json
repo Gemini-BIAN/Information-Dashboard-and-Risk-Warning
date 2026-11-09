@@ -1,0 +1,11 @@
+[
+ {"label":"欧洲电池工厂投产（合成）","domain":"C","kind":"production_start","relevance":"relevant"},
+ {"label":"欧线港口跳港公告（合成）","domain":"A","kind":"port_omission","relevance":"relevant"},
+ {"label":"ADR危险品规则修订（合成）","domain":"B","kind":"dangerous_goods_rule","relevance":"relevant"},
+ {"label":"欧盟进口海关变更（合成）","domain":"B","kind":"customs","relevance":"relevant"},
+ {"label":"普通航空扩班（合成）","domain":null,"kind":"unknown","relevance":"excluded"},
+ {"label":"无运输关联的安全新闻（合成）","domain":null,"kind":"unknown","relevance":"excluded"},
+ {"label":"与欧洲业务无关的内销关税（合成）","domain":"B","kind":"tariff","relevance":"excluded"},
+ {"label":"已结束的港口罢工（合成）","domain":"A","kind":"strike","relevance":"possibly_relevant","lifecycle":"resolved"},
+ {"label":"未知线路影响的飓风（合成）","domain":"E","kind":"natural_hazard","relevance":"possibly_relevant"}
+]

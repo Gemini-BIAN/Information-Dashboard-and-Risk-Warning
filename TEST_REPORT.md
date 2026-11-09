@@ -60,3 +60,9 @@
 - 证据提交8a3f2fc的两次CI经API确认success：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42170291262 与 https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/42170295767 。
 - GitHub API写入PASS：PR #1描述PATCH成功且Draft保留；Issue #2评论POST成功：https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/issues/2#issuecomment-6677957601 。Issue未关闭，main未合并。
 - 新实例本地服务PASS：Streamlit绑定127.0.0.1:8501，GET /_stcore/health→200/ok，GET /→200。页面数据渲染另由实际Live AppTest验证，未冒称人工浏览器视觉验收。
+
+## 2026-11-09 Issue #5 第一阶段
+
+PASS：完整 pytest **157 passed in 12.08s**；新增20个契约/合成边界测试，不宣称自动分类准确率。`ruff check src tests scripts/audit_content_sources.py` 全部通过。版本化 JSON Schema 与 Pydantic 一致性验证通过。
+
+PARTIAL：23 候选来源真实网络审计 16 PARTIAL、7 BLOCKED（Rotterdam未请求、沿用禁止规则）。NOT TESTED：新增正文许可/逐篇日期/鲜度/连接器/业务流/日报端到端；新增真实入库0，旧15篇不计新增。UI保持冻结，本阶段未运行浏览器测试。详见 docs/CONTENT_ACCEPTANCE.md 与 docs/content_source_audit.v1.json。
