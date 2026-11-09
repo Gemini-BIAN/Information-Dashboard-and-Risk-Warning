@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-11-09T08:29:22.383634+00:00",
+  "checks": [
+    "Latest 12-location status table in both actual browser-downloaded reports",
+    "Live 0 event cards, Demo 2 fictional event cards, namespaces separated",
+    "No Streamlit exception"
+  ],
+  "reason": "Focused verification after report current-state table and unknown-date guard update"
+}

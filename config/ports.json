@@ -1,0 +1,240 @@
+{
+  "schema_version": "1.0",
+  "current_evidence_hours": 24,
+  "ports": [
+    {
+      "id": "antwerp",
+      "name": "Antwerp",
+      "business_label": "ANTWERP",
+      "name_zh": "安特卫普",
+      "country": "Belgium",
+      "latitude": 51.26,
+      "longitude": 4.4,
+      "aliases": [
+        "Antwerp",
+        "Antwerpen"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "保留业务地点；不把整个Antwerp-Bruges辖区等同具体码头。",
+      "source_ids": [
+        "antwerp-manual"
+      ],
+      "scope_confirmed": true
+    },
+    {
+      "id": "bremerhaven",
+      "name": "Bremerhaven",
+      "business_label": "BREMERHAVEN",
+      "name_zh": "不来梅哈芬",
+      "country": "Germany",
+      "latitude": 53.55,
+      "longitude": 8.58,
+      "aliases": [
+        "Bremerhaven"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "未核实码头范围。",
+      "source_ids": [],
+      "scope_confirmed": true
+    },
+    {
+      "id": "hamburg",
+      "name": "Hamburg",
+      "business_label": "HAMBURG",
+      "name_zh": "汉堡",
+      "country": "Germany",
+      "latitude": 53.54,
+      "longitude": 9.97,
+      "aliases": [
+        "Hamburg",
+        "Hamburger Hafen"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "HPA运营来源与HHM营销新闻分开。",
+      "source_ids": [
+        "hpa"
+      ],
+      "scope_confirmed": true
+    },
+    {
+      "id": "le-havre",
+      "name": "Le Havre",
+      "business_label": "LE HAVRE",
+      "name_zh": "勒阿弗尔",
+      "country": "France",
+      "latitude": 49.49,
+      "longitude": 0.11,
+      "aliases": [
+        "Le Havre"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "S-WiNG通告权限待确认。",
+      "source_ids": [
+        "le-havre"
+      ],
+      "scope_confirmed": true
+    },
+    {
+      "id": "rotterdam",
+      "name": "Rotterdam",
+      "business_label": "ROTTERDAM",
+      "name_zh": "鹿特丹",
+      "country": "Netherlands",
+      "latitude": 51.95,
+      "longitude": 4.14,
+      "aliases": [
+        "Rotterdam"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "受限新闻与PIN均不自动请求。",
+      "source_ids": [
+        "rotterdam-restricted"
+      ],
+      "scope_confirmed": true
+    },
+    {
+      "id": "tangier",
+      "name": "Tangier",
+      "business_label": "TANGIER",
+      "name_zh": "丹吉尔",
+      "country": "Morocco",
+      "latitude": 35.77,
+      "longitude": -5.8,
+      "aliases": [
+        "Tangier",
+        "Tanger"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "Tanger Med映射暂定，需确认；地图为城市范围，非已确认码头。",
+      "source_ids": [],
+      "scope_confirmed": false
+    },
+    {
+      "id": "koper",
+      "name": "Koper",
+      "business_label": "KOPER",
+      "name_zh": "科佩尔",
+      "country": "Slovenia",
+      "latitude": 45.55,
+      "longitude": 13.73,
+      "aliases": [
+        "Koper"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "未核实码头范围。",
+      "source_ids": [],
+      "scope_confirmed": true
+    },
+    {
+      "id": "piraeus",
+      "name": "Piraeus",
+      "business_label": "PIRAEUS",
+      "name_zh": "比雷埃夫斯",
+      "country": "Greece",
+      "latitude": 37.94,
+      "longitude": 23.64,
+      "aliases": [
+        "Piraeus",
+        "Pireas"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "未核实码头范围。",
+      "source_ids": [],
+      "scope_confirmed": true
+    },
+    {
+      "id": "teesport",
+      "name": "Teesport",
+      "business_label": "TEESPORT",
+      "name_zh": "提斯港",
+      "country": "UK",
+      "latitude": 54.61,
+      "longitude": -1.16,
+      "aliases": [
+        "Teesport"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "与Middlesbrough分开保留；River Tees证据可共享但仅一条事件级预警。",
+      "source_ids": [
+        "pdports"
+      ],
+      "scope_confirmed": true
+    },
+    {
+      "id": "middlesbrough",
+      "name": "Middlesbrough",
+      "business_label": "MIDDLESBROUGH",
+      "name_zh": "米德尔斯堡",
+      "country": "UK",
+      "latitude": 54.575,
+      "longitude": -1.24,
+      "aliases": [
+        "Middlesbrough"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "业务地点独立，城市级近似位置；不推定具体码头。",
+      "source_ids": [
+        "pdports"
+      ],
+      "scope_confirmed": true
+    },
+    {
+      "id": "felixstowe",
+      "name": "Felixstowe",
+      "business_label": "FELIXSTOWE",
+      "name_zh": "费利克斯托",
+      "country": "UK",
+      "latitude": 51.96,
+      "longitude": 1.35,
+      "aliases": [
+        "Felixstowe"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "未核实码头范围。",
+      "source_ids": [],
+      "scope_confirmed": true
+    },
+    {
+      "id": "dover",
+      "name": "Dover",
+      "business_label": "DOVER",
+      "name_zh": "多佛",
+      "country": "UK",
+      "latitude": 51.12,
+      "longitude": 1.33,
+      "aliases": [
+        "Dover"
+      ],
+      "watch_enabled": true,
+      "unlocode": null,
+      "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+      "scope_note": "替代London；Community Portal不登录、不绕过。",
+      "source_ids": [
+        "dover-manual"
+      ],
+      "scope_confirmed": true
+    }
+  ]
+}

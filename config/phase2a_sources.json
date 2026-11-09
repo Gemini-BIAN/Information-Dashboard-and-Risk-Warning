@@ -1,0 +1,44 @@
+[
+  {
+    "id": "hamburg",
+    "name": "Port of Hamburg",
+    "url": "https://www.hafen-hamburg.de/en/current/news/",
+    "method": "html",
+    "article_pattern": "/en/press/news/",
+    "limit": 3,
+    "enabled": true,
+    "parser": "hamburg",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "HHM displayed-information permission",
+      "notice_url": "https://www.hafen-hamburg.de/en/imprint/",
+      "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+      "verified_at": "2026-11-09T02:34:28.921397+00:00",
+      "note": "Displayed information可存储/分享且不得改变/扭曲，必须注明来源。仅文字、保持原文与分析分开，不取图片；部分文字为第三方公告，保留原发布主体，不声称HHM原创。"
+    },
+    "use_canonical": true,
+    "organization_id": "port-of-hamburg-marketing"
+  },
+  {
+    "id": "ec-batteries",
+    "name": "European Commission Batteries",
+    "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+    "method": "html",
+    "article_pattern": "/news/",
+    "limit": 3,
+    "enabled": true,
+    "parser": "european_commission",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "CC BY 4.0",
+      "notice_url": "https://commission.europa.eu/legal-notice_en",
+      "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+      "verified_at": "2026-11-09T02:34:28.921405+00:00",
+      "note": "EU自有文字CC BY 4.0；署名、许可和修改说明；排除图片/Logo/第三方作品。"
+    },
+    "use_canonical": true,
+    "organization_id": "european-commission"
+  }
+]

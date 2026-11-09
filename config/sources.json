@@ -1,0 +1,108 @@
+[
+  {
+    "id": "rotterdam",
+    "name": "Port of Rotterdam",
+    "url": "https://www.portofrotterdam.com/en/news-and-press-releases",
+    "method": "html",
+    "article_pattern": "/news-and-press-releases/",
+    "enabled": false,
+    "reuse_policy": {
+      "status": "restricted",
+      "notice_url": "https://www.portofrotterdam.com/en/copyright",
+      "note": "Official notice prohibits reproducing/downloading content; no permission obtained. Disabled; no body collection or reuse."
+    }
+  },
+  {
+    "id": "antwerp",
+    "name": "Port of Antwerp-Bruges",
+    "url": "https://www.portofantwerpbruges.com/en/news",
+    "method": "html",
+    "article_pattern": "/news/",
+    "enabled": true
+  },
+  {
+    "id": "hamburg",
+    "name": "Port of Hamburg",
+    "url": "https://www.hafen-hamburg.de/en/press/news/",
+    "method": "html",
+    "article_pattern": "/press/news/",
+    "enabled": true
+  },
+  {
+    "id": "maersk",
+    "name": "Maersk Advisories",
+    "url": "https://www.maersk.com/news/category/advisories",
+    "method": "html",
+    "article_pattern": "/news/articles/",
+    "enabled": true
+  },
+  {
+    "id": "hapag",
+    "name": "Hapag-Lloyd Operational Updates",
+    "url": "https://www.hapag-lloyd.com/en/services-information/news.html",
+    "method": "html",
+    "article_pattern": "/news/.*[.]html",
+    "enabled": true
+  },
+  {
+    "id": "ec",
+    "name": "European Commission Transport",
+    "url": "https://transport.ec.europa.eu/news-events/news_en",
+    "method": "html",
+    "article_pattern": "/news-events/news/",
+    "enabled": true,
+    "parser": "european_commission",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "license": "CC BY 4.0",
+      "notice_url": "https://commission.europa.eu/legal-notice_en",
+      "note": "© European Union. EU-owned article text only; excludes logos, images and third-party works. Extracted text and Chinese rule templates are modifications; original source linked."
+    }
+  },
+  {
+    "id": "eurlex",
+    "name": "EUR-Lex Official Journal",
+    "url": "https://eur-lex.europa.eu/collection/eu-law/oj.html",
+    "method": "html",
+    "article_pattern": "/legal-content/EN/TXT/",
+    "enabled": true
+  },
+  {
+    "id": "catl",
+    "name": "CATL Official News",
+    "url": "https://www.catl.com/en/news/",
+    "method": "html",
+    "article_pattern": "/en/news/[0-9]+[.]html",
+    "enabled": true
+  },
+  {
+    "id": "ec-industry",
+    "name": "European Commission Internal Market & Industry",
+    "url": "https://single-market-economy.ec.europa.eu/news_en",
+    "method": "html",
+    "article_pattern": "/news/",
+    "enabled": true,
+    "parser": "european_commission",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "license": "CC BY 4.0",
+      "notice_url": "https://commission.europa.eu/legal-notice_en",
+      "note": "© European Union. EU-owned article text only; excludes logos, images and third-party works. Extracted text and Chinese rule templates are modifications; original source linked."
+    }
+  },
+  {
+    "id": "ec-trade",
+    "name": "European Commission Trade News",
+    "url": "https://policy.trade.ec.europa.eu/news_en",
+    "method": "html",
+    "article_pattern": "/news/",
+    "enabled": true,
+    "parser": "european_commission",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "license": "CC BY 4.0",
+      "notice_url": "https://commission.europa.eu/legal-notice_en",
+      "note": "© European Union. EU-owned article text only; excludes logos, images and third-party works. Extracted text and Chinese rule templates are modifications; original source linked."
+    }
+  }
+]

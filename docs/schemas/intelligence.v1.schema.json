@@ -1,0 +1,829 @@
+{
+  "$defs": {
+    "Applicability": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "default": "unknown",
+          "enum": [
+            "proposal",
+            "adopted",
+            "effective",
+            "repealed",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "legal_identifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Legal Identifier"
+        },
+        "jurisdictions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Jurisdictions",
+          "type": "array"
+        },
+        "products_in_scope": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Products In Scope",
+          "type": "array"
+        },
+        "products_out_of_scope": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Products Out Of Scope",
+          "type": "array"
+        },
+        "electrolyte_applicability": {
+          "default": "unknown",
+          "enum": [
+            "direct",
+            "indirect",
+            "not_applicable",
+            "unknown"
+          ],
+          "title": "Electrolyte Applicability",
+          "type": "string"
+        },
+        "effective_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective At"
+        },
+        "expiry_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expiry At"
+        },
+        "repeal_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Repeal At"
+        },
+        "date_precision": {
+          "default": "unknown",
+          "enum": [
+            "instant",
+            "date_only",
+            "unknown"
+          ],
+          "title": "Date Precision",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "applicability_note_zh": {
+          "title": "Applicability Note Zh",
+          "type": "string"
+        }
+      },
+      "required": [
+        "applicability_note_zh"
+      ],
+      "title": "Applicability",
+      "type": "object"
+    },
+    "Domain": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "title": "Domain",
+      "type": "string"
+    },
+    "EvidenceSnippet": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source_url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Source Url",
+          "type": "string"
+        },
+        "quote": {
+          "maxLength": 3000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "locator": {
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        },
+        "raw_revision_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Revision Id"
+        },
+        "raw_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Sha256"
+        },
+        "capture_mode": {
+          "enum": [
+            "live",
+            "demo",
+            "fixture"
+          ],
+          "title": "Capture Mode",
+          "type": "string"
+        },
+        "precision_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Precision Note"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "source_url",
+        "quote",
+        "locator",
+        "capture_mode"
+      ],
+      "title": "EvidenceSnippet",
+      "type": "object"
+    },
+    "FactualStatement": {
+      "additionalProperties": false,
+      "properties": {
+        "text_zh": {
+          "title": "Text Zh",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text_zh",
+        "evidence_ids"
+      ],
+      "title": "FactualStatement",
+      "type": "object"
+    },
+    "GenericAsset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_type": {
+          "enum": [
+            "country",
+            "port",
+            "lane",
+            "facility",
+            "product"
+          ],
+          "title": "Asset Type",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "public_generic_only": {
+          "const": true,
+          "default": true,
+          "title": "Public Generic Only",
+          "type": "boolean"
+        },
+        "association": {
+          "default": "candidate_unverified",
+          "enum": [
+            "explicit",
+            "candidate_unverified"
+          ],
+          "title": "Association",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "asset_type",
+        "label",
+        "evidence_ids"
+      ],
+      "title": "GenericAsset",
+      "type": "object"
+    },
+    "Inference": {
+      "additionalProperties": false,
+      "properties": {
+        "text_zh": {
+          "title": "Text Zh",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "certainty": {
+          "const": "hypothesis",
+          "default": "hypothesis",
+          "title": "Certainty",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text_zh",
+        "evidence_ids"
+      ],
+      "title": "Inference",
+      "type": "object"
+    },
+    "Relevance": {
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "default": "unknown",
+          "enum": [
+            "relevant",
+            "possibly_relevant",
+            "excluded",
+            "unknown"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "reasons_zh": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Reasons Zh",
+          "type": "array"
+        },
+        "explicit_supply_chain_link": {
+          "default": false,
+          "title": "Explicit Supply Chain Link",
+          "type": "boolean"
+        },
+        "assessed_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assessed At"
+        }
+      },
+      "required": [
+        "reason_codes",
+        "reasons_zh"
+      ],
+      "title": "Relevance",
+      "type": "object"
+    },
+    "SuggestedAction": {
+      "additionalProperties": false,
+      "properties": {
+        "text_zh": {
+          "title": "Text Zh",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "status": {
+          "default": "proposed",
+          "enum": [
+            "proposed",
+            "in_review",
+            "done",
+            "dismissed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "verification_question": {
+          "title": "Verification Question",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text_zh",
+        "evidence_ids",
+        "verification_question"
+      ],
+      "title": "SuggestedAction",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "record_id": {
+      "title": "Record Id",
+      "type": "string"
+    },
+    "data_mode": {
+      "enum": [
+        "live",
+        "demo",
+        "fixture"
+      ],
+      "title": "Data Mode",
+      "type": "string"
+    },
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_name": {
+      "title": "Source Name",
+      "type": "string"
+    },
+    "source_type": {
+      "enum": [
+        "official",
+        "secondary"
+      ],
+      "title": "Source Type",
+      "type": "string"
+    },
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "canonical_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Canonical Url",
+      "type": "string"
+    },
+    "permitted_method": {
+      "enum": [
+        "html_metadata",
+        "rss_metadata",
+        "dataset_reference",
+        "link_only",
+        "licensed_text"
+      ],
+      "title": "Permitted Method",
+      "type": "string"
+    },
+    "license_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "License Name"
+    },
+    "reuse_audit_ref": {
+      "title": "Reuse Audit Ref",
+      "type": "string"
+    },
+    "original_title": {
+      "title": "Original Title",
+      "type": "string"
+    },
+    "title_zh": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Title Zh"
+    },
+    "source_published_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Published At"
+    },
+    "publication_precision": {
+      "default": "unknown",
+      "enum": [
+        "instant",
+        "date_only",
+        "unknown"
+      ],
+      "title": "Publication Precision",
+      "type": "string"
+    },
+    "event_occurred_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Event Occurred At"
+    },
+    "fetched_at": {
+      "format": "date-time",
+      "title": "Fetched At",
+      "type": "string"
+    },
+    "last_verified_at": {
+      "format": "date-time",
+      "title": "Last Verified At",
+      "type": "string"
+    },
+    "countries": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Countries",
+      "type": "array"
+    },
+    "ports": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Ports",
+      "type": "array"
+    },
+    "routes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Routes",
+      "type": "array"
+    },
+    "entities": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Entities",
+      "type": "array"
+    },
+    "products": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Products",
+      "type": "array"
+    },
+    "primary_domain": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Domain"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "secondary_tags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Secondary Tags",
+      "type": "array"
+    },
+    "implementation_priority": {
+      "anyOf": [
+        {
+          "enum": [
+            "P0",
+            "P1",
+            "P2"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Implementation Priority"
+    },
+    "event_kind": {
+      "default": "unknown",
+      "title": "Event Kind",
+      "type": "string"
+    },
+    "event_lifecycle": {
+      "default": "unknown",
+      "enum": [
+        "announced",
+        "active",
+        "resolved",
+        "cancelled",
+        "unknown"
+      ],
+      "title": "Event Lifecycle",
+      "type": "string"
+    },
+    "content_severity": {
+      "default": "unknown",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ],
+      "title": "Content Severity",
+      "type": "string"
+    },
+    "severity_reasons": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Severity Reasons",
+      "type": "array"
+    },
+    "operational_state": {
+      "default": "unknown",
+      "enum": [
+        "confirmed_current_disruption",
+        "announced_only",
+        "resolved",
+        "unknown"
+      ],
+      "title": "Operational State",
+      "type": "string"
+    },
+    "evidence_confidence": {
+      "default": "unreviewed",
+      "enum": [
+        "unreviewed",
+        "source_checked",
+        "human_confirmed",
+        "contradictory",
+        "unknown"
+      ],
+      "title": "Evidence Confidence",
+      "type": "string"
+    },
+    "review_status": {
+      "default": "pending",
+      "enum": [
+        "pending",
+        "confirmed",
+        "rejected"
+      ],
+      "title": "Review Status",
+      "type": "string"
+    },
+    "currentness_checked_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Currentness Checked At"
+    },
+    "business_relevance": {
+      "$ref": "#/$defs/Relevance"
+    },
+    "evidence_snippets": {
+      "items": {
+        "$ref": "#/$defs/EvidenceSnippet"
+      },
+      "title": "Evidence Snippets",
+      "type": "array"
+    },
+    "factual_summary_zh": {
+      "items": {
+        "$ref": "#/$defs/FactualStatement"
+      },
+      "title": "Factual Summary Zh",
+      "type": "array"
+    },
+    "hypotheses": {
+      "items": {
+        "$ref": "#/$defs/Inference"
+      },
+      "title": "Hypotheses",
+      "type": "array"
+    },
+    "potential_impacts": {
+      "items": {
+        "$ref": "#/$defs/Inference"
+      },
+      "title": "Potential Impacts",
+      "type": "array"
+    },
+    "suggested_checks_actions": {
+      "items": {
+        "$ref": "#/$defs/SuggestedAction"
+      },
+      "title": "Suggested Checks Actions",
+      "type": "array"
+    },
+    "generic_assets": {
+      "items": {
+        "$ref": "#/$defs/GenericAsset"
+      },
+      "title": "Generic Assets",
+      "type": "array"
+    },
+    "applicability": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Applicability"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "status": {
+      "default": "metadata_only",
+      "enum": [
+        "metadata_only",
+        "pending_analysis",
+        "analyzed",
+        "reviewed",
+        "excluded"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "dedup_key": {
+      "title": "Dedup Key",
+      "type": "string"
+    },
+    "update_version": {
+      "minimum": 1,
+      "title": "Update Version",
+      "type": "integer"
+    },
+    "previous_record_ref": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Previous Record Ref"
+    },
+    "quality_flags": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Quality Flags",
+      "type": "array"
+    }
+  },
+  "required": [
+    "record_id",
+    "data_mode",
+    "source_id",
+    "source_name",
+    "source_type",
+    "organization_id",
+    "canonical_url",
+    "permitted_method",
+    "reuse_audit_ref",
+    "original_title",
+    "fetched_at",
+    "last_verified_at",
+    "severity_reasons",
+    "business_relevance",
+    "dedup_key",
+    "update_version",
+    "quality_flags"
+  ],
+  "title": "IntelligenceRecord",
+  "type": "object"
+}

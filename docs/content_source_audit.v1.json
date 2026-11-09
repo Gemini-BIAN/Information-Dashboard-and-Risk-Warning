@@ -1,0 +1,741 @@
+{
+  "verification_type": "LIVE_HTTP",
+  "attempts_per_source": 1,
+  "results": [
+    {
+      "source_id": "ec",
+      "url": "https://transport.ec.europa.eu/news-events/news_en",
+      "checked_at": "2026-11-09T02:10:49.387399+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://transport.ec.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://transport.ec.europa.eu/news-events/news_en",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/legal-notice_en",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": "2026-11-04T12:00:00Z",
+      "page_title": "News - Mobility and Transport - European Commission",
+      "metadata_dates": [
+        "2026-11-04T12:00:00Z",
+        "2026-10-27T12:00:00Z",
+        "2026-10-20T12:00:00Z"
+      ],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Legal notice - European Commission",
+      "robots": {
+        "https://transport.ec.europa.eu": "200 parsed",
+        "https://commission.europa.eu": "200 parsed"
+      },
+      "elapsed_seconds": 2.59
+    },
+    {
+      "source_id": "ec-trade",
+      "url": "https://policy.trade.ec.europa.eu/news_en",
+      "checked_at": "2026-11-09T02:10:51.975234+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://policy.trade.ec.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://policy.trade.ec.europa.eu/news_en",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/legal-notice_en",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": "2026-11-06T12:00:00Z",
+      "page_title": "News - European Commission",
+      "metadata_dates": [
+        "2026-11-06T12:00:00Z",
+        "2026-11-05T12:00:00Z",
+        "2026-10-30T12:00:00Z"
+      ],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Legal notice - European Commission",
+      "robots": {
+        "https://policy.trade.ec.europa.eu": "200 parsed",
+        "https://commission.europa.eu": "200 parsed"
+      },
+      "elapsed_seconds": 2.29
+    },
+    {
+      "source_id": "ec-industry",
+      "url": "https://single-market-economy.ec.europa.eu/news_en",
+      "checked_at": "2026-11-09T02:10:54.266079+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://single-market-economy.ec.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://single-market-economy.ec.europa.eu/news_en",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/legal-notice_en",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": "2026-10-29T12:00:00Z",
+      "page_title": "News - Internal Market, Industry, Entrepreneurship and SMEs",
+      "metadata_dates": [
+        "2026-10-29T12:00:00Z",
+        "2026-10-29T12:00:00Z",
+        "2026-10-23T12:00:00Z"
+      ],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Legal notice - European Commission",
+      "robots": {
+        "https://single-market-economy.ec.europa.eu": "200 parsed",
+        "https://commission.europa.eu": "200 parsed"
+      },
+      "elapsed_seconds": 6.48
+    },
+    {
+      "source_id": "ec-batteries",
+      "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+      "checked_at": "2026-11-09T02:11:00.748528+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://environment.ec.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/legal-notice_en",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": null,
+      "page_title": "Batteries - Environment - European Commission",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Legal notice - European Commission",
+      "robots": {
+        "https://environment.ec.europa.eu": "200 parsed",
+        "https://commission.europa.eu": "200 parsed"
+      },
+      "elapsed_seconds": 2.46
+    },
+    {
+      "source_id": "ec-dangerous-goods",
+      "url": "https://transport.ec.europa.eu/transport-themes/dangerous-goods_en",
+      "checked_at": "2026-11-09T02:11:03.214061+00:00",
+      "status": "BLOCKED",
+      "stage": "robots/listing",
+      "trace": [
+        {
+          "url": "https://transport.ec.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://transport.ec.europa.eu/transport-themes/dangerous-goods_en",
+          "http_status": 404
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "error_type": "HTTPStatusError",
+      "error": "Client error '404 Not Found' for url 'https://transport.ec.europa.eu/transport-themes/dangerous-goods_en'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "robots": {
+        "https://transport.ec.europa.eu": "200 parsed"
+      },
+      "elapsed_seconds": 1.88
+    },
+    {
+      "source_id": "eurlex",
+      "url": "https://eur-lex.europa.eu/collection/eu-law/oj.html",
+      "checked_at": "2026-11-09T02:11:05.095667+00:00",
+      "status": "BLOCKED",
+      "stage": "robots/listing",
+      "trace": [
+        {
+          "url": "https://eur-lex.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://eur-lex.europa.eu/collection/eu-law/oj.html",
+          "http_status": 404
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "error_type": "HTTPStatusError",
+      "error": "Client error '404 Not Found' for url 'https://eur-lex.europa.eu/collection/eu-law/oj.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "robots": {
+        "https://eur-lex.europa.eu": "200 parsed"
+      },
+      "elapsed_seconds": 10.46
+    },
+    {
+      "source_id": "imo-imdg",
+      "url": "https://www.imo.org/en/OurWork/Safety/Pages/DangerousGoods-default.aspx",
+      "checked_at": "2026-11-09T02:11:15.553482+00:00",
+      "status": "BLOCKED",
+      "stage": "robots/listing",
+      "trace": [
+        {
+          "url": "https://www.imo.org/robots.txt",
+          "http_status": 301
+        },
+        {
+          "url": "https://www.imo.org/robots.txt",
+          "http_status": 301
+        },
+        {
+          "url": "https://www.imo.org/robots.txt",
+          "http_status": 301
+        },
+        {
+          "url": "https://www.imo.org/robots.txt",
+          "http_status": 301
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "error_type": "AccessBlocked",
+      "error": "Too many redirects",
+      "robots": {},
+      "elapsed_seconds": 3.13
+    },
+    {
+      "source_id": "unece-adr",
+      "url": "https://unece.org/transport/dangerous-goods/adr-2025-files",
+      "checked_at": "2026-11-09T02:11:18.684662+00:00",
+      "status": "BLOCKED",
+      "stage": "robots/listing",
+      "trace": [
+        {
+          "url": "https://unece.org/robots.txt",
+          "http_status": 403
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "error_type": "AccessBlocked",
+      "error": "robots.txt HTTP 403; fail closed",
+      "robots": {},
+      "elapsed_seconds": 0.35
+    },
+    {
+      "source_id": "rotterdam",
+      "url": "https://www.portofrotterdam.com/en/news-and-press-releases",
+      "checked_at": null,
+      "status": "BLOCKED",
+      "stage": "restriction_review",
+      "trace": [],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "reason": "禁止下载/复制；先前正文已清理，没有新许可不得恢复。",
+      "restriction_reviewed_at": "2026-11-09T02:11:19.047748+00:00",
+      "robots": {},
+      "elapsed_seconds": 0.02
+    },
+    {
+      "source_id": "antwerp",
+      "url": "https://www.portofantwerpbruges.com/en/news",
+      "checked_at": "2026-11-09T02:11:19.048524+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://www.portofantwerpbruges.com/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.portofantwerpbruges.com/en/news",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.portofantwerpbruges.com/en/disclaimer",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": null,
+      "page_title": "News | Port of Antwerp-Bruges",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Disclaimer | Port of Antwerp-Bruges",
+      "robots": {
+        "https://www.portofantwerpbruges.com": "200 parsed"
+      },
+      "elapsed_seconds": 3.2
+    },
+    {
+      "source_id": "hamburg",
+      "url": "https://www.hafen-hamburg.de/en/press/news/",
+      "checked_at": "2026-11-09T02:11:22.251465+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://www.hafen-hamburg.de/robots.txt",
+          "http_status": 404
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/imprint/",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": null,
+      "page_title": "Port of Hamburg | News",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "portofhamburg.com | Imprint",
+      "robots": {
+        "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)"
+      },
+      "elapsed_seconds": 2.77
+    },
+    {
+      "source_id": "maersk",
+      "url": "https://www.maersk.com/news/category/advisories",
+      "checked_at": "2026-11-09T02:11:25.026408+00:00",
+      "status": "PARTIAL",
+      "stage": "terms",
+      "trace": [
+        {
+          "url": "https://www.maersk.com/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.maersk.com/news/category/advisories",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.maersk.com/terms-and-conditions",
+          "http_status": 404
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "page_title": "Advisories | News & Advisories | Maersk",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "error_type": "HTTPStatusError",
+      "error": "Client error '404 Not Found' for url 'https://www.maersk.com/terms-and-conditions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "robots": {
+        "https://www.maersk.com": "200 parsed"
+      },
+      "elapsed_seconds": 2.57
+    },
+    {
+      "source_id": "hapag",
+      "url": "https://www.hapag-lloyd.com/en/services-information/news.html",
+      "checked_at": "2026-11-09T02:11:27.593779+00:00",
+      "status": "PARTIAL",
+      "stage": "terms",
+      "trace": [
+        {
+          "url": "https://www.hapag-lloyd.com/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.hapag-lloyd.com/en/services-information/news.html",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.hapag-lloyd.com/en/legal.html",
+          "http_status": 404
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "page_title": "CustomerNEWS - Hapag-Lloyd",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "error_type": "HTTPStatusError",
+      "error": "Client error '404 Not Found' for url 'https://www.hapag-lloyd.com/en/legal.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "robots": {
+        "https://www.hapag-lloyd.com": "200 parsed"
+      },
+      "elapsed_seconds": 2.53
+    },
+    {
+      "source_id": "msc",
+      "url": "https://www.msc.com/en/newsroom/customer-advisories",
+      "checked_at": "2026-11-09T02:11:30.126217+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://www.msc.com/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.msc.com/en/newsroom/customer-advisories",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.msc.com/en/terms-and-conditions",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": null,
+      "page_title": "Customer Advisories | MSC",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Terms and Conditions | MSC",
+      "robots": {
+        "https://www.msc.com": "200 parsed"
+      },
+      "elapsed_seconds": 2.46
+    },
+    {
+      "source_id": "eia-diesel",
+      "url": "https://www.eia.gov/petroleum/gasdiesel/",
+      "checked_at": "2026-11-09T02:11:32.588182+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://www.eia.gov/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.eia.gov/petroleum/gasdiesel/",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.eia.gov/about/copyrights_reuse.php",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": null,
+      "page_title": "Gasoline and Diesel Fuel Update - U.S. Energy Information Administration (EIA)",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "U.S. Energy Information Administration - EIA - Independent Statistics and Analysis",
+      "robots": {
+        "https://www.eia.gov": "200 parsed"
+      },
+      "elapsed_seconds": 2.15
+    },
+    {
+      "source_id": "ec-oil-bulletin",
+      "url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
+      "checked_at": "2026-11-09T02:11:34.743247+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://energy.ec.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://commission.europa.eu/legal-notice_en",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": null,
+      "page_title": "Weekly Oil Bulletin",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Legal notice - European Commission",
+      "robots": {
+        "https://energy.ec.europa.eu": "200 parsed",
+        "https://commission.europa.eu": "200 parsed"
+      },
+      "elapsed_seconds": 2.32
+    },
+    {
+      "source_id": "sse-scfi",
+      "url": "https://en.sse.net.cn/indices/scfinew.jsp",
+      "checked_at": "2026-11-09T02:11:37.063943+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://en.sse.net.cn/robots.txt",
+          "http_status": 404
+        },
+        {
+          "url": "https://en.sse.net.cn/indices/scfinew.jsp",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "page_title": "Shanghai Shipping Exchange Institute(Prep.)",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "robots": {
+        "https://en.sse.net.cn": "404 no robots file (RFC 9309)"
+      },
+      "elapsed_seconds": 2.18
+    },
+    {
+      "source_id": "catl",
+      "url": "https://www.catl.com/en/news/",
+      "checked_at": "2026-11-09T02:11:39.243552+00:00",
+      "status": "BLOCKED",
+      "stage": "robots/listing",
+      "trace": [
+        {
+          "url": "https://www.catl.com/robots.txt",
+          "http_status": 301
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "error_type": "AccessBlocked",
+      "error": "Cross-host redirect or unsupported URL; manual source review required",
+      "robots": {},
+      "elapsed_seconds": 0.37
+    },
+    {
+      "source_id": "basf",
+      "url": "https://www.basf.com/global/en/media/news-releases",
+      "checked_at": "2026-11-09T02:11:39.611561+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://www.basf.com/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.basf.com/global/en/media/news-releases",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.basf.com/global/en/legal/disclaimer",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": null,
+      "page_title": "News Releases",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Disclaimer",
+      "robots": {
+        "https://www.basf.com": "200 parsed"
+      },
+      "elapsed_seconds": 2.48
+    },
+    {
+      "source_id": "lg-energy",
+      "url": "https://news.lgensol.com/company-news/press-releases/",
+      "checked_at": "2026-11-09T02:11:42.095194+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://news.lgensol.com/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://news.lgensol.com/company-news/press-releases/",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "page_title": "Press Releases – LG Energy Solution",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "robots": {
+        "https://news.lgensol.com": "200 parsed"
+      },
+      "elapsed_seconds": 3.11
+    },
+    {
+      "source_id": "samsung-sdi",
+      "url": "https://www.samsungsdi.com/sdi-now/sdi-news.html",
+      "checked_at": "2026-11-09T02:11:45.204983+00:00",
+      "status": "BLOCKED",
+      "stage": "robots/listing",
+      "trace": [
+        {
+          "url": "https://www.samsungsdi.com/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.samsungsdi.com/sdi-now/sdi-news.html",
+          "http_status": 404
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "error_type": "HTTPStatusError",
+      "error": "Client error '404 Not Found' for url 'https://www.samsungsdi.com/sdi-now/sdi-news.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "robots": {
+        "https://www.samsungsdi.com": "200 parsed"
+      },
+      "elapsed_seconds": 3.36
+    },
+    {
+      "source_id": "unctad-maritime",
+      "url": "https://unctad.org/topic/transport-and-trade-logistics/review-of-maritime-transport",
+      "checked_at": "2026-11-09T02:11:48.562872+00:00",
+      "status": "PARTIAL",
+      "stage": "terms",
+      "trace": [
+        {
+          "url": "https://unctad.org/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://unctad.org/topic/transport-and-trade-logistics/review-of-maritime-transport",
+          "http_status": 200
+        },
+        {
+          "url": "https://unctad.org/about/terms-and-conditions",
+          "http_status": 404
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "NOT TESTED",
+      "publication_date": null,
+      "page_title": "Review of Maritime Transport | UN Trade and Development (UNCTAD)",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "error_type": "HTTPStatusError",
+      "error": "Client error '404 Not Found' for url 'https://unctad.org/about/terms-and-conditions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "robots": {
+        "https://unctad.org": "200 parsed"
+      },
+      "elapsed_seconds": 7.45
+    },
+    {
+      "source_id": "noaa-hurricanes",
+      "url": "https://www.nhc.noaa.gov/index-at.xml",
+      "checked_at": "2026-11-09T02:11:56.009267+00:00",
+      "status": "PARTIAL",
+      "stage": "completed_metadata_audit",
+      "trace": [
+        {
+          "url": "https://www.nhc.noaa.gov/robots.txt",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.nhc.noaa.gov/index-at.xml",
+          "http_status": 200
+        },
+        {
+          "url": "https://www.weather.gov/robots.txt",
+          "http_status": 404
+        },
+        {
+          "url": "https://www.weather.gov/disclaimer",
+          "http_status": 200
+        }
+      ],
+      "body_extraction": "NOT TESTED: phase one metadata only",
+      "fresh_article_count": null,
+      "terms_status": "HTTP accessible; manual license review required",
+      "publication_date": null,
+      "page_title": "NHC Atlantic",
+      "metadata_dates": [],
+      "reason": "Listing accessible; article dates, freshness, body reuse and connector not accepted.",
+      "terms_title": "Disclaimer",
+      "robots": {
+        "https://www.nhc.noaa.gov": "200 parsed",
+        "https://www.weather.gov": "404 no robots file (RFC 9309)"
+      },
+      "elapsed_seconds": 2.56
+    }
+  ]
+}

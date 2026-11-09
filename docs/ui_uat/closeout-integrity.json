@@ -1,0 +1,40 @@
+{
+  "business_sort_unchanged": true,
+  "presentation_sha256": "3ed35ed4e19201068756b6a55215b1cc2d526755a91974290a39dc0215e76ccf",
+  "baseline_commit": "f911ad5",
+  "original_database_records_unchanged": true,
+  "tables": {
+    "events": {
+      "rows": 20,
+      "sha256": "2d6a4ba3f14d40dd2ff00bfb5addafc6798337a3437ba5a4033d705cb570a91d"
+    },
+    "raw_revisions": {
+      "rows": 32,
+      "sha256": "4b605f4c6a7db377e430a3337c6ee9e581a2c265763483e05bec970b239a89f8"
+    },
+    "analyses": {
+      "rows": 55,
+      "sha256": "2b5dcb98cf7327a435bb99ff02d17fa6a53649667620cb8c78dd55bcc354cf9a"
+    },
+    "shipment_snapshots": {
+      "rows": 3,
+      "sha256": "456abd8e7af141799edf96568e5f4ff7499a0156dae3919a8be207e0f94d81c3"
+    },
+    "review_logs": {
+      "rows": 30,
+      "sha256": "09952613ef4ec35cdc3bfce583edec1fc2988dfdd0b9242298bf0c5f702db701"
+    },
+    "port_overrides": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "reports": {
+      "rows": 7,
+      "sha256": "bad13844bb72ff69e57dea688732e3d35a17cf694d88197ca208a993fcf526cb"
+    },
+    "sources": {
+      "rows": 11,
+      "sha256": "26f8c07c96cb32b13d464de771ad04e7b826d9072608694311bd0fd8bd77cff8"
+    }
+  }
+}

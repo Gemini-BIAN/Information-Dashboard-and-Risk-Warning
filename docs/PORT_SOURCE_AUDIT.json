@@ -1,0 +1,210 @@
+{
+  "verified_at": "2026-11-09T08:04:22.840127+00:00",
+  "verification_type": "LIVE_HTTP",
+  "sources": [
+    {
+      "id": "le-havre",
+      "checked_at": "2026-11-09T07:56:48.832795+00:00",
+      "trace": [
+        {
+          "url": "https://www.havre-port.com/robots.txt",
+          "http_status": 200,
+          "redirect": null
+        }
+      ],
+      "permission": "unknown",
+      "error": "The read operation timed out",
+      "robots": {
+        "https://www.havre-port.com": "200 parsed"
+      },
+      "attempts": [
+        {
+          "checked_at": "2026-11-09T07:56:48.832795+00:00",
+          "trace": [
+            {
+              "url": "https://www.havre-port.com/robots.txt",
+              "http_status": 200,
+              "redirect": null
+            }
+          ],
+          "error": "The read operation timed out",
+          "robots": {
+            "https://www.havre-port.com": "200 parsed"
+          }
+        },
+        {
+          "url": "https://www.havre-port.com/avis",
+          "checked_at": "2026-11-09T07:58:41.690765+00:00",
+          "trace": [
+            {
+              "url": "https://www.havre-port.com/robots.txt",
+              "http_status": 200
+            }
+          ],
+          "error": "The read operation timed out",
+          "robots": {
+            "https://www.havre-port.com": "200 parsed"
+          }
+        }
+      ],
+      "terms_urls": [],
+      "automation_permission": "NEEDS_PERMISSION",
+      "body_retention_allowed": false,
+      "operational_records_collected": 0,
+      "verified_at": "2026-11-09T07:58:41.690765+00:00",
+      "conclusion": "robots200允许列表；两次列表ReadTimeout，未取得条款、正文或日期；停止重试。",
+      "failure_stage": "listing_response_not_received",
+      "error_category": "read timeout, classified from recorded message"
+    },
+    {
+      "id": "pdports",
+      "checked_at": "2026-11-09T07:57:09.866464+00:00",
+      "trace": [
+        {
+          "url": "https://www.pdports.co.uk/robots.txt",
+          "http_status": 200,
+          "redirect": null
+        },
+        {
+          "url": "https://www.pdports.co.uk/marine-information/notice-to-mariners/",
+          "http_status": 200,
+          "redirect": null
+        },
+        {
+          "url": "https://www.pdports.co.uk/terms-conditions/",
+          "http_status": 200,
+          "redirect": null
+        }
+      ],
+      "permission": "unknown",
+      "robots": {
+        "https://www.pdports.co.uk": "200 parsed"
+      },
+      "attempts": [
+        {
+          "checked_at": "2026-11-09T07:57:09.866464+00:00",
+          "trace": [
+            {
+              "url": "https://www.pdports.co.uk/robots.txt",
+              "http_status": 200,
+              "redirect": null
+            },
+            {
+              "url": "https://www.pdports.co.uk/marine-information/notice-to-mariners/",
+              "http_status": 200,
+              "redirect": null
+            },
+            {
+              "url": "https://www.pdports.co.uk/terms-conditions/",
+              "http_status": 200,
+              "redirect": null
+            }
+          ],
+          "error": null,
+          "robots": {
+            "https://www.pdports.co.uk": "200 parsed"
+          }
+        }
+      ],
+      "terms_urls": [
+        "https://www.pdports.co.uk/terms-conditions/"
+      ],
+      "automation_permission": "NEEDS_PERMISSION",
+      "body_retention_allowed": false,
+      "operational_records_collected": 0,
+      "verified_at": "2026-11-09T07:57:09.866464+00:00",
+      "conclusion": "条款为一般免责声明，All Rights Reserved；没有确认自动采集或正文/元数据再利用许可，不请求PDF或自动保存公告。",
+      "evidence_quote": "© 2026 PD Ports. All Rights Reserved."
+    },
+    {
+      "id": "hpa",
+      "checked_at": "2026-11-09T07:57:12.128378+00:00",
+      "trace": [
+        {
+          "url": "https://www.hamburg-port-authority.de/robots.txt",
+          "http_status": 404,
+          "redirect": null
+        },
+        {
+          "url": "https://www.hamburg-port-authority.de/en/info-port/traffic-tower",
+          "http_status": 200,
+          "redirect": null
+        },
+        {
+          "url": "https://www.hamburg-port-authority.de/en/hpa-360/general-terms-and-conditions",
+          "http_status": 200,
+          "redirect": null
+        },
+        {
+          "url": "https://www.hamburg-port-authority.de/en/imprint",
+          "http_status": 200,
+          "redirect": null
+        }
+      ],
+      "permission": "blocked",
+      "robots": {
+        "https://www.hamburg-port-authority.de": "404 no robots file (RFC 9309)"
+      },
+      "attempts": [
+        {
+          "checked_at": "2026-11-09T07:57:12.128378+00:00",
+          "trace": [
+            {
+              "url": "https://www.hamburg-port-authority.de/robots.txt",
+              "http_status": 404,
+              "redirect": null
+            },
+            {
+              "url": "https://www.hamburg-port-authority.de/en/info-port/traffic-tower",
+              "http_status": 200,
+              "redirect": null
+            },
+            {
+              "url": "https://www.hamburg-port-authority.de/en/hpa-360/general-terms-and-conditions",
+              "http_status": 200,
+              "redirect": null
+            },
+            {
+              "url": "https://www.hamburg-port-authority.de/en/imprint",
+              "http_status": 200,
+              "redirect": null
+            }
+          ],
+          "error": null,
+          "robots": {
+            "https://www.hamburg-port-authority.de": "404 no robots file (RFC 9309)"
+          }
+        },
+        {
+          "url": "https://www.hamburg-port-authority.de/en/terms-of-use",
+          "checked_at": "2026-11-09T07:59:02.730026+00:00",
+          "trace": [
+            {
+              "url": "https://www.hamburg-port-authority.de/robots.txt",
+              "http_status": 404
+            },
+            {
+              "url": "https://www.hamburg-port-authority.de/en/terms-of-use",
+              "http_status": 200
+            }
+          ],
+          "robots": {
+            "https://www.hamburg-port-authority.de": "404 no robots file (RFC 9309)"
+          }
+        }
+      ],
+      "terms_urls": [
+        "https://www.hamburg-port-authority.de/en/hpa-360/general-terms-and-conditions",
+        "https://www.hamburg-port-authority.de/en/imprint",
+        "https://www.hamburg-port-authority.de/en/terms-of-use"
+      ],
+      "automation_permission": "NEEDS_PERMISSION",
+      "body_retention_allowed": false,
+      "operational_records_collected": 0,
+      "verified_at": "2026-11-09T07:59:02.730026+00:00",
+      "conclusion": "Terms of Use明确要求事先书面同意，较Imprint更严格；不自动采集/复制运营内容。",
+      "evidence_quote": "Users may not reproduce, alter, duplicate, resell or otherwise use any intellectual property or other content on the HPA Web site for commercial or non-commercial purposes without the prior written consent of HPA."
+    }
+  ],
+  "real_operational_records": 0
+}

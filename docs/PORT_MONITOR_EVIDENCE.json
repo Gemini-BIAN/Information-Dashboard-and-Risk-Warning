@@ -1,0 +1,565 @@
+{
+  "dataset": "Clean QA DB: no original company/shipment data copied; Live operational events=0; Demo fictional only",
+  "per_port": [
+    {
+      "port": {
+        "id": "antwerp",
+        "name": "Antwerp",
+        "business_label": "ANTWERP",
+        "name_zh": "安特卫普",
+        "country": "Belgium",
+        "latitude": 51.26,
+        "longitude": 4.4,
+        "aliases": [
+          "Antwerp",
+          "Antwerpen"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "保留业务地点；不把整个Antwerp-Bruges辖区等同具体码头。",
+        "source_ids": [
+          "antwerp-manual"
+        ]
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [
+        {
+          "id": "antwerp-manual",
+          "name": "Antwerp official manual link",
+          "url": "https://www.portofantwerpbruges.com/en/news",
+          "permission": "unknown",
+          "coverage": "unverified",
+          "ports": [
+            "antwerp"
+          ],
+          "reason": "仅人工链接，Phase2A权限未知。"
+        }
+      ],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "bremerhaven",
+        "name": "Bremerhaven",
+        "business_label": "BREMERHAVEN",
+        "name_zh": "不来梅哈芬",
+        "country": "Germany",
+        "latitude": 53.55,
+        "longitude": 8.58,
+        "aliases": [
+          "Bremerhaven"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "未核实码头范围。",
+        "source_ids": []
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "hamburg",
+        "name": "Hamburg",
+        "business_label": "HAMBURG",
+        "name_zh": "汉堡",
+        "country": "Germany",
+        "latitude": 53.54,
+        "longitude": 9.97,
+        "aliases": [
+          "Hamburg",
+          "Hamburger Hafen"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "HPA运营来源与HHM营销新闻分开。",
+        "source_ids": [
+          "hpa"
+        ]
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [
+        {
+          "id": "hpa",
+          "name": "HPA Traffic Tower",
+          "url": "https://www.hamburg-port-authority.de/en/info-port/traffic-tower",
+          "permission": "blocked",
+          "coverage": "restricted",
+          "ports": [
+            "hamburg"
+          ],
+          "reason": "Terms of Use明确要求事先书面同意，较Imprint更严格；不自动采集/复制运营内容。",
+          "last_permission_check": "2026-11-09T07:59:02.730026+00:00",
+          "audit_ref": "docs/PORT_SOURCE_AUDIT.json",
+          "automatic_access_allowed": false,
+          "last_operational_success_at": null
+        }
+      ],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "le-havre",
+        "name": "Le Havre",
+        "business_label": "LE HAVRE",
+        "name_zh": "勒阿弗尔",
+        "country": "France",
+        "latitude": 49.49,
+        "longitude": 0.11,
+        "aliases": [
+          "Le Havre"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "S-WiNG通告权限待确认。",
+        "source_ids": [
+          "le-havre"
+        ]
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [
+        {
+          "id": "le-havre",
+          "name": "Le Havre S-WiNG",
+          "url": "https://www.havre-port.com/avis",
+          "permission": "unknown",
+          "coverage": "unverified",
+          "ports": [
+            "le-havre"
+          ],
+          "reason": "robots200允许列表；两次列表ReadTimeout，未取得条款、正文或日期；停止重试。",
+          "last_permission_check": "2026-11-09T07:58:41.690765+00:00",
+          "audit_ref": "docs/PORT_SOURCE_AUDIT.json",
+          "automatic_access_allowed": false,
+          "last_operational_success_at": null
+        }
+      ],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "rotterdam",
+        "name": "Rotterdam",
+        "business_label": "ROTTERDAM",
+        "name_zh": "鹿特丹",
+        "country": "Netherlands",
+        "latitude": 51.95,
+        "longitude": 4.14,
+        "aliases": [
+          "Rotterdam"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "受限新闻与PIN均不自动请求。",
+        "source_ids": [
+          "rotterdam-restricted"
+        ]
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [
+        {
+          "id": "rotterdam-restricted",
+          "name": "Rotterdam restricted / PIN unapproved",
+          "url": "https://pin.portofrotterdam.com/",
+          "permission": "blocked",
+          "coverage": "restricted",
+          "ports": [
+            "rotterdam"
+          ],
+          "reason": "沿用禁止与未授权状态：不请求新闻/PIN。"
+        }
+      ],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "tangier",
+        "name": "Tangier",
+        "business_label": "TANGIER",
+        "name_zh": "丹吉尔",
+        "country": "Morocco",
+        "latitude": 35.77,
+        "longitude": -5.8,
+        "aliases": [
+          "Tangier",
+          "Tanger"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": false,
+        "scope_note": "Tanger Med映射暂定，需确认；地图为城市范围，非已确认码头。",
+        "source_ids": []
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "koper",
+        "name": "Koper",
+        "business_label": "KOPER",
+        "name_zh": "科佩尔",
+        "country": "Slovenia",
+        "latitude": 45.55,
+        "longitude": 13.73,
+        "aliases": [
+          "Koper"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "未核实码头范围。",
+        "source_ids": []
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "piraeus",
+        "name": "Piraeus",
+        "business_label": "PIRAEUS",
+        "name_zh": "比雷埃夫斯",
+        "country": "Greece",
+        "latitude": 37.94,
+        "longitude": 23.64,
+        "aliases": [
+          "Piraeus",
+          "Pireas"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "未核实码头范围。",
+        "source_ids": []
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "teesport",
+        "name": "Teesport",
+        "business_label": "TEESPORT",
+        "name_zh": "提斯港",
+        "country": "UK",
+        "latitude": 54.61,
+        "longitude": -1.16,
+        "aliases": [
+          "Teesport"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "与Middlesbrough分开保留；River Tees证据可共享但仅一条事件级预警。",
+        "source_ids": [
+          "pdports"
+        ]
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [
+        {
+          "id": "pdports",
+          "name": "PD Ports Notices to Mariners",
+          "url": "https://www.pdports.co.uk/marine-information/notice-to-mariners/",
+          "permission": "unknown",
+          "coverage": "unverified",
+          "ports": [
+            "teesport",
+            "middlesbrough"
+          ],
+          "reason": "条款为一般免责声明，All Rights Reserved；没有确认自动采集或正文/元数据再利用许可，不请求PDF或自动保存公告。",
+          "last_permission_check": "2026-11-09T07:57:09.866464+00:00",
+          "audit_ref": "docs/PORT_SOURCE_AUDIT.json",
+          "automatic_access_allowed": false,
+          "last_operational_success_at": null
+        }
+      ],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "middlesbrough",
+        "name": "Middlesbrough",
+        "business_label": "MIDDLESBROUGH",
+        "name_zh": "米德尔斯堡",
+        "country": "UK",
+        "latitude": 54.575,
+        "longitude": -1.24,
+        "aliases": [
+          "Middlesbrough"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "业务地点独立，城市级近似位置；不推定具体码头。",
+        "source_ids": [
+          "pdports"
+        ]
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [
+        {
+          "id": "pdports",
+          "name": "PD Ports Notices to Mariners",
+          "url": "https://www.pdports.co.uk/marine-information/notice-to-mariners/",
+          "permission": "unknown",
+          "coverage": "unverified",
+          "ports": [
+            "teesport",
+            "middlesbrough"
+          ],
+          "reason": "条款为一般免责声明，All Rights Reserved；没有确认自动采集或正文/元数据再利用许可，不请求PDF或自动保存公告。",
+          "last_permission_check": "2026-11-09T07:57:09.866464+00:00",
+          "audit_ref": "docs/PORT_SOURCE_AUDIT.json",
+          "automatic_access_allowed": false,
+          "last_operational_success_at": null
+        }
+      ],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "felixstowe",
+        "name": "Felixstowe",
+        "business_label": "FELIXSTOWE",
+        "name_zh": "费利克斯托",
+        "country": "UK",
+        "latitude": 51.96,
+        "longitude": 1.35,
+        "aliases": [
+          "Felixstowe"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "未核实码头范围。",
+        "source_ids": []
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    },
+    {
+      "port": {
+        "id": "dover",
+        "name": "Dover",
+        "business_label": "DOVER",
+        "name_zh": "多佛",
+        "country": "UK",
+        "latitude": 51.12,
+        "longitude": 1.33,
+        "aliases": [
+          "Dover"
+        ],
+        "watch_enabled": true,
+        "unlocode": null,
+        "coordinate_precision": "approximate_city_or_port_area_not_navigation",
+        "scope_confirmed": true,
+        "scope_note": "替代London；Community Portal不登录、不绕过。",
+        "source_ids": [
+          "dover-manual"
+        ]
+      },
+      "as_of": "2026-11-09T16:24:49.203284+08:00",
+      "state": "unknown",
+      "severity": "unknown",
+      "relevance": "unknown",
+      "coverage": [
+        {
+          "id": "dover-manual",
+          "name": "Dover port information",
+          "url": "https://www.portofdover.com/port-information/",
+          "permission": "unknown",
+          "coverage": "unverified",
+          "ports": [
+            "dover"
+          ],
+          "reason": "仅人工链接；未授权自动化，不进入Community Portal。"
+        }
+      ],
+      "last_check": null,
+      "last_success": null,
+      "note": "没有合格当前运营证据；无预警不等于正常。",
+      "metrics": "船舶动态 / AIS / ETA / 拥堵与等待时间：预留，未接入。"
+    }
+  ],
+  "live_operational_sources_connected": 0,
+  "real_operational_events": 0,
+  "confirmed_current_events": 0,
+  "collector_permission_gate": [
+    {
+      "source": "le-havre",
+      "status": "BLOCKED",
+      "stage": "permission",
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 0,
+      "error": "AccessBlocked: NEEDS_PERMISSION: automatic access and text retention not confirmed; no requests",
+      "requests": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-09T08:24:49.164210+00:00"
+    },
+    {
+      "source": "pdports",
+      "status": "BLOCKED",
+      "stage": "permission",
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 0,
+      "error": "AccessBlocked: NEEDS_PERMISSION: automatic access and text retention not confirmed; no requests",
+      "requests": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-09T08:24:49.173435+00:00"
+    },
+    {
+      "source": "hpa",
+      "status": "BLOCKED",
+      "stage": "permission",
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 0,
+      "error": "AccessBlocked: NEEDS_PERMISSION: automatic access and text retention not confirmed; no requests",
+      "requests": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-09T08:24:49.174729+00:00"
+    },
+    {
+      "source": "rotterdam-restricted",
+      "status": "BLOCKED",
+      "stage": "permission",
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 0,
+      "error": "AccessBlocked: NEEDS_PERMISSION: automatic access and text retention not confirmed; no requests",
+      "requests": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-09T08:24:49.175910+00:00"
+    },
+    {
+      "source": "antwerp-manual",
+      "status": "BLOCKED",
+      "stage": "permission",
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 0,
+      "error": "AccessBlocked: NEEDS_PERMISSION: automatic access and text retention not confirmed; no requests",
+      "requests": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-09T08:24:49.176981+00:00"
+    },
+    {
+      "source": "dover-manual",
+      "status": "BLOCKED",
+      "stage": "permission",
+      "inserted": 0,
+      "updated": 0,
+      "unchanged": 0,
+      "error": "AccessBlocked: NEEDS_PERMISSION: automatic access and text retention not confirmed; no requests",
+      "requests": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-09T08:24:49.178002+00:00"
+    }
+  ],
+  "browser_status": "PASS",
+  "artifacts_sha256": {
+    "report-followup.json": "37cc0ca739971332f120e69128e4a52fe5f940045cbc39f6d7ae7d3fd2f23ca3",
+    "01-live-map.png": "7e7b1317400ed89001b7a652f9acafac694223621a2a90ed9f3b8ae25cdfb64c",
+    "demo-daily.html": "0cc70483e1175bc8c60766f5d72cf07cf613792ee032b7b35fb772cab910aaf1",
+    "06-final-inbox.png": "98a1b139643c4f726aa7380ae60aaca026bebcb282db31b2eae9625f2bd515da",
+    "03-demo-shared-tee.png": "25247a7b7f29371edace231735c5ef22987018051c90e7a71ebcc361fd00f861",
+    "live-daily.html": "96cc255512aaca414d2e568043a430f061406a349de7f35fed84729db367edd9",
+    "05-demo-inbox.png": "6de41cb41868093391ebcee14c4290aa360849989727799025107483c08a4e76",
+    "04-compact-live.png": "1406db36bce6d0b1158e786826e89ca715add2b0077f239315c52afcffc1ec8b",
+    "browser.json": "842953b2a8327d7fdd175564f5289c16f6dda05e25f0753ccfe6056ba8b01e41",
+    "02-dover-panel.png": "a8ddac7799a4b60e43619c9d225104af284abd0b6dc6c0cc96b1b2924e51d135"
+  },
+  "source_audit_at": "2026-11-09T08:04:22.840127+00:00",
+  "generated_at": "2026-11-09T08:35:18.926364+00:00"
+}

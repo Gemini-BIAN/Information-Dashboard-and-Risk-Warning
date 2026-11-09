@@ -1,0 +1,245 @@
+{
+  "$defs": {
+    "Domain": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "title": "Domain",
+      "type": "string"
+    },
+    "RegistrySource": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "pattern": "^[a-z][a-z0-9-]+$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_name": {
+          "title": "Source Name",
+          "type": "string"
+        },
+        "organization_id": {
+          "title": "Organization Id",
+          "type": "string"
+        },
+        "organization_group": {
+          "title": "Organization Group",
+          "type": "string"
+        },
+        "source_type": {
+          "enum": [
+            "official",
+            "secondary"
+          ],
+          "title": "Source Type",
+          "type": "string"
+        },
+        "primary_domain": {
+          "$ref": "#/$defs/Domain"
+        },
+        "implementation_priority": {
+          "enum": [
+            "P0",
+            "P1",
+            "P2"
+          ],
+          "title": "Implementation Priority",
+          "type": "string"
+        },
+        "regions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Regions",
+          "type": "array"
+        },
+        "url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        },
+        "proposed_method": {
+          "enum": [
+            "html_metadata",
+            "rss_metadata",
+            "dataset_reference",
+            "link_only"
+          ],
+          "title": "Proposed Method",
+          "type": "string"
+        },
+        "article_pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Article Pattern"
+        },
+        "terms_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Terms Url"
+        },
+        "reuse_permission": {
+          "default": "unknown",
+          "enum": [
+            "unknown",
+            "prohibited",
+            "conditional"
+          ],
+          "title": "Reuse Permission",
+          "type": "string"
+        },
+        "reuse_notes": {
+          "title": "Reuse Notes",
+          "type": "string"
+        },
+        "legal_evidence_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Legal Evidence Ref"
+        },
+        "suggested_poll_hours": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suggested Poll Hours"
+        },
+        "status": {
+          "default": "NOT TESTED",
+          "enum": [
+            "PASS",
+            "PARTIAL",
+            "BLOCKED",
+            "NOT TESTED"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "last_verified_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Verified At"
+        },
+        "audit_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Audit Ref"
+        },
+        "known_restriction": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Known Restriction"
+        },
+        "baseline_only": {
+          "default": false,
+          "title": "Baseline Only",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "source_id",
+        "source_name",
+        "organization_id",
+        "organization_group",
+        "source_type",
+        "primary_domain",
+        "implementation_priority",
+        "regions",
+        "url",
+        "proposed_method",
+        "reuse_notes"
+      ],
+      "title": "RegistrySource",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope": {
+      "const": "phase_one_audit_only",
+      "default": "phase_one_audit_only",
+      "title": "Scope",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/RegistrySource"
+      },
+      "maxItems": 25,
+      "minItems": 15,
+      "title": "Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "sources"
+  ],
+  "title": "SourceRegistry",
+  "type": "object"
+}

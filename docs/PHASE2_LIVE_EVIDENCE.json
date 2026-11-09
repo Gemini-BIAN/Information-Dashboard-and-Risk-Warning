@@ -1,0 +1,372 @@
+{
+  "verified_at": "2026-11-09T02:45:15.600282+00:00",
+  "verification_type": "LIVE_HTTP",
+  "attempt": "repeat after first real ingestion",
+  "before_counts": {
+    "events": 4,
+    "raw_revisions": 4,
+    "analyses": 4
+  },
+  "after_counts": {
+    "events": 4,
+    "raw_revisions": 4,
+    "analyses": 4
+  },
+  "source_results": [
+    {
+      "source": "hamburg",
+      "verification_type": "LIVE_HTTP",
+      "url": "https://www.hafen-hamburg.de/en/current/news/",
+      "method": "html",
+      "parser": "hamburg",
+      "reuse_policy": {
+        "status": "reviewed_allowed",
+        "permission": "allowed_full_text",
+        "license": "HHM displayed-information permission",
+        "notice_url": "https://www.hafen-hamburg.de/en/imprint/",
+        "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+        "verified_at": "2026-11-09T02:34:28.921397+00:00",
+        "note": "Displayed information可存储/分享且不得改变/扭曲，必须注明来源。仅文字、保持原文与分析分开，不取图片；部分文字为第三方公告，保留原发布主体，不声称HHM原创。"
+      },
+      "access_success": true,
+      "publication_date_parsed": true,
+      "body_obtained": true,
+      "restriction": null,
+      "failure_stage": null,
+      "article_errors": [],
+      "terms_review": "Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.",
+      "http_status": 200,
+      "discovered": 3,
+      "dated_articles": 3,
+      "parsed_articles": 3,
+      "status": "PASS",
+      "last_request_url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+      "request_count": 5,
+      "robots": {
+        "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)"
+      },
+      "verified_at": "2026-11-09T02:45:12.360386+00:00",
+      "duration_ms": 4637.97,
+      "article_samples": [
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+          "title": "11th chainPORT Annual Meeting at Tanger Med Focuses on Scaling AI in Ports",
+          "published_at": "2026-11-05T10:00:00+00:00",
+          "fetched_at": "2026-11-09T02:45:10.755413+00:00"
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/",
+          "title": "eFuel Group and DACMA open Direct Air Capture Competence Center in the Port of Hamburg",
+          "published_at": "2026-10-20T10:25:00+00:00",
+          "fetched_at": "2026-11-09T02:45:11.499291+00:00"
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+          "title": "Port of Hamburg Marketing celebrates Czech handover of leadership at the Port Evening Reception in Prague",
+          "published_at": "2026-10-12T07:33:00+00:00",
+          "fetched_at": "2026-11-09T02:45:12.360311+00:00"
+        }
+      ],
+      "median_publication_age_hours": 472.34,
+      "stored_articles": 3,
+      "last_success_at": "2026-11-09T02:45:12.360386+00:00",
+      "writes": {
+        "unchanged": 3
+      },
+      "content_assessments_written": 0
+    },
+    {
+      "source": "ec-batteries",
+      "verification_type": "LIVE_HTTP",
+      "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+      "method": "html",
+      "parser": "european_commission",
+      "reuse_policy": {
+        "status": "reviewed_allowed",
+        "permission": "allowed_full_text",
+        "license": "CC BY 4.0",
+        "notice_url": "https://commission.europa.eu/legal-notice_en",
+        "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+        "verified_at": "2026-11-09T02:34:28.921405+00:00",
+        "note": "EU自有文字CC BY 4.0；署名、许可和修改说明；排除图片/Logo/第三方作品。"
+      },
+      "access_success": true,
+      "publication_date_parsed": true,
+      "body_obtained": true,
+      "restriction": null,
+      "failure_stage": null,
+      "article_errors": [],
+      "terms_review": "Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.",
+      "http_status": 200,
+      "discovered": 1,
+      "dated_articles": 1,
+      "parsed_articles": 1,
+      "status": "PASS",
+      "last_request_url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+      "request_count": 4,
+      "robots": {
+        "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+        "https://environment.ec.europa.eu": "200 parsed"
+      },
+      "verified_at": "2026-11-09T02:45:15.587377+00:00",
+      "duration_ms": 3208.22,
+      "article_samples": [
+        {
+          "url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+          "title": "Circular Economy: New rules to boost recycling efficiency and material recovery from waste batteries",
+          "published_at": "2025-07-04T07:45:57+00:00",
+          "fetched_at": "2026-11-09T02:45:15.587309+00:00"
+        }
+      ],
+      "median_publication_age_hours": 11826.99,
+      "stored_articles": 1,
+      "last_success_at": "2026-11-09T02:45:15.587377+00:00",
+      "writes": {
+        "unchanged": 1
+      },
+      "content_assessments_written": 0
+    }
+  ],
+  "request_trace": [
+    {
+      "url": "https://www.hafen-hamburg.de/robots.txt",
+      "http_status": 404
+    },
+    {
+      "url": "https://www.hafen-hamburg.de/en/current/news/",
+      "http_status": 200
+    },
+    {
+      "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+      "http_status": 200
+    },
+    {
+      "url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/",
+      "http_status": 200
+    },
+    {
+      "url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+      "http_status": 200
+    },
+    {
+      "url": "https://environment.ec.europa.eu/robots.txt",
+      "http_status": 200
+    },
+    {
+      "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+      "http_status": 200
+    },
+    {
+      "url": "https://environment.ec.europa.eu/news/commission-publishes-new-waste-batteries-rules-2025-07-04_en",
+      "http_status": 301
+    },
+    {
+      "url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+      "http_status": 200
+    }
+  ],
+  "independent_header_capture": {
+    "https://www.hafen-hamburg.de/en/current/news/": {
+      "title": "",
+      "visible_header": "Would you like to be included in our press mailing list?",
+      "response_html_sha256": "a99f9ace1162db61864e29da21b36aa9485c38af14d4a4671fb4d0e6243cb7ac",
+      "canonical": "https://www.hafen-hamburg.de/en/current/news/"
+    },
+    "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/": {
+      "title": "11th chainPORT Annual Meeting at Tanger Med Focuses on Scaling AI in Ports",
+      "visible_header": "05 Nov 2026 11:00 Digitalisation",
+      "response_html_sha256": "b8d675dd9dfe5903fd93b65f790416afe3080350d7b0476c378973576d5d1df5",
+      "canonical": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/"
+    },
+    "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/": {
+      "title": "eFuel Group and DACMA open Direct Air Capture Competence Center in the Port of Hamburg",
+      "visible_header": "20 Oct 2026 12:25 Environment",
+      "response_html_sha256": "2f65b5997c9e5a8de2bf3e48a2538cb7a387ee8da9a53bdad25bf2f65a11b1de",
+      "canonical": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/"
+    },
+    "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/": {
+      "title": "Port of Hamburg Marketing celebrates Czech handover of leadership at the Port Evening Reception in Prague",
+      "visible_header": "12 Oct 2026 09:33 Hinterland",
+      "response_html_sha256": "7803f57204ccb1379635a7a7d6c409a16a8bed989001f819fe781d685f469a4f",
+      "canonical": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/"
+    },
+    "https://environment.ec.europa.eu/news/commission-publishes-new-waste-batteries-rules-2025-07-04_en": {
+      "title": "Circular Economy: New rules to boost recycling efficiency and material recovery from waste batteries",
+      "visible_header": "The measures will boost the recovery and recycling of critical and strategic raw materials.",
+      "response_html_sha256": "da4aa1ee46c937a74b36a4f0f344b41022a03ae80f5d1a0eb792f52ac4580ebd",
+      "canonical": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en"
+    }
+  },
+  "records": [
+    {
+      "event_id": 1,
+      "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports",
+      "source_id": "hamburg",
+      "organization_id": "port-of-hamburg-marketing",
+      "title": "11th chainPORT Annual Meeting at Tanger Med Focuses on Scaling AI in Ports",
+      "published_at": "2026-11-05T10:00:00+00:00",
+      "raw_content_fingerprint": "850c9c672493609c9b9b84d668acca5f189431a58f7889c5069390f3b4961791",
+      "date_integrity": true,
+      "verbatim_evidence": true,
+      "raw_revision_id": 1,
+      "body_characters": 4152,
+      "relevance": {
+        "decision": "excluded",
+        "reason_codes": [
+          "NON_OPERATIONAL_BACKGROUND"
+        ],
+        "reasons_zh": [
+          "交流接待/一般技术背景，未见具体运输限制或电池业务变化。"
+        ],
+        "explicit_supply_chain_link": false,
+        "assessed_at": "2026-11-09T02:41:11.229303Z"
+      },
+      "risk_level": "低",
+      "risk_reasons": [
+        "未识别明确运营状态，待核实；低关键词分数不是低运行风险。"
+      ],
+      "lifecycle": "unknown",
+      "operational_state": "unknown",
+      "quality_flags": [
+        "RULE_TEMPLATE_NOT_TRANSLATION",
+        "SOURCE_REVIEW_PENDING",
+        "TIMEZONE_ASSUMED_EUROPE_BERLIN",
+        "ORIGINAL_PUBLISHER_MAY_BE_THIRD_PARTY",
+        "NON_OPERATIONAL_BACKGROUND"
+      ]
+    },
+    {
+      "event_id": 2,
+      "url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg",
+      "source_id": "hamburg",
+      "organization_id": "port-of-hamburg-marketing",
+      "title": "eFuel Group and DACMA open Direct Air Capture Competence Center in the Port of Hamburg",
+      "published_at": "2026-10-20T10:25:00+00:00",
+      "raw_content_fingerprint": "fe18cda81d9839722a3c9a7d55c7544cd70521c89aa6574e22fd0aa2d4bebe3e",
+      "date_integrity": true,
+      "verbatim_evidence": true,
+      "raw_revision_id": 2,
+      "body_characters": 7929,
+      "relevance": {
+        "decision": "excluded",
+        "reason_codes": [
+          "NON_OPERATIONAL_BACKGROUND"
+        ],
+        "reasons_zh": [
+          "交流接待/一般技术背景，未见具体运输限制或电池业务变化。"
+        ],
+        "explicit_supply_chain_link": false,
+        "assessed_at": "2026-11-09T02:41:11.229303Z"
+      },
+      "risk_level": "低",
+      "risk_reasons": [
+        "未识别明确运营状态，待核实；低关键词分数不是低运行风险。"
+      ],
+      "lifecycle": "unknown",
+      "operational_state": "unknown",
+      "quality_flags": [
+        "RULE_TEMPLATE_NOT_TRANSLATION",
+        "SOURCE_REVIEW_PENDING",
+        "TIMEZONE_ASSUMED_EUROPE_BERLIN",
+        "ORIGINAL_PUBLISHER_MAY_BE_THIRD_PARTY",
+        "NON_OPERATIONAL_BACKGROUND"
+      ]
+    },
+    {
+      "event_id": 3,
+      "url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026",
+      "source_id": "hamburg",
+      "organization_id": "port-of-hamburg-marketing",
+      "title": "Port of Hamburg Marketing celebrates Czech handover of leadership at the Port Evening Reception in Prague",
+      "published_at": "2026-10-12T07:33:00+00:00",
+      "raw_content_fingerprint": "dedffff20a00387e578a1da94e75ca0285a8ff4638b9fd5d05d5bcec90c2cfd1",
+      "date_integrity": true,
+      "verbatim_evidence": true,
+      "raw_revision_id": 3,
+      "body_characters": 4165,
+      "relevance": {
+        "decision": "excluded",
+        "reason_codes": [
+          "NON_OPERATIONAL_BACKGROUND"
+        ],
+        "reasons_zh": [
+          "交流接待/一般技术背景，未见具体运输限制或电池业务变化。"
+        ],
+        "explicit_supply_chain_link": false,
+        "assessed_at": "2026-11-09T02:41:11.229303Z"
+      },
+      "risk_level": "低",
+      "risk_reasons": [
+        "未识别明确运营状态，待核实；低关键词分数不是低运行风险。"
+      ],
+      "lifecycle": "unknown",
+      "operational_state": "unknown",
+      "quality_flags": [
+        "RULE_TEMPLATE_NOT_TRANSLATION",
+        "SOURCE_REVIEW_PENDING",
+        "TIMEZONE_ASSUMED_EUROPE_BERLIN",
+        "ORIGINAL_PUBLISHER_MAY_BE_THIRD_PARTY",
+        "NON_OPERATIONAL_BACKGROUND"
+      ]
+    },
+    {
+      "event_id": 4,
+      "url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+      "source_id": "ec-batteries",
+      "organization_id": "european-commission",
+      "title": "Circular Economy: New rules to boost recycling efficiency and material recovery from waste batteries",
+      "published_at": "2025-07-04T07:45:57+00:00",
+      "raw_content_fingerprint": "09e3792ba056508ed905802f19f195b43e52add7fa65402b5afb5c59cb6c95ad",
+      "date_integrity": true,
+      "verbatim_evidence": true,
+      "raw_revision_id": 4,
+      "body_characters": 2496,
+      "relevance": {
+        "decision": "possibly_relevant",
+        "reason_codes": [
+          "BATTERY_POLICY",
+          "HISTORICAL_ONLY"
+        ],
+        "reasons_zh": [
+          "电池法规/回收主题明确；不得直接认定电解液适用。",
+          "超过30日，仅历史背景；不冒充当前新增风险。"
+        ],
+        "explicit_supply_chain_link": false,
+        "assessed_at": "2026-11-09T02:41:11.229303Z"
+      },
+      "risk_level": "低",
+      "risk_reasons": [
+        "未识别明确运营状态，待核实；低关键词分数不是低运行风险。"
+      ],
+      "lifecycle": "unknown",
+      "operational_state": "unknown",
+      "quality_flags": [
+        "RULE_TEMPLATE_NOT_TRANSLATION",
+        "SOURCE_REVIEW_PENDING",
+        "BATTERY_POLICY",
+        "HISTORICAL_ONLY"
+      ]
+    }
+  ],
+  "new_live_records_first_run": 4,
+  "repeat_new_records": 0,
+  "organizations_total": 2,
+  "new_organizations_beyond_ec_baseline": 1,
+  "relevance_counts": {
+    "excluded": 3,
+    "possibly_relevant": 1
+  },
+  "fresh_within_7_days": 1,
+  "digest": {
+    "day": "2026-11-09",
+    "mode": "live",
+    "selected": 0,
+    "assessment_counts": {
+      "excluded": 3,
+      "possibly_relevant": 1
+    },
+    "record_fingerprints": {},
+    "coverage_adequate": false
+  },
+  "html_sha256": "02aebfee413015c03d92e60fb41608e70ff983beaea436ee1cdbf9da10dd7096"
+}
