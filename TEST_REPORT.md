@@ -80,3 +80,9 @@ PASS：完整pytest **204 passed in12.96s**（相对178新增26）；ruff src/te
 浏览器PASS（有限范围）：新进程/新Chromium155、1440及1000px，离线底图与12标记实际点击，搜索/空结果/回清，收件箱、双空间日报下载、六页面；10组检查无pageerror，最终12地点日报表局部复核另PASS。早期热区/定位器失败修复后通过，不使用force。证据见docs/evidence/port01及PORT_MONITOR_EVIDENCE.json。
 
 BLOCKED/NEEDS_PERMISSION：3真实运营来源均未通过；实际运营源0/真实事件0。Live空日报实际通过；Demo2条仅虚构功能验收，不算Live或模型准确率。NOT TESTED：真实非空运营链路、真实LLM/人工业务法律签核、手机、Windows、长期调度。业务PARTIAL，不把UI技术通过等同12港口实况覆盖；CI结论按最终SHA在PR/Issue补充。
+
+## 2026-11-10 Module02基础设施
+
+PASS：完整pytest **223 passed in14.45s**（原204+新增18基础设施+1UI）；ruff src/tests/scripts及004迁移通过；pip check无冲突。新增均用明确合成HTML/生成PDF，覆盖MIME/字节校验、门槛零请求、失败不算成功、CAS/损坏安全重跑、表格附件标记、原文引用、版本隔离、Mock不能作为Live、缺文件/未下载/解析失败/无依据降级、XLSX内部契约。
+
+浏览器PASS仅限独立空库降级：Chromium155实际显示5个输入缺失，三类法规问题均返回证据不足、无伪造引用/法律结论，pageerror0。截图/JSON在docs/evidence/regulatory。BLOCKED：实际manifest/Work Schema不可用，真实下载0、真实解析0、真实检索0；真实P0闭环没有完成。NOT TESTED：真实Article/Annex、真实引用、Windows/真实LLM/复杂表格OCR。详见docs/REGULATORY_RAG_ACCEPTANCE.md，不沿用Module01浏览器当本轮真实法库通过。

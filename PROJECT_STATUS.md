@@ -62,3 +62,9 @@ EUR-Lex robots202 fail closed；CATL跨域robots重定向未跟随；Antwerp/Ham
 四检查点完成：a5a0a62注册表/离线地图侧栏；94a306b真实权限审计；1f4d116双风险/生命周期/AI降级/通知日报；最终浏览器修复/证据另提交。12地点含Dover（非London），Teesport/Middlesbrough独立、共享通知去重，Tangier映射未确认。
 
 204 pytest通过（12.96s），ruff通过；Chromium实际12点点击、筛选、通知已读、双空间日报下载、六页面通过；最终日报12地点表已局部重验。来源审计3个，但获准自动运营源0、真实通告0、12港口状态均未知。Le Havre两次读超时、PD权限未知、HPA条款限制；Rotterdam/PIN未请求。两个演示Signal明确虚构，不计Live。业务PARTIAL、Issue6 OPEN、PR1 Draft，不合并main；Issue5 Phase2B暂停。详见docs/PORT_MONITOR_ACCEPTANCE.md与证据清单。
+
+## 2026-11-10 Module02基础设施 — PARTIAL / 真实闭环BLOCKED
+
+新feature/regulatory-rag-mvp派生自Module01的7d6fbc9（main仍初始化3a399d5），Draft PR采用堆叠base，保留PR1与Module01。五份Work资料工作区/仓库未找到，manifest Library代表链接仅HTML ChatGPT壳；未冒称已读57目录。按用户明确条件只做独立基础设施，真实导入/下载/解析/引用0。
+
+32a94eb建立标准化manifest、许可门槛、CAS校验/安全重跑、004隔离表、基础Article/Annex解析/词频索引、单版本BM25中英词表摘录与独立空库页。223 pytest通过（包含原204），ruff/pip check通过；Chromium空库五缺失输入与三个问题证据不足降级通过。真实法规闭环、官方下载及Work Schema映射BLOCKED/NOT TESTED。完整证据见docs/REGULATORY_RAG_ACCEPTANCE.md。等待实际文件后再继续，不以Mock宣称RAG完成，不合并main。

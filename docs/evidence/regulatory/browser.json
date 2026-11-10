@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-11-10T07:34:57.248948+00:00",
+  "scope": "Empty-library/input-blocker fallback ONLY",
+  "real_downloads": 0,
+  "checks": [
+    "Five missing inputs and empty real library displayed",
+    "All three user questions return insufficient evidence; no fabricated citations or legal conclusions"
+  ],
+  "page_errors": [],
+  "browser": "155.0.8059.79"
+}

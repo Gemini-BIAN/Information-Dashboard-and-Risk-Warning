@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-11-10T07:40:19.257375+00:00",
+  "scope": "Foundations only under missing-input condition; not live RAG acceptance",
+  "files": [
+    {
+      "name": "EU_Regulation_Master_Catalog.xlsx",
+      "present": false
+    },
+    {
+      "name": "EU_Regulation_Source_Audit.xlsx",
+      "present": false
+    },
+    {
+      "name": "EU_Regulation_RAG_Schema.md",
+      "present": false
+    },
+    {
+      "name": "EU_Regulation_Research_Report.md",
+      "present": false
+    },
+    {
+      "name": "EU_Regulation_Download_Manifest.csv",
+      "present": false
+    }
+  ],
+  "library_link_probe": {
+    "tested": "download-manifest link only (private identifier omitted)",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "ChatGPT",
+    "filename_present": false,
+    "direct_download_links": 0,
+    "other_library_links": "NOT TESTED individually; no readable task attachments or local research found"
+  },
+  "remote_main": "3a399d5c82aa36434806ece47ab47330c7d38f38",
+  "module01_base": "7d6fbc99181644ce4a4c55a3d6283e036ecdf148",
+  "branch": "feature/regulatory-rag-mvp",
+  "module01_code_unchanged": true,
+  "actual_library_counts": {
+    "regulatory_documents": 0,
+    "regulatory_chunks": 0,
+    "regulatory_attempts": 0
+  },
+  "real_downloads": 0,
+  "real_article_annex_units": 0,
+  "real_queries_verified": 0,
+  "real_document_sha256": null,
+  "synthetic_unit_tests_are_not_live": true,
+  "full_pytest": {
+    "status": "PASS",
+    "passed": 223,
+    "seconds": 14.45
+  },
+  "artifacts_sha256": {
+    "missing-inputs-empty-library.png": "c3fae815107049ddaebf7a9aa2f9ee76dc58b374e89cf22fc7bdaf2673b2e872",
+    "browser.json": "e04ddda48a51f632c944e0071bf2599adaf7b6a1763fb8c8da247d8ca0b695b4"
+  }
+}

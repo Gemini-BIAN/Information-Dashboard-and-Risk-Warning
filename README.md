@@ -180,3 +180,14 @@ scm port-digest --mode live --output runtime/port01/daily.html
 **当前获准自动运营源0、真实运营事件0，12地点均未知，业务验收PARTIAL。** Le Havre访问超时、PD Ports权限未知、HPA要求书面同意；不启用采集、不取PDF、不请求Rotterdam/PIN。模块Demo需显式点击“加载模块01虚构演示”，与Live隔离。不需LLM Key；可选LLM只做分析，失败规则降级。配置：`config/ports.json`、`config/port_sources.json`。完整结果与实际截图见[PORT_MONITOR_ACCEPTANCE](docs/PORT_MONITOR_ACCEPTANCE.md)。
 
 Windows PowerShell可用`.\.venv\Scripts\scm.exe init`、`.\.venv\Scripts\scm.exe collect-ports`、`.\.venv\Scripts\scm.exe port-digest --mode live`；Windows主机尚未实际测试。
+
+## Module02：法规基础设施（真实闭环仍BLOCKED）
+
+五份Work输入目前未取得；Library链接不是已提供的本地附件。没有导入57条目录，真实原文下载/解析/检索引用均0。本轮仅交付版本化manifest/许可门槛、字节校验/CAS、基础解析/本地BM25和空库降级页；合成测试不算真实法规验收。Module01代码/页面不变。
+
+```bash
+python -m scm.regulatory.cli inputs
+python -m streamlit run src/scm/regulatory/app.py --server.address 127.0.0.1 --server.port 8502 --server.headless true --browser.gatherUsageStats false
+```
+
+请将五文件放入`data/regulatory/research/`后再审查/映射；该目录和`runtime/regulatory/`不提交Git。资料库默认独立`runtime/regulatory/library.db`，不需要LLM Key；源许可默认未批准。内部空模板为`config/regulatory/manifest.template.csv`，不宣称兼容未读的Work列。Windows/PyCharm步骤、真实0计数及限制见[REGULATORY_RAG_ACCEPTANCE](docs/REGULATORY_RAG_ACCEPTANCE.md)。

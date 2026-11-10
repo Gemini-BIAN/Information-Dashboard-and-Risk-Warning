@@ -56,3 +56,10 @@
 - [ ] 等Owner审核docs/PORT_MONITOR_ACCEPTANCE.md和PR1；当前业务PARTIAL（0获准运营源/0真实事件），Issue6不关闭，不合并main。
 - [ ] 只有进一步授权后，获取明确运营源许可/合规RSS/API，验证非空真实通告；不自行联系站方、购买API或启用受限抓取。
 - [ ] 后续统一复核旧通用采集配置权限、真实LLM/法律业务签核与Windows；不自动重开Issue5 Phase2B或全面改UI。
+
+## Module02停止点（2026-11-10）
+
+- [x] 独立分支/基础设施、223测试与空库浏览器降级完成，Module01不改。
+- [ ] 阻塞：五份实际Work文件需作为附件提供或放data/regulatory/research。Library代表链接仅HTML，不能据此读CSV。
+- [ ] 后续先核对真实Schema/列名、来源许可和manifest，再从2023/1542完成至少一份官方原文下载→真实Article/Annex→中文检索引用；目前真实闭环0，BLOCKED。
+- [ ] 恢复前不扩大57目录、不启用未知来源、不宣称Mock是Live、不合并main。新PR为堆叠Draft，PR1依赖保留。
