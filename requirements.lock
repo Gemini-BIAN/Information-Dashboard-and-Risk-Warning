@@ -53,3 +53,6 @@ urllib3==2.8.0
 uvicorn==0.54.0
 watchdog==7.1.0
 websockets==17.4
+et_xmlfile==2.0.0
+openpyxl==3.1.5
+pypdf==6.21.4
