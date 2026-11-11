@@ -147,7 +147,7 @@ def list_items(module=None):
             st.caption(
                 f"发布 {raw['published_at'] or '未知'} · 采集 {raw['fetched_at']} · 更新 {r['updated_at']} · 版本 {r['version']} · {raw['verification']}"
             )
-            st.write("来源可信度：配置审查不等于事实人工确认。")
+            st.write("来源可信度：" + r["source_confidence"] + "；配置审查不等于事实人工确认。")
             st.code(raw["body"], language=None)
             st.caption("SHA256（标准化原文及业务字段，不含抓取时间）：" + r["sha256"])
             st.write(a["risk_reason"])
@@ -264,7 +264,13 @@ elif page == "日报与周报":
             generate_report(session, mode, kind, datetime.combine(day, time(), tzinfo=TIMEZONE))
         st.success("报告已保存")
     with factory() as session:
-        reports = list(session.scalars(select(Report).where(Report.mode == mode).order_by(Report.id.desc())))
+        reports = list(
+            session.scalars(
+                select(Report)
+                .where(Report.mode == mode)
+                .order_by(Report.generated_at.desc(), Report.id.desc())
+            )
+        )
     if not reports:
         st.info("暂无报告；请按真实发布日期生成，不将历史文章冒充今日新闻。")
     for report in reports:

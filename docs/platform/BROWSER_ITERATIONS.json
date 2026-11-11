@@ -1,0 +1,40 @@
+{
+  "attempts": [
+    {
+      "attempt": "browser-attempt1",
+      "status": "FAIL",
+      "checks_passed": 1,
+      "error": "TimeoutError: Locator.check: Timeout 12000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"radio\", name=\"01 港口与物流\", exact=True)\n    - locator resolved to <input title=\"\" value=\"1\" type=\"radio\" tabindex=\"-1\" data-react-aria-pressable=\"true\" name=\"react-aria8895296448-:rh:\"/>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <div class=\"st-emotion-cache-19nzcwv ex50key3\">…</div> intercepts pointer events\n  - retrying click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <div data-testid=\"stSidebarContent\" class=\"st-emotion-cache-9ap9tp e1ccv4an2\">…</div> intercepts pointer events\n  - retrying click action\n    - waiting 20ms\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n   ",
+      "verified_at": "2026-11-11T06:39:38.397448+00:00"
+    },
+    {
+      "attempt": "browser-attempt2",
+      "status": "FAIL",
+      "checks_passed": 3,
+      "error": "AssertionError: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"项目时间线（明确项目编号关联）\", exact=True) resolved to 2 elements:\n    1) <strong>项目时间线（明确项目编号关联）</strong> aka get_by_text(\"项目时间线（明确项目编号关联）\").first\n    2) <strong>项目时间线（明确项目编号关联）</strong> aka get_by_role(\"strong\").filter(has_text=\"项目时间线（明确项目编号关联）\")\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 12000ms\n  - waiting for get_by_text(\"项目时间线（明确项目编号关联）\", exact=True)\n",
+      "verified_at": "2026-11-11T06:40:19.574861+00:00"
+    },
+    {
+      "attempt": "browser-attempt3",
+      "status": "FAIL",
+      "checks_passed": 4,
+      "error": "AssertionError: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_text(\"价格、指数、公告、人工输入和模型估计分别标识；未接入实时价格API。\", exact=True) resolved to 2 elements:\n    1) <p>价格、指数、公告、人工输入和模型估计分别标识；未接入实时价格API。</p> aka get_by_role(\"paragraph\").filter(has_text=\"价格、指数、公告、人工输入和模型估计分别标识；未接入实时价格API。\")\n    2) <p>价格、指数、公告、人工输入和模型估计分别标识；未接入实时价格API。</p> aka get_by_text(\"价格、指数、公告、人工输入和模型估计分别标识；未接入实时价格API。\").nth(1)\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 12000ms\n  - waiting for get_by_text(\"价格、指数、公告、人工输入和模型估计分别标识；未接入实时价格API。\", exact=True)\n",
+      "verified_at": "2026-11-11T06:41:21.716337+00:00"
+    },
+    {
+      "attempt": "browser-attempt4",
+      "status": "FAIL",
+      "checks_passed": 5,
+      "error": "AssertionError: ",
+      "verified_at": "2026-11-11T06:44:22.149792+00:00"
+    },
+    {
+      "attempt": "browser-attempt5",
+      "status": "FAIL",
+      "checks_passed": 0,
+      "error": "TimeoutError: Locator.click: Timeout 12000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"导出筛选结果 CSV\", exact=True)\n",
+      "verified_at": "2026-11-11T06:46:05.074988+00:00"
+    }
+  ],
+  "final": "docs/evidence/platform/browser.json"
+}

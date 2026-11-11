@@ -78,6 +78,7 @@ class Record(BaseModel):
         v = aliases.get(v.strip().casefold(), v.strip())
         if v == "unknown":
             return v
+        v = v.upper()
         if not re.fullmatch(r"[A-Z]{2}", v):
             raise ValueError("Use ISO alpha-2 country code or configured alias")
         return v
@@ -126,6 +127,8 @@ class Record(BaseModel):
             raise ValueError("Investment needs a currency")
         if self.value is not None and not self.unit:
             raise ValueError("Price/index requires unit")
+        if self.value is not None and self.unit[:3] in ["USD", "EUR"] and not self.currency:
+            raise ValueError("Monetary observations require currency")
         if self.value is not None and self.price_type == "announcement":
             raise ValueError("Announcements cannot masquerade as measured prices")
         if self.unit and self.currency and self.unit[:3] in ["EUR", "USD"] and self.unit[:3] != self.currency:

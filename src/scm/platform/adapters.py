@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 from scm.collectors.http import AccessBlocked, SafeFetcher
 from scm.collectors.parsers import parse_article
 from scm.collectors.service import collect_one, safe_error
+from scm.platform.capture import RecordingFetcher
 from scm.platform.contracts import Record
 from scm.platform.models import PlatformSource
 from scm.platform.service import audit, ingest, register, specs
@@ -119,7 +120,7 @@ def fetch_records(spec, fetcher):
 
 def collect(factory, configurations=None, fetcher=None):
     owned = fetcher is None
-    fetcher = fetcher or SafeFetcher(retries=0)
+    fetcher = RecordingFetcher(fetcher or SafeFetcher(retries=0))
     results = []
     selected = configurations if configurations is not None else specs()
     try:
@@ -127,6 +128,7 @@ def collect(factory, configurations=None, fetcher=None):
             register(session, selected)
         for spec in selected:
             started = fetcher.request_count
+            capture_start = len(fetcher.captures)
             result = {
                 "source": spec["id"],
                 "status": "failed",
@@ -164,6 +166,7 @@ def collect(factory, configurations=None, fetcher=None):
                 result["error"] = safe_error(exc)
                 if isinstance(exc, AccessBlocked):
                     result["status"] = "unavailable"
+            result["captures"] = fetcher.captures[capture_start:]
             result["requests"] = fetcher.request_count - started
             result["robots"] = dict(fetcher.robots_audit)
             with factory.begin() as session:

@@ -180,3 +180,19 @@ scm port-digest --mode live --output runtime/port01/daily.html
 **当前获准自动运营源0、真实运营事件0，12地点均未知，业务验收PARTIAL。** Le Havre访问超时、PD Ports权限未知、HPA要求书面同意；不启用采集、不取PDF、不请求Rotterdam/PIN。模块Demo需显式点击“加载模块01虚构演示”，与Live隔离。不需LLM Key；可选LLM只做分析，失败规则降级。配置：`config/ports.json`、`config/port_sources.json`。完整结果与实际截图见[PORT_MONITOR_ACCEPTANCE](docs/PORT_MONITOR_ACCEPTANCE.md)。
 
 Windows PowerShell可用`.\.venv\Scripts\scm.exe init`、`.\.venv\Scripts\scm.exe collect-ports`、`.\.venv\Scripts\scm.exe port-digest --mode live`；Windows主机尚未实际测试。
+
+
+## 统一供应链情报平台（2026-11-11）
+
+新增独立入口，复用原12港口地图/服务；提供海外产能与竞争、物流市场与成本、统一情报、日报周报、预警和Sources。原Module01入口保持。这里的Module02指产能情报；法规RAG暂停在独立分支/PR7，没有并入本分支。
+
+```bash
+python -m scm.platform.cli init
+python -m streamlit run src/scm/platform/app.py --server.address 127.0.0.1 --server.port 8503 --server.headless true --browser.gatherUsageStats false
+# 显式DEMO，不填充Live
+python -m scm.platform.cli demo
+python -m scm.platform.cli collect --source hamburg
+python -m scm.platform.cli report --mode live --kind daily --output runtime/platform/live-daily.html
+```
+
+独立库runtime/platform/platform.db；Live/DEMO/Manual严格分开，CSV/XLSX只进入Manual。企业及来源配置分别为config/platform_companies.json和config/platform_sources.json，未知/过期许可拒绝自动请求。当前真实采集4篇背景信息，不是当前运营/企业投产/实时价格；12港当前状态未知。无LLM、无付费API、无公网部署。**FRAMEWORK PASS / MOCK PASS / LIVE PARTIAL / WINDOWS NOT TESTED**。251pytest、16组桌面/390px浏览器检查通过；[验收报告](docs/PLATFORM_ACCEPTANCE.md)、[Windows/PyCharm命令](docs/PLATFORM_WINDOWS.md)、[来源审计/待接入](docs/platform/SOURCE_AUDIT.md)。

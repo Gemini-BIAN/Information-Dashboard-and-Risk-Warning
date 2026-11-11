@@ -193,6 +193,9 @@ def rows(session, mode, module=None, query="", country=None, risk=None, company=
             {
                 "id": item.id,
                 "source_id": item.source_id,
+                "source_confidence": json.loads(session.get(PlatformSource, item.source_id).spec_json).get(
+                    "confidence", "unreviewed"
+                ),
                 "version": item.version,
                 "review_status": item.review_status,
                 "evidence_id": ev.id,

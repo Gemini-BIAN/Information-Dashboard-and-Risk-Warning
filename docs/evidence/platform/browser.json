@@ -1,0 +1,84 @@
+{
+  "verified_at": "2026-11-11T06:48:47.177223+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "desktop: actual four Live records and source-only CSV, no Demo mixing",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: existing12-port map and real click/detail unknown state retained",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: all seven workspaces navigable, no application exceptions",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: synthetic project status/timeline/evidence visible; planned capacity not operating capacity",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: market announcement and fictional manual measurement separated with units",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: actual Demo report generated/displayed/downloaded as HTML",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: local alert updated to read; no external notification",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: Manual empty/Live4/Demo isolation, empty search fallback and reset",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: actual four Live records and source-only CSV, no Demo mixing",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: existing12-port map and real click/detail unknown state retained",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: all seven workspaces navigable, no application exceptions",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: synthetic project status/timeline/evidence visible; planned capacity not operating capacity",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: market announcement and fictional manual measurement separated with units",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: actual Demo report generated/displayed/downloaded as HTML",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: local alert updated to read; no external notification",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: Manual empty/Live4/Demo isolation, empty search fallback and reset",
+      "status": "PASS"
+    }
+  ],
+  "page_errors": [],
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "page_horizontal_overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "page_horizontal_overflow": false
+    }
+  ],
+  "browser": "155.0.8059.79"
+}

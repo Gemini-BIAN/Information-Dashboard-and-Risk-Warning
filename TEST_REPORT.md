@@ -1,3 +1,9 @@
+## 2026-11-11 统一平台本轮结果（最新）
+
+完整pytest251 passed in17.63s（含原204），无失败/跳过；ruff src/tests/scripts/新迁移、pip check、diff check通过。真实HTTP4篇，重复4 unchanged，实际保存HTML逐篇SHA/重解析通过；当前空日报与原日期历史日报通过。Chromium155桌面1440和移动390两视口16组检查PASS/0pageerrors/无横向溢出。开发失败迭代及最终证据均保留，Windows原生NOT TESTED。详见docs/PLATFORM_ACCEPTANCE.md和docs/evidence/platform/。
+
+---
+
 # ESCIM 测试报告：Issue #2 真实采集验收
 
 验证：2026-11-06（Asia/Shanghai），新发布环境，Linux/Python3.12.14。Mock/离线Fixture测试与真实HTTP分开计数。

@@ -366,3 +366,59 @@ def test_manual_xlsx_valid(factory):
     buffer = io.BytesIO()
     w.save(buffer)
     assert import_file(factory, buffer.getvalue(), "data.xlsx")["writes"] == {"inserted": 1}
+
+
+def test_raw_http_capture_is_content_addressed_and_never_shared_modes(tmp_path):
+    from scm.platform.capture import RecordingFetcher
+
+    inner = SafeFetcher(
+        client=httpx.Client(
+            transport=httpx.MockTransport(
+                lambda request: httpx.Response(
+                    200,
+                    text="User-agent: *\nAllow: /"
+                    if request.url.path == "/robots.txt"
+                    else "<html>DEMO approved text</html>",
+                )
+            )
+        ),
+        interval=0,
+        retries=0,
+    )
+    recorder = RecordingFetcher(inner, tmp_path)
+    response = recorder.get("https://official.test/news/1")
+    capture = recorder.captures[0]
+    assert (
+        capture["mode"] == "demo"
+        and capture["sha256"] == __import__("hashlib").sha256(response.content).hexdigest()
+    )
+    assert (tmp_path / capture["path"]).read_bytes() == response.content
+    recorder.get("https://official.test/news/1")
+    assert recorder.captures[1]["path"] == capture["path"]
+    (tmp_path / capture["path"]).write_bytes(b"corrupt")
+    with pytest.raises(ValueError, match="integrity"):
+        recorder.get("https://official.test/news/1")
+
+
+def test_current_view_expires_without_overwriting_original_analysis(factory, monkeypatch):
+    from scm.platform import service
+    from scm.platform.models import Assessment
+
+    with factory.begin() as s:
+        register(s, [source()])
+        ingest(s, "approved", record(), now=NOW)
+        original = s.scalar(select(Assessment)).payload_json
+        monkeypatch.setattr(service, "utcnow", lambda: NOW + timedelta(days=31))
+        assert rows(s, "demo")[0]["analysis"]["risk_level"] == "unknown"
+        assert s.scalar(select(Assessment)).payload_json == original
+
+
+def test_monetary_observation_requires_currency():
+    with pytest.raises(ValueError, match="currency"):
+        record(
+            module="market",
+            value="2",
+            unit="EUR/litre",
+            price_type="observed_price",
+            evidence_quote="DEMO fictional",
+        )

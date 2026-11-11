@@ -1,3 +1,9 @@
+## 2026-11-11 统一平台本轮结果（最新）
+
+FRAMEWORK PASS / MOCK PASS / LIVE PARTIAL / WINDOWS NOT TESTED。新feature/escim-intelligence-platform从7d6fbc9派生，首提交b564a41。Module01代码/UI/配置无改动，法规分支8a31da4及DraftPR7保留。三模块/统一中心/Sources/报告/预警可运行；251pytest、ruff、16组桌面/390px浏览器通过。真实Hamburg3+EC1=4篇，业务排除3/历史背景1，真实当前运营/企业项目/价格均0。原文/分析/响应CAS分别保留，三空间隔离。详见docs/PLATFORM_ACCEPTANCE.md。新PR目标供应链基线，不合并任何PR。
+
+---
+
 # ESCIM 项目状态
 
 2026-11-06（Asia/Shanghai）。唯一仓库Gemini-BIAN/Information-Dashboard-and-Risk-Warning，分支feature/supply-chain-risk-mvp，PR #1保持Draft，不合并main。
