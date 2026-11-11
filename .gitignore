@@ -12,3 +12,5 @@ runtime/
 *.db
 *.db-shm
 *.db-wal
+# Module02 local source/research files; no legal PDFs or private research committed
+data/regulatory/

@@ -1,0 +1,33 @@
+{
+  "verified_at": "2026-11-11T01:22:55.178229+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "Actual battery original downloaded status/SHA displayed with legal status pending",
+      "status": "PASS"
+    },
+    {
+      "name": "Browser-downloaded actual source re-opened: hash,117 pages,regulation identity,Article7 p31 andAnnexI p84 match",
+      "status": "PASS"
+    },
+    {
+      "name": "Chinese Article7 query gives actual English clause and official PDF page31 citation",
+      "status": "PASS"
+    },
+    {
+      "name": "AnnexI actual restriction text/correct PDF page84; table flagged review",
+      "status": "PASS"
+    },
+    {
+      "name": "Consolidated candidate never borrows original-version chunks or download status",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncovered other-law/ISO tank/current-applicability questions refuse unsupported conclusions",
+      "status": "PASS"
+    }
+  ],
+  "page_errors": [],
+  "dataset": "Actual EUR-Lex CELEX32023R1542 OJ original PDF; no mock corpus",
+  "browser": "155.0.8059.79"
+}

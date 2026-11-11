@@ -1,0 +1,28 @@
+{
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32008R1272",
+  "stage": "stored",
+  "status": "PASS",
+  "http_status": 200,
+  "permission_evidence": "docs/regulatory/OFFICIAL_SOURCE_AUDIT.json",
+  "sha256": "64f4540f2b6ce34be837e2583ba540b125b5c4dfec3826739c3a148b5d9d872e",
+  "byte_size": 6909004,
+  "verification_type": "LIVE_HTTP",
+  "robots": {
+    "https://eur-lex.europa.eu": "200 parsed"
+  },
+  "celex": "32008R1272",
+  "checked_at": "2026-11-11T01:26:37.926571+00:00",
+  "limit_bytes": 32000000,
+  "pages": 1355,
+  "identity_matches": true,
+  "first_page_excerpt": "I\n(Acts adopted under the EC Treaty/Euratom Treaty whose publication is obligatory)\nREGULATIONS\nREGULATION (EC) No 1272/2008 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL\nof 16 December 2008\non classification, labelling and packaging of substances and mixtures, amending and repealing\nDirectives 67/548/EEC and 1999/45/EC, and amending Regulation (EC) No 1907/2006\n(Text with EEA relevance)\nTHE EUROP",
+  "parse": {
+    "chunks": 1315,
+    "parse_status": "needs_review",
+    "flags": [
+      "ANNEX_REQUIRES_REVIEW",
+      "PDF_LAYOUT_REQUIRES_REVIEW",
+      "PREAMBLE_OR_UNSTRUCTURED_TEXT"
+    ]
+  }
+}

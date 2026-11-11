@@ -180,3 +180,17 @@ scm port-digest --mode live --output runtime/port01/daily.html
 **当前获准自动运营源0、真实运营事件0，12地点均未知，业务验收PARTIAL。** Le Havre访问超时、PD Ports权限未知、HPA要求书面同意；不启用采集、不取PDF、不请求Rotterdam/PIN。模块Demo需显式点击“加载模块01虚构演示”，与Live隔离。不需LLM Key；可选LLM只做分析，失败规则降级。配置：`config/ports.json`、`config/port_sources.json`。完整结果与实际截图见[PORT_MONITOR_ACCEPTANCE](docs/PORT_MONITOR_ACCEPTANCE.md)。
 
 Windows PowerShell可用`.\.venv\Scripts\scm.exe init`、`.\.venv\Scripts\scm.exe collect-ports`、`.\.venv\Scripts\scm.exe port-digest --mode live`；Windows主机尚未实际测试。
+
+## Module02：真实法规资料库与检索（首份闭环PASS）
+
+五份Work附件现已实际读取：57条目录、18条P0 manifest；保留原研究核实状态。真实下载电池法规2023/1542、REACH、CLP共3份英文原始OJ PDF。电池法规Article7物理31–33页、AnnexI第84页完成中文检索、实际引用逐段核验与浏览器验收。候选整合版返回HTML被拒绝，不冒称现行法律核实。
+
+```bash
+python -m scm.regulatory.cli inputs
+python -m scm.regulatory.cli import-work
+python -m scm.regulatory.cli download --celex 32023R1542
+python -m scm.regulatory.cli parse 30fcab0af43d1b9657136ec582ad7b71693c6248df52b02a1e3139b8e03a21bf
+python -m streamlit run src/scm/regulatory/app.py --server.address 127.0.0.1 --server.port 8502 --server.headless true --browser.gatherUsageStats false
+```
+
+需本地五文件`data/regulatory/research/`和有效许可审查；该目录、PDF及`runtime/regulatory/`不提交Git。默认独立`runtime/regulatory/library.db`，Module01页面不变。无LLM Key可用本地BM25/中英词表原文检索，不是AI法律分析；法律状态和适用日期仍待核实。原始版本与整合版本隔离，复杂表格/附件需复核。Windows/PyCharm步骤、SHA256、真实下载与浏览器证据见[REGULATORY_RAG_ACCEPTANCE](docs/REGULATORY_RAG_ACCEPTANCE.md)。
