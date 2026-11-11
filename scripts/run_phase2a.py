@@ -20,7 +20,7 @@ def main():
     parser.add_argument("--output-dir", type=Path, default=ROOT / "runtime/phase2a")
     parser.add_argument("--day", type=date.fromisoformat)
     args = parser.parse_args()
-    specs = json.loads((ROOT / "config/phase2a_sources.json").read_text())
+    specs = json.loads((ROOT / "config/phase2a_sources.json").read_text(encoding="utf-8"))
     factory = session_factory(args.database_url)
     results = collect_content(factory, specs)
     day = args.day or utcnow().astimezone(TIMEZONE).date()
@@ -34,7 +34,9 @@ def main():
         "results": results,
         "digest": summary,
     }
-    (args.output_dir / "run.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
+    (args.output_dir / "run.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     print(json.dumps(payload, ensure_ascii=False, indent=2))
 
 

@@ -24,7 +24,9 @@ def run(args):
     }
 
     def save():
-        (args.output / "browser.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+        (args.output / "browser.json").write_text(
+            json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
 
     def passed(name):
         result["checks"].append({"name": name, "status": "PASS"})
@@ -89,7 +91,7 @@ def run(args):
             with page.expect_download() as download:
                 page.get_by_role("button", name="下载港口日报HTML", exact=True).click()
             download.value.save_as(str(args.output / "live-daily.html"))
-            live_html = (args.output / "live-daily.html").read_text()
+            live_html = (args.output / "live-daily.html").read_text(encoding="utf-8")
             assert "覆盖不足" in live_html and "<article>" not in live_html and "DEMO" not in live_html
             assert all(p.business_label in live_html for p in registry().ports)
             passed("Actual Live empty daily generated without sample-news padding")
@@ -109,7 +111,7 @@ def run(args):
             with page.expect_download() as download:
                 page.get_by_role("button", name="下载港口日报HTML", exact=True).click()
             download.value.save_as(str(args.output / "demo-daily.html"))
-            assert "DEMO" in (args.output / "demo-daily.html").read_text()
+            assert "DEMO" in (args.output / "demo-daily.html").read_text(encoding="utf-8")
             page.get_by_role("heading", name="站内预警收件箱", exact=True).scroll_into_view_if_needed()
             page.screenshot(path=str(args.output / "05-demo-inbox.png"), full_page=True)
             passed("Demo in-app read acknowledgement and daily generation work")

@@ -1,3 +1,7 @@
+## 2026-11-11 PR8 Windows编码修复（最新）
+
+用户在Windows拉取PR8最新提交后停止旧Streamlit进程再启动，复验12港口、Sources、DEMO/日报、CSV/Excel及中文目录。完整步骤见docs/WINDOWS_ENCODING_ACCEPTANCE.md；法规任务继续暂停。
+
 ## 2026-11-11 统一平台本轮结果（最新）
 
 本轮交付后等待新DraftPR审核。先审查16浏览器检查、251pytest、真实4条来源与业务覆盖边界；再按docs/platform/SOURCE_BACKLOG.md核实企业/价格/运营源许可和真实契约，完成原生Windows/跨日调度验收。法规PR7继续暂停，不自动合并、不扩大付费接口。

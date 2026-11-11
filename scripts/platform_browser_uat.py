@@ -27,7 +27,9 @@ def main():
     }
 
     def save():
-        (args.output / "browser.json").write_text(json.dumps(result, ensure_ascii=False, indent=2))
+        (args.output / "browser.json").write_text(
+            json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
 
     def passed(name):
         result["checks"].append({"name": name, "status": "PASS"})
@@ -166,9 +168,9 @@ def main():
                 dest = args.output / f"{label}-demo-report.html"
                 downloaded.value.save_as(str(dest))
                 assert (
-                    "DEMO" in dest.read_text()
-                    and "DEMO project delayed" in dest.read_text()
-                    and "2条关联记录" in dest.read_text()
+                    "DEMO" in dest.read_text(encoding="utf-8")
+                    and "DEMO project delayed" in dest.read_text(encoding="utf-8")
+                    and "2条关联记录" in dest.read_text(encoding="utf-8")
                 )
                 passed(label + ": actual Demo report generated/displayed/downloaded as HTML")
                 navigate("预警收件箱")

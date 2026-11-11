@@ -22,7 +22,7 @@ def seed(factory):
                 }
             ],
         )
-        for raw in json.loads((ROOT / "fixtures/platform/demo.json").read_text()):
+        for raw in json.loads((ROOT / "fixtures/platform/demo.json").read_text(encoding="utf-8")):
             rec = Record.model_validate({**raw, "fetched_at": utcnow()})
             outcome, _ = ingest(session, "platform-demo", rec)
             counts[outcome] += 1

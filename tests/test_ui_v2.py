@@ -134,7 +134,7 @@ def app_for(factory, monkeypatch):
 def test_all_v2_pages_both_modes(factory, monkeypatch, mode, page):
     load_demo(factory)
     with factory.begin() as s:
-        import_csv(s, (ROOT / "fixtures/demo_shipments.csv").read_text(), "demo")
+        import_csv(s, (ROOT / "fixtures/demo_shipments.csv").read_text(encoding="utf-8"), "demo")
         generate_report(s, "daily", "demo")
         generate_report(s, "daily", "live")
     app = app_for(factory, monkeypatch)
@@ -183,7 +183,7 @@ def test_search_filters_review_and_audit_preserved(factory, monkeypatch):
 
 
 def test_upload_server_and_application_limit_are_both_five_mb(factory):
-    config = tomllib.loads((ROOT / ".streamlit/config.toml").read_text())
+    config = tomllib.loads((ROOT / ".streamlit/config.toml").read_text(encoding="utf-8"))
     assert config["server"]["maxUploadSize"] == 5
     with pytest.raises(ValueError, match="5MB"):
         import_upload(factory, b"x" * 5_000_001, "demo")
@@ -199,7 +199,7 @@ def test_upload_server_and_application_limit_are_both_five_mb(factory):
 
 
 def test_over_ten_thousand_rows_rolls_back(factory):
-    header, row, *_ = (ROOT / "fixtures/demo_shipments.csv").read_text().splitlines()
+    header, row, *_ = (ROOT / "fixtures/demo_shipments.csv").read_text(encoding="utf-8").splitlines()
     content = (header + "\n" + (row + "\n") * 10_001).encode()
     assert len(content) < 5_000_000
     with pytest.raises(ValueError, match="10,000"):

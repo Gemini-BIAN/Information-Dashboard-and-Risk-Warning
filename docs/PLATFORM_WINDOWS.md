@@ -34,3 +34,7 @@ Sources可下载空CSV模板，或使用相同字段的XLSX。必填external_id/
 企业名称与别名：config/platform_companies.json。来源：config/platform_sources.json。未知许可保持禁用，不仅凭robots允许就批准复用。JSON API约定为`{"records":[Record字段对象]}`，不自动猜测第三方API；需经许可与实际契约验证后才启用。HTML/PDF文档适配器并不使用暂停的法规RAG代码。
 
 浏览器复现需额外安装Playwright和Chromium（开发工具，不是运行依赖）；`scripts/platform_browser_uat.py`默认Linux `/usr/bin/chromium`，Windows浏览器脚本未移植/实测。验收数据/命令详见PLATFORM_ACCEPTANCE，不要拿空新库直接运行要求4条Live的验收脚本并宣称通过。
+
+## GBK默认编码修复
+
+PR8已显式指定项目UTF-8文件编码。用户原生启动曾成功，本次修复在Linux模拟GBK及完整254项测试通过；Windows修复后仍需人工复验。请停止旧Streamlit进程再启动，操作清单见[WINDOWS_ENCODING_ACCEPTANCE](WINDOWS_ENCODING_ACCEPTANCE.md)。不需要通过修改系统代码页来掩盖文件编码问题。

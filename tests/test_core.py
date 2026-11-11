@@ -177,7 +177,7 @@ def test_review_notes_and_validation(factory):
 
 
 def test_shipment_snapshots_delta_idempotency_and_arrival(factory):
-    text = (ROOT / "fixtures/demo_shipments.csv").read_text()
+    text = (ROOT / "fixtures/demo_shipments.csv").read_text(encoding="utf-8")
     with factory.begin() as s:
         assert import_csv(s, text, "demo")["inserted"] == 3
         assert import_csv(s, text, "demo")["unchanged"] == 3
@@ -202,7 +202,7 @@ def test_shipment_snapshots_delta_idempotency_and_arrival(factory):
 
 
 def test_out_of_order_snapshots_and_port_isolation(factory):
-    text = (ROOT / "fixtures/demo_shipments.csv").read_text()
+    text = (ROOT / "fixtures/demo_shipments.csv").read_text(encoding="utf-8")
     lines = text.splitlines()
     with factory.begin() as s:
         import_csv(s, "\n".join([lines[0], lines[2], lines[1], lines[3]]), "demo")
@@ -214,7 +214,7 @@ def test_out_of_order_snapshots_and_port_isolation(factory):
 
 
 def test_csv_invalid_and_conflict_atomicity(factory):
-    text = (ROOT / "fixtures/demo_shipments.csv").read_text()
+    text = (ROOT / "fixtures/demo_shipments.csv").read_text(encoding="utf-8")
     with factory.begin() as s:
         with pytest.raises(ValueError):
             import_csv(s, text.replace("T08:00:00Z", "T08:00:00"), "demo")
@@ -229,7 +229,7 @@ def test_csv_invalid_and_conflict_atomicity(factory):
 def test_port_association_is_tentative(factory):
     load_demo(factory)
     with factory.begin() as s:
-        import_csv(s, (ROOT / "fixtures/demo_shipments.csv").read_text(), "demo")
+        import_csv(s, (ROOT / "fixtures/demo_shipments.csv").read_text(encoding="utf-8"), "demo")
         first = next(r for r in shipment_risks(s, "demo") if r["container_number"] == "DEMO-0001")
         assert first["linked_events"] and "待核实" in first["linked_events"][0]["association"]
         assert any("不构成" in r for r in first["reasons"])

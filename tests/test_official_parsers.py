@@ -11,12 +11,12 @@ from scm.risk.rules import classify, grade
 from scm.settings import ROOT
 
 FIXTURES = ROOT / "fixtures/official"
-MANIFEST = json.loads((FIXTURES / "provenance.json").read_text())
+MANIFEST = json.loads((FIXTURES / "provenance.json").read_text(encoding="utf-8"))
 
 
 @pytest.mark.parametrize("record", MANIFEST, ids=lambda v: v["source_id"])
 def test_official_excerpt_title_date_and_verbatim_evidence(record):
-    html = (FIXTURES / record["file"]).read_text()
+    html = (FIXTURES / record["file"]).read_text(encoding="utf-8")
     assert hashlib.sha256(html.encode()).hexdigest() == record["fixture_sha256"]
     article = parse_article(html, record["url"], "european_commission")
     assert article["title"] == record["title"]

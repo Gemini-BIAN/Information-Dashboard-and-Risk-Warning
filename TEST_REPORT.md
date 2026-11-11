@@ -1,3 +1,7 @@
+## 2026-11-11 PR8 Windows编码修复（最新）
+
+PR8编码回归：254 passed in16.56s，0失败/跳过；ruff和diff check通过。GBK负对照复现真实ports.json错误，修复后港口/配置、DEMO、中文HTML/JSON/CSV/MD往返通过；新增AST防遗漏。Linux模拟不是原生Windows PASS。详见docs/WINDOWS_ENCODING_ACCEPTANCE.md。
+
 ## 2026-11-11 统一平台本轮结果（最新）
 
 完整pytest251 passed in17.63s（含原204），无失败/跳过；ruff src/tests/scripts/新迁移、pip check、diff check通过。真实HTTP4篇，重复4 unchanged，实际保存HTML逐篇SHA/重解析通过；当前空日报与原日期历史日报通过。Chromium155桌面1440和移动390两视口16组检查PASS/0pageerrors/无横向溢出。开发失败迭代及最终证据均保留，Windows原生NOT TESTED。详见docs/PLATFORM_ACCEPTANCE.md和docs/evidence/platform/。

@@ -1,3 +1,7 @@
+## 2026-11-11 PR8 Windows编码修复（最新）
+
+PR8 Windows编码修复：14文件35处明确UTF-8，新增3项GBK模拟/结构守卫。完整254pytest和ruff通过。M1仅registry两处文件编码修改，业务规则不变；法规分支8a31da4不变。原生Windows需用户拉取重启后复验。详见docs/WINDOWS_ENCODING_ACCEPTANCE.md。
+
 ## 2026-11-11 统一平台本轮结果（最新）
 
 FRAMEWORK PASS / MOCK PASS / LIVE PARTIAL / WINDOWS NOT TESTED。新feature/escim-intelligence-platform从7d6fbc9派生，首提交b564a41。Module01代码/UI/配置无改动，法规分支8a31da4及DraftPR7保留。三模块/统一中心/Sources/报告/预警可运行；251pytest、ruff、16组桌面/390px浏览器通过。真实Hamburg3+EC1=4篇，业务排除3/历史背景1，真实当前运营/企业项目/价格均0。原文/分析/响应CAS分别保留，三空间隔离。详见docs/PLATFORM_ACCEPTANCE.md。新PR目标供应链基线，不合并任何PR。

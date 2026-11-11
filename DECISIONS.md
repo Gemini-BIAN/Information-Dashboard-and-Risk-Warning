@@ -1,3 +1,7 @@
+## 2026-11-11 PR8 Windows编码修复（最新）
+
+项目UTF-8文本文件显式指定encoding，保留UTF-8-SIG CSV入口；不修改HTTP或二进制编码，不依赖全局UTF8模式/忽略错误。GBK默认io.open负对照与文件I/O守卫覆盖Windows默认代码页问题，原生Windows仍单列NOT TESTED。
+
 ## 2026-11-11 统一平台本轮结果（最新）
 
 从供应链7d6fbc9建立新分支，不基于PR7。新增独立platform服务/入口和004_platform迁移，复用SQLAlchemy、SafeFetcher、原解析器、业务筛选及完整Module01renderer/通知；原M1代码/配置不改。独立DB+三空间隔离，原文/版本/分析/响应CAS分存，Manual不冒充Live，Mock强制DEMO。来源许可先行、0自动重试、30日过期关闭。项目只按明确企业+项目ID关联；不做无依据数值抽取/状态推断、换汇或跨单位汇总。展示风险随时间重新评估而保留原始存储分析；报告周期按原公布时间，项目取最新事件并保留关联证据。常驻调度/外部发送未启用。

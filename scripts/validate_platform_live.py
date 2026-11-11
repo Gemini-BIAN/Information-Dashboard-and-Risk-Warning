@@ -114,7 +114,7 @@ def main():
                 for kind in ["daily", "weekly"]:
                     report = generate_report(session, mode, kind)
                     target = ROOT / f"runtime/platform/{mode}-{kind}.html"
-                    target.write_text(report.html)
+                    target.write_text(report.html, encoding="utf-8")
                     if mode == "live":
                         assert "DEMO factory" not in report.html
             assert "本期没有" in generate_report(session, "live").html
@@ -122,7 +122,7 @@ def main():
                 session, "live", "daily", datetime.fromisoformat("2025-07-04T12:00:00+00:00")
             )
             assert "Circular Economy:" in historical.html
-            (ROOT / "runtime/platform/live-historical.html").write_text(historical.html)
+            (ROOT / "runtime/platform/live-historical.html").write_text(historical.html, encoding="utf-8")
             assert counts_before == {mode: len(rows(session, mode)) for mode in counts_before}
             result["namespace_counts"] = counts_before
             result["relevance_counts"] = dict(Counter(r["analysis"]["relevance"] for r in real))
@@ -144,7 +144,7 @@ def main():
     finally:
         fetcher.close()
     output = ROOT / "docs/platform/LIVE_EVIDENCE.json"
-    output.write_text(json.dumps(result, ensure_ascii=False, indent=2))
+    output.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(
         json.dumps(
             {
