@@ -10,7 +10,7 @@ from sqlalchemy import delete
 from scm.regulatory.models import RegulationChunk
 from scm.regulatory.storage import checked_path
 
-BOUNDARY = re.compile(r"^\s*(Article\s+(\d+[a-z]?)|ANNEX\s+([IVXLCDM]+|\d+))\b", re.I)
+BOUNDARY = re.compile(r"^\s*(Article\s+(\d+[a-z]?)|ANNEX\s+([IVXLCDM]+|\d+))\s*$", re.I)
 
 
 def tokenize(text):
@@ -44,39 +44,77 @@ def pages_from_file(path, format):
 
 
 def extract_chunks(pages, max_chars=2200):
+    """Keep headings/paragraph boundaries and exact extracted offsets, with per-chunk page ranges.
+
+    Strict whole-line headings avoid Article7/Article2 rows in correlation tables.
+    Whitespace on the next page must never extend a prior provision's page range.
+    """
     units = []
-    current = {"type": "preamble", "label": "", "lines": [], "pages": [], "flags": set()}
+    current = {"type": "preamble", "label": "", "lines": [], "flags": set()}
+    annex_section = False
     for page, text, flags in pages:
         if not text.strip():
             current["flags"].add("EMPTY_PAGE_OCR_REQUIRED")
         for line in text.splitlines():
-            match = BOUNDARY.match(line)
+            match = BOUNDARY.fullmatch(line)
+            if match and annex_section and match.group(2):
+                match = None
             if match:
                 if current["lines"]:
                     units.append(current)
                 kind = "article" if match.group(2) else "annex"
+                annex_section = annex_section or kind == "annex"
                 current = {
                     "type": kind,
                     "label": match.group(2) or match.group(3),
                     "lines": [],
-                    "pages": [],
                     "flags": set(),
                 }
                 if kind == "annex":
                     current["flags"].add("ANNEX_REQUIRES_REVIEW")
-            current["lines"].append(line)
-            current["pages"].append(page)
+            current["lines"].append((line, page))
             current["flags"].update(flags)
     if current["lines"]:
         units.append(current)
     chunks = []
     for unit in units:
-        text = "\n".join(unit["lines"]).strip()
-        if not text:
+        lines = unit["lines"]
+        while lines and not lines[0][0].strip():
+            lines = lines[1:]
+        while lines and not lines[-1][0].strip():
+            lines = lines[:-1]
+        text = "\n".join(line for line, _ in lines)
+        if not text.strip():
             continue
-        for start in range(0, len(text), max_chars):
-            quote = text[start : start + max_chars]
-            numbers = [p for p in unit["pages"] if p is not None]
+        spans = []
+        offset = 0
+        for line, page in lines:
+            if line.strip():
+                spans.append((offset, offset + len(line), page))
+            offset += len(line) + 1
+        start = 0
+        while start < len(text):
+            end = min(start + max_chars, len(text))
+            flags = set(unit["flags"])
+            if end < len(text):
+                # Prefer full paragraphs, then full source lines; never silently cut words.
+                preferred = [
+                    m.start()
+                    for m in re.finditer(r"\n(?=(?:\d+\.|\([a-z0-9]+\))\s)", text[start:end])
+                    if m.start() > max_chars // 3
+                ]
+                if preferred:
+                    end = start + preferred[-1]
+                else:
+                    split = text.rfind("\n", start + max_chars // 3, end)
+                    if split > start:
+                        end = split
+                    else:
+                        flags.add("LONG_PARAGRAPH_SPLIT_REQUIRES_REVIEW")
+            quote = text[start:end]
+            numbers = [page for a, b, page in spans if page is not None and a < end and b > start]
+            if unit["type"] == "preamble":
+                flags.add("PREAMBLE_OR_UNSTRUCTURED_TEXT")
             chunks.append(
                 dict(
                     unit_type=unit["type"],
@@ -84,11 +122,12 @@ def extract_chunks(pages, max_chars=2200):
                     text=quote,
                     page_start=min(numbers) if numbers else None,
                     page_end=max(numbers) if numbers else None,
-                    locator=f"{unit['type']} {unit['label']} unit_text[{start}:{start + len(quote)}]",
-                    quality_json=json.dumps(sorted(unit["flags"])),
+                    locator=f"{unit['type']} {unit['label']} unit_text[{start}:{end}]",
+                    quality_json=json.dumps(sorted(flags)),
                     terms_json=json.dumps(Counter(tokenize(quote))),
                 )
             )
+            start = end
     return chunks
 
 

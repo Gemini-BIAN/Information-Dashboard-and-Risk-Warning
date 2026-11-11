@@ -1,4 +1,4 @@
-"""Normalized import contract; mapping the unavailable Work files remains blocked."""
+"""Normalized import contract; Work mapping is explicit in regulatory.work."""
 
 import csv
 import hashlib
@@ -51,6 +51,10 @@ class ManifestEntry(BaseModel):
     format: Literal["pdf", "html", "xml"]
     priority: Literal["P0", "P1", "P2"]
     topic: str = ""
+    publication_date: date | None = None
+    document_type: str = ""
+    research_metadata: dict = Field(default_factory=dict)
+    source_evidence: dict = Field(default_factory=dict)
     legal_status: Literal["unknown"] = "unknown"
     verification_status: Literal["pending"] = "pending"
 
@@ -125,4 +129,14 @@ def load_manifest(path):
 
 def input_status(directory):
     directory = Path(directory)
-    return [{"name": name, "present": (directory / name).is_file()} for name in EXPECTED_FILES]
+    return [
+        {
+            "name": name,
+            "present": (directory / name).is_file()
+            or (
+                name == "EU_Regulation_Download_Manifest.csv"
+                and (directory / "EU_Regulation_Download_Manifest(1).csv").is_file()
+            ),
+        }
+        for name in EXPECTED_FILES
+    ]

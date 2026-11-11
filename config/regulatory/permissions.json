@@ -1,4 +1,14 @@
 {
-  "note": "No source is pre-approved. Research files unavailable; legal/automated-access review pending.",
-  "sources": []
+  "sources": [
+    {
+      "host": "eur-lex.europa.eu",
+      "automated_access": true,
+      "text_retention": true,
+      "license": "EUR-Lex legal documents re-use under Decision 2011/833/EU; consolidated/editorial text CC BY 4.0",
+      "notice_url": "https://eur-lex.europa.eu/content/legal-notice/legal-notice.html",
+      "verified_at": "2026-11-11T01:11:26.983082+00:00",
+      "evidence_ref": "docs/regulatory/OFFICIAL_SOURCE_AUDIT.json",
+      "scope": "EU-owned legal texts/metadata; excludes logos/images/third-party works; attribute source and extraction/analysis changes"
+    }
+  ]
 }

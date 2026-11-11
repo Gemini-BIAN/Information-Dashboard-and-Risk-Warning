@@ -1,0 +1,94 @@
+{
+  "verified_at": "2026-11-11T01:11:26.983691+00:00",
+  "sources": [
+    {
+      "url": "https://eur-lex.europa.eu/content/legal-notice/legal-notice.html",
+      "checked_at": "2026-11-11T01:10:39.067096+00:00",
+      "trace": [
+        {
+          "url": "https://eur-lex.europa.eu/robots.txt",
+          "status": 200,
+          "location": null
+        },
+        {
+          "url": "https://eur-lex.europa.eu/content/legal-notice/legal-notice.html",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "status": 200,
+      "title": "Legal notice - EUR-Lex",
+      "rights_samples": [
+        "search Help Export PDF Print Legal notice The information on this site is subject to a disclaimer a copyright notice rules related to personal data protection an accessibility statement a cookies notice Disclaimer The Publications Office maintains this website to enhance public access to European\n         Union law. Our goal is to keep this information timely and accurate. If errors are\n         brought to our attention, we will try to correct them. However the Publications Office\n         accepts no responsibility or liability whatsoever with regard to the information on\n         this site. This information is: of a general nature only and is not intended to address the specific circumstances\n            of any particular individual or entity; not necessarily comprehensive, complete, accurate or up to date; sometimes linked to external sites over which the Publications Office services have\n            no control and for which the Publications Office assumes no responsibility; not prof",
+        "nal law nor to exclude\n         its liability for matters which may not be excluded under that law. Copyright notice © European Union, 1998-2026 The Commission’s document reuse policy is based on Decision 2011/833/EU . Unless otherwise specified, you can re-use the legal documents published in EUR-Lex\n         for commercial or non-commercial purposes. Some documents, like the International Accounting Standards, may be subject to special\n         conditions of use; these are mentioned in the respective Official Journal/document.\n         You can also consult the rules on on reproducing euro coin/note images ​ ​ . The copyright for the editorial content of this website, the summaries of EU legislation\n         and the consolidated texts, which is owned by the EU, is licensed under the Creative Commons Attribution 4.0 International licence ​ ​ . This means that you can re-use the content provided you acknowledge the source and\n         indicate any changes you have made. You may be requi",
+        " be excluded under that law. Copyright notice © European Union, 1998-2026 The Commission’s document reuse policy is based on Decision 2011/833/EU . Unless otherwise specified, you can re-use the legal documents published in EUR-Lex\n         for commercial or non-commercial purposes. Some documents, like the International Accounting Standards, may be subject to special\n         conditions of use; these are mentioned in the respective Official Journal/document.\n         You can also consult the rules on on reproducing euro coin/note images ​ ​ . The copyright for the editorial content of this website, the summaries of EU legislation\n         and the consolidated texts, which is owned by the EU, is licensed under the Creative Commons Attribution 4.0 International licence ​ ​ . This means that you can re-use the content provided you acknowledge the source and\n         indicate any changes you have made. You may be required to clear additional rights if certain content depicts identifiable\n",
+        "sion’s document reuse policy is based on Decision 2011/833/EU . Unless otherwise specified, you can re-use the legal documents published in EUR-Lex\n         for commercial or non-commercial purposes. Some documents, like the International Accounting Standards, may be subject to special\n         conditions of use; these are mentioned in the respective Official Journal/document.\n         You can also consult the rules on on reproducing euro coin/note images ​ ​ . The copyright for the editorial content of this website, the summaries of EU legislation\n         and the consolidated texts, which is owned by the EU, is licensed under the Creative Commons Attribution 4.0 International licence ​ ​ . This means that you can re-use the content provided you acknowledge the source and\n         indicate any changes you have made. You may be required to clear additional rights if certain content depicts identifiable\n         private individuals or includes third-party works. To use or reproduce cont",
+        "document.\n         You can also consult the rules on on reproducing euro coin/note images ​ ​ . The copyright for the editorial content of this website, the summaries of EU legislation\n         and the consolidated texts, which is owned by the EU, is licensed under the Creative Commons Attribution 4.0 International licence ​ ​ . This means that you can re-use the content provided you acknowledge the source and\n         indicate any changes you have made. You may be required to clear additional rights if certain content depicts identifiable\n         private individuals or includes third-party works. To use or reproduce content not\n         owned by the EU, you may need to seek permission directly from the rights holders.\n         Software or documents covered by industrial property rights, such as patents, trademarks,\n         registered designs, logos and names, are excluded from the Commission’s reuse policy\n         and are not licensed to you. To use the EUR-Lex logo, you first need",
+        ", the summaries of EU legislation\n         and the consolidated texts, which is owned by the EU, is licensed under the Creative Commons Attribution 4.0 International licence ​ ​ . This means that you can re-use the content provided you acknowledge the source and\n         indicate any changes you have made. You may be required to clear additional rights if certain content depicts identifiable\n         private individuals or includes third-party works. To use or reproduce content not\n         owned by the EU, you may need to seek permission directly from the rights holders.\n         Software or documents covered by industrial property rights, such as patents, trademarks,\n         registered designs, logos and names, are excluded from the Commission’s reuse policy\n         and are not licensed to you. To use the EUR-Lex logo, you first need the prior consent of the Publications Office. EUR-Lex metadata is dedicated to the public domain in accordance with the Creative Commons CC0 1.0 Unive",
+        "xts, which is owned by the EU, is licensed under the Creative Commons Attribution 4.0 International licence ​ ​ . This means that you can re-use the content provided you acknowledge the source and\n         indicate any changes you have made. You may be required to clear additional rights if certain content depicts identifiable\n         private individuals or includes third-party works. To use or reproduce content not\n         owned by the EU, you may need to seek permission directly from the rights holders.\n         Software or documents covered by industrial property rights, such as patents, trademarks,\n         registered designs, logos and names, are excluded from the Commission’s reuse policy\n         and are not licensed to you. To use the EUR-Lex logo, you first need the prior consent of the Publications Office. EUR-Lex metadata is dedicated to the public domain in accordance with the Creative Commons CC0 1.0 Universal  Public Domain Dedication deed ​ ​ . For all other copyright ",
+        "nsed under the Creative Commons Attribution 4.0 International licence ​ ​ . This means that you can re-use the content provided you acknowledge the source and\n         indicate any changes you have made. You may be required to clear additional rights if certain content depicts identifiable\n         private individuals or includes third-party works. To use or reproduce content not\n         owned by the EU, you may need to seek permission directly from the rights holders.\n         Software or documents covered by industrial property rights, such as patents, trademarks,\n         registered designs, logos and names, are excluded from the Commission’s reuse policy\n         and are not licensed to you. To use the EUR-Lex logo, you first need the prior consent of the Publications Office. EUR-Lex metadata is dedicated to the public domain in accordance with the Creative Commons CC0 1.0 Universal  Public Domain Dedication deed ​ ​ . For all other copyright issues, please contact: op-copyright@p",
+        "tents, trademarks,\n         registered designs, logos and names, are excluded from the Commission’s reuse policy\n         and are not licensed to you. To use the EUR-Lex logo, you first need the prior consent of the Publications Office. EUR-Lex metadata is dedicated to the public domain in accordance with the Creative Commons CC0 1.0 Universal  Public Domain Dedication deed ​ ​ . For all other copyright issues, please contact: op-copyright@publications.europa.eu ​ ​ . Protection of your personal data This privacy statement provides information about the processing and the protection of your personal data. Introduction Why and how do we process your personal data? On what legal ground(s) do we process your personal data? What personal data do we collect and further process? How long do we keep your personal data? How do we protect and safeguard your personal data? Who has access to your personal data and to whom is it disclosed? What are your rights and how can you exercise them? Contac"
+      ],
+      "robots": {
+        "https://eur-lex.europa.eu": "200 parsed"
+      }
+    },
+    {
+      "url": "https://op.europa.eu/en/web/cellar/cellar-data",
+      "checked_at": "2026-11-11T01:10:49.797124+00:00",
+      "trace": [
+        {
+          "url": "https://op.europa.eu/robots.txt",
+          "status": 200,
+          "location": null
+        },
+        {
+          "url": "https://op.europa.eu/en/web/cellar/cellar-data",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "status": 200,
+      "title": "Cellar data - Cellar - Publications Office of the EU",
+      "rights_samples": [
+        "aries to describe the publications Unique identification of publications Publications can be easily re-used"
+      ],
+      "robots": {
+        "https://op.europa.eu": "200 parsed"
+      }
+    },
+    {
+      "url": "https://commission.europa.eu/legal-notice_en",
+      "checked_at": "2026-11-11T01:10:53.533545+00:00",
+      "trace": [
+        {
+          "url": "https://commission.europa.eu/robots.txt",
+          "status": 200,
+          "location": null
+        },
+        {
+          "url": "https://commission.europa.eu/legal-notice_en",
+          "status": 200,
+          "location": null
+        }
+      ],
+      "status": 200,
+      "title": "Legal notice - European Commission",
+      "rights_samples": [
+        "The privacy policy covers the European Union's websites within the europa.eu domain. Privacy policy Copyright notice © European Union, 1995-2026 The Commission's reuse policy is implemented by the Commission Decision of 12 December 2011 on the reuse of Commission documents . Unless otherwise indicated (e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reu",
+        " the europa.eu domain. Privacy policy Copyright notice © European Union, 1995-2026 The Commission's reuse policy is implemented by the Commission Decision of 12 December 2011 on the reuse of Commission documents . Unless otherwise indicated (e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerabi",
+        " The Commission's reuse policy is implemented by the Commission Decision of 12 December 2011 on the reuse of Commission documents . Unless otherwise indicated (e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy",
+        "December 2011 on the reuse of Commission documents . Unless otherwise indicated (e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy",
+        "erwise indicated (e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy",
+        "EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy",
+        "nsed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy",
+        "ch as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy",
+        "s, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy"
+      ],
+      "robots": {
+        "https://commission.europa.eu": "200 parsed"
+      }
+    }
+  ],
+  "decision": "EUR-Lex legal text re-use permitted with source-specific exclusions; robots checks remain mandatory per request"
+}

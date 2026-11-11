@@ -93,7 +93,7 @@ def test_manifest_identity_and_legal_unknowns(patch):
 
 def test_xlsx_normalized_import_and_duplicate_rejection(tmp_path):
     e = entry()
-    values = e.model_dump(mode="json", exclude_none=True)
+    values = e.model_dump(mode="json", exclude_none=True, exclude_defaults=True)
     book = Workbook()
     sheet = book.active
     sheet.append(list(values))

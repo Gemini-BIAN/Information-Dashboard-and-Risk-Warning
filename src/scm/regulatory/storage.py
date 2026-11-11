@@ -82,7 +82,14 @@ def register(session, entry):
         session.flush()
     else:
         # Version identity is immutable; metadata may update without erasing byte provenance.
-        row.metadata_json = entry.model_dump_json()
+        old = json.loads(row.metadata_json)
+        incoming = entry.model_dump(mode="json")
+        # Research re-import must not erase separately byte-verified provenance.
+        evidence = old.get("source_evidence", {})
+        if evidence.get("source_sha256") == row.sha256 and row.sha256:
+            incoming["source_evidence"] = evidence
+            incoming["publication_date"] = old.get("publication_date") or incoming.get("publication_date")
+        row.metadata_json = json.dumps(incoming, ensure_ascii=False)
     return row
 
 

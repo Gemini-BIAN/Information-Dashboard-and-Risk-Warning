@@ -1,0 +1,114 @@
+{
+  "files": [
+    {
+      "name": "EU_Regulation_Master_Catalog.xlsx",
+      "actual_name": "EU_Regulation_Master_Catalog.xlsx",
+      "bytes": 23800,
+      "sha256": "bf937b81e3bbaafa6f4837aea47dd48e7fc4793d6fb2f80fdbec560b1ffd85b4"
+    },
+    {
+      "name": "EU_Regulation_Source_Audit.xlsx",
+      "actual_name": "EU_Regulation_Source_Audit.xlsx",
+      "bytes": 9024,
+      "sha256": "458ab9d3ebb46ee2109b61bdc0f3adb1220dd7a45c695844d405d26905c746f1"
+    },
+    {
+      "name": "EU_Regulation_RAG_Schema.md",
+      "actual_name": "EU_Regulation_RAG_Schema.md",
+      "bytes": 6158,
+      "sha256": "62ead7e7ee798ce3c4dba26aa2c72a4d3c5bf4999c9ce998d8e9974e459a1ef9"
+    },
+    {
+      "name": "EU_Regulation_Research_Report.md",
+      "actual_name": "EU_Regulation_Research_Report.md",
+      "bytes": 7854,
+      "sha256": "2735c722cd7526dcd3a1e4838632c7d4c89db902bf44ece9db612273565b53a9"
+    },
+    {
+      "name": "EU_Regulation_Download_Manifest.csv",
+      "actual_name": "EU_Regulation_Download_Manifest.csv",
+      "bytes": 7361,
+      "sha256": "139ed7c8c2da22ebacdf035d32237a83ab1b08081c07c6aecde1e513f9c3ace6"
+    }
+  ],
+  "headers": {
+    "catalog": [
+      "优先级",
+      "主题",
+      "法规/规则编号",
+      "文件类型",
+      "官方标题（EN）",
+      "CELEX",
+      "官方 ELI URL",
+      "正式文本/官方入口",
+      "法律效力类型",
+      "适用范围摘要",
+      "供应链相关性（中文）",
+      "生效/适用日期与法律状态",
+      "原始/整合/修订关系",
+      "核实级别",
+      "核实证据/备注",
+      "下载状态",
+      "本地文件路径",
+      "SHA256",
+      "最后核实日期"
+    ],
+    "manifest": [
+      "act_number",
+      "priority",
+      "celex",
+      "document_type",
+      "language",
+      "official_url",
+      "original_pdf_url",
+      "consolidated_url",
+      "local_path",
+      "download_status",
+      "download_time_utc",
+      "sha256",
+      "legal_version_note",
+      "blocker_or_next_step"
+    ],
+    "source_audit": [
+      "来源/渠道",
+      "机构",
+      "类型",
+      "URL / 接口",
+      "可获取内容",
+      "格式",
+      "费用/许可",
+      "访问/验证结果",
+      "失败原因/限制",
+      "推荐接入方式",
+      "法律效力分层处理",
+      "核实日期"
+    ]
+  },
+  "actual_catalog_rows": 57,
+  "actual_manifest_rows": 18,
+  "mapping": {
+    "act_number": "regulation_number",
+    "priority": "priority",
+    "celex": "celex",
+    "language": "language",
+    "original_pdf_url": "download_url, format=pdf, version_kind=official",
+    "official_url": "official_url",
+    "master.官方标题（EN）": "title",
+    "master.主题": "topic",
+    "master.官方 ELI URL": "eli",
+    "download_status/核实级别/法律状态": "unchanged research_metadata only; not download/verification status",
+    "consolidated_url": "candidate dated consolidated document; separate identity, not latest/current assertion"
+  },
+  "preservation": "Original attachments byte-for-byte local in ignored data/regulatory/research; original research claims do not promote legal/download state",
+  "master_priority_counts": {
+    "P0": 18,
+    "P1": 31,
+    "P2": 8
+  },
+  "master_page_reviewed": 9,
+  "master_candidate": 48,
+  "manifest_exclusions": [
+    "IMDG: no CELEX / separate paid-permission source",
+    "ADR2025: no CELEX / separately licensed international collection"
+  ]
+}
