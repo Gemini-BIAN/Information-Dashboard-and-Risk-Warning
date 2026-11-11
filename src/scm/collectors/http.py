@@ -14,7 +14,10 @@ class AccessBlocked(RuntimeError):
 class SafeFetcher:
     """Single-host, rate-limited requests, bounded redirects, robots-first; no bypasses."""
 
-    def __init__(self, client=None, interval=1.0, retries=2):
+    def __init__(self, client=None, interval=1.0, retries=2, max_bytes=4_000_000):
+        if not 1024 <= max_bytes <= 32_000_000:
+            raise ValueError("Response size limit must be between 1KB and 32MB")
+        self.max_bytes = max_bytes
         self.verification_type = "INJECTED_TEST_CLIENT" if client is not None else "LIVE_HTTP"
         self.client = client or httpx.Client(
             timeout=httpx.Timeout(20, connect=10), headers={"User-Agent": USER_AGENT}, follow_redirects=False
@@ -54,8 +57,10 @@ class SafeFetcher:
                         body = bytearray()
                         for chunk in raw.iter_bytes():
                             body.extend(chunk)
-                            if len(body) > 4_000_000:
-                                raise AccessBlocked("Response exceeds 4MB limit")
+                            if len(body) > self.max_bytes:
+                                raise AccessBlocked(
+                                    f"Response exceeds {self.max_bytes / 1_000_000:g}MB limit"
+                                )
                         # iter_bytes() already decompresses. Forwarding Content-Encoding
                         # would ask httpx to decode the same body a second time.
                         headers = httpx.Headers(raw.headers)

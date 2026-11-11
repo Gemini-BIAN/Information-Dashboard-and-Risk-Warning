@@ -1,3 +1,9 @@
+## 2026-11-11 Module02真实法规恢复验收（最新）
+
+完整pytest：229 passed in15.98s，0失败/跳过，含Module01原测试；JUnit runtime/regulatory/live/test-results.xml。ruff check src tests scripts通过。实际3份官方PDF/SHA/标题身份通过，3份结构解析needs_review（复杂布局/附件未声称全语义准确）。首份电池原文Article7/AnnexI的中文检索引用重新打开PDF逐段核对；Chromium155六组实际检查PASS、无pageerror；未覆盖/失败版本正确拒绝结论。附件57/18映射、安全重导入/重跑通过。真实PDF与Mock边界测试分开计数。Windows/LLM NOT TESTED；候选整合版HTML BLOCKED。详见docs/REGULATORY_RAG_ACCEPTANCE.md及机器JSON，旧缺输入结果不再代表当前状态。
+
+---
+
 # ESCIM 测试报告：Issue #2 真实采集验收
 
 验证：2026-11-06（Asia/Shanghai），新发布环境，Linux/Python3.12.14。Mock/离线Fixture测试与真实HTTP分开计数。

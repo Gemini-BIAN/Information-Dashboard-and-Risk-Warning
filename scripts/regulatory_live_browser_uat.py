@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -80,7 +81,7 @@ def main():
                 "carbon footprint declaration shall be drawn up"
             )
             expect(page.get_by_role("link", name="打开引用原文页", exact=True).first).to_have_attribute(
-                "href", __import__("re").compile(r"^https://eur-lex.europa.eu/.*#page=31$")
+                "href", re.compile(r"^https://eur-lex.europa.eu/.*#page=31$")
             )
             page.screenshot(path=str(args.output / "article7-query.png"), full_page=True)
             passed("Chinese Article7 query gives actual English clause and official PDF page31 citation")
@@ -89,7 +90,7 @@ def main():
             expect(page.get_by_test_id("stCode").first).to_contain_text("RESTRICTION ON SUBSTANCES")
             expect(page.get_by_test_id("stCode").first).to_contain_text("Mercury")
             expect(page.get_by_role("link", name="打开引用原文页", exact=True).first).to_have_attribute(
-                "href", __import__("re").compile("#page=84$")
+                "href", re.compile("#page=84$")
             )
             page.screenshot(path=str(args.output / "annex1-query.png"), full_page=True)
             passed("AnnexI actual restriction text/correct PDF page84; table flagged review")
@@ -99,7 +100,9 @@ def main():
             page.get_by_role(
                 "option", name="Regulation (EU) 2023/1542 | consolidated | 2026-08-13 | pdf", exact=True
             ).click()
-            expect(page.get_by_text("下载：not_downloaded", exact=False)).to_be_visible()
+            expect(
+                page.get_by_text(re.compile(r"下载：(not_downloaded|failed|blocked)"), exact=False)
+            ).to_be_visible()
             page.get_by_role("textbox", name="中文问题", exact=True).fill("Article 7 碳足迹")
             page.get_by_role("button", name="检索原文证据", exact=True).click()
             expect(page.get_by_text("证据不足：知识库未覆盖", exact=False)).to_be_visible()

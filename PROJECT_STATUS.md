@@ -1,3 +1,9 @@
+## 2026-11-11 Module02恢复 — 首份真实闭环PASS / 扩展PARTIAL
+
+附件和环境已恢复，基于bf705f4继续既有分支/PR7，首检查点b3cc469已推送。五输入可读：57目录/18P0；真实3份英文原始OJ PDF（电池/REACH/CLP），电池Article7第31–33页、AnnexI第84页完成真实下载/结构/索引/中文检索/引用/浏览器6检查。229 pytest、ruff通过；候选整合版HTML被拒绝。法律状态仍pending，不替代现行法律审查。完整SHA与证据见docs/REGULATORY_RAG_ACCEPTANCE.md。Module01代码/UI/源配置不改；共享HTTP新增可选32MB上界、默认4MB保持。PR7仍Draft、base依赖PR1，不合并main；此前“输入缺失/下载0”为历史，已被本记录取代。完成本轮后停止等待审核。
+
+---
+
 # ESCIM 项目状态
 
 2026-11-06（Asia/Shanghai）。唯一仓库Gemini-BIAN/Information-Dashboard-and-Risk-Warning，分支feature/supply-chain-risk-mvp，PR #1保持Draft，不合并main。

@@ -1,0 +1,14 @@
+{
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32023R1542",
+  "stage": "stored",
+  "status": "PASS",
+  "http_status": 200,
+  "permission_evidence": "docs/regulatory/OFFICIAL_SOURCE_AUDIT.json",
+  "sha256": "e9745513fabe68c8c15cc9f487c4d13da81d40394712f3e0b4c2588b3238d09a",
+  "byte_size": 1341523,
+  "verification_type": "LIVE_HTTP",
+  "robots": {
+    "https://eur-lex.europa.eu": "200 parsed"
+  },
+  "document_id": "30fcab0af43d1b9657136ec582ad7b71693c6248df52b02a1e3139b8e03a21bf"
+}

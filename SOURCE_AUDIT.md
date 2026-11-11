@@ -1,3 +1,9 @@
+## 2026-11-11 Module02 法规来源现场复核（与历史新闻源审计分开）
+
+EUR-Lex robots.txt和Legal notice均HTTP200，法律文件可按声明复用，编辑/整合文本CC BY4.0；仅该主机获准法规自动下载，30日复核。实际PDF下载3份（32023R1542、32006R1907、32008R1272），SHA/字节/正式标题身份核对通过。电池候选整合版HTTP200但text/html被拒绝，不保存/不索引。Cellar公共接口说明可读但未实际下载，不算接入成功；ADR/IMDG未获当前适配/许可，隔离。Work来源表11行与原研究9条核实/48候选原样保留，未自动升级。当前结果取代此前EUR-Lex robots202的历史状态，不推广到其他站点。完整时间/HTTP阶段/许可及SHA见docs/regulatory/OFFICIAL_SOURCE_AUDIT.json、LIVE_EVIDENCE.json及docs/REGULATORY_RAG_ACCEPTANCE.md。
+
+---
+
 # 真实数据源验证报告
 
 报告生成时间（UTC）：2026-11-06T05:39:40.427823+00:00

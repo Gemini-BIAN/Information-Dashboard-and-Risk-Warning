@@ -1,11 +1,12 @@
 import json
 import re
 from collections import Counter
+from datetime import date
 from xml.etree import ElementTree
 
 from bs4 import BeautifulSoup
 from pypdf import PdfReader
-from sqlalchemy import delete
+from sqlalchemy import delete, select
 
 from scm.regulatory.models import RegulationChunk
 from scm.regulatory.storage import checked_path
@@ -138,18 +139,68 @@ def parse_document(session, row, root):
     try:
         path = checked_path(row, root)
         pages = pages_from_file(path, meta["format"])
+        if meta["format"] == "pdf" and row.verification_type == "LIVE_HTTP":
+            first = " ".join(text for _, text, _ in pages[:3])
+            compact = re.sub(r"\s+", "", first)
+            year = meta["celex"][1:5]
+            number = str(int(meta["celex"][6:10]))
+            if not any(
+                value in compact for value in [year + "/" + number, number + "/" + year, meta["celex"]]
+            ):
+                raise ValueError(
+                    "Document legal identity not found in first three pages; do not index wrong PDF"
+                )
+            evidence = dict(meta.get("source_evidence", {}))
+            evidence.update(
+                source_sha256=row.sha256,
+                physical_pages=len(pages),
+                identity_checked=True,
+                identity_locator="First three pages, normalized whitespace; CELEX/regulation number",
+            )
+            if meta["version_kind"] == "official":
+                for line in pages[0][1].splitlines():
+                    if "Official Journal of the European Union" not in line:
+                        continue
+                    match = re.search(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b", line)
+                    if match:
+                        day, month, year = map(int, match.groups())
+                        meta["publication_date"] = date(year, month, day).isoformat()
+                        evidence["publication_date"] = meta["publication_date"]
+                        evidence["publication_locator"] = (
+                            "Physical page1 OJ header/footer, not application date"
+                        )
+                        break
+            meta["source_evidence"] = evidence
+            row.metadata_json = json.dumps(meta, ensure_ascii=False)
         chunks = extract_chunks(pages)
         if not chunks:
             raise ValueError("No extractable text; OCR/manual handling required")
-        session.execute(delete(RegulationChunk).where(RegulationChunk.document_id == row.id))
-        for ordinal, chunk in enumerate(chunks):
-            session.add(RegulationChunk(document_id=row.id, ordinal=ordinal, **chunk))
+        existing = list(
+            session.scalars(
+                select(RegulationChunk)
+                .where(RegulationChunk.document_id == row.id)
+                .order_by(RegulationChunk.ordinal)
+            )
+        )
+        unchanged = len(existing) == len(chunks) and all(
+            all(getattr(old, key) == value for key, value in new.items())
+            for old, new in zip(existing, chunks)
+        )
+        if not unchanged:
+            session.execute(delete(RegulationChunk).where(RegulationChunk.document_id == row.id))
+            for ordinal, chunk in enumerate(chunks):
+                session.add(RegulationChunk(document_id=row.id, ordinal=ordinal, **chunk))
         flags = sorted({flag for c in chunks for flag in json.loads(c["quality_json"])})
         row.parse_status = "needs_review" if flags else "parsed"
         row.quality_json = json.dumps(flags)
         row.error = None
         session.flush()
-        return {"chunks": len(chunks), "parse_status": row.parse_status, "flags": flags}
+        return {
+            "chunks": len(chunks),
+            "parse_status": row.parse_status,
+            "flags": flags,
+            "index_unchanged": unchanged,
+        }
     except Exception as exc:
         row.parse_status = "failed"
         row.error = type(exc).__name__ + ": " + str(exc)[:240]

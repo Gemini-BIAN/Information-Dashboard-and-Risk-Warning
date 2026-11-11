@@ -134,3 +134,74 @@ def test_chunk_partition_keeps_every_extracted_character_and_paragraphs():
     chunks = extract_chunks([(1, text, [])], max_chars=900)
     assert "".join(c["text"] for c in chunks) == text
     assert all(c["unit_label"] == "7" for c in chunks)
+
+
+def test_regulatory_size_override_is_bounded_and_legacy_default_unchanged():
+    import httpx
+
+    from scm.collectors.http import AccessBlocked, SafeFetcher
+
+    body = b"x" * 4_000_100
+
+    def handler(request):
+        return (
+            httpx.Response(200, text="User-agent: *\nAllow: /")
+            if request.url.path == "/robots.txt"
+            else httpx.Response(200, content=body)
+        )
+
+    def client():
+        return httpx.Client(transport=httpx.MockTransport(handler))
+
+    with pytest.raises(AccessBlocked, match="4MB"):
+        f = SafeFetcher(client(), interval=0, retries=0)
+        try:
+            f.get("https://eur-lex.europa.eu/file.pdf")
+        finally:
+            f.close()
+    f = SafeFetcher(client(), interval=0, retries=0, max_bytes=32_000_000)
+    try:
+        assert len(f.get("https://eur-lex.europa.eu/file.pdf").content) == len(body)
+    finally:
+        f.close()
+    with pytest.raises(ValueError):
+        SafeFetcher(max_bytes=32_000_001)
+
+
+def test_wrong_or_mock_pdf_cannot_pass_actual_legal_identity_check():
+    from test_regulatory_foundations import entry, synthetic_pdf
+
+    from scm.regulatory.storage import validate_pdf_identity
+
+    with pytest.raises(ValueError, match="formal legal heading"):
+        validate_pdf_identity(synthetic_pdf(), entry(format="pdf"))
+
+
+def test_reparse_keeps_citation_ids_and_reimport_keeps_byte_provenance(factory, tmp_path):
+    import json
+
+    from sqlalchemy import select
+    from test_regulatory_foundations import entry, mock_fetcher, permissions
+
+    from scm.regulatory.models import RegulationChunk, RegulationDocument
+    from scm.regulatory.parsing import parse_document
+    from scm.regulatory.storage import download, register
+
+    f, _ = mock_fetcher()
+    e = entry()
+    with factory.begin() as s:
+        download(s, e, tmp_path, permissions(), f)
+        row = s.get(RegulationDocument, e.identity())
+        parse_document(s, row, tmp_path)
+        ids = list(s.scalars(select(RegulationChunk.id).where(RegulationChunk.document_id == row.id)))
+        assert parse_document(s, row, tmp_path)["index_unchanged"]
+        assert list(s.scalars(select(RegulationChunk.id).where(RegulationChunk.document_id == row.id))) == ids
+        metadata = json.loads(row.metadata_json)
+        metadata["source_evidence"] = {"source_sha256": row.sha256, "identity_checked": True}
+        metadata["publication_date"] = "2000-01-01"
+        row.metadata_json = json.dumps(metadata)
+        register(s, e)
+        assert json.loads(row.metadata_json)["source_evidence"]["identity_checked"]
+        assert json.loads(row.metadata_json)["publication_date"] == "2000-01-01"
+        assert json.loads(row.metadata_json)["legal_status"] == "unknown"
+    f.close()

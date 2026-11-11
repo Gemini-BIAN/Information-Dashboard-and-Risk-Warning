@@ -1,0 +1,84 @@
+[
+  {
+    "url": "https://eur-lex.europa.eu/eli/reg/2023/1542/2026-08-13/eng/pdf",
+    "stage": "byte_validation",
+    "status": "BLOCKED",
+    "http_status": 200,
+    "permission_evidence": "docs/regulatory/OFFICIAL_SOURCE_AUDIT.json",
+    "error": "ValueError: Unexpected Content-Type for pdf: text/html",
+    "robots": {
+      "https://eur-lex.europa.eu": "200 parsed"
+    },
+    "celex": "02023R1542-20260813",
+    "document_id": "b616c665f5c8c264005d8c0137cae1502f557385b692abff22b1a02ecae0096f",
+    "trace": [
+      {
+        "url": "https://eur-lex.europa.eu/robots.txt",
+        "status": 200,
+        "content_type": null
+      },
+      {
+        "url": "https://eur-lex.europa.eu/eli/reg/2023/1542/2026-08-13/eng/pdf",
+        "status": 200,
+        "content_type": "text/html; charset=UTF-8"
+      }
+    ],
+    "checked_at": "2026-11-11T01:24:42.151060+00:00"
+  },
+  {
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32006R1907",
+    "stage": "stored",
+    "status": "PASS",
+    "http_status": 200,
+    "permission_evidence": "docs/regulatory/OFFICIAL_SOURCE_AUDIT.json",
+    "sha256": "005c7db3fc75ac2062264c0e3ae58715d6365d52dcbbeb60a81c10ab98e5e766",
+    "byte_size": 1864477,
+    "verification_type": "LIVE_HTTP",
+    "robots": {
+      "https://eur-lex.europa.eu": "200 parsed"
+    },
+    "celex": "32006R1907",
+    "document_id": "dec0e82d297b4d3eeb81500ce37b80f17ccc02e51e8c3d291e3ad9f78016f35f",
+    "trace": [
+      {
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32006R1907",
+        "status": 200,
+        "content_type": "application/pdf"
+      }
+    ],
+    "checked_at": "2026-11-11T01:24:51.466102+00:00",
+    "pages": 849,
+    "first_page_excerpt": "30.12.2006 EN Official Journal of the European Union L 396/1 \n \nI \n(Acts whose publication is obligatory) \nREGULATION (EC) No 1907/2006 OF THE EUROPEAN PARLIAMENT \nAND OF THE COUNCIL \nof 18 December 2006 \nconcerning the Registration, Evaluation, Authorisation and \nRestriction of Chemicals (REACH), establishing a European Chemicals Agency, \namending Directive 1999/45/EC and repealing Council Regulation (EEC) No 793/93 \nand Commission Regulation (E",
+    "identity_matches": true,
+    "parse": {
+      "chunks": 564,
+      "parse_status": "needs_review",
+      "flags": [
+        "ANNEX_REQUIRES_REVIEW",
+        "PDF_LAYOUT_REQUIRES_REVIEW",
+        "PREAMBLE_OR_UNSTRUCTURED_TEXT"
+      ]
+    }
+  },
+  {
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32008R1272",
+    "stage": "robots_or_download",
+    "status": "BLOCKED",
+    "http_status": null,
+    "permission_evidence": "docs/regulatory/OFFICIAL_SOURCE_AUDIT.json",
+    "error": "AccessBlocked: Response exceeds 4MB limit",
+    "robots": {
+      "https://eur-lex.europa.eu": "200 parsed"
+    },
+    "celex": "32008R1272",
+    "document_id": "b5bf44de6f55403c98bfbc6be01efdf84f51a7398f83675eab6f8e4f8b44fd5c",
+    "trace": [
+      {
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32008R1272",
+        "status": 200,
+        "content_type": "application/pdf"
+      }
+    ],
+    "checked_at": "2026-11-11T01:25:01.324457+00:00"
+  }
+]

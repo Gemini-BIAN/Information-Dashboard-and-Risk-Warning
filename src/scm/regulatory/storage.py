@@ -54,6 +54,41 @@ def validate_bytes(content, content_type, format):
     return hashlib.sha256(content).hexdigest()
 
 
+def validate_pdf_identity(content, entry):
+    """Do not accept an official-host error/other-act PDF as the requested legal text."""
+    reader = PdfReader(io.BytesIO(content), strict=True)
+    text = " ".join((p.extract_text() or "") for p in reader.pages[:3])
+    if entry.version_kind == "consolidated":
+        if entry.celex.split("-")[0] not in text or not any(
+            value in text
+            for value in [entry.version_date.isoformat(), entry.version_date.strftime("%d.%m.%Y")]
+        ):
+            raise ValueError("Consolidated PDF identity/date mismatch")
+    else:
+        year = entry.celex[1:5]
+        number = str(int(entry.celex[6:10]))
+        kind = {"R": "REGULATION", "L": "DIRECTIVE", "D": "DECISION"}.get(entry.celex[5])
+        if not kind:
+            raise ValueError("Unsupported legal identity type needs review")
+        pattern = (
+            kind
+            + r"\s+(?:\([A-Z]+\)\s*)?(?:No\s*)?(?:"
+            + year
+            + "/"
+            + number
+            + "|"
+            + number
+            + "/"
+            + year
+            + r")\b"
+        )
+        if not re.search(pattern, text):
+            raise ValueError(
+                "Requested formal legal heading not present; do not store wrong-act/error PDF as law"
+            )
+    return True
+
+
 def permission_gate(entry, permissions, now):
     host = urlsplit(entry.download_url).hostname
     policy = next((p for p in permissions.get("sources", []) if p.get("host") == host), None)
@@ -110,7 +145,7 @@ def download(session, entry, root, permissions, fetcher=None):
     row = register(session, entry)
     audit = {"url": entry.download_url, "stage": "permission", "status": "BLOCKED", "http_status": None}
     owned = fetcher is None
-    fetcher = fetcher or SafeFetcher(retries=1)
+    fetcher = fetcher or SafeFetcher(retries=1, max_bytes=32_000_000)
     try:
         policy = permission_gate(entry, permissions, utcnow())
         audit["permission_evidence"] = policy["evidence_ref"]
@@ -132,6 +167,9 @@ def download(session, entry, root, permissions, fetcher=None):
         if declared and declared.isdigit() and int(declared) != len(content):
             raise ValueError("Content-Length differs from decoded bytes")
         sha = validate_bytes(content, response.headers.get("content-type", ""), entry.format)
+        if entry.format == "pdf" and fetcher.verification_type == "LIVE_HTTP":
+            audit["stage"] = "legal_identity_validation"
+            validate_pdf_identity(content, entry)
         root = Path(root).resolve()
         relative = Path("objects") / sha[:2] / (sha + "." + entry.format)
         target = root / relative
