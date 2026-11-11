@@ -12,3 +12,6 @@ runtime/
 *.db
 *.db-shm
 *.db-wal
+
+# Preserve paused regulatory local files without including them in this branch.
+data/regulatory/

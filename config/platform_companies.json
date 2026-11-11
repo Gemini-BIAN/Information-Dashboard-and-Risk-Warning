@@ -1,0 +1,27 @@
+{
+  "companies": [
+    {
+      "id": "catl",
+      "name": "CATL",
+      "aliases": [
+        "CATL",
+        "宁德时代"
+      ]
+    },
+    {
+      "id": "lg-energy",
+      "name": "LG Energy Solution",
+      "aliases": [
+        "LGES",
+        "LG Energy Solution"
+      ]
+    },
+    {
+      "id": "demo-energy",
+      "name": "DEMO Energy (fictional)",
+      "aliases": [
+        "DEMO Energy"
+      ]
+    }
+  ]
+}
