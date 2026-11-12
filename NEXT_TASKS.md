@@ -1,3 +1,7 @@
+## 2026-11-12 港口详情页（最新）
+
+请审核PR8港口详情验收和截图；Windows拉取后新进程复验地图→摘要→四标签→返回，以及中文目录/配置保存。真实运营来源许可/覆盖仍按既有待接入清单处理，不自动恢复法规PR7或购买API。
+
 ## 2026-11-11 PR8 Windows编码修复（最新）
 
 用户在Windows拉取PR8最新提交后停止旧Streamlit进程再启动，复验12港口、Sources、DEMO/日报、CSV/Excel及中文目录。完整步骤见docs/WINDOWS_ENCODING_ACCEPTANCE.md；法规任务继续暂停。

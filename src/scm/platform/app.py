@@ -17,7 +17,7 @@ from scm.platform.demo import seed
 from scm.platform.models import Alert, Audit, Evidence, Item, PlatformSource, Report
 from scm.platform.service import generate_report, register, review, rows, set_alert, specs
 from scm.settings import ROOT
-from scm.ui.port_monitor import render as render_ports
+from scm.ui.port_details import render as render_ports
 
 st.set_page_config(page_title="ESCIM 海外供应链情报平台", layout="wide")
 st.markdown(
@@ -65,6 +65,7 @@ page = st.sidebar.radio(
         "Sources 数据源",
     ],
     key="platform_page",
+    index=1 if st.query_params.get("port_view") in ["map", "detail"] else 0,
 )
 if mode == "demo" and st.sidebar.button("加载 DEMO 合成数据"):
     seed(factory)
@@ -237,13 +238,8 @@ def list_items(module=None):
 
 
 if page == "01 港口与物流":
-    if mode == "manual":
-        st.info("人工港口情报不自动改变12港口已核实运营状态。")
-    else:
-        with factory() as session:
-            render_ports(session, factory, mode)
-    st.subheader("统一港口情报与审核")
-    list_items("ports")
+    with factory() as session:
+        render_ports(session, factory, mode)
 elif page in ["统一情报中心", "02 海外产能与竞争", "03 物流市场与成本"]:
     st.subheader(page)
     if page.startswith("02"):

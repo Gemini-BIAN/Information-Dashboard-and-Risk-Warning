@@ -196,3 +196,8 @@ python -m scm.platform.cli report --mode live --kind daily --output runtime/plat
 ```
 
 独立库runtime/platform/platform.db；Live/DEMO/Manual严格分开，CSV/XLSX只进入Manual。企业及来源配置分别为config/platform_companies.json和config/platform_sources.json，未知/过期许可拒绝自动请求。当前真实采集4篇背景信息，不是当前运营/企业投产/实时价格；12港当前状态未知。无LLM、无付费API、无公网部署。**FRAMEWORK PASS / MOCK PASS / LIVE PARTIAL / WINDOWS NOT TESTED**。251pytest、16组桌面/390px浏览器检查通过；[验收报告](docs/PLATFORM_ACCEPTANCE.md)、[Windows/PyCharm命令](docs/PLATFORM_WINDOWS.md)、[来源审计/待接入](docs/platform/SOURCE_AUDIT.md)。
+
+
+## 港口二级详情页
+
+统一平台的01港口页支持地图摘要→查看详情→概览/公告时间线/来源证据/业务影响，返回保留港口，支持深链接。沿用原风险服务，历史/背景资料不证明当前运营。脱敏配置按Live/DEMO/Manual隔离，缺配置业务影响未知。操作与截图见[PORT_DETAIL_ACCEPTANCE](docs/PORT_DETAIL_ACCEPTANCE.md)。旧六工作台入口和Windows UTF-8修复保留。

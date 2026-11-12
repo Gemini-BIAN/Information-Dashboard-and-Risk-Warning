@@ -1,0 +1,82 @@
+{
+  "verified_at": "2026-11-12T02:31:38.753210+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "desktop: map click opens concise Hamburg summary,12 markers, no embedded full tabs",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: actual stored Hamburg evidence SHA/link/review/times shown, background not current operations",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: current-event filter excludes historical/background actual records and shows empty state",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: unconfigured business impact unknown; return preserves selected Hamburg",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: all12 registry ports complete summary/detail/back round trip",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: reloadable detail URL and return map route",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: Demo profile saved/audited; Live empty profile and Manual empty evidence isolated",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: map click opens concise Hamburg summary,12 markers, no embedded full tabs",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: actual stored Hamburg evidence SHA/link/review/times shown, background not current operations",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: current-event filter excludes historical/background actual records and shows empty state",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: unconfigured business impact unknown; return preserves selected Hamburg",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: all12 registry ports complete summary/detail/back round trip",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: reloadable detail URL and return map route",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: Demo profile saved/audited; Live empty profile and Manual empty evidence isolated",
+      "status": "PASS"
+    }
+  ],
+  "page_errors": [],
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "horizontal_overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "horizontal_overflow": false
+    }
+  ],
+  "actual_evidence": {
+    "id": "platform-6",
+    "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+    "sha256": "7db6ae110ee88f387a24d457c9c273696bf9f88acc5cfb78217ca787895be1d5",
+    "body_sha256": "6a83e75a2541cce18ecc818ce46d4c544fdb23634528236344515a32b04b45bb"
+  },
+  "browser": "155.0.8059.79"
+}

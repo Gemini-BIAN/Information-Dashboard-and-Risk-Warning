@@ -1,3 +1,7 @@
+## 2026-11-12 港口详情页（最新）
+
+PR8港口二级详情完成：地图摘要→四标签详情→返回/深链，12地点入口；复用原状态/证据/Alert与Audit配置，不改变规则或复制库。258pytest、14桌面/390px检查通过；真实汉堡3背景证据仅展示，当前状态未知。详见docs/PORT_DETAIL_ACCEPTANCE.md；法规分支8a31da4不变，不合并。
+
 ## 2026-11-11 PR8 Windows编码修复（最新）
 
 PR8 Windows编码修复：14文件35处明确UTF-8，新增3项GBK模拟/结构守卫。完整254pytest和ruff通过。M1仅registry两处文件编码修改，业务规则不变；法规分支8a31da4不变。原生Windows需用户拉取重启后复验。详见docs/WINDOWS_ENCODING_ACCEPTANCE.md。

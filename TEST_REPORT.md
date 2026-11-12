@@ -1,3 +1,7 @@
+## 2026-11-12 港口详情页（最新）
+
+完整258pytest通过20.47s，ruff/diff检查通过。新增4项详情回归：12入口、返回状态、历史/URL更改版本追溯、SHA与配置空间隔离。Chromium155桌面/390px共14检查、0页面错误/无页面横溢。真实保存证据platform-6 SHA/URL实际比对；Windows原生仍NOT TESTED。详见docs/PORT_DETAIL_ACCEPTANCE.md。
+
 ## 2026-11-11 PR8 Windows编码修复（最新）
 
 PR8编码回归：254 passed in16.56s，0失败/跳过；ruff和diff check通过。GBK负对照复现真实ports.json错误，修复后港口/配置、DEMO、中文HTML/JSON/CSV/MD往返通过；新增AST防遗漏。Linux模拟不是原生Windows PASS。详见docs/WINDOWS_ENCODING_ACCEPTANCE.md。
