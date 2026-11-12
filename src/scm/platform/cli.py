@@ -30,6 +30,20 @@ def main():
     report.add_argument("--mode", choices=["live", "demo", "manual"], required=True)
     report.add_argument("--kind", choices=["daily", "weekly"], default="daily")
     report.add_argument("--output", type=Path, required=True)
+    decision = sub.add_parser("decisions")
+    decision.add_argument("--mode", choices=["live", "demo", "manual"], required=True)
+    business = sub.add_parser("import-links")
+    business.add_argument("file", type=Path)
+    business.add_argument("--mode", choices=["live", "demo", "manual"], required=True)
+    business.add_argument("--actor", required=True)
+    business.add_argument("--reason", required=True)
+    support = sub.add_parser("decision-report")
+    support.add_argument("--mode", choices=["live", "demo", "manual"], required=True)
+    support.add_argument("--kind", choices=["daily", "weekly"], default="weekly")
+    support.add_argument("--output", type=Path, required=True)
+    update = sub.add_parser("update")
+    update.add_argument("--output-dir", type=Path, default=Path("runtime/platform/updates"))
+    sub.add_parser("source-health")
     args = parser.parse_args()
     factory = session_factory(args.database_url)
     with factory.begin() as session:
@@ -60,6 +74,34 @@ def main():
                 )
             ]
         result = collect(factory, selected)
+    elif args.command == "decisions":
+        from scm.platform.decision import refresh
+
+        with factory.begin() as session:
+            result = refresh(session, args.mode)
+    elif args.command == "import-links":
+        from scm.platform.decision_io import import_links
+
+        result = import_links(
+            factory, args.file.read_bytes(), args.file.name, args.mode, args.actor, args.reason
+        )
+    elif args.command == "decision-report":
+        from scm.platform.decision_io import decision_report
+
+        with factory.begin() as session:
+            saved = decision_report(session, args.mode, args.kind)
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(saved.html, encoding="utf-8")
+            result = {"report_id": saved.id, "output": str(args.output)}
+    elif args.command == "source-health":
+        from scm.platform.decision_io import source_health
+
+        with factory.begin() as session:
+            result = source_health(session)
+    elif args.command == "update":
+        from scm.platform.automation import update
+
+        result = update(factory, args.output_dir)
     else:
         with factory.begin() as session:
             saved = generate_report(session, args.mode, args.kind)
@@ -67,6 +109,10 @@ def main():
             args.output.write_text(saved.html, encoding="utf-8")
             result = {"report_id": saved.id, "output": str(args.output), "mode": args.mode}
     print(json.dumps(result, ensure_ascii=False, indent=2))
+    if args.command == "update" and any(
+        r.get("status") in ["failed", "unavailable"] for r in result["collection"]
+    ):
+        raise SystemExit(2)
 
 
 if __name__ == "__main__":

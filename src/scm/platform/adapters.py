@@ -56,6 +56,10 @@ def _record(spec, title, body, url, published, verification, external_id=None):
 
 def fetch_records(spec, fetcher):
     adapter = spec["adapter"]
+    if adapter == "ec_fuel_xlsx":
+        from scm.platform.fuel import fetch
+
+        return fetch(spec, fetcher)
     if adapter in ["html_list", "rss", "atom"]:
         configured = {**spec, "method": "rss" if adapter in ["rss", "atom"] else "html"}
         articles, details = collect_one(configured, fetcher)

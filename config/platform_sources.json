@@ -107,5 +107,31 @@
       "permission": "unknown"
     },
     "blocker": "Permission/API contract not established; manual import available"
+  },
+  {
+    "id": "ec-weekly-fuel",
+    "name": "European Commission Weekly Oil Bulletin",
+    "url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
+    "module": "market",
+    "adapter": "ec_fuel_xlsx",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 10080,
+    "coverage": [
+      "DE",
+      "FR",
+      "BE",
+      "NL"
+    ],
+    "confidence": "official_public_statistics",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "CC BY4.0 EU-owned public data",
+      "verified_at": "2026-11-12T05:54:16.122819+00:00",
+      "notice_url": "https://commission.europa.eu/legal-notice_en",
+      "evidence_ref": "docs/phase3/SOURCE_REVIEW.json",
+      "note": "Cell extraction and EUR/1000l→EUR/l normalization disclosed; no contractual-price claim"
+    }
   }
 ]

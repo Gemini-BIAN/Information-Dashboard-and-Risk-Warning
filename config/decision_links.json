@@ -1,0 +1,26 @@
+{
+  "live": [],
+  "manual": [],
+  "demo": [
+    {
+      "link_id": "DEMO-diesel",
+      "entity_type": "cost_category",
+      "entity_id": "diesel",
+      "role": "DEMO transport fuel",
+      "region": "DEMO EU",
+      "route": "DEMO Asia-Europe",
+      "transport": "DEMO road",
+      "cargo": "DEMO electrolyte"
+    },
+    {
+      "link_id": "DEMO-project",
+      "entity_type": "project",
+      "entity_id": "DEMO-EU-01",
+      "company": "DEMO Energy",
+      "role": "DEMO prospective customer",
+      "region": "DEMO EU",
+      "transport": "DEMO road",
+      "cargo": "DEMO electrolyte"
+    }
+  ]
+}

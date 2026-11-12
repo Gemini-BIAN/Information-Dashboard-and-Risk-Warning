@@ -105,7 +105,12 @@ def ingest(session, source_id, record, now=None):
         if urlsplit(record.url).hostname != urlsplit(source["url"]).hostname:
             raise ValueError("Live evidence must stay on the approved source host")
     raw = record.model_dump(mode="json")
-    comparable = {k: v for k, v in raw.items() if k != "fetched_at"}
+    comparable = {
+        k: v
+        for k, v in raw.items()
+        if k != "fetched_at"
+        and not (k in ["effective_at", "expires_at", "observed_at", "transport"] and v is None)
+    }
     sha = hashlib.sha256(json.dumps(comparable, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     item = session.scalar(
         select(Item).where(

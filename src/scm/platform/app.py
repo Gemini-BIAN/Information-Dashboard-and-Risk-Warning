@@ -17,6 +17,7 @@ from scm.platform.demo import seed
 from scm.platform.models import Alert, Audit, Evidence, Item, PlatformSource, Report
 from scm.platform.service import generate_report, register, review, rows, set_alert, specs
 from scm.settings import ROOT
+from scm.ui.decision import render as render_decisions
 from scm.ui.port_details import render as render_ports
 
 st.set_page_config(page_title="ESCIM 海外供应链情报平台", layout="wide")
@@ -160,6 +161,8 @@ def list_items(module=None):
             st.caption(
                 f"发布 {raw['published_at'] or '未知'} · 采集 {raw['fetched_at']} · 更新 {r['updated_at']} · 版本 {r['version']} · {raw['verification']}"
             )
+            if raw.get("observed_at"):
+                st.caption("观测日期：" + raw["observed_at"] + "（日精度，UTC午夜约定；非发布日期）")
             st.write("来源可信度：" + r["source_confidence"] + "；配置审查不等于事实人工确认。")
             st.code(raw["body"], language=None)
             st.caption("SHA256（标准化原文及业务字段，不含抓取时间）：" + r["sha256"])
@@ -257,7 +260,9 @@ elif page in ["统一情报中心", "02 海外产能与竞争", "03 物流市场
     if page.startswith("02"):
         st.info("计划、建设、试产、投产、延迟、取消分开；未核实状态为unknown。企业别名清单可配置。")
     if page.startswith("03"):
-        st.info("实时运价、AIS和等待时间数据暂不可用；支持公告和人工价格导入。")
+        st.info("实时运价、AIS和等待时间数据暂不可用；官方燃油周度观测与合同报价分开，不推断涨跌幅。")
+    if page == "统一情报中心":
+        render_decisions(factory, mode)
     list_items(None if page == "统一情报中心" else "capacity" if page.startswith("02") else "market")
 elif page == "日报与周报":
     st.subheader("日报与周报")
@@ -270,6 +275,9 @@ elif page == "日报与周报":
 
         with factory.begin() as session:
             generate_report(session, mode, kind, datetime.combine(day, time(), tzinfo=TIMEZONE))
+            from scm.platform.decision_io import decision_report
+
+            decision_report(session, mode, kind, datetime.combine(day, time(), tzinfo=TIMEZONE))
         st.success("报告已保存")
     with factory() as session:
         reports = list(
@@ -329,6 +337,11 @@ elif page == "预警收件箱":
         st.info("暂无本空间预警；不代表无风险。")
 else:
     st.subheader("Sources 数据源")
+    from scm.platform.decision_io import source_health
+
+    with factory.begin() as health_session:
+        st.dataframe(source_health(health_session), hide_index=True)
+    st.caption("成功率仅为本库Live实际HTTP尝试样本；未请求为未知，DEMO不计入。")
     st.caption(
         "仅显式批准自动访问和全文复用且30日内核实的来源可请求；失败不循环重试。配置频率用于到期提示，尚未常驻调度。"
     )

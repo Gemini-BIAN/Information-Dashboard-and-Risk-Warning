@@ -21,6 +21,9 @@ class Record(BaseModel):
     url: str
     published_at: datetime | None = None
     fetched_at: datetime
+    effective_at: datetime | None = None
+    expires_at: datetime | None = None
+    observed_at: datetime | None = None
     mode: Mode
     verification: Literal["LIVE_HTTP", "DEMO", "MANUAL"]
     data_status: Literal["verified", "candidate", "unavailable", "failed"] = "candidate"
@@ -44,9 +47,10 @@ class Record(BaseModel):
         "announcement"
     )
     route: str | None = None
+    transport: str | None = None
     evidence_quote: str | None = None
 
-    @field_validator("published_at", "fetched_at")
+    @field_validator("published_at", "fetched_at", "effective_at", "expires_at", "observed_at")
     @classmethod
     def timezone_required(cls, v):
         if v is not None and v.tzinfo is None:
@@ -104,6 +108,8 @@ class Record(BaseModel):
 
     @model_validator(mode="after")
     def provenance(self):
+        if self.effective_at and self.expires_at and self.expires_at <= self.effective_at:
+            raise ValueError("Invalid effective interval")
         if self.verification != {"live": "LIVE_HTTP", "demo": "DEMO", "manual": "MANUAL"}[self.mode]:
             raise ValueError("Mode/provenance mismatch; injected test clients cannot enter Live")
         if self.mode == "demo" and not (self.external_id.startswith("DEMO-") and "DEMO" in self.title):

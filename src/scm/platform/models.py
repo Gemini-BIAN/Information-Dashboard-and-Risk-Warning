@@ -83,3 +83,13 @@ class Report(Base):
     period_start: Mapped[str] = mapped_column(String)
     generated_at: Mapped[str] = mapped_column(String)
     html: Mapped[str] = mapped_column(Text)
+
+
+class DecisionCard(Base):
+    __tablename__ = "decision_cards"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    evidence_id: Mapped[int] = mapped_column(ForeignKey("platform_evidence.id"), unique=True)
+    mode: Mapped[str] = mapped_column(String)
+    payload_json: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[str] = mapped_column(String)
+    state: Mapped[str] = mapped_column(String, default="pending")
