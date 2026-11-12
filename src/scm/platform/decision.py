@@ -14,7 +14,7 @@ from scm.ports.engine import grounded_ports
 from scm.ports.registry import registry
 from scm.settings import ROOT, utcnow
 
-VERSION = "decision-2026-11-12.1"
+VERSION = "decision-2026-11-12.2"
 STATES = ["pending", "confirmed", "ignored", "in_progress", "resolved"]
 PATTERNS = [
     ("ports", "strike", r"\bstrike\b|罢工"),
@@ -158,6 +158,13 @@ def extract(raw, now=None):
             companies.append(c["name"])
     if raw["company"] != "unknown":
         companies.append(company_name(raw["company"]))
+    if raw["module"] == "capacity":
+        facility_context = bool(raw.get("project_id") or raw.get("factory") or companies) or (
+            bool(re.search(r"battery|batteries|electrolyte|电池|电解液", text, re.I))
+            and bool(re.search(r"factory|plant|manufactur|工厂|生产基地", text, re.I))
+        )
+        if not facility_context:
+            found = []  # Generic investment/policy prose is not an enterprise project.
     return {
         "types": found,
         "validity": validity,
@@ -181,7 +188,8 @@ def make_card(session, item, evidence, now=None):
     extraction = extract(raw, now)
     assessment = assess(Record.model_validate(raw), now)
     matches = []
-    for link in links(session, item.mode):
+    configured_links = links(session, item.mode)
+    for link in configured_links:
         match = (
             (link.entity_type == "port" and link.entity_id in extraction["ports"])
             or (link.entity_type == "company" and company_name(link.entity_id) in extraction["companies"])
@@ -208,6 +216,27 @@ def make_card(session, item, evidence, now=None):
             match = False
         if match:
             matches.append(link.model_dump())
+    # Reuse existing de-identified port profiles; explicit typed links take precedence.
+    from scm.ports.detail import profile
+
+    for port_id in extraction["ports"]:
+        if any(link.entity_type == "port" and link.entity_id == port_id for link in configured_links):
+            continue
+        value = profile(session, port_id, item.mode)
+        if value.usage.strip() or value.routes.strip():
+            matches.append(
+                {
+                    "entity_type": "port",
+                    "entity_id": port_id,
+                    "role": value.usage,
+                    "route": value.routes,
+                    "transport": value.transport,
+                    "cargo": value.cargo,
+                    "alternatives": value.alternatives,
+                    "origin": "USER_PROVIDED_EXISTING_PORT_PROFILE",
+                }
+            )
+    scope_unconfirmed = any(p.id in extraction["ports"] and not p.scope_confirmed for p in registry().ports)
     kinds = {e["type"] for e in extraction["types"]}
     blocked_time = extraction["validity"] in ["historical", "expired", "future_publication"]
     high_value = (
@@ -314,12 +343,15 @@ def make_card(session, item, evidence, now=None):
         "severity_reason": assessment["risk_reason"],
         "business_relevance": "matched_user_context" if matches else "unknown",
         "user_context": matches,
-        "impact_level": "potential_unconfirmed" if matches and high_value else "unknown",
+        "impact_level": "potential_unconfirmed"
+        if matches and high_value and not scope_unconfirmed
+        else "unknown",
         "impact": "可能影响已配置的运输安排/供应布局/成本类别，须核实适用性。"
-        if matches and high_value
+        if matches and high_value and not scope_unconfirmed
         else "影响未知；缺少已核实业务关联或合格当前事件。",
         "missing": ["真实订单/合同报价/适用货物未接入", "事件持续状态和业务适用需人工确认"]
-        + ([] if matches else ["未配置或未匹配脱敏业务关联"]),
+        + ([] if matches else ["未配置或未匹配脱敏业务关联"])
+        + (["港口/码头范围映射未确认"] if scope_unconfirmed else []),
         "verification_tasks": [
             "核实原文、发布日期、生效范围及后续更正",
             "人工确认提取和业务关联，不将引文存在当语义核实",
@@ -377,7 +409,7 @@ def cards(session, mode, high_only=False):
         if ev.version != item.version:
             continue
         payload = json.loads(card.payload_json)
-        if high_only and not payload["high_value"]:
+        if high_only and (not payload["high_value"] or card.state in ["ignored", "resolved"]):
             continue
         result.append({**payload, "card_id": card.id, "handling_state": card.state})
     return result

@@ -201,7 +201,7 @@
     "source_id": "candidate-ec",
     "official_url": "https://transport.ec.europa.eu/news-events/news_en",
     "publisher": "EC DG MOVE",
-    "module": "A",
+    "module": "ports",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "conditional",
@@ -211,13 +211,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "A"
   },
   {
     "source_id": "candidate-ec-trade",
     "official_url": "https://policy.trade.ec.europa.eu/news_en",
     "publisher": "EC DG TRADE",
-    "module": "B",
+    "module": "policy_background_not_enabled",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "conditional",
@@ -227,13 +228,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "B"
   },
   {
     "source_id": "candidate-ec-industry",
     "official_url": "https://single-market-economy.ec.europa.eu/news_en",
     "publisher": "EC DG GROW",
-    "module": "C",
+    "module": "capacity",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "conditional",
@@ -243,13 +245,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "C"
   },
   {
     "source_id": "candidate-ec-dangerous-goods",
     "official_url": "https://transport.ec.europa.eu/transport-themes/dangerous-goods_en",
     "publisher": "EC Dangerous Goods",
-    "module": "B",
+    "module": "policy_background_not_enabled",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -259,13 +262,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "B"
   },
   {
     "source_id": "candidate-eurlex",
     "official_url": "https://eur-lex.europa.eu/collection/eu-law/oj.html",
     "publisher": "EUR-Lex Official Journal",
-    "module": "B",
+    "module": "policy_background_not_enabled",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -275,13 +279,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "B"
   },
   {
     "source_id": "candidate-imo-imdg",
     "official_url": "https://www.imo.org/en/OurWork/Safety/Pages/DangerousGoods-default.aspx",
     "publisher": "IMO Dangerous Goods / IMDG",
-    "module": "B",
+    "module": "policy_background_not_enabled",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -291,13 +296,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "B"
   },
   {
     "source_id": "candidate-unece-adr",
     "official_url": "https://unece.org/transport/dangerous-goods/adr-2025-files",
     "publisher": "UNECE ADR 2025",
-    "module": "B",
+    "module": "policy_background_not_enabled",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -307,13 +313,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "B"
   },
   {
     "source_id": "candidate-rotterdam",
     "official_url": "https://www.portofrotterdam.com/en/news-and-press-releases",
     "publisher": "Port of Rotterdam",
-    "module": "A",
+    "module": "ports",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "prohibited",
@@ -323,13 +330,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": "SOURCE_AUDIT.md"
+    "prior_audit": "SOURCE_AUDIT.md",
+    "catalog_domain": "A"
   },
   {
     "source_id": "candidate-hamburg",
     "official_url": "https://www.hafen-hamburg.de/en/press/news/",
     "publisher": "Port of Hamburg",
-    "module": "A",
+    "module": "ports",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -339,13 +347,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "A"
   },
   {
     "source_id": "candidate-hapag",
     "official_url": "https://www.hapag-lloyd.com/en/services-information/news.html",
     "publisher": "Hapag-Lloyd Operational Updates",
-    "module": "A",
+    "module": "ports",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -355,13 +364,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "A"
   },
   {
     "source_id": "candidate-msc",
     "official_url": "https://www.msc.com/en/newsroom/customer-advisories",
     "publisher": "MSC Customer Advisories",
-    "module": "A",
+    "module": "ports",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -371,13 +381,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "A"
   },
   {
     "source_id": "candidate-eia-diesel",
     "official_url": "https://www.eia.gov/petroleum/gasdiesel/",
     "publisher": "US EIA Weekly Diesel (fuel proxy)",
-    "module": "D",
+    "module": "market",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -387,13 +398,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "D"
   },
   {
     "source_id": "candidate-sse-scfi",
     "official_url": "https://en.sse.net.cn/indices/scfinew.jsp",
     "publisher": "Shanghai Shipping Exchange SCFI",
-    "module": "D",
+    "module": "market",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -403,13 +415,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "D"
   },
   {
     "source_id": "candidate-basf",
     "official_url": "https://www.basf.com/global/en/media/news-releases",
     "publisher": "BASF News Releases",
-    "module": "C",
+    "module": "capacity",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -419,13 +432,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "C"
   },
   {
     "source_id": "candidate-lg-energy",
     "official_url": "https://news.lgensol.com/company-news/press-releases/",
     "publisher": "LG Energy Solution Press Releases",
-    "module": "C",
+    "module": "capacity",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -435,13 +449,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "C"
   },
   {
     "source_id": "candidate-samsung-sdi",
     "official_url": "https://www.samsungsdi.com/sdi-now/sdi-news.html",
     "publisher": "Samsung SDI News",
-    "module": "C",
+    "module": "capacity",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -451,13 +466,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "C"
   },
   {
     "source_id": "candidate-unctad-maritime",
     "official_url": "https://unctad.org/topic/transport-and-trade-logistics/review-of-maritime-transport",
     "publisher": "UNCTAD Review of Maritime Transport",
-    "module": "D",
+    "module": "market",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -467,13 +483,14 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "D"
   },
   {
     "source_id": "candidate-noaa-hurricanes",
     "official_url": "https://www.nhc.noaa.gov/index-at.xml",
     "publisher": "NOAA NHC Atlantic Advisories",
-    "module": "E",
+    "module": "ports",
     "data_type": "official",
     "access_method": "disabled_catalog_only",
     "permission": "unknown",
@@ -483,6 +500,7 @@
     "valid_business_events": 0,
     "last_success": null,
     "blocker": "Candidate catalog; automation/reuse not newly approved inPhase3. Manual import or official subscription required.",
-    "prior_audit": null
+    "prior_audit": null,
+    "catalog_domain": "E"
   }
 ]

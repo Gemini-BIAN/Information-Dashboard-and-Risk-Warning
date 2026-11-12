@@ -1,0 +1,48 @@
+{
+  "checked_at": "2026-11-12T06:24:59.435455+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "desktop: actual Germany fuel card, source workbook link and unknown company impact; no auto-verified facts",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: actual Live weekly decision report rendered/downloaded with normalized price, sources and uncertainty",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: source health sample/quality disclosure accessible",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: Demo project linked to synthetic context and feedback persisted without attesting facts",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop: Manual empty/Live isolated; pure map remains map-only with12 markers and no dashboard",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: actual Germany fuel card, source workbook link and unknown company impact; no auto-verified facts",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: actual Live weekly decision report rendered/downloaded with normalized price, sources and uncertainty",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: source health sample/quality disclosure accessible",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: Demo project linked to synthetic context and feedback persisted without attesting facts",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile390: Manual empty/Live isolated; pure map remains map-only with12 markers and no dashboard",
+      "status": "PASS"
+    }
+  ],
+  "page_errors": [],
+  "browser": "155.0.8059.79"
+}

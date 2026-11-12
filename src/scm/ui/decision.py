@@ -61,7 +61,19 @@ def render(factory, mode):
             st.link_button("原文与证据", c["source_url"])
             st.caption("SHA256 " + c["sha256"])
             with st.form("decision_handle_" + str(c["card_id"])):
-                state = st.selectbox("人工处理状态", STATES, index=STATES.index(c["handling_state"]))
+                state = st.radio(
+                    "人工处理状态",
+                    STATES,
+                    index=STATES.index(c["handling_state"]),
+                    horizontal=True,
+                    format_func=lambda value: {
+                        "pending": "待处理",
+                        "confirmed": "已确认",
+                        "ignored": "忽略",
+                        "in_progress": "处理中",
+                        "resolved": "已处理",
+                    }[value],
+                )
                 actor = st.text_input("处理人")
                 reason = st.text_input("处理原因/反馈")
                 verified = st.checkbox("我已人工核实下列全部非假设引文主张；处理确认不自动等于事实核实")

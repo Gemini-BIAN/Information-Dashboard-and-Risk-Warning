@@ -297,6 +297,7 @@ elif page == "日报与周报":
                 report.html,
                 file_name=f"{mode}-{report.kind}-{report.id}.html",
                 key="report_" + str(report.id),
+                on_click="ignore",
             )
 elif page == "预警收件箱":
     st.subheader("站内预警收件箱")

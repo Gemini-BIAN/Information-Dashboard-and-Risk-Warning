@@ -1,0 +1,437 @@
+{
+  "verified_at": "2026-11-12T06:00:04.786778+00:00",
+  "verification_type": "ACTUAL_LIVE_HTTP_AND_SAVED_BYTES",
+  "source_collection": [
+    {
+      "source": "hamburg",
+      "status": "candidate",
+      "mode": "live",
+      "stage": "stored",
+      "writes": {
+        "unchanged": 3
+      },
+      "automatic_retries": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-12T06:00:04.907151+00:00",
+      "details": {
+        "verification_type": "LIVE_HTTP",
+        "url": "https://www.hafen-hamburg.de/en/current/news/",
+        "method": "html",
+        "parser": "hamburg",
+        "reuse_policy": {
+          "status": "reviewed_allowed",
+          "permission": "allowed_full_text",
+          "license": "HHM displayed-information permission",
+          "notice_url": "https://www.hafen-hamburg.de/en/imprint/",
+          "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+          "verified_at": "2026-11-09T02:34:28.921397+00:00",
+          "note": "Displayed information可存储/分享且不得改变/扭曲，必须注明来源。仅文字、保持原文与分析分开，不取图片；部分文字为第三方公告，保留原发布主体，不声称HHM原创。"
+        },
+        "access_success": true,
+        "publication_date_parsed": true,
+        "body_obtained": true,
+        "restriction": null,
+        "failure_stage": null,
+        "article_errors": [],
+        "terms_review": "Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.",
+        "http_status": 200,
+        "discovered": 3,
+        "dated_articles": 3,
+        "parsed_articles": 3,
+        "status": "PASS",
+        "last_request_url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+        "request_count": 5,
+        "robots": {
+          "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)"
+        },
+        "verified_at": "2026-11-12T06:00:11.088198+00:00",
+        "duration_ms": 6180.99,
+        "article_samples": [
+          {
+            "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+            "title": "11th chainPORT Annual Meeting at Tanger Med Focuses on Scaling AI in Ports",
+            "published_at": "2026-11-05T10:00:00+00:00",
+            "fetched_at": "2026-11-12T06:00:09.421961+00:00"
+          },
+          {
+            "url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/",
+            "title": "eFuel Group and DACMA open Direct Air Capture Competence Center in the Port of Hamburg",
+            "published_at": "2026-10-20T10:25:00+00:00",
+            "fetched_at": "2026-11-12T06:00:10.312843+00:00"
+          },
+          {
+            "url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+            "title": "Port of Hamburg Marketing celebrates Czech handover of leadership at the Port Evening Reception in Prague",
+            "published_at": "2026-10-12T07:33:00+00:00",
+            "fetched_at": "2026-11-12T06:00:11.088098+00:00"
+          }
+        ],
+        "median_publication_age_hours": 547.59
+      },
+      "errors": [],
+      "captures": [
+        {
+          "url": "https://www.hafen-hamburg.de/en/current/news/",
+          "response_url": "https://www.hafen-hamburg.de/en/current/news/",
+          "sha256": "f14bdc6622d3a48778553820fa81ab271f304572cc545e58e89d6c98fbfd2a15",
+          "bytes": 99726,
+          "content_type": "text/html; charset=utf-8",
+          "path": "live/f1/f14bdc6622d3a48778553820fa81ab271f304572cc545e58e89d6c98fbfd2a15.bin",
+          "captured_at": "2026-11-12T06:00:08.422770+00:00",
+          "mode": "live"
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+          "response_url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+          "sha256": "aa9c416b7e80fb237853971f62a39c43260e0996032b021acbb4cf942653fdc3",
+          "bytes": 53363,
+          "content_type": "text/html; charset=utf-8",
+          "path": "live/aa/aa9c416b7e80fb237853971f62a39c43260e0996032b021acbb4cf942653fdc3.bin",
+          "captured_at": "2026-11-12T06:00:09.306592+00:00",
+          "mode": "live"
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/",
+          "response_url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/",
+          "sha256": "2240c045ab3d527d0cc6b3c4e8284dbe73bf9d27d3b5239aa70e2edab70494f9",
+          "bytes": 57571,
+          "content_type": "text/html; charset=utf-8",
+          "path": "live/22/2240c045ab3d527d0cc6b3c4e8284dbe73bf9d27d3b5239aa70e2edab70494f9.bin",
+          "captured_at": "2026-11-12T06:00:10.288940+00:00",
+          "mode": "live"
+        },
+        {
+          "url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+          "response_url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+          "sha256": "bf915895c1e1a3caa8d611a31ce96323c88abbf4b25cf05b43e22db1b6523728",
+          "bytes": 54591,
+          "content_type": "text/html; charset=utf-8",
+          "path": "live/bf/bf915895c1e1a3caa8d611a31ce96323c88abbf4b25cf05b43e22db1b6523728.bin",
+          "captured_at": "2026-11-12T06:00:11.057508+00:00",
+          "mode": "live"
+        }
+      ],
+      "requests": 5,
+      "robots": {
+        "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)"
+      }
+    },
+    {
+      "source": "ec-batteries",
+      "status": "candidate",
+      "mode": "live",
+      "stage": "stored",
+      "writes": {
+        "unchanged": 1
+      },
+      "automatic_retries": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-12T06:00:11.098075+00:00",
+      "details": {
+        "verification_type": "LIVE_HTTP",
+        "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+        "method": "html",
+        "parser": "european_commission",
+        "reuse_policy": {
+          "status": "reviewed_allowed",
+          "permission": "allowed_full_text",
+          "license": "CC BY 4.0",
+          "notice_url": "https://commission.europa.eu/legal-notice_en",
+          "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+          "verified_at": "2026-11-09T02:34:28.921405+00:00",
+          "note": "EU自有文字CC BY 4.0；署名、许可和修改说明；排除图片/Logo/第三方作品。"
+        },
+        "access_success": true,
+        "publication_date_parsed": true,
+        "body_obtained": true,
+        "restriction": null,
+        "failure_stage": null,
+        "article_errors": [],
+        "terms_review": "Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.",
+        "http_status": 200,
+        "discovered": 1,
+        "dated_articles": 1,
+        "parsed_articles": 1,
+        "status": "PASS",
+        "last_request_url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+        "request_count": 4,
+        "robots": {
+          "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+          "https://environment.ec.europa.eu": "200 parsed"
+        },
+        "verified_at": "2026-11-12T06:00:14.566453+00:00",
+        "duration_ms": 3468.34,
+        "article_samples": [
+          {
+            "url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+            "title": "Circular Economy: New rules to boost recycling efficiency and material recovery from waste batteries",
+            "published_at": "2025-07-04T07:45:57+00:00",
+            "fetched_at": "2026-11-12T06:00:14.566386+00:00"
+          }
+        ],
+        "median_publication_age_hours": 11902.24
+      },
+      "errors": [],
+      "captures": [
+        {
+          "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+          "response_url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+          "sha256": "9f89987f946491a62be3296c01c6f6c42a1180798656b58a82b17b5124a07759",
+          "bytes": 87213,
+          "content_type": "text/html; charset=utf-8",
+          "path": "live/9f/9f89987f946491a62be3296c01c6f6c42a1180798656b58a82b17b5124a07759.bin",
+          "captured_at": "2026-11-12T06:00:12.735614+00:00",
+          "mode": "live"
+        },
+        {
+          "url": "https://environment.ec.europa.eu/news/commission-publishes-new-waste-batteries-rules-2025-07-04_en",
+          "response_url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+          "sha256": "590fb3d1cbbbaf91f83f435bac91fe3f6d0b7c5c8f0e79bd8472493948dae428",
+          "bytes": 75041,
+          "content_type": "text/html; charset=utf-8",
+          "path": "live/59/590fb3d1cbbbaf91f83f435bac91fe3f6d0b7c5c8f0e79bd8472493948dae428.bin",
+          "captured_at": "2026-11-12T06:00:14.544252+00:00",
+          "mode": "live"
+        }
+      ],
+      "requests": 4,
+      "robots": {
+        "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+        "https://environment.ec.europa.eu": "200 parsed"
+      }
+    },
+    {
+      "source": "ec-weekly-fuel",
+      "status": "candidate",
+      "mode": "live",
+      "stage": "stored",
+      "writes": {
+        "unchanged": 4
+      },
+      "automatic_retries": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-12T06:00:14.569966+00:00",
+      "details": {
+        "http_status": 200,
+        "date_basis": "Workbook A2, day precision; UTC midnight convention; publication unknown",
+        "normalization": "EUR/1000 l divided by1000 to EUR/litre; no FX or contract-cost inference"
+      },
+      "errors": [],
+      "captures": [
+        {
+          "url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
+          "response_url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
+          "sha256": "c8f23d045c579a9ee54d3aa67bbd3762fbd1c9e793fc1f7fe514eb38f998a7fd",
+          "bytes": 111706,
+          "content_type": "text/html; charset=utf-8",
+          "path": "live/c8/c8f23d045c579a9ee54d3aa67bbd3762fbd1c9e793fc1f7fe514eb38f998a7fd.bin",
+          "captured_at": "2026-11-12T06:00:15.763509+00:00",
+          "mode": "live"
+        },
+        {
+          "url": "https://energy.ec.europa.eu/document/download/264c2d0f-f161-4ea3-a777-78faae59bea0_en?filename=Weekly%20Oil%20Bulletin%20Weekly%20prices%20with%20Taxes%20-%202026-09-21.xlsx",
+          "response_url": "https://energy.ec.europa.eu/document/download/264c2d0f-f161-4ea3-a777-78faae59bea0_en?filename=Weekly%20Oil%20Bulletin%20Weekly%20prices%20with%20Taxes%20-%202026-09-21.xlsx",
+          "sha256": "8d48ab28011bee8ca5a85a4e0d6725bcdfba62af1ee8a1ca9a5ff48eb03eccdb",
+          "bytes": 16928,
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "path": "live/8d/8d48ab28011bee8ca5a85a4e0d6725bcdfba62af1ee8a1ca9a5ff48eb03eccdb.bin",
+          "captured_at": "2026-11-12T06:00:16.615311+00:00",
+          "mode": "live"
+        }
+      ],
+      "requests": 3,
+      "robots": {
+        "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+        "https://environment.ec.europa.eu": "200 parsed",
+        "https://energy.ec.europa.eu": "200 parsed"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "country": "Netherlands",
+      "event_id": 13,
+      "evidence_id": 15,
+      "sha256": "43e42672fa76bd63eca51427f1b67de48ace06be26984039a32e8602e5537f64",
+      "raw_eur_per_1000l": "2360.55",
+      "normalized_eur_per_litre": "2.36055",
+      "observed_at": "2026-11-09T00:00:00Z",
+      "published_at": null,
+      "card_id": 8,
+      "impact": "unknown",
+      "quotes_match_saved_cells": true,
+      "processing_state": "pending"
+    },
+    {
+      "country": "Germany",
+      "event_id": 12,
+      "evidence_id": 14,
+      "sha256": "45f0faeaccff62c849cfa4ac4199a7c44371b79f45df3bf47f0891d36cce5bd7",
+      "raw_eur_per_1000l": "2253",
+      "normalized_eur_per_litre": "2.253",
+      "observed_at": "2026-11-09T00:00:00Z",
+      "published_at": null,
+      "card_id": 7,
+      "impact": "unknown",
+      "quotes_match_saved_cells": true,
+      "processing_state": "pending"
+    },
+    {
+      "country": "France",
+      "event_id": 11,
+      "evidence_id": 13,
+      "sha256": "a598c340908a265c43ba9280398b16b052f199eb3cb8ce37cf3a0aa27895bb88",
+      "raw_eur_per_1000l": "2177.89",
+      "normalized_eur_per_litre": "2.17789",
+      "observed_at": "2026-11-09T00:00:00Z",
+      "published_at": null,
+      "card_id": 6,
+      "impact": "unknown",
+      "quotes_match_saved_cells": true,
+      "processing_state": "pending"
+    },
+    {
+      "country": "Belgium",
+      "event_id": 10,
+      "evidence_id": 12,
+      "sha256": "934e4a7acf8cf2e99faa3658d092fc60ecb70dd76e180c0a6773a285a16a9aba",
+      "raw_eur_per_1000l": "2357.1",
+      "normalized_eur_per_litre": "2.3571",
+      "observed_at": "2026-11-09T00:00:00Z",
+      "published_at": null,
+      "card_id": 5,
+      "impact": "unknown",
+      "quotes_match_saved_cells": true,
+      "processing_state": "pending"
+    }
+  ],
+  "workbook": {
+    "url": "https://energy.ec.europa.eu/document/download/264c2d0f-f161-4ea3-a777-78faae59bea0_en?filename=Weekly%20Oil%20Bulletin%20Weekly%20prices%20with%20Taxes%20-%202026-09-21.xlsx",
+    "sha256": "8d48ab28011bee8ca5a85a4e0d6725bcdfba62af1ee8a1ca9a5ff48eb03eccdb",
+    "bytes": 16928,
+    "path": "runtime/platform/artifacts/live/8d/8d48ab28011bee8ca5a85a4e0d6725bcdfba62af1ee8a1ca9a5ff48eb03eccdb.bin"
+  },
+  "health": [
+    {
+      "source_id": "hamburg",
+      "official_url": "https://www.hafen-hamburg.de/en/current/news/",
+      "publisher": "Port of Hamburg",
+      "module": "ports",
+      "data_type": "html_list",
+      "access_method": "html_list",
+      "permission": "allowed_full_text",
+      "frequency_minutes": 360,
+      "live_attempts": 6,
+      "observed_success_rate": 0.8333333333333334,
+      "success_rate_scope": "本库实际尝试样本，非SLA；不含DEMO",
+      "valid_business_events": 0,
+      "structured_events": 0,
+      "last_success": "2026-11-12T06:00:04.907151+00:00",
+      "blocker": null
+    },
+    {
+      "source_id": "ec-batteries",
+      "official_url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+      "publisher": "European Commission Batteries",
+      "module": "capacity",
+      "data_type": "html_list",
+      "access_method": "html_list",
+      "permission": "allowed_full_text",
+      "frequency_minutes": 360,
+      "live_attempts": 6,
+      "observed_success_rate": 0.8333333333333334,
+      "success_rate_scope": "本库实际尝试样本，非SLA；不含DEMO",
+      "valid_business_events": 0,
+      "structured_events": 0,
+      "last_success": "2026-11-12T06:00:11.098075+00:00",
+      "blocker": null
+    },
+    {
+      "source_id": "catl",
+      "official_url": "https://www.catl.com/en/news/",
+      "publisher": "CATL official announcements",
+      "module": "capacity",
+      "data_type": "html_list",
+      "access_method": "html_list",
+      "permission": "unknown",
+      "frequency_minutes": 360,
+      "live_attempts": 0,
+      "observed_success_rate": null,
+      "success_rate_scope": "本库实际尝试样本，非SLA；不含DEMO",
+      "valid_business_events": 0,
+      "structured_events": 0,
+      "last_success": null,
+      "blocker": "Permission/API contract not established; manual import available"
+    },
+    {
+      "source_id": "maersk",
+      "official_url": "https://www.maersk.com/news/category/advisories",
+      "publisher": "Maersk Advisories",
+      "module": "market",
+      "data_type": "html_list",
+      "access_method": "html_list",
+      "permission": "unknown",
+      "frequency_minutes": 360,
+      "live_attempts": 0,
+      "observed_success_rate": null,
+      "success_rate_scope": "本库实际尝试样本，非SLA；不含DEMO",
+      "valid_business_events": 0,
+      "structured_events": 0,
+      "last_success": null,
+      "blocker": "Permission/API contract not established; manual import available"
+    },
+    {
+      "source_id": "price-api",
+      "official_url": "https://example.invalid/not-configured",
+      "publisher": "Price API not configured",
+      "module": "market",
+      "data_type": "json_api",
+      "access_method": "json_api",
+      "permission": "unknown",
+      "frequency_minutes": 360,
+      "live_attempts": 0,
+      "observed_success_rate": null,
+      "success_rate_scope": "本库实际尝试样本，非SLA；不含DEMO",
+      "valid_business_events": 0,
+      "structured_events": 0,
+      "last_success": null,
+      "blocker": "Permission/API contract not established; manual import available"
+    },
+    {
+      "source_id": "ec-weekly-fuel",
+      "official_url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
+      "publisher": "European Commission Weekly Oil Bulletin",
+      "module": "market",
+      "data_type": "ec_fuel_xlsx",
+      "access_method": "ec_fuel_xlsx",
+      "permission": "allowed_full_text",
+      "frequency_minutes": 10080,
+      "live_attempts": 2,
+      "observed_success_rate": 1.0,
+      "success_rate_scope": "本库实际尝试样本，非SLA；不含DEMO",
+      "valid_business_events": 4,
+      "structured_events": 4,
+      "last_success": "2026-11-12T06:00:14.569966+00:00",
+      "blocker": null
+    }
+  ],
+  "module_counts": {
+    "ports_current_operational_events": 0,
+    "capacity_projects": 0,
+    "market_current_price_observations": 4
+  },
+  "real_records_by_source": {
+    "hamburg": 3,
+    "ec-batteries": 1,
+    "ec-weekly-fuel": 4
+  },
+  "report": {
+    "weekly_id": 8,
+    "path": "runtime/phase3/live-decision-weekly.html",
+    "daily": "empty by actual date, no padding"
+  },
+  "status": "PASS: real official price data closed loop; business impact unknown, no human business verification",
+  "final_local_recheck_at": "2026-11-12T06:14:32.499636+00:00",
+  "decision_rule_version": "decision-2026-11-12.2",
+  "no_business_fact_promotion": true
+}

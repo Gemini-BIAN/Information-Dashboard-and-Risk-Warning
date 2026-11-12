@@ -58,6 +58,8 @@ def test_complete_decision_link_fact_handling_report_and_idempotence(factory):
         count = s.scalar(select(func.count()).select_from(DecisionCard))
         assert refresh(s, "demo")["unchanged"] == 1
         assert s.scalar(select(func.count()).select_from(DecisionCard)) == count
+        handle(s, first["card_id"], "demo", "confirmed", "tester", "handling confirmation only")
+        assert not cards(s, "demo")[0]["verified_facts"]
         handle(s, first["card_id"], "demo", "in_progress", "tester", "DEMO review")
         attest_facts(
             s,
@@ -73,6 +75,7 @@ def test_complete_decision_link_fact_handling_report_and_idempotence(factory):
         assert "DEMO diesel" not in decision_report(s, "live", "weekly").html
         handle(s, first["card_id"], "demo", "ignored", "tester", "not applicable")
         assert "DEMO diesel" not in decision_report(s, "demo", "weekly").html
+        assert not cards(s, "demo", high_only=True)
         assert s.scalar(select(func.count()).select_from(Audit)) >= 3
         setup(
             s,
@@ -275,3 +278,36 @@ def test_no_key_no_data_report_and_update_due_skip(factory, tmp_path, monkeypatc
     result = automation.update(factory, tmp_path)
     assert calls == [[]] and not result["collection"]
     assert (tmp_path / "live-decision-weekly.html").read_text(encoding="utf-8").find("本期无合格") >= 0
+
+
+def test_reuses_existing_scoped_port_profile_without_business_fact_promotion(factory):
+    from scm.ports.detail import save_profile
+
+    with factory.begin() as s:
+        setup(s, rec(module="ports", title="DEMO Hamburg closure", body="Hamburg port is closed. DEMO only."))
+        save_profile(
+            s,
+            "hamburg",
+            "demo",
+            dict(usage="DEMO port use", routes="DEMO route", transport="DEMO road"),
+            "tester",
+            "synthetic profile",
+        )
+        card = cards(s, "demo")[0]
+        assert card["user_context"][0]["origin"] == "USER_PROVIDED_EXISTING_PORT_PROFILE"
+        assert card["impact_level"] == "potential_unconfirmed" and not card["verified_facts"]
+        assert not cards(s, "live")
+
+
+def test_generic_investment_policy_does_not_become_factory_project(factory):
+    with factory.begin() as s:
+        setup(
+            s,
+            rec(
+                module="capacity",
+                title="DEMO general policy",
+                body="Public investment supports sustainable cities. DEMO only.",
+            ),
+        )
+        card = cards(s, "demo")[0]
+        assert not card["high_value"] and not card["event"]["types"]

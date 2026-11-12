@@ -1,3 +1,7 @@
+## 2026-11-12 Phase3决策支持（最新）
+
+Phase3完整281 passed in19.90s，0失败/跳过；23项新增事件时间/实体/关联/影响/建议/审核与版本/导入/工作簿/健康/迁移/增量回归，原Module01/GBK/地图框架均通过。实际HTTP源→原始工作簿SHA/单元格→4观测→未知业务影响决策卡→周报；重复4unchanged。增量实际无到期源、8unchanged并生成两报告。最终Chrome桌面/390px卡片/报告/DEMO审计/纯地图检查记录见docs/PHASE3_ACCEPTANCE.md。
+
 ## 2026-11-12 纯交互世界地图（最新）
 
 纯交互地图最终回归：258 passed in17.79s；ruff src/tests/scripts、node --check、diff check通过。Chromium155桌面1440×1000/移动390×844共14组，实际OSM瓦片200、真实鼠标缩放拖动与12点点击、两种关闭、详情返回center/zoom相同、CDP双指缩放、阻断瓦片后矢量降级均通过。截图与机器证据docs/evidence/world-map/；旧常驻摘要截图是历史，不是当前UI。Windows/实体触屏NOT TESTED。

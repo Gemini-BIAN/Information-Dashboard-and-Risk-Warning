@@ -206,3 +206,17 @@ python -m scm.platform.cli report --mode live --kind daily --output runtime/plat
 ## 当前港口首页：纯交互式世界地图
 
 统一平台01入口默认只有Leaflet世界图与12标点，无默认选择/侧卡/标题/下拉。点标点才弹锚定卡，查看详情进入原四标签；返回恢复视角并关闭卡片。在线OSM保留署名，失败明确降级为离线可交互矢量。运行命令不变，详见[WORLD_MAP_ACCEPTANCE](docs/WORLD_MAP_ACCEPTANCE.md)及默认/弹窗/缩放三类真实截图。旧PORT_DETAIL_ACCEPTANCE的一级侧卡截图只作历史，二级详情仍保留。
+
+
+## Phase3：证据驱动决策支持
+
+统一中心新增事件/规则推断/用户关联/核实与候选行动，来源、版本、处理审计可追溯；报告包含decision_daily/decision_weekly。真实EC柴油周度观测4国已闭环，但公司影响未知，当前港口运营及企业项目事件仍0。纯地图和法规分支保持不动。
+
+```bash
+python -m scm.platform.cli collect --source ec-weekly-fuel
+python -m scm.platform.cli decisions --mode live
+python -m scm.platform.cli decision-report --mode live --kind weekly --output runtime/phase3/live-weekly.html
+python -m scm.platform.cli update
+```
+
+update只执行到期许可源，不创建后台任务；失败记录保留，不编数据。许可过期需重新核实。关联CSV/XLSX只需脱敏角色/路线/成本类别，缺关联影响未知；处理确认不等事实核实。详见[验收](docs/PHASE3_ACCEPTANCE.md)、[Windows](docs/PHASE3_WINDOWS.md)。
