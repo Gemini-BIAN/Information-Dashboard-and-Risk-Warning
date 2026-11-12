@@ -201,3 +201,8 @@ python -m scm.platform.cli report --mode live --kind daily --output runtime/plat
 ## 港口二级详情页
 
 统一平台的01港口页支持地图摘要→查看详情→概览/公告时间线/来源证据/业务影响，返回保留港口，支持深链接。沿用原风险服务，历史/背景资料不证明当前运营。脱敏配置按Live/DEMO/Manual隔离，缺配置业务影响未知。操作与截图见[PORT_DETAIL_ACCEPTANCE](docs/PORT_DETAIL_ACCEPTANCE.md)。旧六工作台入口和Windows UTF-8修复保留。
+
+
+## 当前港口首页：纯交互式世界地图
+
+统一平台01入口默认只有Leaflet世界图与12标点，无默认选择/侧卡/标题/下拉。点标点才弹锚定卡，查看详情进入原四标签；返回恢复视角并关闭卡片。在线OSM保留署名，失败明确降级为离线可交互矢量。运行命令不变，详见[WORLD_MAP_ACCEPTANCE](docs/WORLD_MAP_ACCEPTANCE.md)及默认/弹窗/缩放三类真实截图。旧PORT_DETAIL_ACCEPTANCE的一级侧卡截图只作历史，二级详情仍保留。

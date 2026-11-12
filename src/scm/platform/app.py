@@ -35,7 +35,6 @@ def db(url):
 
 
 factory = db(os.getenv("SCM_PLATFORM_DATABASE_URL", "sqlite:///runtime/platform/platform.db"))
-st.title("ESCIM 海外供应链情报平台")
 mode = st.sidebar.radio(
     "数据空间",
     ["live", "demo", "manual"],
@@ -46,13 +45,7 @@ mode = st.sidebar.radio(
     }[x],
     key="platform_mode",
 )
-st.caption(
-    {
-        "live": "LIVE：官方原文证据，采集成功不代表事实已人工核实或当前运营正常。",
-        "demo": "DEMO：所有示例企业、项目与价格均为虚构，禁止用于实际业务决策。",
-        "manual": "MANUAL：用户导入，未验证真实性，不进入Live报告。",
-    }[mode]
-)
+
 page = st.sidebar.radio(
     "工作台",
     [
@@ -67,6 +60,25 @@ page = st.sidebar.radio(
     key="platform_page",
     index=1 if st.query_params.get("port_view") in ["map", "detail"] else 0,
 )
+previous_page = st.session_state.get("platform_previous_page")
+if page == "01 港口与物流" and previous_page not in [None, "01 港口与物流"]:
+    st.query_params["port_view"] = "map"
+    st.session_state["port_world_view"] = None
+st.session_state["platform_previous_page"] = page
+if page == "01 港口与物流" and st.query_params.get("port_view") != "detail":
+    st.markdown(
+        "<style>.block-container{max-width:none!important;padding:3.5rem 0 0!important}header[data-testid=stHeader]{background:transparent}iframe{display:block;border:0}</style>",
+        unsafe_allow_html=True,
+    )
+else:
+    st.title("ESCIM 海外供应链情报平台")
+    st.caption(
+        {
+            "live": "LIVE：官方原文证据，采集成功不代表事实已人工核实或当前运营正常。",
+            "demo": "DEMO：所有示例企业、项目与价格均为虚构，禁止用于实际业务决策。",
+            "manual": "MANUAL：用户导入，未验证真实性，不进入Live报告。",
+        }[mode]
+    )
 if mode == "demo" and st.sidebar.button("加载 DEMO 合成数据"):
     seed(factory)
     st.rerun()

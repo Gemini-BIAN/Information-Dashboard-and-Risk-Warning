@@ -1,3 +1,5 @@
+> 更新：一级页面已由纯交互世界地图替代，不再常驻摘要卡；本报告的旧一级截图仅为历史，四标签内容保留。最新验收见[WORLD_MAP_ACCEPTANCE](WORLD_MAP_ACCEPTANCE.md)。
+
 # PR8 港口二级详情页验收
 
 2026-11-12（Asia/Shanghai）。功能与本地自动化/真实浏览器验收PASS；Windows原生本轮NOT TESTED。基线db05c81，继续feature/escim-intelligence-platform及Draft PR8，未合并main，法规分支/PR7不改。

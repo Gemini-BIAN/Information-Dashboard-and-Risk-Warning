@@ -1,3 +1,7 @@
+## 2026-11-12 纯交互世界地图（最新）
+
+纯交互地图最终回归：258 passed in17.79s；ruff src/tests/scripts、node --check、diff check通过。Chromium155桌面1440×1000/移动390×844共14组，实际OSM瓦片200、真实鼠标缩放拖动与12点点击、两种关闭、详情返回center/zoom相同、CDP双指缩放、阻断瓦片后矢量降级均通过。截图与机器证据docs/evidence/world-map/；旧常驻摘要截图是历史，不是当前UI。Windows/实体触屏NOT TESTED。
+
 ## 2026-11-12 港口详情页（最新）
 
 完整258pytest通过20.47s，ruff/diff检查通过。新增4项详情回归：12入口、返回状态、历史/URL更改版本追溯、SHA与配置空间隔离。Chromium155桌面/390px共14检查、0页面错误/无页面横溢。真实保存证据platform-6 SHA/URL实际比对；Windows原生仍NOT TESTED。详见docs/PORT_DETAIL_ACCEPTANCE.md。

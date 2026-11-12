@@ -92,22 +92,37 @@ def test_notice_versions_canonical_change_evidence_and_history_not_current(facto
 
 
 def test_port_detail_ui_all12_tabs_return_and_namespace(tmp_path, monkeypatch):
+    import scm.ui.port_details as ui
+
     monkeypatch.setenv("SCM_PLATFORM_DATABASE_URL", "sqlite:///" + str(tmp_path / "ui.db"))
+    event = {"value": None}
+    monkeypatch.setattr(ui, "WORLD_MAP", lambda **kwargs: event["value"])
     app = AppTest.from_file(str(ROOT / "src/scm/platform/app.py"), default_timeout=30).run()
     app.sidebar.radio(key="platform_page").set_value("01 港口与物流").run()
-    for port in registry().ports:
-        app.selectbox(key="port01_choice").set_value(port.id).run()
-        app.button(key="port_detail_open").click().run()
+    assert not app.tabs and not app.selectbox and not app.metric
+    assert not any("港口监测" == x.value for x in app.subheader)
+    for number, port in enumerate(registry().ports, 1):
+        event["value"] = {
+            "action": "details",
+            "port_id": port.id,
+            "view": {"center": [port.latitude, port.longitude], "zoom": 9},
+            "event_id": number,
+        }
+        app.run()
         assert not app.exception, port.id
         assert [t.label for t in app.tabs] == ["概览", "公告时间线", "来源证据", "业务影响"]
         assert any("企业业务影响：未知" in x.value for x in app.info)
-        assert any("尚无本港可追溯" in x.value for x in app.info)
-        app.run()  # A second detail rerun cleans up non-rendered map widget state.
+        app.run()
+        event["value"] = None
         app.button(key="port_detail_back").click().run()
-        assert app.selectbox(key="port01_choice").value == port.id
+        assert not app.tabs and not app.selectbox
+        assert app.session_state["port_detail_selected"] == port.id
+        assert app.session_state["port_world_view"]["zoom"] == 9
     app.sidebar.radio(key="platform_mode").set_value("manual").run()
-    app.button(key="port_detail_open").click().run()
-    assert not app.exception and len(app.tabs) == 4
+    assert not app.exception and not app.tabs
+    app.sidebar.radio(key="platform_page").set_value("统一情报中心").run()
+    app.sidebar.radio(key="platform_page").set_value("01 港口与物流").run()
+    assert not app.tabs and app.session_state["port_world_view"] is None
 
 
 def test_demo_projection_never_becomes_live(factory):

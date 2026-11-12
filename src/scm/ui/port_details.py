@@ -1,15 +1,21 @@
 """Map → summary → four-tab port details, reusing the existing offline map and risk service."""
 
 from datetime import datetime
+from pathlib import Path
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from scm.ports.detail import detail, save_profile
 from scm.ports.registry import registry
 from scm.ports.service import read_alert, snapshots
 from scm.settings import TIMEZONE
-from scm.ui.port_monitor import LABELS, MAP
+from scm.ui.port_monitor import LABELS
 from scm.ui.presentation import local_time
+
+WORLD_MAP = components.declare_component(
+    "escim_interactive_world", path=str(Path(__file__).parent / "port_world")
+)
 
 
 def label(value):
@@ -19,80 +25,54 @@ def label(value):
 def render(session, factory, mode):
     ports = registry().ports
     by_id = {p.id: p for p in ports}
-    pending = st.session_state.pop("port01_pending", None)
-    if st.session_state.get("port_detail_selected") not in by_id:
-        requested = st.query_params.get("port", "antwerp")
-        st.session_state["port_detail_selected"] = requested if requested in by_id else "antwerp"
-    if pending in by_id:
-        st.session_state["port_detail_selected"] = pending
-        st.session_state["port01_choice"] = pending
-    elif st.query_params.get("port_view") != "detail" and st.session_state.get("port01_choice") in by_id:
-        st.session_state["port_detail_selected"] = st.session_state["port01_choice"]
-    selected = st.session_state["port_detail_selected"]
-    st.query_params["port"] = selected
-    if st.query_params.get("port_view") == "detail":
-        render_detail(session, factory, mode, by_id[selected])
-        return selected
-    st.subheader("港口监测")
-    st.caption("12 个业务地点 · 地图入口 · 无数据不等于运营正常")
-    query = st.text_input("搜索港口或国家", key="port01_search")
-    countries = st.multiselect("国家筛选", sorted({p.country for p in ports}), key="port01_countries")
-    visible = [
-        p
-        for p in ports
-        if (not countries or p.country in countries)
-        and (not query or query.casefold() in f"{p.business_label} {p.name_zh} {p.country}".casefold())
-    ]
-    if not visible:
-        st.info("没有匹配的港口；清除筛选后查看全部12个地点。")
-        return selected
-    if selected not in {p.id for p in visible}:
-        selected = visible[0].id
-    st.session_state["port01_choice"] = selected
-    selected = st.selectbox(
-        "选择业务港口",
-        [p.id for p in visible],
-        format_func=lambda id: by_id[id].business_label,
-        key="port01_choice",
-    )
-    st.session_state["port_detail_selected"] = selected
-    st.query_params["port"] = selected
+    requested = st.query_params.get("port")
+    if st.query_params.get("port_view") == "detail" and requested in by_id:
+        render_detail(session, factory, mode, by_id[requested])
+        return requested
     states = snapshots(session, mode)
-    left, right = st.columns([1.65, 1])
-    with left:
-        rows = [
-            {
-                **p.model_dump(),
-                "state": states[p.id]["state"],
-                "severity": states[p.id]["severity"],
-                "coverage_verified": any(
-                    s.get("coverage") == "working_verified" for s in states[p.id]["coverage"]
-                ),
-                "coverage_label": " / ".join(s["coverage"] for s in states[p.id]["coverage"]) or "none",
-            }
-            for p in visible
+    rows = []
+    for port in ports:
+        snap = states[port.id]
+        current = [
+            e
+            for e in snap["events"]
+            if e["assessment"]["state"] in ["confirmed_disruption", "confirmed_normal"]
         ]
-        click = MAP(ports=rows, key="port01_world_map", default=None)
-        if click and click.get("click_id") != st.session_state.get("port01_last_click"):
-            st.session_state["port01_last_click"] = click["click_id"]
-            if click.get("port_id") in {p.id for p in visible}:
-                st.session_state["port01_pending"] = click["port_id"]
-                st.rerun()
-        st.caption(f"地图显示 {len(visible)}/12 个业务地点；内点为风险，外环为来源覆盖。")
-    with right:
-        port = by_id[selected]
-        snap = states[selected]
-        with st.container(border=True):
-            st.markdown(f"### {port.business_label} · {port.name_zh}")
-            st.caption(port.country)
-            st.metric("运营风险", label(snap["severity"]))
-            st.write("**当前运营状态：** " + label(snap["state"]))
-            st.caption("最近核实：" + local_time(snap["last_check"]))
-            st.write(snap["note"])
-            if st.button("查看详情", key="port_detail_open", type="primary", use_container_width=True):
+        rows.append(
+            {
+                **port.model_dump(),
+                "status": {"confirmed_normal": "正常", "confirmed_disruption": "异常"}.get(
+                    snap["state"], "未知"
+                ),
+                "notice": current[0]["notice"]["title"] if current else None,
+                "verified": local_time(snap["last_check"]),
+            }
+        )
+    event = WORLD_MAP(
+        ports=rows,
+        namespace=mode,
+        view=st.session_state.get("port_world_view"),
+        key="port_interactive_world",
+        default=None,
+    )
+    if event and event.get("event_id") != st.session_state.get("port_world_event"):
+        st.session_state["port_world_event"] = event.get("event_id")
+        if event.get("action") == "details" and event.get("port_id") in by_id:
+            view = event.get("view", {})
+            center, zoom = view.get("center"), view.get("zoom")
+            if (
+                isinstance(center, list)
+                and len(center) == 2
+                and all(isinstance(v, (int, float)) for v in center)
+                and isinstance(zoom, (int, float))
+                and 1 <= zoom <= 18
+            ):
+                st.session_state["port_world_view"] = {"center": center, "zoom": zoom}
+                st.session_state["port_detail_selected"] = event["port_id"]
+                st.query_params["port"] = event["port_id"]
                 st.query_params["port_view"] = "detail"
                 st.rerun()
-    return selected
+    return None
 
 
 def render_detail(session, factory, mode, port):
