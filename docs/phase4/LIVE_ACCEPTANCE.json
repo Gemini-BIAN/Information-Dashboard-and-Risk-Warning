@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-13T01:18:07.720300+00:00",
+  "at": "2026-11-13T01:23:39.244755+00:00",
   "status": "LIVE PARTIAL",
   "collection_runs": [
     [
@@ -773,6 +773,19 @@
     "company_id": "aesc",
     "project_id": "aesc-sunderland-plant2",
     "factory_id": "aesc-uk-plant2",
+    "country": "GB",
+    "location": "Sunderland, UK",
+    "product": "EV batteries",
+    "project_status": "opened",
+    "announced_at": null,
+    "first_known_document_at": "2025-05-08T23:00:00Z",
+    "planned_start": null,
+    "actual_start": null,
+    "capacity_value": "15.8",
+    "capacity_unit": "GWh/year",
+    "capacity_basis": "planned",
+    "source_url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+    "evidence_id": 2,
     "current": {
       "item_id": 2,
       "evidence_id": 2,
@@ -1320,7 +1333,7 @@
     }
   ],
   "project_decision_card": {
-    "as_of": "2026-11-13T01:13:50.956234+00:00",
+    "as_of": "2026-11-13T01:23:36.782167+00:00",
     "business_relevance": "unknown",
     "candidate_actions": [
       "仅历史/过期/未来背景；核实后续公告，不据此启动当前运营调整。"

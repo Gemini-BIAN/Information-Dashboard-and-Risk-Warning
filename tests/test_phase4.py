@@ -165,6 +165,8 @@ def test_project_history_one_factory_units_plan_actual_and_conflicts(factory):
         values = projects(s, "demo")
         assert len(values) == 1 and len(values[0]["timeline"]) == 2
         assert values[0]["current"]["raw"]["actual_start"] is None
+        assert values[0]["announced_at"] is None
+        assert values[0]["capacity_value"] == "15.8" and values[0]["capacity_basis"] == "planned"
         assert values[0]["capacity_claims"][0]["basis"] == "planned"
         assert values[0]["current"]["raw"]["project_status"] == "trial_production"
         other = r.model_copy(

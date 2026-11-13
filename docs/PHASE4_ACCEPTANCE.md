@@ -15,7 +15,7 @@
 | Remaining feed records | 8 | Retained background only; not counted as new qualifying business events |
 | DEMO/Manual included in above counts | 0 | Synthetic tests and manual import tests excluded |
 
-Phase3's4 diesel observations and4 older background articles were **not present in this fresh checkout's runtime database**. They are historical reported baseline, not re-created or added to this round's13 Live items. Five real source collection passes: first13inserted; later typed-field revisions on2 notices; final13unchanged,0new. Raw permitted response bytes stay local ignored CAS. Actual HTTP dates, bytes/SHA, robots, per-source failures, original links, counts and final reparse/DB agreement: [LIVE_ACCEPTANCE.json](phase4/LIVE_ACCEPTANCE.json). No raw restricted content committed.
+Phase3's4 diesel observations and4 older background articles were **not copied into this round’s isolated acceptance database**. They remain the historical reported baseline; no claim is made about other local runtime databases. They are, not re-created or added to this round's13 Live items. Five real source collection passes: first13inserted; later typed-field revisions on2 notices; final13unchanged,0new. Raw permitted response bytes stay local ignored CAS. Actual HTTP dates, bytes/SHA, robots, per-source failures, original links, counts and final reparse/DB agreement: [LIVE_ACCEPTANCE.json](phase4/LIVE_ACCEPTANCE.json). No raw restricted content committed.
 
 ## Delivered behavior
 
@@ -30,7 +30,7 @@ Phase3's4 diesel observations and4 older background articles were **not present 
 
 ## Validation
 
-- Full Python3.12 pytest: **296 passed in21.63s**,0failed/0skipped. Original281 included. Existing CSV/XLSX test fixture serializes newly nested field_evidence as JSON in one cell; no assertion removed. Declared openpyxl/pypdf dependencies were initially missing in runner; installed from lock before final execution. Earlier missing-dependency/2flat-format failures corrected, not reported as passes.
+- Full Python3.12 pytest: **296 passed in18.27s**,0failed/0skipped. Original281 included. Existing CSV/XLSX test fixture serializes newly nested field_evidence as JSON in one cell; no assertion removed. Declared openpyxl/pypdf dependencies were initially missing in runner; installed from lock before final execution. Earlier missing-dependency/2flat-format failures corrected, not reported as passes.
 - Ruff src/tests/scripts PASS; pip check PASS; diff check PASS.
 - New regressions cover one-event restoration, cancellation/expiry/unknown, stale/conflicting status, Manual isolation/atomic validation, project histories/trial stage/unit/location conflicts, exact dated actual evidence, diesel same-publisher duplicate/conflict/historical missing-week handling, RSS no-follow/test-client DEMO and feed permission cannot enable HTML.
 - Existing pure-map/12port/GBK/UI tests all pass. No registry/map renderer changes.
@@ -50,3 +50,7 @@ Chromium155.0.8059.79, fresh Streamlit process port8532: **10 checks PASS**, des
 [Machine receipt](evidence/phase4/browser.json), [desktop project](evidence/phase4/project-1440.png), [390 project](evidence/phase4/project-390.png), [desktop map](evidence/phase4/map-1440.png), [390 map](evidence/phase4/map-390.png), [earlier failed development iterations and fixes](evidence/phase4/ITERATIONS.json). Native checkbox/summary/marker locator errors and a stale-process ImportError were recorded and corrected; final checks use a new process, not hidden exceptions.
 
 CLI Chinese-path/GBK-output subprocess simulation PASS: [encoding record](phase4/ENCODING_ACCEPTANCE.json). Native Windows remains NOT TESTED.
+
+## Remote CI receipt
+
+Main implementation `f2adf07540a32903a57bb08f5075e189d0af07ae`: GitHub Actions **completed/success**, [run43344428992](https://github.com/Gemini-BIAN/Information-Dashboard-and-Risk-Warning/actions/runs/43344428992). Final small follow-up exposes the requested project master-data columns explicitly (unknown original announced_at stays null), with full tests re-run. Its exact-head CI is recorded in the final PR8 description/turn receipt; parent success is not substituted for final SHA status. PR7 was read-only verified still8a31da45cf03be67f52c83737b31fc1f0ac8cc10 Draft.
