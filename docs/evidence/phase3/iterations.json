@@ -1,0 +1,14 @@
+[
+  {
+    "attempt": "browser-first",
+    "status": "FAIL",
+    "checks_passed": 3,
+    "error": "TimeoutError: Locator.click: Timeout 15000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"option\", name=\"in_progress\", exact=True)\n"
+  },
+  {
+    "attempt": "browser-download-race",
+    "status": "FAIL",
+    "checks_passed": 1,
+    "error": "TimeoutError: Timeout 15000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"
+  }
+]

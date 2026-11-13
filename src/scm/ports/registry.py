@@ -36,11 +36,11 @@ class Registry(BaseModel):
 
 
 def registry():
-    return Registry.model_validate_json((ROOT / "config/ports.json").read_text())
+    return Registry.model_validate_json((ROOT / "config/ports.json").read_text(encoding="utf-8"))
 
 
 def source_specs():
-    return json.loads((ROOT / "config/port_sources.json").read_text())
+    return json.loads((ROOT / "config/port_sources.json").read_text(encoding="utf-8"))
 
 
 def initial_snapshot(port, now):

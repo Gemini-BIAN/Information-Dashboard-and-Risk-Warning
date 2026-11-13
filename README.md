@@ -1,3 +1,7 @@
+## Phase4最新交付（2026-11-13）
+
+真实AESC Sunderland Plant2历史项目1（3政府OGL公告），官方HapagRSS2个运营公告实体（持续状态未知）、Rotterdam自动事件0；原12港仍未知。新增生命周期/项目历史及冲突、用户摘要Manual、已有柴油结果CSV/JSON导入（不抓取）、选源增量与日志。完整296pytest通过，LIVE PARTIAL，Windows原生未测。运行/原文/许可/验收见[PHASE4_ACCEPTANCE](docs/PHASE4_ACCEPTANCE.md)、[导入契约](docs/phase4/IMPORT_CONTRACTS.md)、[Windows步骤](docs/PHASE4_WINDOWS.md)。
+
 # Global Supply Chain Intelligence & Risk Monitor
 
 面向新能源电解液企业海外供应链规划的本地运行 MVP，Python 3.12 + Streamlit + SQLite/SQLAlchemy。**默认不需要 API Key、不使用付费服务、不连接内部系统。**
@@ -180,3 +184,43 @@ scm port-digest --mode live --output runtime/port01/daily.html
 **当前获准自动运营源0、真实运营事件0，12地点均未知，业务验收PARTIAL。** Le Havre访问超时、PD Ports权限未知、HPA要求书面同意；不启用采集、不取PDF、不请求Rotterdam/PIN。模块Demo需显式点击“加载模块01虚构演示”，与Live隔离。不需LLM Key；可选LLM只做分析，失败规则降级。配置：`config/ports.json`、`config/port_sources.json`。完整结果与实际截图见[PORT_MONITOR_ACCEPTANCE](docs/PORT_MONITOR_ACCEPTANCE.md)。
 
 Windows PowerShell可用`.\.venv\Scripts\scm.exe init`、`.\.venv\Scripts\scm.exe collect-ports`、`.\.venv\Scripts\scm.exe port-digest --mode live`；Windows主机尚未实际测试。
+
+
+## 统一供应链情报平台（2026-11-11）
+
+新增独立入口，复用原12港口地图/服务；提供海外产能与竞争、物流市场与成本、统一情报、日报周报、预警和Sources。原Module01入口保持。这里的Module02指产能情报；法规RAG暂停在独立分支/PR7，没有并入本分支。
+
+```bash
+python -m scm.platform.cli init
+python -m streamlit run src/scm/platform/app.py --server.address 127.0.0.1 --server.port 8503 --server.headless true --browser.gatherUsageStats false
+# 显式DEMO，不填充Live
+python -m scm.platform.cli demo
+python -m scm.platform.cli collect --source hamburg
+python -m scm.platform.cli report --mode live --kind daily --output runtime/platform/live-daily.html
+```
+
+独立库runtime/platform/platform.db；Live/DEMO/Manual严格分开，CSV/XLSX只进入Manual。企业及来源配置分别为config/platform_companies.json和config/platform_sources.json，未知/过期许可拒绝自动请求。当前真实采集4篇背景信息，不是当前运营/企业投产/实时价格；12港当前状态未知。无LLM、无付费API、无公网部署。**FRAMEWORK PASS / MOCK PASS / LIVE PARTIAL / WINDOWS NOT TESTED**。251pytest、16组桌面/390px浏览器检查通过；[验收报告](docs/PLATFORM_ACCEPTANCE.md)、[Windows/PyCharm命令](docs/PLATFORM_WINDOWS.md)、[来源审计/待接入](docs/platform/SOURCE_AUDIT.md)。
+
+
+## 港口二级详情页
+
+统一平台的01港口页支持地图摘要→查看详情→概览/公告时间线/来源证据/业务影响，返回保留港口，支持深链接。沿用原风险服务，历史/背景资料不证明当前运营。脱敏配置按Live/DEMO/Manual隔离，缺配置业务影响未知。操作与截图见[PORT_DETAIL_ACCEPTANCE](docs/PORT_DETAIL_ACCEPTANCE.md)。旧六工作台入口和Windows UTF-8修复保留。
+
+
+## 当前港口首页：纯交互式世界地图
+
+统一平台01入口默认只有Leaflet世界图与12标点，无默认选择/侧卡/标题/下拉。点标点才弹锚定卡，查看详情进入原四标签；返回恢复视角并关闭卡片。在线OSM保留署名，失败明确降级为离线可交互矢量。运行命令不变，详见[WORLD_MAP_ACCEPTANCE](docs/WORLD_MAP_ACCEPTANCE.md)及默认/弹窗/缩放三类真实截图。旧PORT_DETAIL_ACCEPTANCE的一级侧卡截图只作历史，二级详情仍保留。
+
+
+## Phase3：证据驱动决策支持
+
+统一中心新增事件/规则推断/用户关联/核实与候选行动，来源、版本、处理审计可追溯；报告包含decision_daily/decision_weekly。真实EC柴油周度观测4国已闭环，但公司影响未知，当前港口运营及企业项目事件仍0。纯地图和法规分支保持不动。
+
+```bash
+python -m scm.platform.cli collect --source ec-weekly-fuel
+python -m scm.platform.cli decisions --mode live
+python -m scm.platform.cli decision-report --mode live --kind weekly --output runtime/phase3/live-weekly.html
+python -m scm.platform.cli update
+```
+
+update只执行到期许可源，不创建后台任务；失败记录保留，不编数据。许可过期需重新核实。关联CSV/XLSX只需脱敏角色/路线/成本类别，缺关联影响未知；处理确认不等事实核实。详见[验收](docs/PHASE3_ACCEPTANCE.md)、[Windows](docs/PHASE3_WINDOWS.md)。

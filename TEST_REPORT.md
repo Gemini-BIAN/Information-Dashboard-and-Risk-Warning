@@ -1,3 +1,29 @@
+## 2026-11-13 Phase4（最新）
+
+Python3.12完整296 passed in18.27s，0失败/跳过；ruff src/tests/scripts、pip check和diff检查通过。新增15项生命周期/项目/导入/订阅边界回归；原281项保留，CSV/XLSX嵌套证据字段显式JSON单元格适配。实际5轮4来源采集（3政府文档+1RSS）、原始响应SHA与重解析/DB逐字段一致、3次到期更新幂等、临时005→004→005迁移通过。真实港口当前事件0，真实企业项目1，当前确认船公司事件0（2条订阅运营公告持续未知），新增柴油0。最终浏览器/CI回执见docs/PHASE4_ACCEPTANCE.md。原生Windows NOT TESTED。
+
+## 2026-11-12 Phase3决策支持（最新）
+
+Phase3完整281 passed in19.90s，0失败/跳过；23项新增事件时间/实体/关联/影响/建议/审核与版本/导入/工作簿/健康/迁移/增量回归，原Module01/GBK/地图框架均通过。实际HTTP源→原始工作簿SHA/单元格→4观测→未知业务影响决策卡→周报；重复4unchanged。增量实际无到期源、8unchanged并生成两报告。最终Chrome桌面/390px卡片/报告/DEMO审计/纯地图检查记录见docs/PHASE3_ACCEPTANCE.md。
+
+## 2026-11-12 纯交互世界地图（最新）
+
+纯交互地图最终回归：258 passed in17.79s；ruff src/tests/scripts、node --check、diff check通过。Chromium155桌面1440×1000/移动390×844共14组，实际OSM瓦片200、真实鼠标缩放拖动与12点点击、两种关闭、详情返回center/zoom相同、CDP双指缩放、阻断瓦片后矢量降级均通过。截图与机器证据docs/evidence/world-map/；旧常驻摘要截图是历史，不是当前UI。Windows/实体触屏NOT TESTED。
+
+## 2026-11-12 港口详情页（最新）
+
+完整258pytest通过20.47s，ruff/diff检查通过。新增4项详情回归：12入口、返回状态、历史/URL更改版本追溯、SHA与配置空间隔离。Chromium155桌面/390px共14检查、0页面错误/无页面横溢。真实保存证据platform-6 SHA/URL实际比对；Windows原生仍NOT TESTED。详见docs/PORT_DETAIL_ACCEPTANCE.md。
+
+## 2026-11-11 PR8 Windows编码修复（最新）
+
+PR8编码回归：254 passed in16.56s，0失败/跳过；ruff和diff check通过。GBK负对照复现真实ports.json错误，修复后港口/配置、DEMO、中文HTML/JSON/CSV/MD往返通过；新增AST防遗漏。Linux模拟不是原生Windows PASS。详见docs/WINDOWS_ENCODING_ACCEPTANCE.md。
+
+## 2026-11-11 统一平台本轮结果（最新）
+
+完整pytest251 passed in17.63s（含原204），无失败/跳过；ruff src/tests/scripts/新迁移、pip check、diff check通过。真实HTTP4篇，重复4 unchanged，实际保存HTML逐篇SHA/重解析通过；当前空日报与原日期历史日报通过。Chromium155桌面1440和移动390两视口16组检查PASS/0pageerrors/无横向溢出。开发失败迭代及最终证据均保留，Windows原生NOT TESTED。详见docs/PLATFORM_ACCEPTANCE.md和docs/evidence/platform/。
+
+---
+
 # ESCIM 测试报告：Issue #2 真实采集验收
 
 验证：2026-11-06（Asia/Shanghai），新发布环境，Linux/Python3.12.14。Mock/离线Fixture测试与真实HTTP分开计数。

@@ -40,21 +40,25 @@ def record():
 
 
 def test_catalog_and_taxonomy_are_versioned():
-    catalog = SourceRegistry.model_validate_json((ROOT / "config/content_sources.v1.json").read_text())
+    catalog = SourceRegistry.model_validate_json(
+        (ROOT / "config/content_sources.v1.json").read_text(encoding="utf-8")
+    )
     assert len(catalog.sources) == 23
     restricted = next(s for s in catalog.sources if s.source_id == "rotterdam")
     assert restricted.proposed_method == "link_only"
     assert restricted.reuse_permission == "prohibited"
-    taxonomy = json.loads((ROOT / "config/content_taxonomy.v1.json").read_text())
+    taxonomy = json.loads((ROOT / "config/content_taxonomy.v1.json").read_text(encoding="utf-8"))
     assert {d["code"]: d["event_kinds"] for d in taxonomy["domains"]} == EVENT_KINDS
     for name, model in [("intelligence", IntelligenceRecord), ("source_registry", SourceRegistry)]:
         assert (
-            json.loads((ROOT / f"docs/schemas/{name}.v1.schema.json").read_text())
+            json.loads((ROOT / f"docs/schemas/{name}.v1.schema.json").read_text(encoding="utf-8"))
             == model.model_json_schema()
         )
 
 
-@pytest.mark.parametrize("case", json.loads((ROOT / "fixtures/content_cases.v1.json").read_text()))
+@pytest.mark.parametrize(
+    "case", json.loads((ROOT / "fixtures/content_cases.v1.json").read_text(encoding="utf-8"))
+)
 def test_synthetic_classification_labels_are_valid_contracts(case):
     data = record()
     data.update(

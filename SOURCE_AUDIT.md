@@ -1,3 +1,13 @@
+## 2026-11-12 Phase3决策支持（最新）
+
+Phase3实际复核EU CC BY4.0并接入EC Weekly Oil Bulletin，新增4国柴油观测；工作簿A2=2026-11-09，文件名旧日期不使用。真实XLSX16928B/SHA8d48ab28011bee8ca5a85a4e0d6725bcdfba62af1ee8a1ca9a5ff48eb03eccdb，原始响应和单元格重开校验通过；最近3源重采8unchanged，无新港口运营或企业项目。30条来源目录不是30已接入，未知许可禁用，实际成功率仅样本且不含DEMO。详见docs/phase3/SOURCE_MATRIX.json、SOURCE_REVIEW.json、LIVE_ACCEPTANCE.json。
+
+## 2026-11-11 统一平台本轮结果（最新）
+
+本轮使用已批准Hamburg HHM/EC Batteries并实际重读条款，robots/HTML/发布日期成功，真实4篇但无当前运营/实际产能/价格。完整响应CAS与原始正文校验通过。CATL/Maersk/价格API保持未批准/disabled、不请求。旧源/原Module01配置不改。详见docs/platform/SOURCE_AUDIT.md、LIVE_EVIDENCE.json、RAW_CAPTURE_EVIDENCE.json。
+
+---
+
 # 真实数据源验证报告
 
 报告生成时间（UTC）：2026-11-06T05:39:40.427823+00:00

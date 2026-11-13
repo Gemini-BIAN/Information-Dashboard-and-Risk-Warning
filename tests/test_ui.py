@@ -21,7 +21,7 @@ def dashboard(tmp_path, monkeypatch):
     factory = original(url)
     load_demo(factory)
     with factory.begin() as s:
-        import_csv(s, (ROOT / "fixtures/demo_shipments.csv").read_text(), "demo")
+        import_csv(s, (ROOT / "fixtures/demo_shipments.csv").read_text(encoding="utf-8"), "demo")
         generate_report(s, "daily", "demo", date(2026, 11, 6))
     app = AppTest.from_file(str(ROOT / "src/scm/ui/app.py"), default_timeout=30)
     app.run()

@@ -1,0 +1,39 @@
+{
+  "verified_at": "2026-11-11T06:48:33.767322+00:00",
+  "status": "PASS",
+  "actual_saved_articles": 4,
+  "checks": [
+    {
+      "item_id": 6,
+      "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+      "response_sha256": "3c5d1bb93c2ff4f0536b21b8f1073794ff094f6949b37a1f1e5621115d93df77",
+      "response_bytes": 53362,
+      "path": "runtime/platform/artifacts/live/3c/3c5d1bb93c2ff4f0536b21b8f1073794ff094f6949b37a1f1e5621115d93df77.bin",
+      "raw_body_matches_reparsed_saved_html": true
+    },
+    {
+      "item_id": 7,
+      "url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/",
+      "response_sha256": "fac4ff31f499c94fd2175ab6f3991547d78f8381719463b793a3df72050bc9a9",
+      "response_bytes": 57567,
+      "path": "runtime/platform/artifacts/live/fa/fac4ff31f499c94fd2175ab6f3991547d78f8381719463b793a3df72050bc9a9.bin",
+      "raw_body_matches_reparsed_saved_html": true
+    },
+    {
+      "item_id": 8,
+      "url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+      "response_sha256": "ce3afc0cd8350318dc3505ad5bbb99264c0387a5aa08574cbdebbccbce178e54",
+      "response_bytes": 54597,
+      "path": "runtime/platform/artifacts/live/ce/ce3afc0cd8350318dc3505ad5bbb99264c0387a5aa08574cbdebbccbce178e54.bin",
+      "raw_body_matches_reparsed_saved_html": true
+    },
+    {
+      "item_id": 9,
+      "url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+      "response_sha256": "590fb3d1cbbbaf91f83f435bac91fe3f6d0b7c5c8f0e79bd8472493948dae428",
+      "response_bytes": 75041,
+      "path": "runtime/platform/artifacts/live/59/590fb3d1cbbbaf91f83f435bac91fe3f6d0b7c5c8f0e79bd8472493948dae428.bin",
+      "raw_body_matches_reparsed_saved_html": true
+    }
+  ]
+}

@@ -1,0 +1,1509 @@
+{
+  "at": "2026-11-13T01:23:39.244755+00:00",
+  "status": "LIVE PARTIAL",
+  "collection_runs": [
+    [
+      {
+        "source": "govuk-aesc-finance",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "inserted": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:08:36.142739+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "response_url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "sha256": "52aefe9894d5658b306e963db31ccbdacbaf497851feb451fa65c61db5d8b8bb",
+            "bytes": 85332,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/52/52aefe9894d5658b306e963db31ccbdacbaf497851feb451fa65c61db5d8b8bb.bin",
+            "captured_at": "2026-11-13T01:08:37.237923+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-opening",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "inserted": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:08:37.407820+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "response_url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "sha256": "abe706ef6d1eb985ac5e1049304e168e0ff4ccacfb8c1404c31b54bd5daf7a53",
+            "bytes": 79318,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/ab/abe706ef6d1eb985ac5e1049304e168e0ff4ccacfb8c1404c31b54bd5daf7a53.bin",
+            "captured_at": "2026-11-13T01:08:38.253485+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-capacity",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "inserted": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:08:38.267999+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "response_url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "sha256": "ad38450006efdac74a9da3b44a02ee1afa7fea6f6123beff3c7ad9a5b50d8aff",
+            "bytes": 89871,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/ad/ad38450006efdac74a9da3b44a02ee1afa7fea6f6123beff3c7ad9a5b50d8aff.bin",
+            "captured_at": "2026-11-13T01:08:39.272274+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "hapag-ports-rss",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "inserted": 10
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:08:39.288301+00:00",
+        "details": {
+          "content_scope": "official RSS description only; no article HTTP requests",
+          "subscription_notice": "https://www.hapag-lloyd.com/en/news-insights/rss-feeds.html"
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "response_url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "sha256": "a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c",
+            "bytes": 73323,
+            "content_type": "application/rss+xml;charset=utf-8",
+            "path": "live/a0/a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c.bin",
+            "captured_at": "2026-11-13T01:08:40.677200+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed",
+          "https://www.hapag-lloyd.com": "200 parsed"
+        }
+      }
+    ],
+    [
+      {
+        "source": "govuk-aesc-finance",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:12:08.947775+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "response_url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "sha256": "05fac9f034960d605909ba884eb486af08723fa311b2e124c423336225701c8e",
+            "bytes": 85332,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/05/05fac9f034960d605909ba884eb486af08723fa311b2e124c423336225701c8e.bin",
+            "captured_at": "2026-11-13T01:12:10.103440+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-opening",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:12:10.224635+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "response_url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "sha256": "9d2a25eaf34e0980cae98fa33c892ddbd13bff364f84c1ae02934c928eac654e",
+            "bytes": 79318,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/9d/9d2a25eaf34e0980cae98fa33c892ddbd13bff364f84c1ae02934c928eac654e.bin",
+            "captured_at": "2026-11-13T01:12:11.687411+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-capacity",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:12:11.703036+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "response_url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "sha256": "7a23aaed21d32b8e7d1226a7cc616b6c5513f6ca31ec2017053087195eabd165",
+            "bytes": 89871,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/7a/7a23aaed21d32b8e7d1226a7cc616b6c5513f6ca31ec2017053087195eabd165.bin",
+            "captured_at": "2026-11-13T01:12:12.342531+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "hapag-ports-rss",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "updated": 2,
+          "unchanged": 8
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:12:12.404245+00:00",
+        "details": {
+          "content_scope": "official RSS description only; no article HTTP requests",
+          "subscription_notice": "https://www.hapag-lloyd.com/en/news-insights/rss-feeds.html"
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "response_url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "sha256": "a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c",
+            "bytes": 73323,
+            "content_type": "application/rss+xml;charset=utf-8",
+            "path": "live/a0/a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c.bin",
+            "captured_at": "2026-11-13T01:12:13.540087+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed",
+          "https://www.hapag-lloyd.com": "200 parsed"
+        }
+      }
+    ],
+    [
+      {
+        "source": "govuk-aesc-finance",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:12:14.290754+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "response_url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "sha256": "05fac9f034960d605909ba884eb486af08723fa311b2e124c423336225701c8e",
+            "bytes": 85332,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/05/05fac9f034960d605909ba884eb486af08723fa311b2e124c423336225701c8e.bin",
+            "captured_at": "2026-11-13T01:12:15.460125+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-opening",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:12:15.609770+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "response_url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "sha256": "9d2a25eaf34e0980cae98fa33c892ddbd13bff364f84c1ae02934c928eac654e",
+            "bytes": 79318,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/9d/9d2a25eaf34e0980cae98fa33c892ddbd13bff364f84c1ae02934c928eac654e.bin",
+            "captured_at": "2026-11-13T01:12:16.463411+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-capacity",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:12:16.480317+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "response_url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "sha256": "7a23aaed21d32b8e7d1226a7cc616b6c5513f6ca31ec2017053087195eabd165",
+            "bytes": 89871,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/7a/7a23aaed21d32b8e7d1226a7cc616b6c5513f6ca31ec2017053087195eabd165.bin",
+            "captured_at": "2026-11-13T01:12:17.317649+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "hapag-ports-rss",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 10
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:12:17.397390+00:00",
+        "details": {
+          "content_scope": "official RSS description only; no article HTTP requests",
+          "subscription_notice": "https://www.hapag-lloyd.com/en/news-insights/rss-feeds.html"
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "response_url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "sha256": "a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c",
+            "bytes": 73323,
+            "content_type": "application/rss+xml;charset=utf-8",
+            "path": "live/a0/a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c.bin",
+            "captured_at": "2026-11-13T01:12:18.778740+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed",
+          "https://www.hapag-lloyd.com": "200 parsed"
+        }
+      }
+    ],
+    [
+      {
+        "source": "govuk-aesc-finance",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:17:43.369210+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "response_url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "sha256": "9f2e1d6eb7334696b5986b14b50bb7c1d13169bf533e3da832b68a55aebc80a1",
+            "bytes": 85332,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/9f/9f2e1d6eb7334696b5986b14b50bb7c1d13169bf533e3da832b68a55aebc80a1.bin",
+            "captured_at": "2026-11-13T01:17:45.194402+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-opening",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:17:45.311018+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "response_url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "sha256": "b2e05af4a7818615082696ad9f080f21de9096ec41a781a0ca73bc7c8ac57c32",
+            "bytes": 79318,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/b2/b2e05af4a7818615082696ad9f080f21de9096ec41a781a0ca73bc7c8ac57c32.bin",
+            "captured_at": "2026-11-13T01:17:46.057007+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-capacity",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:17:46.075279+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "response_url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "sha256": "05e9459528c742e3abf20a24ce92618ef14a04b7658c9e85157e48533ef7cf17",
+            "bytes": 89871,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/05/05e9459528c742e3abf20a24ce92618ef14a04b7658c9e85157e48533ef7cf17.bin",
+            "captured_at": "2026-11-13T01:17:46.712957+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "hapag-ports-rss",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "updated": 2,
+          "unchanged": 8
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:17:46.776616+00:00",
+        "details": {
+          "content_scope": "official RSS description only; no article HTTP requests",
+          "subscription_notice": "https://www.hapag-lloyd.com/en/news-insights/rss-feeds.html"
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "response_url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "sha256": "a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c",
+            "bytes": 73323,
+            "content_type": "application/rss+xml;charset=utf-8",
+            "path": "live/a0/a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c.bin",
+            "captured_at": "2026-11-13T01:17:48.167807+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed",
+          "https://www.hapag-lloyd.com": "200 parsed"
+        }
+      }
+    ],
+    [
+      {
+        "source": "govuk-aesc-finance",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:17:48.839125+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "response_url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+            "sha256": "9f2e1d6eb7334696b5986b14b50bb7c1d13169bf533e3da832b68a55aebc80a1",
+            "bytes": 85332,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/9f/9f2e1d6eb7334696b5986b14b50bb7c1d13169bf533e3da832b68a55aebc80a1.bin",
+            "captured_at": "2026-11-13T01:17:49.926047+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-opening",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:17:50.047352+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "response_url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+            "sha256": "b2e05af4a7818615082696ad9f080f21de9096ec41a781a0ca73bc7c8ac57c32",
+            "bytes": 79318,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/b2/b2e05af4a7818615082696ad9f080f21de9096ec41a781a0ca73bc7c8ac57c32.bin",
+            "captured_at": "2026-11-13T01:17:51.174120+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "govuk-aesc-capacity",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 1
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:17:51.188190+00:00",
+        "details": {
+          "attribution": "Contains public sector information licensed under OGL v3.0; extracted/structured",
+          "publication_precision": "original visible publication; date-only is midnight offset convention",
+          "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "response_url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+            "sha256": "05e9459528c742e3abf20a24ce92618ef14a04b7658c9e85157e48533ef7cf17",
+            "bytes": 89871,
+            "content_type": "text/html; charset=utf-8",
+            "path": "live/05/05e9459528c742e3abf20a24ce92618ef14a04b7658c9e85157e48533ef7cf17.bin",
+            "captured_at": "2026-11-13T01:17:51.886780+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 1,
+        "robots": {
+          "https://www.gov.uk": "200 parsed"
+        }
+      },
+      {
+        "source": "hapag-ports-rss",
+        "status": "candidate",
+        "mode": "live",
+        "stage": "stored",
+        "writes": {
+          "unchanged": 10
+        },
+        "automatic_retries": 0,
+        "verification_type": "LIVE_HTTP",
+        "checked_at": "2026-11-13T01:17:51.948882+00:00",
+        "details": {
+          "content_scope": "official RSS description only; no article HTTP requests",
+          "subscription_notice": "https://www.hapag-lloyd.com/en/news-insights/rss-feeds.html"
+        },
+        "errors": [],
+        "captures": [
+          {
+            "url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "response_url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+            "sha256": "a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c",
+            "bytes": 73323,
+            "content_type": "application/rss+xml;charset=utf-8",
+            "path": "live/a0/a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c.bin",
+            "captured_at": "2026-11-13T01:17:53.111006+00:00",
+            "mode": "live"
+          }
+        ],
+        "requests": 2,
+        "robots": {
+          "https://www.gov.uk": "200 parsed",
+          "https://www.hapag-lloyd.com": "200 parsed"
+        }
+      }
+    ]
+  ],
+  "raw_reparse": [
+    {
+      "source": "govuk-aesc-finance",
+      "sha256": "9f2e1d6eb7334696b5986b14b50bb7c1d13169bf533e3da832b68a55aebc80a1",
+      "bytes": 85332,
+      "reparsed_records": 1
+    },
+    {
+      "source": "govuk-aesc-opening",
+      "sha256": "b2e05af4a7818615082696ad9f080f21de9096ec41a781a0ca73bc7c8ac57c32",
+      "bytes": 79318,
+      "reparsed_records": 1
+    },
+    {
+      "source": "govuk-aesc-capacity",
+      "sha256": "05e9459528c742e3abf20a24ce92618ef14a04b7658c9e85157e48533ef7cf17",
+      "bytes": 89871,
+      "reparsed_records": 1
+    },
+    {
+      "source": "hapag-ports-rss",
+      "sha256": "a0ba8c63354c9c0b4e029edad93865a89796833112dd10ef7fb266133741342c",
+      "bytes": 73323,
+      "reparsed_records": 10
+    }
+  ],
+  "items_before": {
+    "platform_items": 13,
+    "platform_evidence": 17
+  },
+  "items_after": {
+    "platform_items": 13,
+    "platform_evidence": 17
+  },
+  "reports": 2,
+  "update_runs": [
+    {
+      "collection": [],
+      "decisions": {
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 13
+      }
+    },
+    {
+      "collection": [],
+      "decisions": {
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 13
+      }
+    },
+    {
+      "collection": [],
+      "decisions": {
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 13
+      }
+    }
+  ],
+  "coverage": {
+    "rotterdam_current_events": 0,
+    "current_confirmed_port_events": 0,
+    "carrier_operational_notice_entities": 2,
+    "current_confirmed_carrier_events": 0,
+    "real_factory_projects": 1,
+    "project_official_documents": 3,
+    "feed_records": 10,
+    "remaining_feed_records_background": 8,
+    "new_diesel_observations": 0,
+    "demo_records": 0,
+    "manual_records": 0
+  },
+  "project": {
+    "company_id": "aesc",
+    "project_id": "aesc-sunderland-plant2",
+    "factory_id": "aesc-uk-plant2",
+    "country": "GB",
+    "location": "Sunderland, UK",
+    "product": "EV batteries",
+    "project_status": "opened",
+    "announced_at": null,
+    "first_known_document_at": "2025-05-08T23:00:00Z",
+    "planned_start": null,
+    "actual_start": null,
+    "capacity_value": "15.8",
+    "capacity_unit": "GWh/year",
+    "capacity_basis": "planned",
+    "source_url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+    "evidence_id": 2,
+    "current": {
+      "item_id": 2,
+      "evidence_id": 2,
+      "version": 1,
+      "review_status": "pending",
+      "latest": true,
+      "raw": {
+        "external_id": "11aa208cad4b79f001cbc4a751aec1ee4f432c248de9bb533e02d263585a8216",
+        "module": "capacity",
+        "title": "Nissan launches £450m next-generation LEAF in major vote of confidence in UK’s Industrial Strategy",
+        "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+        "published_at": "2025-12-16T00:00:00Z",
+        "fetched_at": "2026-11-13T01:08:38.263404Z",
+        "effective_at": null,
+        "expires_at": null,
+        "observed_at": null,
+        "mode": "live",
+        "verification": "LIVE_HTTP",
+        "data_status": "candidate",
+        "country": "GB",
+        "company": "aesc",
+        "project_id": "aesc-sunderland-plant2",
+        "factory": "aesc-uk-plant2",
+        "location": "Sunderland, UK",
+        "product": "EV batteries",
+        "actual_start": null,
+        "capacity_basis": "unknown",
+        "operational_event_id": null,
+        "operational_status": "unknown",
+        "event_scope": "unknown",
+        "status_at": null,
+        "field_evidence": {
+          "project_status": "AESC has opened a new 15.8 GWh gigafactory",
+          "project_id": "AESC has opened a new 15.8 GWh gigafactory"
+        },
+        "origin_source_id": null,
+        "project_status": "opened",
+        "capacity": null,
+        "capacity_unit": null,
+        "investment": null,
+        "planned_start": null,
+        "value": null,
+        "currency": null,
+        "unit": null,
+        "price_type": "announcement",
+        "route": null,
+        "transport": null,
+        "evidence_quote": "AESC has opened a new 15.8 GWh gigafactory"
+      },
+      "sha256": "02928903241654ed283f3fea25a4e1068a033227d12b3053777a9fb48a59db18"
+    },
+    "timeline": [
+      {
+        "item_id": 1,
+        "evidence_id": 1,
+        "version": 1,
+        "review_status": "pending",
+        "latest": true,
+        "raw": {
+          "external_id": "075c98355849f6b37aafacf8136b6913c39291b0313c311ecf6c9c6daf6dffa1",
+          "module": "capacity",
+          "title": "Another boost for British car industry as £1 billion secured for new Sunderland gigafactory",
+          "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+          "published_at": "2025-05-08T23:00:00Z",
+          "fetched_at": "2026-11-13T01:08:37.349201Z",
+          "effective_at": null,
+          "expires_at": null,
+          "observed_at": null,
+          "mode": "live",
+          "verification": "LIVE_HTTP",
+          "data_status": "candidate",
+          "country": "GB",
+          "company": "aesc",
+          "project_id": "aesc-sunderland-plant2",
+          "factory": "aesc-uk-plant2",
+          "location": "Sunderland, UK",
+          "product": "EV batteries",
+          "actual_start": null,
+          "capacity_basis": "unknown",
+          "operational_event_id": null,
+          "operational_status": "unknown",
+          "event_scope": "unknown",
+          "status_at": null,
+          "field_evidence": {
+            "project_status": "National Wealth Fund and UK Export Finance will provide financial guarantees",
+            "project_id": "The new AESC gigafactory will manufacture batteries for electric vehicles"
+          },
+          "origin_source_id": null,
+          "project_status": "approved",
+          "capacity": null,
+          "capacity_unit": null,
+          "investment": null,
+          "planned_start": null,
+          "value": null,
+          "currency": null,
+          "unit": null,
+          "price_type": "announcement",
+          "route": null,
+          "transport": null,
+          "evidence_quote": "National Wealth Fund and UK Export Finance will provide financial guarantees"
+        },
+        "sha256": "81c3d6e640e1f3e52a01ba85480d780ab11528ebe598543d1c404c7dc05ca3d4"
+      },
+      {
+        "item_id": 3,
+        "evidence_id": 3,
+        "version": 1,
+        "review_status": "pending",
+        "latest": true,
+        "raw": {
+          "external_id": "dcbf200ed2032c95cbe4098c8dfa2ba08953316c074a65f2ce0052c3feb2ba3b",
+          "module": "capacity",
+          "title": "Category B project supported: AESC EDG, UK",
+          "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+          "published_at": "2025-06-02T14:27:41Z",
+          "fetched_at": "2026-11-13T01:08:39.283434Z",
+          "effective_at": null,
+          "expires_at": null,
+          "observed_at": null,
+          "mode": "live",
+          "verification": "LIVE_HTTP",
+          "data_status": "candidate",
+          "country": "GB",
+          "company": "aesc",
+          "project_id": "aesc-sunderland-plant2",
+          "factory": "aesc-uk-plant2",
+          "location": "Sunderland, UK",
+          "product": "EV batteries",
+          "actual_start": null,
+          "capacity_basis": "planned",
+          "operational_event_id": null,
+          "operational_status": "unknown",
+          "event_scope": "unknown",
+          "status_at": null,
+          "field_evidence": {
+            "project_status": "UK Export Finance has agreed to provide support to AESC UK Plant 2 UK Limited (AESC)",
+            "project_id": "UK Export Finance has agreed to provide support to AESC UK Plant 2 UK Limited (AESC)",
+            "capacity": "The Project will have a capacity of 15.8 gigawatt hours (GWh) per year"
+          },
+          "origin_source_id": null,
+          "project_status": "approved",
+          "capacity": "15.8",
+          "capacity_unit": "GWh/year",
+          "investment": null,
+          "planned_start": null,
+          "value": null,
+          "currency": null,
+          "unit": null,
+          "price_type": "announcement",
+          "route": null,
+          "transport": null,
+          "evidence_quote": "UK Export Finance has agreed to provide support to AESC UK Plant 2 UK Limited (AESC)"
+        },
+        "sha256": "55e205fee98ed50439985fc54716235d33fd3d0fd180b070fe664cb8a4e319b7"
+      },
+      {
+        "item_id": 2,
+        "evidence_id": 2,
+        "version": 1,
+        "review_status": "pending",
+        "latest": true,
+        "raw": {
+          "external_id": "11aa208cad4b79f001cbc4a751aec1ee4f432c248de9bb533e02d263585a8216",
+          "module": "capacity",
+          "title": "Nissan launches £450m next-generation LEAF in major vote of confidence in UK’s Industrial Strategy",
+          "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+          "published_at": "2025-12-16T00:00:00Z",
+          "fetched_at": "2026-11-13T01:08:38.263404Z",
+          "effective_at": null,
+          "expires_at": null,
+          "observed_at": null,
+          "mode": "live",
+          "verification": "LIVE_HTTP",
+          "data_status": "candidate",
+          "country": "GB",
+          "company": "aesc",
+          "project_id": "aesc-sunderland-plant2",
+          "factory": "aesc-uk-plant2",
+          "location": "Sunderland, UK",
+          "product": "EV batteries",
+          "actual_start": null,
+          "capacity_basis": "unknown",
+          "operational_event_id": null,
+          "operational_status": "unknown",
+          "event_scope": "unknown",
+          "status_at": null,
+          "field_evidence": {
+            "project_status": "AESC has opened a new 15.8 GWh gigafactory",
+            "project_id": "AESC has opened a new 15.8 GWh gigafactory"
+          },
+          "origin_source_id": null,
+          "project_status": "opened",
+          "capacity": null,
+          "capacity_unit": null,
+          "investment": null,
+          "planned_start": null,
+          "value": null,
+          "currency": null,
+          "unit": null,
+          "price_type": "announcement",
+          "route": null,
+          "transport": null,
+          "evidence_quote": "AESC has opened a new 15.8 GWh gigafactory"
+        },
+        "sha256": "02928903241654ed283f3fea25a4e1068a033227d12b3053777a9fb48a59db18"
+      }
+    ],
+    "capacity_claims": [
+      {
+        "value": "15.8",
+        "unit": "GWh/year",
+        "basis": "planned",
+        "published_at": "2025-06-02T14:27:41Z",
+        "evidence_id": 3
+      }
+    ],
+    "conflicts": [],
+    "verified_status": "pending_human_review",
+    "note": "最新公告所述阶段，不证明当前实况；产能为来源口径，非实际产量"
+  },
+  "operational_notices": [
+    {
+      "event_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.html",
+      "scope": "carrier_service",
+      "state": "unknown",
+      "conflict": false,
+      "current": {
+        "item_id": 4,
+        "evidence_id": 16,
+        "version": 3,
+        "review_status": "pending",
+        "latest": true,
+        "raw": {
+          "external_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.feed.rss.xml",
+          "module": "ports",
+          "title": "Spain: Temporary export gate-in restrictions at APMT Valencia",
+          "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.html",
+          "published_at": "2026-11-04T10:40:00Z",
+          "fetched_at": "2026-11-13T01:17:48.201779Z",
+          "effective_at": null,
+          "expires_at": null,
+          "observed_at": null,
+          "mode": "live",
+          "verification": "LIVE_HTTP",
+          "data_status": "candidate",
+          "country": "ES",
+          "company": "unknown",
+          "project_id": null,
+          "factory": null,
+          "location": "APMT Valencia",
+          "product": null,
+          "actual_start": null,
+          "capacity_basis": "unknown",
+          "operational_event_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.html",
+          "operational_status": "active",
+          "event_scope": "carrier_service",
+          "status_at": "2026-11-04T10:40:00Z",
+          "field_evidence": {
+            "operational_status": "This restriction is effective immediately and will remain in place until further notice."
+          },
+          "origin_source_id": null,
+          "project_status": "unknown",
+          "capacity": null,
+          "capacity_unit": null,
+          "investment": null,
+          "planned_start": null,
+          "value": null,
+          "currency": null,
+          "unit": null,
+          "price_type": "announcement",
+          "route": null,
+          "transport": "container_gate_in",
+          "evidence_quote": null
+        },
+        "sha256": "3d43fe15276773e329da8d0e2df24100f02525d1133c1ac961eec1111aa69dc2"
+      },
+      "timeline": [
+        {
+          "item_id": 4,
+          "evidence_id": 14,
+          "version": 2,
+          "review_status": "pending",
+          "latest": false,
+          "raw": {
+            "external_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.feed.rss.xml",
+            "module": "ports",
+            "title": "Spain: Temporary export gate-in restrictions at APMT Valencia",
+            "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.html",
+            "published_at": "2026-11-04T10:40:00Z",
+            "fetched_at": "2026-11-13T01:12:13.581466Z",
+            "effective_at": null,
+            "expires_at": null,
+            "observed_at": null,
+            "mode": "live",
+            "verification": "LIVE_HTTP",
+            "data_status": "candidate",
+            "country": "unknown",
+            "company": "unknown",
+            "project_id": null,
+            "factory": null,
+            "location": null,
+            "product": null,
+            "actual_start": null,
+            "capacity_basis": "unknown",
+            "operational_event_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.html",
+            "operational_status": "active",
+            "event_scope": "carrier_service",
+            "status_at": "2026-11-04T10:40:00Z",
+            "field_evidence": {
+              "operational_status": "This restriction is effective immediately and will remain in place until further notice."
+            },
+            "origin_source_id": null,
+            "project_status": "unknown",
+            "capacity": null,
+            "capacity_unit": null,
+            "investment": null,
+            "planned_start": null,
+            "value": null,
+            "currency": null,
+            "unit": null,
+            "price_type": "announcement",
+            "route": null,
+            "transport": "container_gate_in",
+            "evidence_quote": null
+          },
+          "sha256": "da150cfc54bbb4396f7d37b802344382df9d86fa08ac2b73843027324c9ae8ef"
+        },
+        {
+          "item_id": 4,
+          "evidence_id": 16,
+          "version": 3,
+          "review_status": "pending",
+          "latest": true,
+          "raw": {
+            "external_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.feed.rss.xml",
+            "module": "ports",
+            "title": "Spain: Temporary export gate-in restrictions at APMT Valencia",
+            "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.html",
+            "published_at": "2026-11-04T10:40:00Z",
+            "fetched_at": "2026-11-13T01:17:48.201779Z",
+            "effective_at": null,
+            "expires_at": null,
+            "observed_at": null,
+            "mode": "live",
+            "verification": "LIVE_HTTP",
+            "data_status": "candidate",
+            "country": "ES",
+            "company": "unknown",
+            "project_id": null,
+            "factory": null,
+            "location": "APMT Valencia",
+            "product": null,
+            "actual_start": null,
+            "capacity_basis": "unknown",
+            "operational_event_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.html",
+            "operational_status": "active",
+            "event_scope": "carrier_service",
+            "status_at": "2026-11-04T10:40:00Z",
+            "field_evidence": {
+              "operational_status": "This restriction is effective immediately and will remain in place until further notice."
+            },
+            "origin_source_id": null,
+            "project_status": "unknown",
+            "capacity": null,
+            "capacity_unit": null,
+            "investment": null,
+            "planned_start": null,
+            "value": null,
+            "currency": null,
+            "unit": null,
+            "price_type": "announcement",
+            "route": null,
+            "transport": "container_gate_in",
+            "evidence_quote": null
+          },
+          "sha256": "3d43fe15276773e329da8d0e2df24100f02525d1133c1ac961eec1111aa69dc2"
+        }
+      ],
+      "evidence_ids": [
+        16
+      ],
+      "note": "单一事件；解除不等于全港正常；超过24小时持续状态需复核"
+    },
+    {
+      "event_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.html",
+      "scope": "carrier_service",
+      "state": "unknown",
+      "conflict": false,
+      "current": {
+        "item_id": 5,
+        "evidence_id": 17,
+        "version": 3,
+        "review_status": "pending",
+        "latest": true,
+        "raw": {
+          "external_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.feed.rss.xml",
+          "module": "ports",
+          "title": "UK: Rail Services to and from London Gateway Suspended Due to Train Derailment",
+          "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.html",
+          "published_at": "2026-10-27T09:16:00Z",
+          "fetched_at": "2026-11-13T01:17:48.202302Z",
+          "effective_at": null,
+          "expires_at": null,
+          "observed_at": null,
+          "mode": "live",
+          "verification": "LIVE_HTTP",
+          "data_status": "candidate",
+          "country": "GB",
+          "company": "unknown",
+          "project_id": null,
+          "factory": null,
+          "location": "London Gateway",
+          "product": null,
+          "actual_start": null,
+          "capacity_basis": "unknown",
+          "operational_event_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.html",
+          "operational_status": "active",
+          "event_scope": "carrier_service",
+          "status_at": "2026-10-27T09:16:00Z",
+          "field_evidence": {
+            "operational_status": "rail services to and from London Gateway are currently suspended due to a train derailment"
+          },
+          "origin_source_id": null,
+          "project_status": "unknown",
+          "capacity": null,
+          "capacity_unit": null,
+          "investment": null,
+          "planned_start": null,
+          "value": null,
+          "currency": null,
+          "unit": null,
+          "price_type": "announcement",
+          "route": null,
+          "transport": "rail",
+          "evidence_quote": null
+        },
+        "sha256": "af2213801245fe67afcefd4d380f64488ba5c65ceb68ac5fbc909005c57ef0b6"
+      },
+      "timeline": [
+        {
+          "item_id": 5,
+          "evidence_id": 15,
+          "version": 2,
+          "review_status": "pending",
+          "latest": false,
+          "raw": {
+            "external_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.feed.rss.xml",
+            "module": "ports",
+            "title": "UK: Rail Services to and from London Gateway Suspended Due to Train Derailment",
+            "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.html",
+            "published_at": "2026-10-27T09:16:00Z",
+            "fetched_at": "2026-11-13T01:12:13.582196Z",
+            "effective_at": null,
+            "expires_at": null,
+            "observed_at": null,
+            "mode": "live",
+            "verification": "LIVE_HTTP",
+            "data_status": "candidate",
+            "country": "unknown",
+            "company": "unknown",
+            "project_id": null,
+            "factory": null,
+            "location": null,
+            "product": null,
+            "actual_start": null,
+            "capacity_basis": "unknown",
+            "operational_event_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.html",
+            "operational_status": "active",
+            "event_scope": "carrier_service",
+            "status_at": "2026-10-27T09:16:00Z",
+            "field_evidence": {
+              "operational_status": "rail services to and from London Gateway are currently suspended due to a train derailment"
+            },
+            "origin_source_id": null,
+            "project_status": "unknown",
+            "capacity": null,
+            "capacity_unit": null,
+            "investment": null,
+            "planned_start": null,
+            "value": null,
+            "currency": null,
+            "unit": null,
+            "price_type": "announcement",
+            "route": null,
+            "transport": "rail",
+            "evidence_quote": null
+          },
+          "sha256": "9bbac607c63d3574e1f4bfa8d272217c1fceb208d6a815cca0da8e9cb72ec089"
+        },
+        {
+          "item_id": 5,
+          "evidence_id": 17,
+          "version": 3,
+          "review_status": "pending",
+          "latest": true,
+          "raw": {
+            "external_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.feed.rss.xml",
+            "module": "ports",
+            "title": "UK: Rail Services to and from London Gateway Suspended Due to Train Derailment",
+            "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.html",
+            "published_at": "2026-10-27T09:16:00Z",
+            "fetched_at": "2026-11-13T01:17:48.202302Z",
+            "effective_at": null,
+            "expires_at": null,
+            "observed_at": null,
+            "mode": "live",
+            "verification": "LIVE_HTTP",
+            "data_status": "candidate",
+            "country": "GB",
+            "company": "unknown",
+            "project_id": null,
+            "factory": null,
+            "location": "London Gateway",
+            "product": null,
+            "actual_start": null,
+            "capacity_basis": "unknown",
+            "operational_event_id": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.html",
+            "operational_status": "active",
+            "event_scope": "carrier_service",
+            "status_at": "2026-10-27T09:16:00Z",
+            "field_evidence": {
+              "operational_status": "rail services to and from London Gateway are currently suspended due to a train derailment"
+            },
+            "origin_source_id": null,
+            "project_status": "unknown",
+            "capacity": null,
+            "capacity_unit": null,
+            "investment": null,
+            "planned_start": null,
+            "value": null,
+            "currency": null,
+            "unit": null,
+            "price_type": "announcement",
+            "route": null,
+            "transport": "rail",
+            "evidence_quote": null
+          },
+          "sha256": "af2213801245fe67afcefd4d380f64488ba5c65ceb68ac5fbc909005c57ef0b6"
+        }
+      ],
+      "evidence_ids": [
+        17
+      ],
+      "note": "单一事件；解除不等于全港正常；超过24小时持续状态需复核"
+    }
+  ],
+  "project_decision_card": {
+    "as_of": "2026-11-13T01:23:36.782167+00:00",
+    "business_relevance": "unknown",
+    "candidate_actions": [
+      "仅历史/过期/未来背景；核实后续公告，不据此启动当前运营调整。"
+    ],
+    "entity_representative": true,
+    "event": {
+      "companies": [
+        "Envision AESC"
+      ],
+      "confidence_basis": "原文模式和显式字段；未经语义/业务核实",
+      "country": "GB",
+      "effective_at": null,
+      "expires_at": null,
+      "factory": "aesc-uk-plant2",
+      "ports": [],
+      "project": "aesc-sunderland-plant2",
+      "route": null,
+      "status": "opened",
+      "transport": null,
+      "types": [
+        {
+          "hypothesis": false,
+          "quote": "AESC has opened a new 15.8 GWh gigafactory",
+          "type": "opened"
+        }
+      ],
+      "validity": "historical"
+    },
+    "evidence_id": 2,
+    "facts": [],
+    "fetched_at": "2026-11-13T01:08:38.263404Z",
+    "high_value": false,
+    "hypotheses": [],
+    "impact": "影响未知；缺少已核实业务关联或合格当前事件。",
+    "impact_level": "unknown",
+    "item_id": 2,
+    "missing": [
+      "真实订单/合同报价/适用货物未接入",
+      "事件持续状态和业务适用需人工确认",
+      "未配置或未匹配脱敏业务关联"
+    ],
+    "mode": "live",
+    "normalization_note": "显式字段/规则分类待核实",
+    "note": "规则推断与候选行动，不是最优方案或损失/延误预测",
+    "observed_at": null,
+    "published_at": "2025-12-16T00:00:00Z",
+    "review_status": "pending",
+    "rule_version": "decision-2026-11-13.1",
+    "severity": "unknown",
+    "severity_reason": "缺合格近期风险证据；未知不等于低风险",
+    "sha256": "02928903241654ed283f3fea25a4e1068a033227d12b3053777a9fb48a59db18",
+    "source_id": "govuk-aesc-opening",
+    "source_quality": {
+      "configured_confidence": "official_text",
+      "human_review": "pending",
+      "provenance": "LIVE_HTTP",
+      "reuse_permission": "allowed_full_text"
+    },
+    "source_reliability": "来源可追溯，事实未经独立核验",
+    "source_url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+    "structured_extraction": {
+      "actual_start": null,
+      "capacity": null,
+      "capacity_basis": "unknown",
+      "capacity_unit": null,
+      "currency": null,
+      "event_scope": "unknown",
+      "factory": "aesc-uk-plant2",
+      "investment": null,
+      "location": "Sunderland, UK",
+      "operational_event_id": null,
+      "operational_status": "unknown",
+      "planned_start": null,
+      "price_type": "announcement",
+      "product": "EV batteries",
+      "project_id": "aesc-sunderland-plant2",
+      "project_status": "opened",
+      "status_at": null,
+      "unit": null,
+      "value": null
+    },
+    "title": "Nissan launches £450m next-generation LEAF in major vote of confidence in UK’s Industrial Strategy",
+    "user_context": [],
+    "verification_tasks": [
+      "核实原文、发布日期、生效范围及后续更正",
+      "人工确认提取和业务关联，不将引文存在当语义核实"
+    ],
+    "verified_facts": [],
+    "version": 1,
+    "card_id": 2,
+    "handling_state": "pending"
+  },
+  "source_links": [
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/11/spain--temporary-export-gate-in-restrictions-at-apmt-valencia.html",
+      "published_at": "2026-11-04T10:40:00Z",
+      "sha256": "3d43fe15276773e329da8d0e2df24100f02525d1133c1ac961eec1111aa69dc2"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/10/uk--rail-services-to-and-from-london-gateway-suspended-due-to-tr.html",
+      "published_at": "2026-10-27T09:16:00Z",
+      "sha256": "af2213801245fe67afcefd4d380f64488ba5c65ceb68ac5fbc909005c57ef0b6"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/news/2026/09/malaysia---no-manifest--no-load--requirement-for-export-shipment.html",
+      "published_at": "2026-09-30T14:20:00Z",
+      "sha256": "9dc594e7d29314d69f9de1e18be175f685b49a8eb88843c0591b20ba9133020e"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/09/philippines--booking-suspension-for-manila--batangas-and-subic-b.html",
+      "published_at": "2026-09-29T06:40:00Z",
+      "sha256": "2f15c6f1771e414d8ce4e4f9215a621d652ec909ffa32b2a49e928a92b17a83a"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/09/new-weekly-rail-connection-between-rotterdam-and-germersheim.html",
+      "published_at": "2026-09-10T09:10:00Z",
+      "sha256": "8bef0933a703f2a08d0870137407576ff5af1775d3e7fe1ba59e36ab7fff81c5"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/09/india--here-s-an-update-on-sea-cargo-manifest-and-transshipment-.html",
+      "published_at": "2026-09-08T11:50:00Z",
+      "sha256": "6997e2cdd8af886a62006ecb7a0a9678106be4e3d0dcf7831e7427ed583ab7a2"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/09/north-europe--industrial-strike-action-affecting-german-and-rott.html",
+      "published_at": "2026-09-03T05:15:00Z",
+      "sha256": "30e8a768a2ee7c11e5b7abc21b6a1a6e75e3cf2596543586b9776abe006ecfd4"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/08/germany--24-hour-warning-strike-at-german-seaports-may-affect-op.html",
+      "published_at": "2026-09-02T16:00:00Z",
+      "sha256": "3762584ce1d56cd56c1601ef351b81c9e631fe949f69560e4223515ae5a4f5f2"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/08/india--mundra-port--here-s-an-update-on-empty-container-yard-ope.html",
+      "published_at": "2026-08-31T12:13:00Z",
+      "sha256": "379737ae273a39309c9577466f76d44581867ddae912b260d0d390db4b6182c1"
+    },
+    {
+      "source": "hapag-ports-rss",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/08/spain--update-on-inland-fuel-surcharge.html",
+      "published_at": "2026-08-27T16:00:00Z",
+      "sha256": "f8193a77d87f112687ce5b8657d72eb6682d199deb33a35bff4e9ddec80ee177"
+    },
+    {
+      "source": "govuk-aesc-opening",
+      "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+      "published_at": "2025-12-16T00:00:00Z",
+      "sha256": "02928903241654ed283f3fea25a4e1068a033227d12b3053777a9fb48a59db18"
+    },
+    {
+      "source": "govuk-aesc-capacity",
+      "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+      "published_at": "2025-06-02T14:27:41Z",
+      "sha256": "55e205fee98ed50439985fc54716235d33fd3d0fd180b070fe664cb8a4e319b7"
+    },
+    {
+      "source": "govuk-aesc-finance",
+      "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+      "published_at": "2025-05-08T23:00:00Z",
+      "sha256": "81c3d6e640e1f3e52a01ba85480d780ab11528ebe598543d1c404c7dc05ca3d4"
+    }
+  ]
+}

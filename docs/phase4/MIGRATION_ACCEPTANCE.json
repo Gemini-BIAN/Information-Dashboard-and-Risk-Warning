@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-13T01:16:46.652948+00:00",
+  "status": "PASS",
+  "before": "005_decision",
+  "downgrade": "004_platform",
+  "after": "005_decision",
+  "scope": "isolated empty temporary SQLite; no production or PR7 changes"
+}

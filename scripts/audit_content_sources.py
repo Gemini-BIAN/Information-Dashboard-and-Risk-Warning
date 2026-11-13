@@ -15,7 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    registry = SourceRegistry.model_validate_json((ROOT / "config/content_sources.v1.json").read_text())
+    registry = SourceRegistry.model_validate_json(
+        (ROOT / "config/content_sources.v1.json").read_text(encoding="utf-8")
+    )
     results = []
     for source in registry.sources:
         start = time.monotonic()
@@ -87,7 +89,8 @@ def main():
                 ensure_ascii=False,
                 indent=2,
             )
-            + "\n"
+            + "\n",
+            encoding="utf-8",
         )
         print(source.source_id, row["status"], row["stage"], flush=True)
 

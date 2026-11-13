@@ -1,0 +1,20 @@
+[
+  {
+    "attempt": "browser-first-failure",
+    "status": "FAIL",
+    "checks_passed": 3,
+    "error": "AssertionError: Locator expected to have text 'HAMBURG'\nActual value:  \nCall log:\n  - Expect \"to_have_text\" with timeout 12000ms\n  - waiting for get_by_role(\"combobox\", name=\"选择业务港口\", exact=True)\n    16 × locator resolved to <input type=\"text\" data-rac=\"\" tabindex=\"0\" role=\"combobox\" value=\"ANTWERP\" autocorrect=\"off\" autocomplete=\"off\" spellcheck=\"false\" aria-label=\"选择业务港口\" aria-expanded=\"false\" aria-autocomplete=\"list\" placeholder=\"Choose an option\" id=\"react-aria3294234503-:r7t:\" class=\"st-emotion-cache-jcetfc equpb2c4\"/>\n       - unexpected value \"\"\n"
+  },
+  {
+    "attempt": "browser-transition-failure",
+    "status": "FAIL",
+    "checks_passed": 4,
+    "error": "AssertionError: Locator expected to be visible\nActual value: None\nError: strict mode violation: get_by_role(\"heading\", name=\"KOPER · 科佩尔\", exact=True) resolved to 2 elements:\n    1) <h3 id=\"koper\" aria-labelledby=\":r1hs:\">…</h3> aka get_by_role(\"heading\", name=\"KOPER · 科佩尔\").first\n    2) <h3 id=\"koper\" aria-labelledby=\":r1gg:\">…</h3> aka get_by_role(\"heading\", name=\"KOPER · 科佩尔\").nth(1)\n \nCall log:\n  - Expect \"to_be_visible\" with timeout 12000ms\n  - waiting for get_by_role(\"heading\", name=\"KOPER · 科佩尔\", exact=True)\n"
+  },
+  {
+    "attempt": "browser-reload-race",
+    "status": "FAIL",
+    "checks_passed": 5,
+    "error": "AssertionError: Locator expected to have count '4'\nActual value: 0 \nCall log:\n  - Expect \"to_have_count\" with timeout 12000ms\n  - waiting for get_by_role(\"tab\")\n    16 × locator resolved to 0 elements\n       - unexpected value \"0\"\n"
+  }
+]

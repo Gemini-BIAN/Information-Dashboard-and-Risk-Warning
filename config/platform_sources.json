@@ -1,0 +1,263 @@
+[
+  {
+    "id": "hamburg",
+    "name": "Port of Hamburg",
+    "url": "https://www.hafen-hamburg.de/en/current/news/",
+    "method": "html",
+    "article_pattern": "/en/press/news/",
+    "limit": 3,
+    "enabled": true,
+    "parser": "hamburg",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "HHM displayed-information permission",
+      "notice_url": "https://www.hafen-hamburg.de/en/imprint/",
+      "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+      "verified_at": "2026-11-09T02:34:28.921397+00:00",
+      "note": "Displayed information可存储/分享且不得改变/扭曲，必须注明来源。仅文字、保持原文与分析分开，不取图片；部分文字为第三方公告，保留原发布主体，不声称HHM原创。"
+    },
+    "use_canonical": true,
+    "organization_id": "port-of-hamburg-marketing",
+    "module": "ports",
+    "adapter": "html_list",
+    "frequency_minutes": 360,
+    "coverage": [
+      "DE"
+    ],
+    "confidence": "official_text",
+    "automatic_access_allowed": true
+  },
+  {
+    "id": "ec-batteries",
+    "name": "European Commission Batteries",
+    "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+    "method": "html",
+    "article_pattern": "/news/",
+    "limit": 3,
+    "enabled": true,
+    "parser": "european_commission",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "CC BY 4.0",
+      "notice_url": "https://commission.europa.eu/legal-notice_en",
+      "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+      "verified_at": "2026-11-09T02:34:28.921405+00:00",
+      "note": "EU自有文字CC BY 4.0；署名、许可和修改说明；排除图片/Logo/第三方作品。"
+    },
+    "use_canonical": true,
+    "organization_id": "european-commission",
+    "module": "capacity",
+    "adapter": "html_list",
+    "frequency_minutes": 360,
+    "coverage": [
+      "EU"
+    ],
+    "confidence": "official_text",
+    "automatic_access_allowed": true
+  },
+  {
+    "id": "catl",
+    "name": "CATL official announcements",
+    "module": "capacity",
+    "url": "https://www.catl.com/en/news/",
+    "adapter": "html_list",
+    "enabled": false,
+    "automatic_access_allowed": false,
+    "frequency_minutes": 360,
+    "coverage": [],
+    "confidence": "unreviewed",
+    "reuse_policy": {
+      "status": "unknown",
+      "permission": "unknown"
+    },
+    "blocker": "Permission/API contract not established; manual import available"
+  },
+  {
+    "id": "maersk",
+    "name": "Maersk Advisories",
+    "module": "market",
+    "url": "https://www.maersk.com/news/category/advisories",
+    "adapter": "html_list",
+    "enabled": false,
+    "automatic_access_allowed": false,
+    "frequency_minutes": 360,
+    "coverage": [],
+    "confidence": "unreviewed",
+    "reuse_policy": {
+      "status": "unknown",
+      "permission": "unknown"
+    },
+    "blocker": "Permission/API contract not established; manual import available"
+  },
+  {
+    "id": "price-api",
+    "name": "Price API not configured",
+    "module": "market",
+    "url": "https://example.invalid/not-configured",
+    "adapter": "json_api",
+    "enabled": false,
+    "automatic_access_allowed": false,
+    "frequency_minutes": 360,
+    "coverage": [],
+    "confidence": "unreviewed",
+    "reuse_policy": {
+      "status": "unknown",
+      "permission": "unknown"
+    },
+    "blocker": "Permission/API contract not established; manual import available"
+  },
+  {
+    "id": "ec-weekly-fuel",
+    "name": "European Commission Weekly Oil Bulletin",
+    "url": "https://energy.ec.europa.eu/data-and-analysis/weekly-oil-bulletin_en",
+    "module": "market",
+    "adapter": "ec_fuel_xlsx",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 10080,
+    "coverage": [
+      "DE",
+      "FR",
+      "BE",
+      "NL"
+    ],
+    "confidence": "official_public_statistics",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "CC BY4.0 EU-owned public data",
+      "verified_at": "2026-11-12T05:54:16.122819+00:00",
+      "notice_url": "https://commission.europa.eu/legal-notice_en",
+      "evidence_ref": "docs/phase3/SOURCE_REVIEW.json",
+      "note": "Cell extraction and EUR/1000l→EUR/l normalization disclosed; no contractual-price claim"
+    }
+  },
+  {
+    "id": "govuk-aesc-finance",
+    "name": "UK Government · AESC Sunderland",
+    "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+    "module": "capacity",
+    "adapter": "govuk_project",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 1440,
+    "organization_id": "uk-government",
+    "confidence": "official_text",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "Open Government Licence v3.0 · Crown copyright; no images/logos/third-party quotes",
+      "notice_url": "https://www.gov.uk/help/terms-conditions",
+      "evidence_ref": "docs/phase4/SOURCE_AUDIT.md",
+      "verified_at": "2026-11-13T01:08:35.427419+00:00"
+    },
+    "project_fields": {
+      "company": "aesc",
+      "project_id": "aesc-sunderland-plant2",
+      "factory": "aesc-uk-plant2",
+      "country": "GB",
+      "location": "Sunderland, UK",
+      "product": "EV batteries",
+      "project_status": "approved"
+    },
+    "field_evidence": {
+      "project_status": "National Wealth Fund and UK Export Finance will provide financial guarantees",
+      "project_id": "The new AESC gigafactory will manufacture batteries for electric vehicles"
+    },
+    "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+  },
+  {
+    "id": "govuk-aesc-opening",
+    "name": "UK Government · AESC Sunderland",
+    "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+    "module": "capacity",
+    "adapter": "govuk_project",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 1440,
+    "organization_id": "uk-government",
+    "confidence": "official_text",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "Open Government Licence v3.0 · Crown copyright; no images/logos/third-party quotes",
+      "notice_url": "https://www.gov.uk/help/terms-conditions",
+      "evidence_ref": "docs/phase4/SOURCE_AUDIT.md",
+      "verified_at": "2026-11-13T01:08:35.439375+00:00"
+    },
+    "project_fields": {
+      "company": "aesc",
+      "project_id": "aesc-sunderland-plant2",
+      "factory": "aesc-uk-plant2",
+      "country": "GB",
+      "location": "Sunderland, UK",
+      "product": "EV batteries",
+      "project_status": "opened"
+    },
+    "field_evidence": {
+      "project_status": "AESC has opened a new 15.8 GWh gigafactory",
+      "project_id": "AESC has opened a new 15.8 GWh gigafactory"
+    },
+    "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+  },
+  {
+    "id": "govuk-aesc-capacity",
+    "name": "UK Government · AESC Sunderland",
+    "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+    "module": "capacity",
+    "adapter": "govuk_project",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 1440,
+    "organization_id": "uk-government",
+    "confidence": "official_text",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "Open Government Licence v3.0 · Crown copyright; no images/logos/third-party quotes",
+      "notice_url": "https://www.gov.uk/help/terms-conditions",
+      "evidence_ref": "docs/phase4/SOURCE_AUDIT.md",
+      "verified_at": "2026-11-13T01:08:35.453681+00:00"
+    },
+    "project_fields": {
+      "company": "aesc",
+      "project_id": "aesc-sunderland-plant2",
+      "factory": "aesc-uk-plant2",
+      "country": "GB",
+      "location": "Sunderland, UK",
+      "product": "EV batteries",
+      "project_status": "approved",
+      "capacity": "15.8",
+      "capacity_unit": "GWh/year",
+      "capacity_basis": "planned"
+    },
+    "field_evidence": {
+      "project_status": "UK Export Finance has agreed to provide support to AESC UK Plant 2 UK Limited (AESC)",
+      "project_id": "UK Export Finance has agreed to provide support to AESC UK Plant 2 UK Limited (AESC)",
+      "capacity": "The Project will have a capacity of 15.8 gigawatt hours (GWh) per year"
+    },
+    "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+  },
+  {
+    "id": "hapag-ports-rss",
+    "name": "Hapag-Lloyd CustomerNEWS Ports & Inland RSS",
+    "url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+    "module": "ports",
+    "adapter": "subscription_rss",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 360,
+    "organization_id": "hapag-lloyd",
+    "confidence": "official_feed",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_subscription_text",
+      "license": "Official complimentary RSS subscription; local reader only, no webpage fetch or redistribution",
+      "notice_url": "https://www.hapag-lloyd.com/en/news-insights/rss-feeds.html",
+      "evidence_ref": "docs/phase4/SOURCE_AUDIT.md",
+      "verified_at": "2026-11-13T01:08:35.453693+00:00"
+    }
+  }
+]

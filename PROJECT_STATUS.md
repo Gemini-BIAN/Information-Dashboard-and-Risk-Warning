@@ -1,3 +1,29 @@
+## 2026-11-13 Phase4：真实项目与订阅公告（最新）
+
+ENGINEERING PASS / DEMO PASS / LIVE PARTIAL / WINDOWS NOT TESTED。新增真实项目1（AESC Sunderland Plant2，3份英国政府OGL历史公告）；Hapag官方RSS10条中2个运营公告实体，当前持续状态未知，不计确认当前中断。Rotterdam许可仍BLOCKED，自动运营0；12港状态未知。未读取到独立柴油脚本，提供零网络CSV/JSON复用接口。事件生命周期、项目历史/冲突、Manual摘要、源级幂等、决策/报告与运行日志已交付。完整296pytest及ruff通过；实际原始字节重解析与DB对照、5轮采集、3次增量验证见docs/PHASE4_ACCEPTANCE.md和docs/phase4/LIVE_ACCEPTANCE.json。PR8保持Draft，PR7/main未修改。Windows与剩余许可等待用户验收。
+
+## 2026-11-12 Phase3决策支持（最新）
+
+Phase3在现有PR8完成事件/业务关联/决策卡/人审/报告/增量命令。真实EC燃油XLSX4国观测入库，原始16928B SHA8d48ab28…，A2实际2026-11-09（不采文件名旧日期），EUR/1000l→EUR/l明确换算，影响未知/人工核实空。港口当前运营0、真实企业项目0；既有背景4条保留。281pytest/ruff通过，最终桌面/390px浏览器验收见docs/PHASE3_ACCEPTANCE.md。纯地图与法规分支未改，不合并。
+
+## 2026-11-12 纯交互世界地图（最新）
+
+PR8一级港口页改为纯Leaflet世界图：无默认选港/卡片/标题/下拉，点标点弹出锚定卡，详情四标签保留、返回恢复视角且关闭弹窗。在线OSM真实加载，离线矢量明确降级。258pytest/ruff/JS语法通过；桌面390px共14组真实滚轮/拖动/12点点击/关闭/详情/视角/触控/降级通过。见docs/WORLD_MAP_ACCEPTANCE.md。等待用户实际视觉审核，不合并。
+
+## 2026-11-12 港口详情页（最新）
+
+PR8港口二级详情完成：地图摘要→四标签详情→返回/深链，12地点入口；复用原状态/证据/Alert与Audit配置，不改变规则或复制库。258pytest、14桌面/390px检查通过；真实汉堡3背景证据仅展示，当前状态未知。详见docs/PORT_DETAIL_ACCEPTANCE.md；法规分支8a31da4不变，不合并。
+
+## 2026-11-11 PR8 Windows编码修复（最新）
+
+PR8 Windows编码修复：14文件35处明确UTF-8，新增3项GBK模拟/结构守卫。完整254pytest和ruff通过。M1仅registry两处文件编码修改，业务规则不变；法规分支8a31da4不变。原生Windows需用户拉取重启后复验。详见docs/WINDOWS_ENCODING_ACCEPTANCE.md。
+
+## 2026-11-11 统一平台本轮结果（最新）
+
+FRAMEWORK PASS / MOCK PASS / LIVE PARTIAL / WINDOWS NOT TESTED。新feature/escim-intelligence-platform从7d6fbc9派生，首提交b564a41。Module01代码/UI/配置无改动，法规分支8a31da4及DraftPR7保留。三模块/统一中心/Sources/报告/预警可运行；251pytest、ruff、16组桌面/390px浏览器通过。真实Hamburg3+EC1=4篇，业务排除3/历史背景1，真实当前运营/企业项目/价格均0。原文/分析/响应CAS分别保留，三空间隔离。详见docs/PLATFORM_ACCEPTANCE.md。新PR目标供应链基线，不合并任何PR。
+
+---
+
 # ESCIM 项目状态
 
 2026-11-06（Asia/Shanghai）。唯一仓库Gemini-BIAN/Information-Dashboard-and-Risk-Warning，分支feature/supply-chain-risk-mvp，PR #1保持Draft，不合并main。

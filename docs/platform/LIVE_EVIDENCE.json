@@ -1,0 +1,298 @@
+{
+  "verified_at": "2026-11-11T06:38:06.317964+00:00",
+  "verification_type": "LIVE_HTTP",
+  "rights": [
+    {
+      "source": "hamburg",
+      "url": "https://www.hafen-hamburg.de/en/imprint/",
+      "http_status": 200,
+      "sha256": "b193202df7cbee64c748f8c7b52d783bf2c39ccf45e0969f49e713887b8137f0",
+      "excerpts": [
+        " liability for the completeness or accuracy of the information due to the technical characteristics of the internet. The displayed information may be stored and shared, provided it is not altered or distorted in any way. When forwarding or reproducing the information, the source must be acknowledged. Graphics and photographs are protected by copyright and may not be reproduced without the author’s permission, except for press photos and press kits made available for download. These may be used for publication in the press, provided the copyright holders are credited. Liability for Content The contents of our website, https://www.hafen-hamburg.de/en have been created with the greatest possible care. However, we cannot guarantee or accept liability for the accuracy, completeness, or timeliness of the content. Our website contains both proprietary content and content provided by third parties, resulting in the following liability standards: As a service provider, we are responsible under § 7(1) of the German Telemedia Act (TMG) for our o",
+        "for the completeness or accuracy of the information due to the technical characteristics of the internet. The displayed information may be stored and shared, provided it is not altered or distorted in any way. When forwarding or reproducing the information, the source must be acknowledged. Graphics and photographs are protected by copyright and may not be reproduced without the author’s permission, except for press photos and press kits made available for download. These may be used for publication in the press, provided the copyright holders are credited. Liability for Content The contents of our website, https://www.hafen-hamburg.de/en have been created with the greatest possible care. However, we cannot guarantee or accept liability for the accuracy, completeness, or timeliness of the content. Our website contains both proprietary content and content provided by third parties, resulting in the following liability standards: As a service provider, we are responsible under § 7(1) of the German Telemedia Act (TMG) for our own content "
+      ],
+      "checked_at": "2026-11-11T06:38:08.255107+00:00"
+    },
+    {
+      "source": "ec-batteries",
+      "url": "https://commission.europa.eu/legal-notice_en",
+      "http_status": 200,
+      "sha256": "7c29f5cb4fd618a9bf50bab517aecad650f8afebfab789d96823afcd428bf5b6",
+      "excerpts": [
+        "(e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy Help us improve our website Fill in the survey This site is managed by: Directorate-General for Communication About us Contact us Priorities Topics Work with us Funding and tenders Press corner Events Follow us Mastodon LinkedIn WSocial Facebook Youtube Other networks",
+        "mmission documents . Unless otherwise indicated (e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerability Disclosure Policy Help us improve our website Fill in the survey This site is managed by: Directorate-General for Communication About us Contact us Priorities Topics Work with us Funding and tenders Press corner Events Follow us Mastodon ",
+        "policy covers the European Union's websites within the europa.eu domain. Privacy policy Copyright notice © European Union, 1995-2026 The Commission's reuse policy is implemented by the Commission Decision of 12 December 2011 on the reuse of Commission documents . Unless otherwise indicated (e.g. in individual copyright notices), content owned by the EU on this website is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence . This means that reuse is allowed, provided appropriate credit is given and changes are indicated. You may be required to clear additional rights if a specific content depicts identifiable private individuals or includes third-party works. To use or reproduce content that is not owned by the EU, you may need to seek permission directly from the rightholders. Software or documents covered by industrial property rights, such as patents, trade marks, registered designs, logos and names, are excluded from the Commission's reuse policy and are not licensed to you. Related links Vulnerabi"
+      ],
+      "checked_at": "2026-11-11T06:38:09.565124+00:00"
+    }
+  ],
+  "source_checks": [
+    {
+      "source": "hamburg",
+      "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+      "actual_html_reparse_equal": true,
+      "response_sha256": "45145c5061ebf6e602661882a6b2ae5959b77740254aa824453d9ad541dd102a"
+    },
+    {
+      "source": "ec-batteries",
+      "url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+      "actual_html_reparse_equal": true,
+      "response_sha256": "590fb3d1cbbbaf91f83f435bac91fe3f6d0b7c5c8f0e79bd8472493948dae428"
+    }
+  ],
+  "records": [
+    {
+      "id": 6,
+      "module": "ports",
+      "title": "11th chainPORT Annual Meeting at Tanger Med Focuses on Scaling AI in Ports",
+      "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+      "published_at": "2026-11-05T10:00:00Z",
+      "fetched_at": "2026-11-11T06:31:06.192110Z",
+      "source": "hamburg",
+      "sha256": "7db6ae110ee88f387a24d457c9c273696bf9f88acc5cfb78217ca787895be1d5",
+      "body_chars": 4152,
+      "risk": "unknown",
+      "relevance": "excluded",
+      "quality": [
+        "CANDIDATE_NOT_BUSINESS_VERIFIED"
+      ],
+      "project_status": "unknown",
+      "capacity": null
+    },
+    {
+      "id": 7,
+      "module": "ports",
+      "title": "eFuel Group and DACMA open Direct Air Capture Competence Center in the Port of Hamburg",
+      "url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/",
+      "published_at": "2026-10-20T10:25:00Z",
+      "fetched_at": "2026-11-11T06:31:06.192169Z",
+      "source": "hamburg",
+      "sha256": "4835ba5d944853aeb8f8a04d5470e9322b6dd74e2a3e4f9aa53f3ae579311e60",
+      "body_chars": 7929,
+      "risk": "unknown",
+      "relevance": "excluded",
+      "quality": [
+        "CANDIDATE_NOT_BUSINESS_VERIFIED"
+      ],
+      "project_status": "unknown",
+      "capacity": null
+    },
+    {
+      "id": 8,
+      "module": "ports",
+      "title": "Port of Hamburg Marketing celebrates Czech handover of leadership at the Port Evening Reception in Prague",
+      "url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+      "published_at": "2026-10-12T07:33:00Z",
+      "fetched_at": "2026-11-11T06:31:06.192185Z",
+      "source": "hamburg",
+      "sha256": "eade65799b7467b659abd953cb491977768fd1fb1e3fc877742f6a792ce85993",
+      "body_chars": 4165,
+      "risk": "unknown",
+      "relevance": "excluded",
+      "quality": [
+        "CANDIDATE_NOT_BUSINESS_VERIFIED"
+      ],
+      "project_status": "unknown",
+      "capacity": null
+    },
+    {
+      "id": 9,
+      "module": "capacity",
+      "title": "Circular Economy: New rules to boost recycling efficiency and material recovery from waste batteries",
+      "url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+      "published_at": "2025-07-04T07:45:57Z",
+      "fetched_at": "2026-11-11T06:31:09.903094Z",
+      "source": "ec-batteries",
+      "sha256": "f1ed89785a805ef7989f95736bfbd87d144d5f2f035447691e57e9ef004ccdd5",
+      "body_chars": 2496,
+      "risk": "unknown",
+      "relevance": "possibly_relevant",
+      "quality": [
+        "HISTORICAL_NOTICE",
+        "CANDIDATE_NOT_BUSINESS_VERIFIED"
+      ],
+      "project_status": "unknown",
+      "capacity": null
+    }
+  ],
+  "repeat_collection": [
+    {
+      "source": "hamburg",
+      "status": "candidate",
+      "mode": "live",
+      "stage": "stored",
+      "writes": {
+        "unchanged": 3
+      },
+      "automatic_retries": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-11T06:38:09.574291+00:00",
+      "details": {
+        "verification_type": "LIVE_HTTP",
+        "url": "https://www.hafen-hamburg.de/en/current/news/",
+        "method": "html",
+        "parser": "hamburg",
+        "reuse_policy": {
+          "status": "reviewed_allowed",
+          "permission": "allowed_full_text",
+          "license": "HHM displayed-information permission",
+          "notice_url": "https://www.hafen-hamburg.de/en/imprint/",
+          "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+          "verified_at": "2026-11-09T02:34:28.921397+00:00",
+          "note": "Displayed information可存储/分享且不得改变/扭曲，必须注明来源。仅文字、保持原文与分析分开，不取图片；部分文字为第三方公告，保留原发布主体，不声称HHM原创。"
+        },
+        "access_success": true,
+        "publication_date_parsed": true,
+        "body_obtained": true,
+        "restriction": null,
+        "failure_stage": null,
+        "article_errors": [],
+        "terms_review": "Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.",
+        "http_status": 200,
+        "discovered": 3,
+        "dated_articles": 3,
+        "parsed_articles": 3,
+        "status": "PASS",
+        "last_request_url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+        "request_count": 4,
+        "robots": {
+          "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+          "https://commission.europa.eu": "200 parsed"
+        },
+        "verified_at": "2026-11-11T06:38:13.274418+00:00",
+        "duration_ms": 3700.11,
+        "article_samples": [
+          {
+            "url": "https://www.hafen-hamburg.de/en/press/news/11th-chainport-annual-meeting-at-tanger-med-focuses-on-scaling-ai-in-ports/",
+            "title": "11th chainPORT Annual Meeting at Tanger Med Focuses on Scaling AI in Ports",
+            "published_at": "2026-11-05T10:00:00+00:00",
+            "fetched_at": "2026-11-11T06:38:11.542675+00:00"
+          },
+          {
+            "url": "https://www.hafen-hamburg.de/en/press/news/efuel-group-and-dacma-open-direct-air-capture-competence-center-in-the-port-of-hamburg/",
+            "title": "eFuel Group and DACMA open Direct Air Capture Competence Center in the Port of Hamburg",
+            "published_at": "2026-10-20T10:25:00+00:00",
+            "fetched_at": "2026-11-11T06:38:12.387010+00:00"
+          },
+          {
+            "url": "https://www.hafen-hamburg.de/en/press/news/port-evening-reception-prague-2026/",
+            "title": "Port of Hamburg Marketing celebrates Czech handover of leadership at the Port Evening Reception in Prague",
+            "published_at": "2026-10-12T07:33:00+00:00",
+            "fetched_at": "2026-11-11T06:38:13.274353+00:00"
+          }
+        ],
+        "median_publication_age_hours": 524.22
+      },
+      "errors": [],
+      "requests": 4,
+      "robots": {
+        "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+        "https://commission.europa.eu": "200 parsed"
+      }
+    },
+    {
+      "source": "ec-batteries",
+      "status": "candidate",
+      "mode": "live",
+      "stage": "stored",
+      "writes": {
+        "unchanged": 1
+      },
+      "automatic_retries": 0,
+      "verification_type": "LIVE_HTTP",
+      "checked_at": "2026-11-11T06:38:13.284100+00:00",
+      "details": {
+        "verification_type": "LIVE_HTTP",
+        "url": "https://environment.ec.europa.eu/topics/waste-and-recycling/batteries_en",
+        "method": "html",
+        "parser": "european_commission",
+        "reuse_policy": {
+          "status": "reviewed_allowed",
+          "permission": "allowed_full_text",
+          "license": "CC BY 4.0",
+          "notice_url": "https://commission.europa.eu/legal-notice_en",
+          "evidence_ref": "docs/PHASE2_SOURCE_EVIDENCE.json",
+          "verified_at": "2026-11-09T02:34:28.921405+00:00",
+          "note": "EU自有文字CC BY 4.0；署名、许可和修改说明；排除图片/Logo/第三方作品。"
+        },
+        "access_success": true,
+        "publication_date_parsed": true,
+        "body_obtained": true,
+        "restriction": null,
+        "failure_stage": null,
+        "article_errors": [],
+        "terms_review": "Automated terms interpretation unavailable; public pages only, obey robots and stop on access restrictions.",
+        "http_status": 200,
+        "discovered": 1,
+        "dated_articles": 1,
+        "parsed_articles": 1,
+        "status": "PASS",
+        "last_request_url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+        "request_count": 4,
+        "robots": {
+          "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+          "https://commission.europa.eu": "200 parsed",
+          "https://environment.ec.europa.eu": "200 parsed"
+        },
+        "verified_at": "2026-11-11T06:38:17.998267+00:00",
+        "duration_ms": 4714.15,
+        "article_samples": [
+          {
+            "url": "https://environment.ec.europa.eu/news/new-rules-boost-recycling-efficiency-waste-batteries-2025-07-04_en",
+            "title": "Circular Economy: New rules to boost recycling efficiency and material recovery from waste batteries",
+            "published_at": "2025-07-04T07:45:57+00:00",
+            "fetched_at": "2026-11-11T06:38:17.998200+00:00"
+          }
+        ],
+        "median_publication_age_hours": 11878.87
+      },
+      "errors": [],
+      "requests": 4,
+      "robots": {
+        "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+        "https://commission.europa.eu": "200 parsed",
+        "https://environment.ec.europa.eu": "200 parsed"
+      }
+    }
+  ],
+  "namespace_counts": {
+    "live": 4,
+    "demo": 5,
+    "manual": 0
+  },
+  "relevance_counts": {
+    "excluded": 3,
+    "possibly_relevant": 1
+  },
+  "port_live_states": {
+    "antwerp": "unknown",
+    "bremerhaven": "unknown",
+    "hamburg": "unknown",
+    "le-havre": "unknown",
+    "rotterdam": "unknown",
+    "tangier": "unknown",
+    "koper": "unknown",
+    "piraeus": "unknown",
+    "teesport": "unknown",
+    "middlesbrough": "unknown",
+    "felixstowe": "unknown",
+    "dover": "unknown"
+  },
+  "source_last_success": {
+    "platform-demo": null,
+    "hamburg": "2026-11-11T06:38:09.574291+00:00",
+    "ec-batteries": "2026-11-11T06:38:13.284100+00:00",
+    "catl": null,
+    "maersk": null,
+    "price-api": null
+  },
+  "real_records": 4,
+  "current_qualified_operations": 0,
+  "reports": "PASS: today empty with coverage caveat; historical dated report includes actual policy; six scoped daily/weekly HTML generated",
+  "status": "PARTIAL: transport/storage/UI-ready real chain; no qualified current operational or price/enterprise production evidence",
+  "robots": {
+    "https://www.hafen-hamburg.de": "404 no robots file (RFC 9309)",
+    "https://commission.europa.eu": "200 parsed",
+    "https://environment.ec.europa.eu": "200 parsed"
+  }
+}

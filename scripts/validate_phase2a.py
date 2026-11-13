@@ -31,7 +31,7 @@ def main():
         first_ids = {e.id: (e.content_hash, e.published_at) for e in s.scalars(select(Event))}
     if not before["events"]:
         raise RuntimeError("Run the real permission-gated collector first; empty DB is not live acceptance")
-    specs = json.loads((root / "config/phase2a_sources.json").read_text())
+    specs = json.loads((root / "config/phase2a_sources.json").read_text(encoding="utf-8"))
     f = SafeFetcher(retries=0)
     traces = []
     captures = {}
@@ -104,7 +104,7 @@ def main():
                 }
             )
         document, summary = generate_digest(s, utcnow().astimezone(TIMEZONE).date())
-        (folder / "daily.html").write_text(document)
+        (folder / "daily.html").write_text(document, encoding="utf-8")
         from collections import Counter
 
         evidence = {
@@ -132,7 +132,7 @@ def main():
             "html_sha256": hashlib.sha256(document.encode()).hexdigest(),
         }
         Path("docs/PHASE2_LIVE_EVIDENCE.json").write_text(
-            json.dumps(evidence, ensure_ascii=False, indent=2) + "\n"
+            json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
         print(
             json.dumps(
