@@ -22,6 +22,35 @@
       "aliases": [
         "DEMO Energy"
       ]
+    },
+    {
+      "id": "aesc",
+      "name": "Envision AESC",
+      "aliases": [
+        "Envision AESC",
+        "AESC"
+      ]
+    },
+    {
+      "id": "samsung-sdi",
+      "name": "Samsung SDI",
+      "aliases": [
+        "Samsung SDI"
+      ]
+    },
+    {
+      "id": "sk-on",
+      "name": "SK On",
+      "aliases": [
+        "SK On"
+      ]
+    },
+    {
+      "id": "panasonic-energy",
+      "name": "Panasonic Energy",
+      "aliases": [
+        "Panasonic Energy"
+      ]
     }
   ]
 }

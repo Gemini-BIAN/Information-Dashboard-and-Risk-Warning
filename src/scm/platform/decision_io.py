@@ -104,6 +104,9 @@ def decision_report(session, mode, kind="daily", day=None):
         and c["high_value"]
         and c["handling_state"] != "ignored"
     ]
+    from scm.platform.entities import projects
+
+    project_register = projects(session, mode)
     sections = []
     for c in selected:
         facts = (
@@ -117,6 +120,9 @@ def decision_report(session, mode, kind="daily", day=None):
     body = (
         f'<!doctype html><html lang="zh"><meta charset="utf-8"><title>ESCIM决策支持</title><body><h1>{mode.upper()} 决策支持 {kind}</h1><p>{start.date()} 至 {end.date()}（不含结束日）Asia/Shanghai；价格观测按观测日期，不伪装发布日期。</p>'
         + ("".join(sections) or "<p>本期无合格高价值事件；覆盖不足，不代表无风险。</p>")
+        + "<h2>项目登记册（历史公告，不是本期新增或当前产量）</h2><pre>"
+        + escape(json.dumps(project_register, ensure_ascii=False)) + "</pre>"
+        + "<p>Contains public sector information licensed under the Open Government Licence v3.0. Crown copyright. GOV.UK文字提取与结构化为修改；不表示政府认可。Hapag-Lloyd公告仅来自官方RSS订阅，不代表企业合同或全港状态。</p>"
         + "<h2>来源覆盖与数据质量</h2><p>无LLM，无真实订单/合同报价，不给延误天数、损失、节省金额或最优方案。历史、未知或未核实主张不自动变为事实。</p><p>©European Union，CC BY4.0；燃油单元格提取及EUR/1000l→EUR/l单位换算为修改。来源样本不代表全覆盖。</p></body></html>"
     )
     record = session.scalar(

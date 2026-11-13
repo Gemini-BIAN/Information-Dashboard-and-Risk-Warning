@@ -1,0 +1,6 @@
+{
+  "at": "2026-11-13T01:21:53.195247+00:00",
+  "status": "PASS",
+  "scope": "Linux subprocess PYTHONIOENCODING=gbk, Chinese database path; not native Windows",
+  "returncode": 0
+}

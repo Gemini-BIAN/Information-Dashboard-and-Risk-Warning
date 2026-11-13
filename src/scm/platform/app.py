@@ -175,13 +175,17 @@ def list_items(module=None):
             if module == "capacity":
                 st.json(
                     {
-                        k: raw[k]
+                        k: raw.get(k)
                         for k in [
                             "project_id",
                             "factory",
                             "project_status",
                             "capacity",
                             "capacity_unit",
+                            "capacity_basis",
+                            "location",
+                            "product",
+                            "actual_start",
                             "investment",
                             "currency",
                             "planned_start",
@@ -197,6 +201,20 @@ def list_items(module=None):
                             if x["raw"].get("project_id") == raw["project_id"]
                             and x["raw"]["company"] == raw["company"]
                         ]
+                    from scm.platform.entities import company_id, projects
+
+                    with factory() as session:
+                        entity = next(
+                            (
+                                p
+                                for p in projects(session, mode)
+                                if p["project_id"] == raw["project_id"]
+                                and p["company_id"] == company_id(raw["company"])
+                            ),
+                            None,
+                        )
+                    if entity:
+                        st.json(entity)
                     st.markdown("**项目时间线（明确项目编号关联）**")
                     st.dataframe(
                         [

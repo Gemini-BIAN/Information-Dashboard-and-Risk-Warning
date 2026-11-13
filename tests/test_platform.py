@@ -362,7 +362,7 @@ def test_manual_xlsx_valid(factory):
     )
     w = Workbook()
     w.active.append(list(r))
-    w.active.append(list(r.values()))
+    w.active.append([json.dumps(v) if isinstance(v, dict) else v for v in r.values()])
     buffer = io.BytesIO()
     w.save(buffer)
     assert import_file(factory, buffer.getvalue(), "data.xlsx")["writes"] == {"inserted": 1}

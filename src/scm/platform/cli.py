@@ -42,7 +42,16 @@ def main():
     support.add_argument("--kind", choices=["daily", "weekly"], default="weekly")
     support.add_argument("--output", type=Path, required=True)
     update = sub.add_parser("update")
+    update.add_argument("--source", action="append")
     update.add_argument("--output-dir", type=Path, default=Path("runtime/platform/updates"))
+    notices = sub.add_parser("import-notice-metadata")
+    notices.add_argument("file", type=Path)
+    notices.add_argument("--actor", required=True)
+    notices.add_argument("--reason", required=True)
+    diesel = sub.add_parser("import-diesel")
+    diesel.add_argument("file", type=Path)
+    diesel.add_argument("--actor", required=True)
+    diesel.add_argument("--reason", required=True)
     sub.add_parser("source-health")
     args = parser.parse_args()
     factory = session_factory(args.database_url)
@@ -93,6 +102,14 @@ def main():
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_text(saved.html, encoding="utf-8")
             result = {"report_id": saved.id, "output": str(args.output)}
+    elif args.command == "import-notice-metadata":
+        from scm.platform.manual_metadata import load
+
+        result = load(factory, args.file.read_bytes(), args.actor, args.reason)
+    elif args.command == "import-diesel":
+        from scm.platform.diesel_import import load
+
+        result = load(factory, args.file.read_bytes(), args.file.name, args.actor, args.reason)
     elif args.command == "source-health":
         from scm.platform.decision_io import source_health
 
@@ -101,14 +118,14 @@ def main():
     elif args.command == "update":
         from scm.platform.automation import update
 
-        result = update(factory, args.output_dir)
+        result = update(factory, args.output_dir, args.source)
     else:
         with factory.begin() as session:
             saved = generate_report(session, args.mode, args.kind)
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_text(saved.html, encoding="utf-8")
             result = {"report_id": saved.id, "output": str(args.output), "mode": args.mode}
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(json.dumps(result, ensure_ascii=True, indent=2))
     if args.command == "update" and any(
         r.get("status") in ["failed", "unavailable"] for r in result["collection"]
     ):

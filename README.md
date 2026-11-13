@@ -1,3 +1,7 @@
+## Phase4最新交付（2026-11-13）
+
+真实AESC Sunderland Plant2历史项目1（3政府OGL公告），官方HapagRSS2个运营公告实体（持续状态未知）、Rotterdam自动事件0；原12港仍未知。新增生命周期/项目历史及冲突、用户摘要Manual、已有柴油结果CSV/JSON导入（不抓取）、选源增量与日志。完整296pytest通过，LIVE PARTIAL，Windows原生未测。运行/原文/许可/验收见[PHASE4_ACCEPTANCE](docs/PHASE4_ACCEPTANCE.md)、[导入契约](docs/phase4/IMPORT_CONTRACTS.md)、[Windows步骤](docs/PHASE4_WINDOWS.md)。
+
 # Global Supply Chain Intelligence & Risk Monitor
 
 面向新能源电解液企业海外供应链规划的本地运行 MVP，Python 3.12 + Streamlit + SQLite/SQLAlchemy。**默认不需要 API Key、不使用付费服务、不连接内部系统。**

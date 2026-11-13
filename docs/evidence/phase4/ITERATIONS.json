@@ -1,0 +1,61 @@
+{
+  "failures": [
+    {
+      "run": "browser.txt",
+      "outcome": "FAILED",
+      "evidence": [
+        "playwright._impl._errors.TimeoutError: Locator.uncheck: Timeout 25000ms exceeded."
+      ]
+    },
+    {
+      "run": "browser2.txt",
+      "outcome": "FAILED",
+      "evidence": [
+        "AssertionError: Locator expected to be visible"
+      ]
+    },
+    {
+      "run": "browser3.txt",
+      "outcome": "FAILED",
+      "evidence": [
+        "playwright._impl._errors.Error: Locator.click: Error: strict mode violation: locator(\"details\").filter(has=locator(\"summary\").filter(has_text=\"Nissan launches\")).locator(\"summary\") resolved to 2 elements:"
+      ]
+    },
+    {
+      "run": "browser4.txt",
+      "outcome": "FAILED",
+      "evidence": [
+        "AssertionError: Locator expected to have count '1'"
+      ]
+    },
+    {
+      "run": "browser5.txt",
+      "outcome": "FAILED",
+      "evidence": [
+        "AssertionError: Locator expected to have count '1'"
+      ]
+    },
+    {
+      "run": "browser6.txt",
+      "outcome": "FAILED",
+      "evidence": [
+        "AssertionError: Locator expected to have count '12'"
+      ]
+    },
+    {
+      "run": "browser7.txt",
+      "outcome": "FAILED",
+      "evidence": [
+        "AssertionError: Locator expected to have count '0'"
+      ]
+    }
+  ],
+  "root_causes": [
+    "Native checkbox input is covered by its rendered label; click visible label",
+    "Wait for Streamlit rerun; target direct card summary, exclude nested JSON expanders and duplicate raw item title",
+    "Summary includes icon text; match explicit decision label without leading anchor",
+    "Leaflet continent labels are additional markers; count registered data-port-id markers only",
+    "Development Streamlit process cached an older module; fresh process resolved ImportError"
+  ],
+  "final": "Fresh process port8532, final desktop+390 run PASS; no product exception suppressed"
+}

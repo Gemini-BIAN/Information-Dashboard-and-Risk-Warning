@@ -14,7 +14,7 @@ from scm.ports.engine import grounded_ports
 from scm.ports.registry import registry
 from scm.settings import ROOT, utcnow
 
-VERSION = "decision-2026-11-12.2"
+VERSION = "decision-2026-11-13.1"
 STATES = ["pending", "confirmed", "ignored", "in_progress", "resolved"]
 PATTERNS = [
     ("ports", "strike", r"\bstrike\b|罢工"),
@@ -130,6 +130,26 @@ def extract(raw, now=None):
                 re.search(r"\b(?:may|could|possible|rumour|not|no)\b|可能|据传|未确认", quote, re.I)
             )
             found.append({"type": kind, "quote": quote, "hypothesis": uncertain})
+    if raw.get("operational_event_id"):
+        found = [
+            {
+                "type": "operational_notice",
+                "quote": raw["field_evidence"]["operational_status"],
+                "hypothesis": False,
+            }
+        ]
+    if (
+        raw["module"] == "capacity"
+        and raw.get("project_id")
+        and raw.get("field_evidence", {}).get("project_status")
+    ):
+        found = [
+            {
+                "type": raw["project_status"],
+                "quote": raw["field_evidence"]["project_status"],
+                "hypothesis": False,
+            }
+        ]
     # Plans cannot become an actual operating event because they mention production.
     if any(e["type"] == "operating" for e in found) and re.search(
         r"\b(?:plans? to|expected to|scheduled to)\b", text, re.I
@@ -238,9 +258,46 @@ def make_card(session, item, evidence, now=None):
             )
     scope_unconfirmed = any(p.id in extraction["ports"] and not p.scope_confirmed for p in registry().ports)
     kinds = {e["type"] for e in extraction["types"]}
-    blocked_time = extraction["validity"] in ["historical", "expired", "future_publication"]
+    from scm.platform.entities import company_id, operations, projects
+
+    entity = None
+    representative = True
+    if raw.get("operational_event_id"):
+        entity = next(
+            (
+                e
+                for e in operations(session, item.mode, now)
+                if e["event_id"] == raw["operational_event_id"] and e["scope"] == raw["event_scope"]
+            ),
+            None,
+        )
+        if entity:
+            representative = bool(entity["current"] and entity["current"]["evidence_id"] == evidence.id)
+            extraction["status"] = entity["state"]
+            extraction["validity"] = entity["state"]
+    elif raw["module"] == "capacity" and raw.get("project_id"):
+        entity = next(
+            (
+                e
+                for e in projects(session, item.mode)
+                if e["project_id"] == raw["project_id"] and e["company_id"] == company_id(raw["company"])
+            ),
+            None,
+        )
+        if entity:
+            representative = entity["current"]["evidence_id"] == evidence.id
+    blocked_time = extraction["validity"] in [
+        "historical",
+        "expired",
+        "future_publication",
+        "resolved",
+        "cancelled",
+        "unknown",
+    ]
     high_value = (
         bool(kinds)
+        and representative
+        and not (entity and entity.get("conflicts"))
         and not blocked_time
         and any(not e["hypothesis"] for e in extraction["types"])
         and item.review_status != "rejected"
@@ -256,6 +313,7 @@ def make_card(session, item, evidence, now=None):
         "terminal_adjustment",
         "service_disruption",
         "route_change",
+        "operational_notice",
     }:
         actions = [
             "联系货代/承运人核实公告适用航线及运输方式。",
@@ -293,6 +351,8 @@ def make_card(session, item, evidence, now=None):
 
     source_spec = json.loads(session.get(PlatformSource, item.source_id).spec_json)
     return {
+        "entity_summary": entity,
+        "entity_representative": representative,
         "rule_version": VERSION,
         "source_quality": {
             "configured_confidence": source_spec.get("confidence", "unreviewed"),
@@ -319,6 +379,15 @@ def make_card(session, item, evidence, now=None):
                 "project_status",
                 "capacity",
                 "capacity_unit",
+                "capacity_basis",
+                "location",
+                "product",
+                "planned_start",
+                "actual_start",
+                "operational_event_id",
+                "operational_status",
+                "event_scope",
+                "status_at",
                 "investment",
                 "value",
                 "currency",

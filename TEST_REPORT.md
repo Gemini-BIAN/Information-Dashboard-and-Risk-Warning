@@ -1,3 +1,7 @@
+## 2026-11-13 Phase4（最新）
+
+Python3.12完整296 passed in21.63s，0失败/跳过；ruff src/tests/scripts、pip check和diff检查通过。新增15项生命周期/项目/导入/订阅边界回归；原281项保留，CSV/XLSX嵌套证据字段显式JSON单元格适配。实际5轮4来源采集（3政府文档+1RSS）、原始响应SHA与重解析/DB逐字段一致、3次到期更新幂等、临时005→004→005迁移通过。真实港口当前事件0，真实企业项目1，当前确认船公司事件0（2条订阅运营公告持续未知），新增柴油0。最终浏览器/CI回执见docs/PHASE4_ACCEPTANCE.md。原生Windows NOT TESTED。
+
 ## 2026-11-12 Phase3决策支持（最新）
 
 Phase3完整281 passed in19.90s，0失败/跳过；23项新增事件时间/实体/关联/影响/建议/审核与版本/导入/工作簿/健康/迁移/增量回归，原Module01/GBK/地图框架均通过。实际HTTP源→原始工作簿SHA/单元格→4观测→未知业务影响决策卡→周报；重复4unchanged。增量实际无到期源、8unchanged并生成两报告。最终Chrome桌面/390px卡片/报告/DEMO审计/纯地图检查记录见docs/PHASE3_ACCEPTANCE.md。

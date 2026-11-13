@@ -19,6 +19,8 @@ def render(factory, mode):
     if not data:
         st.info("暂无合格决策事件；可关闭筛选查看背景/待核实记录，覆盖不足不代表无风险。")
     for c in data:
+        if not c.get("entity_representative", True):
+            continue
         with st.expander(f"决策 #{c['card_id']} · {c['title']} · {c['handling_state']}"):
             st.caption(
                 f"{mode.upper()} · 证据版本{c['version']} · {c['event']['validity']} · 规则{c['rule_version']}"
@@ -43,6 +45,20 @@ def render(factory, mode):
             st.markdown("**来源主张 / 结构化提取（规则，待核实）**")
             st.json(c["event"])
             st.json(c["structured_extraction"])
+            if c.get("entity_summary"):
+                st.markdown("**同一事件/项目时间线与来源差异**")
+                entity = c["entity_summary"]
+                st.caption(entity["note"])
+                st.dataframe([
+                    {"来源日期": r["raw"].get("status_at") or r["raw"]["published_at"],
+                     "阶段/状态": r["raw"].get("project_status") if r["raw"]["module"] == "capacity"
+                     else r["raw"].get("operational_status"),
+                     "产能值": r["raw"].get("capacity"), "单位": r["raw"].get("capacity_unit"),
+                     "产能口径": r["raw"].get("capacity_basis"), "来源": r["raw"]["url"],
+                     "证据版本": r["version"]} for r in entity["timeline"]
+                ], hide_index=True)
+                if entity.get("conflicts") or entity.get("conflict"):
+                    st.warning("来源存在差异，保留全部主张，须人工核实。")
             st.caption(c["normalization_note"])
             for f in c["facts"]:
                 st.code(f["quote"], language=None)

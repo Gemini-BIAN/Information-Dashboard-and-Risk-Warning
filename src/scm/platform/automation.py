@@ -14,15 +14,20 @@ from scm.platform.service import register, specs
 from scm.settings import utcnow
 
 
-def update(factory, output_dir):
+def update(factory, output_dir, source_ids=None):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     with factory.begin() as session:
         register(session)
         checks = {s.id: s.last_checked_at for s in session.scalars(select(PlatformSource))}
+    selected = specs()
+    if source_ids:
+        if set(source_ids) - {s["id"] for s in selected}:
+            raise ValueError("Unknown update source id")
+        selected = [s for s in selected if s["id"] in source_ids]
     due = [
         s
-        for s in specs()
+        for s in selected
         if s.get("enabled")
         and (
             not checks.get(s["id"])
@@ -46,4 +51,8 @@ def update(factory, output_dir):
     (output_dir / "update.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8"
     )
+    run_name = utcnow().strftime("%Y%m%dT%H%M%S%fZ") + ".json"
+    log_dir = output_dir / "runs"
+    log_dir.mkdir(exist_ok=True)
+    (log_dir / run_name).write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     return summary

@@ -31,8 +31,31 @@ class Record(BaseModel):
     company: str = "unknown"
     project_id: str | None = None
     factory: str | None = None
+    location: str | None = None
+    product: str | None = None
+    actual_start: str | None = None
+    capacity_basis: Literal["planned", "nameplate", "actual_operating", "unknown"] = "unknown"
+    operational_event_id: str | None = Field(default=None, max_length=200)
+    operational_status: Literal["scheduled", "active", "resolved", "cancelled", "expired", "unknown"] = (
+        "unknown"
+    )
+    event_scope: Literal["port", "terminal", "channel", "route", "carrier_service", "unknown"] = "unknown"
+    status_at: datetime | None = None
+    # Field-specific literal quotes prevent investment/capacity and plan/actual substitutions.
+    field_evidence: dict[str, str] = Field(default_factory=dict)
+    origin_source_id: str | None = None
     project_status: Literal[
-        "announced", "under_construction", "commissioning", "operating", "delayed", "cancelled", "unknown"
+        "announced",
+        "approved",
+        "under_construction",
+        "equipment_installation",
+        "trial_production",
+        "commissioning",
+        "opened",
+        "operating",
+        "delayed",
+        "cancelled",
+        "unknown",
     ] = "unknown"
     capacity: Decimal | None = Field(default=None, ge=0)
     capacity_unit: Literal["GWh/year", "MWh/year", "tonnes/year"] | None = None
@@ -50,7 +73,16 @@ class Record(BaseModel):
     transport: str | None = None
     evidence_quote: str | None = None
 
-    @field_validator("published_at", "fetched_at", "effective_at", "expires_at", "observed_at")
+    @field_validator("field_evidence", mode="before")
+    @classmethod
+    def quoted_fields(cls, value):
+        if isinstance(value, str):
+            import json
+
+            return json.loads(value)
+        return value
+
+    @field_validator("published_at", "fetched_at", "effective_at", "expires_at", "observed_at", "status_at")
     @classmethod
     def timezone_required(cls, v):
         if v is not None and v.tzinfo is None:
@@ -97,7 +129,7 @@ class Record(BaseModel):
             raise ValueError("Unsupported currency; no implicit FX conversion")
         return v
 
-    @field_validator("planned_start")
+    @field_validator("planned_start", "actual_start")
     @classmethod
     def planned_date(cls, v):
         if v is not None:
@@ -118,6 +150,20 @@ class Record(BaseModel):
             raise ValueError("Demo identifiers/URLs cannot enter Live or Manual")
         if self.mode == "live" and self.data_status == "verified":
             raise ValueError("HTTP collection verifies provenance, not facts; retain candidate")
+        for field, quote in self.field_evidence.items():
+            if field not in type(self).model_fields or not quote.strip() or quote not in self.body:
+                raise ValueError("Field evidence must name a field and quote the original body")
+        if self.operational_event_id:
+            if self.module != "ports" or not self.status_at or self.event_scope == "unknown":
+                raise ValueError("Operational identity requires ports, explicit scope and status timestamp")
+            if "operational_status" not in self.field_evidence:
+                raise ValueError("Operational state requires field-specific evidence")
+        if self.actual_start and "actual_start" not in self.field_evidence:
+            raise ValueError("Actual start requires explicit dated evidence; publication is not actual start")
+        if self.capacity_basis != "unknown" and (
+            self.capacity is None or "capacity" not in self.field_evidence
+        ):
+            raise ValueError("Capacity basis requires a measured field and its evidence")
         structured = (
             any(
                 v is not None

@@ -127,6 +127,9 @@ def detail(session, port_id, mode):
                     "background": False,
                 }
             )
+    from scm.platform.entities import operations
+
+    operational = operations(session, mode)
     # Platform background/manual records are evidence-only; never added to operational snapshots.
     for item in session.scalars(select(Item).where(Item.mode == mode, Item.module == "ports")):
         versions = list(
@@ -136,29 +139,31 @@ def detail(session, port_id, mode):
             raw = json.loads(ev.raw_json)
             if not grounded_ports(raw["title"] + "\n" + raw["body"], [port_id]):
                 continue
+            entity = next((e for e in operational if e["event_id"] == raw.get("operational_event_id")
+                           and e["scope"] == raw.get("event_scope")), None)
             src = session.get(PlatformSource, item.source_id)
             records.append(
                 {
                     "id": f"platform-{ev.id}",
                     "version": ev.version,
                     "latest": ev.version == item.version,
-                    "category": "background",
-                    "state": "background",
+                    "category": "operational_metadata" if entity else "background",
+                    "state": entity["state"] if entity else "background",
                     "current": False,
                     "title": raw["title"],
                     "body": raw["body"],
                     "url": raw["url"],
                     "published": raw["published_at"],
                     "fetched": raw["fetched_at"],
-                    "effective": None,
-                    "until": None,
+                    "effective": raw.get("effective_at"),
+                    "until": raw.get("expires_at"),
                     "publisher": json.loads(src.spec_json).get("name", item.source_id),
                     "sha256": ev.sha256,
                     "body_sha256": hashlib.sha256(raw["body"].encode("utf-8")).hexdigest(),
                     "review": item.review_status if ev.version == item.version else "historical_version",
                     "assessment_id": None,
                     "mode": mode,
-                    "background": True,
+                    "background": not bool(entity),
                 }
             )
     records.sort(

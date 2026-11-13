@@ -1,3 +1,7 @@
+## 2026-11-13 Phase4：真实项目与订阅公告（最新）
+
+ENGINEERING PASS / DEMO PASS / LIVE PARTIAL / WINDOWS NOT TESTED。新增真实项目1（AESC Sunderland Plant2，3份英国政府OGL历史公告）；Hapag官方RSS10条中2个运营公告实体，当前持续状态未知，不计确认当前中断。Rotterdam许可仍BLOCKED，自动运营0；12港状态未知。未读取到独立柴油脚本，提供零网络CSV/JSON复用接口。事件生命周期、项目历史/冲突、Manual摘要、源级幂等、决策/报告与运行日志已交付。完整296pytest及ruff通过；实际原始字节重解析与DB对照、5轮采集、3次增量验证见docs/PHASE4_ACCEPTANCE.md和docs/phase4/LIVE_ACCEPTANCE.json。PR8保持Draft，PR7/main未修改。Windows与剩余许可等待用户验收。
+
 ## 2026-11-12 Phase3决策支持（最新）
 
 Phase3在现有PR8完成事件/业务关联/决策卡/人审/报告/增量命令。真实EC燃油XLSX4国观测入库，原始16928B SHA8d48ab28…，A2实际2026-11-09（不采文件名旧日期），EUR/1000l→EUR/l明确换算，影响未知/人工核实空。港口当前运营0、真实企业项目0；既有背景4条保留。281pytest/ruff通过，最终桌面/390px浏览器验收见docs/PHASE3_ACCEPTANCE.md。纯地图与法规分支未改，不合并。

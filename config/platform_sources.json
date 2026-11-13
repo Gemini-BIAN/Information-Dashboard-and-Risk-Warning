@@ -133,5 +133,131 @@
       "evidence_ref": "docs/phase3/SOURCE_REVIEW.json",
       "note": "Cell extraction and EUR/1000l→EUR/l normalization disclosed; no contractual-price claim"
     }
+  },
+  {
+    "id": "govuk-aesc-finance",
+    "name": "UK Government · AESC Sunderland",
+    "url": "https://www.gov.uk/government/news/another-boost-for-british-car-industry-as-1-billion-secured-for-new-sunderland-gigafactory",
+    "module": "capacity",
+    "adapter": "govuk_project",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 1440,
+    "organization_id": "uk-government",
+    "confidence": "official_text",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "Open Government Licence v3.0 · Crown copyright; no images/logos/third-party quotes",
+      "notice_url": "https://www.gov.uk/help/terms-conditions",
+      "evidence_ref": "docs/phase4/SOURCE_AUDIT.md",
+      "verified_at": "2026-11-13T01:08:35.427419+00:00"
+    },
+    "project_fields": {
+      "company": "aesc",
+      "project_id": "aesc-sunderland-plant2",
+      "factory": "aesc-uk-plant2",
+      "country": "GB",
+      "location": "Sunderland, UK",
+      "product": "EV batteries",
+      "project_status": "approved"
+    },
+    "field_evidence": {
+      "project_status": "National Wealth Fund and UK Export Finance will provide financial guarantees",
+      "project_id": "The new AESC gigafactory will manufacture batteries for electric vehicles"
+    },
+    "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+  },
+  {
+    "id": "govuk-aesc-opening",
+    "name": "UK Government · AESC Sunderland",
+    "url": "https://www.gov.uk/government/news/nissan-launches-450m-next-generation-leafin-major-vote-of-confidence-in-uks-industrial-strategy",
+    "module": "capacity",
+    "adapter": "govuk_project",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 1440,
+    "organization_id": "uk-government",
+    "confidence": "official_text",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "Open Government Licence v3.0 · Crown copyright; no images/logos/third-party quotes",
+      "notice_url": "https://www.gov.uk/help/terms-conditions",
+      "evidence_ref": "docs/phase4/SOURCE_AUDIT.md",
+      "verified_at": "2026-11-13T01:08:35.439375+00:00"
+    },
+    "project_fields": {
+      "company": "aesc",
+      "project_id": "aesc-sunderland-plant2",
+      "factory": "aesc-uk-plant2",
+      "country": "GB",
+      "location": "Sunderland, UK",
+      "product": "EV batteries",
+      "project_status": "opened"
+    },
+    "field_evidence": {
+      "project_status": "AESC has opened a new 15.8 GWh gigafactory",
+      "project_id": "AESC has opened a new 15.8 GWh gigafactory"
+    },
+    "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+  },
+  {
+    "id": "govuk-aesc-capacity",
+    "name": "UK Government · AESC Sunderland",
+    "url": "https://www.gov.uk/government/publications/category-b-project-supported-aesc-edg-uk/category-b-project-supported-aesc-edg-uk",
+    "module": "capacity",
+    "adapter": "govuk_project",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 1440,
+    "organization_id": "uk-government",
+    "confidence": "official_text",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_full_text",
+      "license": "Open Government Licence v3.0 · Crown copyright; no images/logos/third-party quotes",
+      "notice_url": "https://www.gov.uk/help/terms-conditions",
+      "evidence_ref": "docs/phase4/SOURCE_AUDIT.md",
+      "verified_at": "2026-11-13T01:08:35.453681+00:00"
+    },
+    "project_fields": {
+      "company": "aesc",
+      "project_id": "aesc-sunderland-plant2",
+      "factory": "aesc-uk-plant2",
+      "country": "GB",
+      "location": "Sunderland, UK",
+      "product": "EV batteries",
+      "project_status": "approved",
+      "capacity": "15.8",
+      "capacity_unit": "GWh/year",
+      "capacity_basis": "planned"
+    },
+    "field_evidence": {
+      "project_status": "UK Export Finance has agreed to provide support to AESC UK Plant 2 UK Limited (AESC)",
+      "project_id": "UK Export Finance has agreed to provide support to AESC UK Plant 2 UK Limited (AESC)",
+      "capacity": "The Project will have a capacity of 15.8 gigawatt hours (GWh) per year"
+    },
+    "identity_basis": "UKEF explicitly identifies Plant 2 adjacent to existing plant; finance and opening notices identify new Sunderland AESC gigafactory. Curated association, pending human review."
+  },
+  {
+    "id": "hapag-ports-rss",
+    "name": "Hapag-Lloyd CustomerNEWS Ports & Inland RSS",
+    "url": "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss",
+    "module": "ports",
+    "adapter": "subscription_rss",
+    "enabled": true,
+    "automatic_access_allowed": true,
+    "frequency_minutes": 360,
+    "organization_id": "hapag-lloyd",
+    "confidence": "official_feed",
+    "reuse_policy": {
+      "status": "reviewed_allowed",
+      "permission": "allowed_subscription_text",
+      "license": "Official complimentary RSS subscription; local reader only, no webpage fetch or redistribution",
+      "notice_url": "https://www.hapag-lloyd.com/en/news-insights/rss-feeds.html",
+      "evidence_ref": "docs/phase4/SOURCE_AUDIT.md",
+      "verified_at": "2026-11-13T01:08:35.453693+00:00"
+    }
   }
 ]

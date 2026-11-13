@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-13T01:21:22.894649+00:00",
+  "checks": [
+    "1440: real historical project card, timeline, pending review",
+    "1440: capacity page no exception",
+    "1440: pure map 12 markers no initial popup",
+    "1440: report workspace no exception",
+    "1440: no page-wide overflow",
+    "390: real historical project card, timeline, pending review",
+    "390: capacity page no exception",
+    "390: pure map 12 markers no initial popup",
+    "390: report workspace no exception",
+    "390: no page-wide overflow"
+  ],
+  "page_errors": [],
+  "browser": "155.0.8059.79",
+  "status": "PASS"
+}

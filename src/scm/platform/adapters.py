@@ -24,7 +24,11 @@ def permission_gate(spec, now):
         not spec.get("enabled")
         or not spec.get("automatic_access_allowed")
         or policy.get("status") != "reviewed_allowed"
-        or policy.get("permission") != "allowed_full_text"
+        or not (policy.get("permission") == "allowed_full_text" or (
+            policy.get("permission") == "allowed_subscription_text"
+            and spec.get("adapter") == "subscription_rss"
+            and spec.get("url") == "https://www.hapag-lloyd.com/feeds/en/news/ports_inland.rss"
+        ))
     ):
         raise AccessBlocked("NEEDS_PERMISSION: automatic access/text reuse not approved; zero requests")
     stamp = datetime.fromisoformat(policy.get("verified_at", "1900-01-01T00:00:00+00:00"))
@@ -56,6 +60,10 @@ def _record(spec, title, body, url, published, verification, external_id=None):
 
 def fetch_records(spec, fetcher):
     adapter = spec["adapter"]
+    if adapter in ["govuk_project", "subscription_rss"]:
+        from scm.platform.official import fetch
+
+        return fetch(spec, fetcher)
     if adapter == "ec_fuel_xlsx":
         from scm.platform.fuel import fetch
 

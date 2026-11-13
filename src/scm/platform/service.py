@@ -109,7 +109,24 @@ def ingest(session, source_id, record, now=None):
         k: v
         for k, v in raw.items()
         if k != "fetched_at"
-        and not (k in ["effective_at", "expires_at", "observed_at", "transport"] and v is None)
+        and not (
+            k
+            in [
+                "effective_at",
+                "expires_at",
+                "observed_at",
+                "transport",
+                "location",
+                "product",
+                "actual_start",
+                "operational_event_id",
+                "status_at",
+                "origin_source_id",
+            ]
+            and v is None
+        )
+        and not (k in ["capacity_basis", "operational_status", "event_scope"] and v == "unknown")
+        and not (k == "field_evidence" and not v)
     }
     sha = hashlib.sha256(json.dumps(comparable, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     item = session.scalar(
@@ -180,6 +197,21 @@ def rows(session, mode, module=None, query="", country=None, risk=None, company=
         raw = json.loads(ev.raw_json)
         raw["company"] = company_name(raw["company"])
         payload = assess(Record.model_validate_json(ev.raw_json))
+        if raw.get("operational_event_id"):
+            from scm.platform.entities import operations
+
+            entity = next(
+                (
+                    e
+                    for e in operations(session, mode)
+                    if e["event_id"] == raw["operational_event_id"] and e["scope"] == raw["event_scope"]
+                ),
+                None,
+            )
+            payload["operational_state"] = entity["state"] if entity else "unknown"
+            if not entity or entity["state"] not in ["active", "scheduled"]:
+                payload["risk_level"] = "unknown"
+                payload["risk_reason"] = "事件已解除/取消/过期或持续状态未知；不作为当前中断"
         payload["display_as_of"] = utcnow().isoformat()
         payload["stored_analysis_at"] = analysis.analyzed_at
         payload["stored_rule_version"] = json.loads(analysis.payload_json)["rule_version"]
@@ -290,7 +322,7 @@ def generate_report(session, mode, kind="daily", day=None):
         f'<!doctype html><html lang="zh"><meta charset="utf-8"><title>ESCIM {kind}</title><body><h1>{mode.upper()} · ESCIM {kind}</h1><p>{start.date()} 至 {end.date()}（不含结束日） · Asia/Shanghai</p><h2>今日/本周重点与行业、产能及物流动态</h2>'
         + ("".join(blocks) if blocks else "<p>本期没有可报告的新增情报；不代表外部没有重要事件。</p>")
         + port_summary
-        + "<h2>来源与数据质量</h2><p>覆盖不足；原发布日期不替换为采集日期。无LLM，仅原文摘录与中文规则模板。港口等待时间/AIS/ETA未知；计划产能不等于实际产能。未来1–3个月影响需核实，不做无证据预测。人工数据不视为已验证实时价格。</p><p>EU来源文字 © European Union，CC BY4.0；HHM文字按其显示信息许可。摘录与规则分析为本地处理，不取图片/Logo。</p></body></html>"
+        + "<h2>来源与数据质量</h2><p>覆盖不足；原发布日期不替换为采集日期。无LLM，仅原文摘录与中文规则模板。港口等待时间/AIS/ETA未知；计划产能不等于实际产能。未来1–3个月影响需核实，不做无证据预测。人工数据不视为已验证实时价格。</p><p>GOV.UK文字包含按Open Government Licence v3.0许可的公共部门信息，Crown copyright；提取与结构化为修改，不表示政府认可。Hapag-Lloyd仅官方RSS订阅内容，非网页抓取。EU来源文字 © European Union，CC BY4.0；HHM文字按其显示信息许可。摘录与规则分析为本地处理，不取图片/Logo。</p></body></html>"
     )
     saved = session.scalar(
         select(Report).where(

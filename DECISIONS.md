@@ -1,3 +1,7 @@
+## 2026-11-13 Phase4
+
+复用005 Evidence/Audit，不新增实体表或重做采集器。显式event occurrence ID与scope、status_at连接跨公告，24小时持续状态门槛保守回到未知，解除不代表全港正常。项目使用配置公司ID与人工映射项目/工厂身份，保留计划产能与实际产量差别和同日矛盾。GOV.UK OGL文本和官方HapagRSS订阅是独立许可路径；PIN保持关闭。柴油仅复用输出、以原始发布者序列跨空间去重、不覆盖官方冲突。新增字段默认值不改变旧Evidence指纹；旧代码不兼容新填充JSON字段，回滚需预先备份。候选行动仍规则生成，不估算损失/延误或实际产能。验收见docs/PHASE4_ACCEPTANCE.md。
+
 ## 2026-11-12 Phase3决策支持（最新）
 
 复用平台Evidence/Assessment/Audit/Report，仅005增加按Evidence唯一DecisionCard；原证据不覆盖，旧版本卡不继承处理/核实。source主张、规则、用户数据、假设、候选行动分别输出；处理confirmed不等已核实事实，需显式当前引文人工声明。业务关联按空间typed links，复用既有港口Profile且typed link优先，缺关联/范围未确认影响未知。燃油观测按实际工作簿日期/单元格，源数值与单位换算分开，不推断合同成本/涨幅。
